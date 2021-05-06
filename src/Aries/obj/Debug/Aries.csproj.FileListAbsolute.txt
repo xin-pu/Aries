@@ -1,0 +1,15 @@
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\Aries.exe.config
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\Aries.exe
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\Aries.pdb
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.csprojAssemblyReference.cache
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\MainWindow.g.cs
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\App.g.cs
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries_MarkupCompile.cache
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries_MarkupCompile.lref
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\MainWindow.baml
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.g.resources
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.Properties.Resources.resources
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.csproj.GenerateResource.cache
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.csproj.CoreCompileInputs.cache
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.exe
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.pdb
