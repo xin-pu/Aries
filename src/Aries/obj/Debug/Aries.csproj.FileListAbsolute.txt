@@ -13,3 +13,16 @@ E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.csproj.GenerateResourc
 E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.csproj.CoreCompileInputs.cache
 E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.exe
 E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.pdb
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\HandyControl.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\HandyControl.xml
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\ca-ES\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\en\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\fa\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\fr\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\ko-KR\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\pl\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\pt-BR\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\ru\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\bin\Debug\tr\HandyControl.resources.dll
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\App.baml
+E:\Document Code\Code Web\Aries\src\Aries\obj\Debug\Aries.csproj.CopyComplete

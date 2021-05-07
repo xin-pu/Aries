@@ -1,6 +1,10 @@
 ﻿namespace Aries.OpenCV.Blocks
 {
-    public class VisionBlock : Block
+    public abstract class VisionBlock : Block
     {
+
+
+        public abstract void ExecuteVision();
+
     }
 }
