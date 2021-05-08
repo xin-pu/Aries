@@ -1,13 +1,19 @@
 ﻿<Application x:Class="Aries.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:Aries"
-             StartupUri="MainWindow.xaml">
+             StartupUri="AriesMain.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme/MainTheme.xaml"/>
+
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skindark.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/theme.xaml"/>
+
+                <ResourceDictionary Source="Theme/MainTheme.xaml"/>
+                <ResourceDictionary Source="Resource/IconFont.xaml"/>
+
+               
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
