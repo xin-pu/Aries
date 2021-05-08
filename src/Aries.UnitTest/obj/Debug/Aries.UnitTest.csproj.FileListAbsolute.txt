@@ -1,0 +1,14 @@
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Aries.UnitTest.dll
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Aries.UnitTest.pdb
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\obj\Debug\Aries.UnitTest.csprojAssemblyReference.cache
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\obj\Debug\Aries.UnitTest.csproj.CoreCompileInputs.cache
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\obj\Debug\Aries.UnitTest.csproj.CopyComplete
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\obj\Debug\Aries.UnitTest.dll
+E:\Document Code\Code Web\Aries\src\Aries.UnitTest\obj\Debug\Aries.UnitTest.pdb

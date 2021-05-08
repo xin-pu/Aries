@@ -68,13 +68,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blocks\Block.cs" />
+    <Compile Include="Blocks\ImportBlock.cs" />
+    <Compile Include="Blocks\Import\ImageRead.cs" />
+    <Compile Include="Interface\ISaveBlock.cs" />
+    <Compile Include="Blocks\ExportBlock.cs" />
+    <Compile Include="Blocks\Processing\BlurBlock.cs" />
+    <Compile Include="Blocks\Processing\GaussianBlur.cs" />
     <Compile Include="Core\BlockPlan.cs" />
-    <Compile Include="Blocks\VisionBlock.cs" />
+    <Compile Include="Blocks\ProcessingBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Blocks\Output\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
