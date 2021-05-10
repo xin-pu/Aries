@@ -5,15 +5,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MainTheme.xaml"/>
+               
 
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skindark.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skindefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/theme.xaml"/>
 
-                <ResourceDictionary Source="Theme/MainTheme.xaml"/>
-                <ResourceDictionary Source="Resource/IconFont.xaml"/>
 
-               
+         
+                <ResourceDictionary Source="Themes/MainTheme.xaml"/>
+                <ResourceDictionary Source="Template/TextBlockTemplate.xaml"/>
+                <ResourceDictionary Source="Template/ButtonTemplate.xaml"/>
+
+
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,6 +1,0 @@
-E:\Document Code\Code Web\Aries\src\Aries.Controls\bin\Debug\Aries.Controls.dll
-E:\Document Code\Code Web\Aries\src\Aries.Controls\bin\Debug\Aries.Controls.pdb
-E:\Document Code\Code Web\Aries\src\Aries.Controls\obj\Debug\Aries.Controls.csproj.CoreCompileInputs.cache
-E:\Document Code\Code Web\Aries\src\Aries.Controls\obj\Debug\Aries.Controls.dll
-E:\Document Code\Code Web\Aries\src\Aries.Controls\obj\Debug\Aries.Controls.pdb
-E:\Document Code\Code Web\Aries\src\Aries.Controls\obj\Debug\Aries.Controls.csprojAssemblyReference.cache

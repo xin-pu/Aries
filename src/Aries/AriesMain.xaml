@@ -4,27 +4,58 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:graphx="http://schemas.panthernet.ru/graphx/"
+        xmlns:aries="clr-namespace:Aries"
+        xmlns:controls="clr-namespace:Aries.Controls"
         mc:Ignorable="d"
-        Title="Aries" Height="768" Width="1366"
+        Height="768" Width="1366"
         Icon="Aries.ico"
         ShowTitle="True"
         ShowNonClientArea="True"
-        WindowState="Maximized">
+        WindowState="Maximized"
+        Background="Transparent">
     <hc:Window.NonClientAreaContent>
-        <TabControl DockPanel.Dock="Top" Height="100" Margin="5">
-            <TabItem Header="文件" FontSize="16" Width="80"/>
-            <TabItem Header="开始" FontSize="16" Width="80"/>
-            <TabItem Header="帮助" FontSize="16" Width="80"/>
-        </TabControl>
+        <StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">
+            <TextBlock Text="Aries" Foreground="{DynamicResource PrimaryBrush}" 
+                       FontSize="15"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center">
+            </TextBlock>
+        </StackPanel>
     </hc:Window.NonClientAreaContent>
     <DockPanel>
 
+        <StatusBar DockPanel.Dock="Top" >
+            <TabControl DockPanel.Dock="Top" Height="100">
+                <TabItem Header="文件" FontSize="13"/>
+                <TabItem Header="开始" FontSize="13"/>
+                <TabItem Header="页面样式" FontSize="13">
+                    <StatusBar VerticalAlignment="Stretch">
+                        <StatusBarItem>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:TabButton Content="背景颜色" Icon="&#xf06c;"/>
+                                <controls:TabButton Content="背景图片" Icon="&#xf06c;"/>
+                                <controls:TabButton Content="移除背景" Icon="&#xf06c;"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                      
+                        <Separator Background="Black"/>
+                        <StatusBarItem>
+                            <controls:TabButton Content="水印" Icon="&#xf06c;"/>
+                        </StatusBarItem>
+                    </StatusBar>
+                </TabItem>
+                <TabItem Header="视图" FontSize="13"/>
+                <TabItem Header="帮助" FontSize="13"/>
+            </TabControl>
+        </StatusBar>
       
         
-        <StatusBar DockPanel.Dock="Bottom" Height="40" BorderThickness="0,0,0,0">
-            <TextBlock Style="{DynamicResource MyTextBlock}" Text="&#xef21;"/>
-            
+        <StatusBar DockPanel.Dock="Bottom" 
+                   Height="40" BorderThickness="0,1,0,0">
+           
         </StatusBar>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300"/>
@@ -41,15 +72,38 @@
                     </hc:EventTrigger>
                 </hc:Interaction.Triggers>
             </hc:SideMenu>
-            <Canvas Grid.Column="1"/>
-            <Grid Grid.Column="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <hc:PropertyGrid Grid.Row="0"></hc:PropertyGrid>
-                <GroupBox Grid.Row="1" Background="#9918FE"/>
-            </Grid>
+            <Border Grid.Column="1" Margin="2">
+                <Border.Background>
+                    <VisualBrush TileMode="Tile"  Viewport="0,0,0.09,0.095">
+                        <VisualBrush.Visual>
+                            <Image Source="/PNG/grid_paper.png" Stretch="Uniform" UseLayoutRounding="True" SnapsToDevicePixels="True"
+                                   Opacity="0.5"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </Border.Background>
+
+                <graphx:ZoomControl Background="Transparent">
+                    <aries:GraphAreaExample x:Name="graphArea"/>
+                </graphx:ZoomControl>
+            </Border>
+            <TabControl Grid.Column="2"
+                        TabStripPlacement="Left">
+                <TabItem Header="Edit">
+
+                </TabItem>
+                <TabItem Header="Property">
+
+                    <hc:PropertyGrid></hc:PropertyGrid>
+                </TabItem>
+                <TabItem Header="History">
+                    
+                </TabItem>
+
+                <TabItem Header="Log">
+
+                </TabItem>
+
+            </TabControl>
         </Grid>
         
 
