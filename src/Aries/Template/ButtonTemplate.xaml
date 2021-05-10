@@ -16,7 +16,7 @@
                                Text="{TemplateBinding Content}" />
                     <ControlTemplate.Triggers >
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="Text1" Property="Foreground" Value="{DynamicResource MyAccentBaseColor}" />
+                            <Setter TargetName="Text1" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

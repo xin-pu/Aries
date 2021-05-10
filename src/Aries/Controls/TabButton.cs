@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace Aries.Controls
 {
@@ -23,19 +22,9 @@ namespace Aries.Controls
             DependencyProperty.Register("Icon", typeof(string), typeof(TabButton), new PropertyMetadata(null));
 
 
-        public static T FindVisualParent<T>(DependencyObject obj) where T : class
-        {
-            while (obj != null)
-            {
-                if (obj is T)
-                    return obj as T;
-
-                obj = VisualTreeHelper.GetParent(obj);
-            }
-
-            return null;
-        }
     }
+
+
 
 
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using GraphX.Common.Models;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.Blocks.GraphModel
 {
     [Serializable]
-    public abstract class Block : INotifyPropertyChanged
+    public abstract class BlockVertex: VertexBase,INotifyPropertyChanged
     {
-        public string Name { set; get; }
 
+        public string Name { set; get; }
         public string InstName { set; get; }
 
-      
 
         #region
 

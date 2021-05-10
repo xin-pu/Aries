@@ -7,13 +7,14 @@
         xmlns:graphx="http://schemas.panthernet.ru/graphx/"
         xmlns:aries="clr-namespace:Aries"
         xmlns:controls="clr-namespace:Aries.Controls"
+        xmlns:graphModel="clr-namespace:Aries.OpenCV.Blocks.GraphModel;assembly=Aries.OpenCV"
         mc:Ignorable="d"
         Height="768" Width="1366"
         Icon="Aries.ico"
         ShowTitle="True"
         ShowNonClientArea="True"
         WindowState="Maximized"
-        Background="Transparent">
+        Background="White">
     <hc:Window.NonClientAreaContent>
         <StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">
             <TextBlock Text="Aries" Foreground="{DynamicResource PrimaryBrush}" 
@@ -38,74 +39,87 @@
                                 <controls:TabButton Content="移除背景" Icon="&#xf06c;"/>
                             </StackPanel>
                         </StatusBarItem>
-                      
+
                         <Separator Background="Black"/>
                         <StatusBarItem>
-                            <controls:TabButton Content="水印" Icon="&#xf06c;"/>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:TabButton Content="水印" Icon="&#xf06c;"/>
+                                <controls:TabButton Content="移除水印" Icon="&#xf06c;"/>
+                            </StackPanel>
                         </StatusBarItem>
                     </StatusBar>
                 </TabItem>
-                <TabItem Header="视图" FontSize="13"/>
+                <TabItem Header="视图" FontSize="13">
+                    <StatusBar VerticalAlignment="Stretch">
+                        <StatusBarItem>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:TabButton Content="居中对齐" Icon="&#xf06c;"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        
+                      
+                        
+                    </StatusBar>
+                </TabItem>
                 <TabItem Header="帮助" FontSize="13"/>
             </TabControl>
         </StatusBar>
-      
-        
+
+
         <StatusBar DockPanel.Dock="Bottom" 
                    Height="40" BorderThickness="0,1,0,0">
-           
+
         </StatusBar>
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
 
-            <hc:SideMenu BorderThickness="1" Width="300" ExpandMode="ShowOne"
-                         Grid.Column="0"
-                         Margin="2">
-                <hc:Interaction.Triggers>
-                    <hc:EventTrigger EventName="SelectionChanged">
-                        <hc:EventToCommand Command="{Binding SwitchItemCmd}" PassEventArgsToCommand="True" />
-                    </hc:EventTrigger>
-                </hc:Interaction.Triggers>
-            </hc:SideMenu>
-            <Border Grid.Column="1" Margin="2">
-                <Border.Background>
-                    <VisualBrush TileMode="Tile"  Viewport="0,0,0.09,0.095">
-                        <VisualBrush.Visual>
-                            <Image Source="/PNG/grid_paper.png" Stretch="Uniform" UseLayoutRounding="True" SnapsToDevicePixels="True"
-                                   Opacity="0.5"/>
-                        </VisualBrush.Visual>
-                    </VisualBrush>
-                </Border.Background>
+            <Border BorderThickness="1" 
+                    BorderBrush="{DynamicResource PrimaryBrush}" 
+                    Grid.Column="0">
+                <Grid>
+                    <hc:Watermark Name="Watermark"
+                                  FontSize="100"
+                                  FontWeight="Bold"
+                                  MarkMargin="30"
+                                  Angle="45"
+                                  Opacity="0.2"
+                                  MarkBrush="Gray"
+                                  Mark="Aries"/>
+                    <graphx:ZoomControl Background="Transparent">
+                        <graphModel:GraphAreaExample x:Name="graphArea"/>
+                    </graphx:ZoomControl>
+                </Grid>
 
-                <graphx:ZoomControl Background="Transparent">
-                    <aries:GraphAreaExample x:Name="graphArea"/>
-                </graphx:ZoomControl>
             </Border>
-            <TabControl Grid.Column="2"
+            <GridSplitter Grid.Column="0" 
+                          Width="5" 
+                          Background="{DynamicResource PrimaryBrush}"
+                          Margin="2"/>
+
+            <TabControl Grid.Column="1"
                         TabStripPlacement="Left">
-                <TabItem Header="Edit">
+                <TabItem Header="处理">
 
                 </TabItem>
-                <TabItem Header="Property">
+                <TabItem Header="属性">
 
-                    <hc:PropertyGrid></hc:PropertyGrid>
+                    <hc:PropertyGrid/>
                 </TabItem>
-                <TabItem Header="History">
-                    
+                <TabItem Header="历史">
+
                 </TabItem>
 
-                <TabItem Header="Log">
+                <TabItem Header="记录">
 
                 </TabItem>
 
             </TabControl>
         </Grid>
-        
+
 
     </DockPanel>
 </hc:Window>

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Aries.OpenCV.Blocks;
+using Aries.OpenCV.Blocks.GraphModel;
 
 namespace Aries.OpenCV.Core
 {
@@ -10,7 +10,7 @@ namespace Aries.OpenCV.Core
         public string PlanName { set; get; }
         public DateTime CreateTime { set; get; }
         public DateTime LastUpdateTime { set; get; }
-        public IList<Block> Blocks { set; get; }
+        public IList<BlockVertex> Blocks { set; get; }
 
         public object Clone()
         {

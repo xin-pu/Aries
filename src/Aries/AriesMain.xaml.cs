@@ -1,7 +1,4 @@
-﻿using System.Windows;
-using HandyControl.Tools;
-
-namespace Aries
+﻿namespace Aries
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -12,6 +9,8 @@ namespace Aries
         {
             InitializeComponent();
         }
+
+
     }
 
 

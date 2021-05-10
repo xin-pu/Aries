@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Aries.OpenCV.Interface;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.Blocks.GraphModel
 {
-    public abstract class ProcessingBlock : Block, ISaveBlock
+    public abstract class ProcessingBlock : BlockVertex, ISaveBlock
     {
         public Mat InputMat { set; get; }
         public Mat OutPutMat { set; get; }
@@ -23,7 +23,7 @@ namespace Aries.OpenCV.Blocks
         }
     }
 
-    public abstract class ProcessingBlockMultiInput : Block, ISaveBlock
+    public abstract class ProcessingBlockMultiInput : BlockVertex, ISaveBlock
     {
         public List<Mat> InputMats { set; get; }
         public Mat OutPutMat { set; get; }

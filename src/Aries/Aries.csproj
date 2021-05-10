@@ -94,18 +94,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Themes\MainTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ProcessingButton.cs" />
     <Compile Include="Controls\TabButton.cs" />
-    <Compile Include="GraphEditor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -138,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Graph\" />
+    <Folder Include="Themes\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="PNG\grid_paper.png" />
@@ -146,6 +139,10 @@
     <ProjectReference Include="..\Aries.Controls\Aries.Controls.csproj">
       <Project>{bb8f677d-d0c8-46a3-be76-1a2ec488c747}</Project>
       <Name>Aries.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aries.OpenCV\Aries.OpenCV.csproj">
+      <Project>{2E7767E8-C9EE-4A13-9F9C-4E76DDBCC935}</Project>
+      <Name>Aries.OpenCV</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

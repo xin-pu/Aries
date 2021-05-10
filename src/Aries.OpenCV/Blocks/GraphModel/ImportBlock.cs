@@ -1,8 +1,8 @@
 ﻿using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.Blocks.GraphModel
 {
-    public abstract class ImportBlock:Block
+    public abstract class ImportBlock : BlockVertex
     {
         public Mat OutPutMat { set; get; }
         public abstract bool CanImport();
