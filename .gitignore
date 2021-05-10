@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/Aries.Utility/obj
+/src/Aries.Utility/bin
+/src/Aries.Controls/obj
+/src/Aries.Controls/bin
+/src/Aries.UnitTest/bin
+/src/Aries.UnitTest/obj
+/src/Aries.OpenCV/bin
+/src/Aries.OpenCV/obj
+/src/Aries/bin
+/src/Aries/obj
