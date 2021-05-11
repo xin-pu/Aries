@@ -1,9 +1,9 @@
-﻿using Aries.OpenCV.Blocks.GraphModel;
+﻿using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Processing
 {
-    public class BlurBlock : ProcessingBlock
+    public class Blur : ProcessingBlock
     {
    
         /// <summary>
@@ -21,7 +21,7 @@ namespace Aries.OpenCV.Blocks.Processing
         /// </summary>
         public BorderTypes BorderTypes { set; get; }
 
-        public BlurBlock()
+        public Blur()
         {
             KSize = new Size(3, 3);
             AnchorPoint = new Point(-1, -1);

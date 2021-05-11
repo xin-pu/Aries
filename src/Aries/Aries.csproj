@@ -86,18 +86,26 @@
       <DependentUpon>AriesMain.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Template\ButtonTemplate.xaml">
+    <Page Include="Template\BasicTemplate\ButtonTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Template\TextBlockTemplate.xaml">
+    <Page Include="Template\GraphTemplate\CVGraphXTemplate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\BasicTemplate\TextBlockTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ToolKitButton.cs" />
     <Compile Include="Controls\ProcessingButton.cs" />
     <Compile Include="Controls\TabButton.cs" />
+    <Compile Include="Core\BlockToolKitManager.cs" />
+    <Compile Include="Core\GraphAreaCV.cs" />
+    <Compile Include="Core\LogicCoreCV.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -129,11 +137,7 @@
     <Resource Include="Aries.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Graph\" />
     <Folder Include="Themes\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="PNG\grid_paper.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aries.Controls\Aries.Controls.csproj">

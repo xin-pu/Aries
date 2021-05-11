@@ -1,4 +1,4 @@
-﻿using Aries.OpenCV.Blocks.GraphModel;
+﻿using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Processing

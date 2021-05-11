@@ -3,15 +3,19 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using GraphX.Common.Models;
 
-namespace Aries.OpenCV.Blocks.GraphModel
+namespace Aries.OpenCV.GraphModel
 {
     [Serializable]
-    public abstract class BlockVertex: VertexBase,INotifyPropertyChanged
+    public abstract class BlockVertex : VertexBase, INotifyPropertyChanged
     {
 
         public string Name { set; get; }
         public string InstName { set; get; }
 
+        protected BlockVertex()
+        {
+            Name = "Hello";
+        }
 
         #region
 

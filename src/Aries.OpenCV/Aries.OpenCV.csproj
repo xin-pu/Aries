@@ -82,25 +82,25 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blocks\GraphModel\GraphEditor.cs" />
-    <Compile Include="Blocks\GraphModel\ImportBlock.cs" />
+    <Compile Include="Core\BlockHelper.cs" />
+    <Compile Include="Blocks\Export\Width.cs" />
+    <Compile Include="GraphModel\BlockType.cs" />
+    <Compile Include="GraphModel\ImportBlock.cs" />
     <Compile Include="Blocks\Import\ImageRead.cs" />
-    <Compile Include="Blocks\GraphModel\BlockEdge.cs" />
-    <Compile Include="Blocks\GraphModel\BlockVertex.cs" />
+    <Compile Include="GraphModel\BlockEdge.cs" />
+    <Compile Include="GraphModel\BlockVertex.cs" />
     <Compile Include="Interface\ISaveBlock.cs" />
-    <Compile Include="Blocks\GraphModel\ExportBlock.cs" />
-    <Compile Include="Blocks\Processing\BlurBlock.cs" />
+    <Compile Include="GraphModel\ExportBlock.cs" />
+    <Compile Include="Blocks\Processing\Blur.cs" />
     <Compile Include="Blocks\Processing\GaussianBlur.cs" />
     <Compile Include="Core\BlockPlan.cs" />
-    <Compile Include="Blocks\GraphModel\ProcessingBlock.cs" />
+    <Compile Include="GraphModel\ProcessingBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Blocks\Output\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

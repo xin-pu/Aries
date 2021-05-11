@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:graphx="http://schemas.panthernet.ru/graphx/"
-        xmlns:aries="clr-namespace:Aries"
         xmlns:controls="clr-namespace:Aries.Controls"
-        xmlns:graphModel="clr-namespace:Aries.OpenCV.Blocks.GraphModel;assembly=Aries.OpenCV"
+        xmlns:core="clr-namespace:Aries.Core"
         mc:Ignorable="d"
         Height="768" Width="1366"
         Icon="Aries.ico"
@@ -25,7 +24,6 @@
         </StackPanel>
     </hc:Window.NonClientAreaContent>
     <DockPanel>
-
         <StatusBar DockPanel.Dock="Top" >
             <TabControl DockPanel.Dock="Top" Height="100">
                 <TabItem Header="文件" FontSize="13"/>
@@ -80,6 +78,13 @@
             <Border BorderThickness="1" 
                     BorderBrush="{DynamicResource PrimaryBrush}" 
                     Grid.Column="0">
+                <Border.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="/Template/GraphTemplate/CVGraphXTemplate.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </Border.Resources>
                 <Grid>
                     <hc:Watermark Name="Watermark"
                                   FontSize="100"
@@ -89,8 +94,8 @@
                                   Opacity="0.2"
                                   MarkBrush="Gray"
                                   Mark="Aries"/>
-                    <graphx:ZoomControl Background="Transparent">
-                        <graphModel:GraphAreaExample x:Name="graphArea"/>
+                    <graphx:ZoomControl Background="Transparent" x:Name="dg_zoomctrl">
+                        <core:GraphAreaCV x:Name="dg_Area"/>
                     </graphx:ZoomControl>
                 </Grid>
 
@@ -103,7 +108,10 @@
             <TabControl Grid.Column="1"
                         TabStripPlacement="Left">
                 <TabItem Header="处理">
-
+                    <WrapPanel>
+                        <Button Content="Create Image" Click="OnTestClick"></Button>
+                        <Button Content="Create GaussBlur"></Button>
+                    </WrapPanel>
                 </TabItem>
                 <TabItem Header="属性">
 

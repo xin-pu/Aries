@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Aries.OpenCV.Blocks.GraphModel;
+using Aries.OpenCV.GraphModel;
 
 namespace Aries.OpenCV.Core
 {

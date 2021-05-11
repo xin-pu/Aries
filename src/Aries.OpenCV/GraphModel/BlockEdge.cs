@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using GraphX.Common.Models;
 
-namespace Aries.OpenCV.Blocks.GraphModel
+namespace Aries.OpenCV.GraphModel
 {
     [Serializable]
     public class BlockEdge : EdgeBase<BlockVertex>, INotifyPropertyChanged

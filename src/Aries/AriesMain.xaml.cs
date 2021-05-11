@@ -1,4 +1,10 @@
-﻿namespace Aries
+﻿using System.Linq;
+using Aries.Core;
+using Aries.OpenCV.Blocks.Processing;
+using Aries.OpenCV.GraphModel;
+using GraphX.Controls;
+
+namespace Aries
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -8,9 +14,33 @@
         public MainWindow()
         {
             InitializeComponent();
+            var dgLogic = new LogicCoreCV();
+            dg_Area.LogicCore = dgLogic;
         }
 
+        
 
+        private void OnTestClick(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var data = fillDataVertex(new Blur());
+            dg_Area.AddVertexAndData(data, new VertexControl(data));
+
+            //we have to check if there is only one vertex and set coordinates manulay 
+            //because layout algorithms skip all logic if there are less than two vertices
+            if (dg_Area.VertexList.Count == 1)
+            {
+                dg_Area.VertexList.First().Value.SetPosition(0, 0);
+                dg_Area.UpdateLayout(); //update layout to update vertex size
+            }
+            else dg_Area.RelayoutGraph(true);
+            dg_zoomctrl.ZoomToFill();
+        }
+
+        private BlockVertex fillDataVertex(BlockVertex item)
+        {
+            item.Name = "123";
+            return item;
+        }
     }
 
 
