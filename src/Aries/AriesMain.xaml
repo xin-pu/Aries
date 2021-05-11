@@ -107,11 +107,31 @@
 
             <TabControl Grid.Column="1"
                         TabStripPlacement="Left">
-                <TabItem Header="处理">
-                    <WrapPanel>
-                        <Button Content="Create Image" Click="OnTestClick"></Button>
-                        <Button Content="Create GaussBlur"></Button>
-                    </WrapPanel>
+                <TabItem Header="工具" ToolTip="Tool Kit" DataContext="{Binding ToolKitManager}" >
+                    <TreeView VerticalAlignment="Stretch" Name="TreeView_ToolKit" 
+                              ItemsSource="{Binding BlockToolKitStructs}">
+                        <TreeView.Resources>
+                            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding GroupName,StringFormat='{}&#xef8c;  {0}'}" Style="{DynamicResource FIconStyle}"
+                                               FontSize="13"
+                                               HorizontalAlignment="Left"
+                                               Grid.Column="0"/>
+                                    <TextBlock Text="{Binding ToolKitStructs.Count}" 
+                                               Grid.Column="1"/>
+                                </Grid>
+                            </HierarchicalDataTemplate>
+                            <DataTemplate DataType="{x:Type core:ToolKitStruct}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Name}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </TreeView.Resources>
+                    </TreeView>
                 </TabItem>
                 <TabItem Header="属性">
 

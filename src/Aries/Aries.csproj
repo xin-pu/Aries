@@ -106,6 +106,7 @@
     <Compile Include="Core\BlockToolKitManager.cs" />
     <Compile Include="Core\GraphAreaCV.cs" />
     <Compile Include="Core\LogicCoreCV.cs" />
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -93,7 +93,6 @@
     <Compile Include="GraphModel\ExportBlock.cs" />
     <Compile Include="Blocks\Processing\Blur.cs" />
     <Compile Include="Blocks\Processing\GaussianBlur.cs" />
-    <Compile Include="Core\BlockPlan.cs" />
     <Compile Include="GraphModel\ProcessingBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using Aries.OpenCV.Blocks.Export;
 using Aries.OpenCV.Blocks.Import;
 using Aries.OpenCV.Blocks.Processing;
+using Aries.OpenCV.GraphModel;
 
 namespace Aries.OpenCV.Core
 {
     public class BlockHelper
     {
-        public static List<Type> GetBlockType()
+        public static List<Type> GetBlockClassType()
         {
-            return new List<Type>()
+            return new List<Type>
             {
                 typeof(Width),
                 typeof(ImageRead),
@@ -19,6 +20,19 @@ namespace Aries.OpenCV.Core
             };
         }
 
+        public static BlockType GetBlockType(Type blockTypeClass)
+        {
+            var baseType = blockTypeClass.BaseType;
+            if (baseType==null)
+                throw new ArgumentOutOfRangeException();
+            if (baseType.Name.Contains("ExportBlock"))
+                return BlockType.Export;
+            if (baseType.Name.Contains("ImportBlock"))
+                return BlockType.Import;
+            if (baseType.Name.Contains("ProcessingBlock"))
+                return BlockType.Processing;
+            return GetBlockType(baseType);
+        }
 
     }
 }

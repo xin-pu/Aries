@@ -14,11 +14,28 @@ namespace Aries
         public MainWindow()
         {
             InitializeComponent();
+
+            InitialToolKit();
+            InitialGraph();
+            DataContext = this;
+        }
+
+        public BlockToolKitManager ToolKitManager => BlockToolKitManager.Instance;
+
+        private void InitialToolKit()
+        {
+
+        }
+
+        private void InitialGraph()
+        {
             var dgLogic = new LogicCoreCV();
             dg_Area.LogicCore = dgLogic;
         }
 
-        
+
+
+        #region Function about Graph
 
         private void OnTestClick(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -41,6 +58,8 @@ namespace Aries
             item.Name = "123";
             return item;
         }
+        #endregion
+
     }
 
 
