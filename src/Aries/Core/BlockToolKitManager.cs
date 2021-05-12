@@ -36,7 +36,8 @@ namespace Aries.Core
             {
                 Name = a.Name,
                 ClassType = a,
-                BlockType = BlockHelper.GetBlockType(a)
+                BlockType = BlockHelper.GetBlockType(a),
+                Icon = 
             }).ToList();
             typeAll.GroupBy(a => a.BlockType).ToList().ForEach(a =>
             {
@@ -98,6 +99,7 @@ namespace Aries.Core
     public class ToolKitStruct : INotifyPropertyChanged
     {
         private string _name;
+        public string _icon;
         private Type _classType;
         private BlockType _blockType;
 
@@ -105,6 +107,12 @@ namespace Aries.Core
         {
             set { UpdateProperty(ref _name, value); }
             get { return _name; }
+        }
+
+        public string Icon
+        {
+            set { UpdateProperty(ref _icon, value); }
+            get { return _icon; }
         }
 
         public Type ClassType

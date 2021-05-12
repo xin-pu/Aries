@@ -127,6 +127,9 @@
                             </HierarchicalDataTemplate>
                             <DataTemplate DataType="{x:Type core:ToolKitStruct}">
                                 <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Icon}" Style="{DynamicResource FIconStyle}"
+                                               FontSize="13"
+                                               HorizontalAlignment="Left"/>
                                     <TextBlock Text="{Binding Name}" />
                                 </StackPanel>
                             </DataTemplate>

@@ -12,6 +12,8 @@ namespace Aries.OpenCV.GraphModel
         public string Name { set; get; }
         public string InstName { set; get; }
 
+        public virtual string Icon { set; get; } = "&#xf0a1;";
+
         protected BlockVertex()
         {
             Name = "Hello";
