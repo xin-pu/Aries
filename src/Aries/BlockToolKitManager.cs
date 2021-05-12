@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
 
-namespace Aries.Core
+namespace Aries
 {
     public class BlockToolKitManager
     {
@@ -37,7 +37,7 @@ namespace Aries.Core
                 Name = a.Name,
                 ClassType = a,
                 BlockType = BlockHelper.GetBlockType(a),
-                Icon = 
+                Icon = BlockHelper.GetBlockICon(a)
             }).ToList();
             typeAll.GroupBy(a => a.BlockType).ToList().ForEach(a =>
             {

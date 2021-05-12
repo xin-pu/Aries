@@ -7,6 +7,7 @@
         xmlns:graphx="http://schemas.panthernet.ru/graphx/"
         xmlns:controls="clr-namespace:Aries.Controls"
         xmlns:core="clr-namespace:Aries.Core"
+        xmlns:aries="clr-namespace:Aries"
         mc:Ignorable="d"
         Height="768" Width="1366"
         Icon="Aries.ico"
@@ -110,8 +111,14 @@
                 <TabItem Header="工具" ToolTip="Tool Kit" DataContext="{Binding ToolKitManager}" >
                     <TreeView VerticalAlignment="Stretch" Name="TreeView_ToolKit" 
                               ItemsSource="{Binding BlockToolKitStructs}">
+                        <TreeView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel IsItemsHost="True" Orientation="Vertical"/>
+                            </ItemsPanelTemplate>
+                        </TreeView.ItemsPanel>
+                       
                         <TreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
+                            <HierarchicalDataTemplate DataType="{x:Type aries:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -125,12 +132,15 @@
                                                Grid.Column="1"/>
                                 </Grid>
                             </HierarchicalDataTemplate>
-                            <DataTemplate DataType="{x:Type core:ToolKitStruct}">
-                                <StackPanel Orientation="Horizontal">
+                            <DataTemplate DataType="{x:Type aries:ToolKitStruct}">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="{Binding Icon}" Style="{DynamicResource FIconStyle}"
                                                FontSize="13"
-                                               HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding Name}" />
+                                               HorizontalAlignment="Left"
+                                               Margin="5,0"/>
+                                    <TextBlock Text="{Binding Name}" 
+                                               FontStyle="Italic"
+                                               FontWeight="DemiBold"/>
                                 </StackPanel>
                             </DataTemplate>
                         </TreeView.Resources>

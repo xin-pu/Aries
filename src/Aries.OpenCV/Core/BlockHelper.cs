@@ -23,7 +23,7 @@ namespace Aries.OpenCV.Core
         public static BlockType GetBlockType(Type blockTypeClass)
         {
             var baseType = blockTypeClass.BaseType;
-            if (baseType==null)
+            if (baseType == null)
                 throw new ArgumentOutOfRangeException();
             if (baseType.Name.Contains("ExportBlock"))
                 return BlockType.Export;
@@ -34,6 +34,19 @@ namespace Aries.OpenCV.Core
             return GetBlockType(baseType);
         }
 
+        public static string GetBlockICon(Type blockTypeCLass)
+        {
+            var typename = blockTypeCLass.Name;
+            return iconDictionary.ContainsKey(typename)
+                ? iconDictionary[typename]
+                : iconDictionary["Default"];
+        }
+
+        private static readonly Dictionary<string, string> iconDictionary = new Dictionary<string, string>
+        {
+            ["Default"] = "\uef71",
+            ["ImageRead"] = "\uef71"
+        };
 
 
     }

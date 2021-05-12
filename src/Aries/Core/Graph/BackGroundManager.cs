@@ -1,30 +1,26 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Aries.OpenCV.Core;
-using GraphX.Common.Models;
+using System.Windows.Media;
 
-namespace Aries.OpenCV.GraphModel
+namespace Aries.Core
 {
-    [Serializable]
-    public abstract class BlockVertex : VertexBase, INotifyPropertyChanged
+    public class BackGroundManager : INotifyPropertyChanged
     {
+        private double _opactiy = 1;
+        private Brush _brush = new SolidColorBrush(Colors.Transparent);
 
-        public string Name { set; get; }
-        public string InstName { set; get; }
-
-        public string Icon { set; get; }
-
-        protected BlockVertex()
+        public Brush Brush
         {
-            Name = "Hello";
-            Icon = getICon();
+            set { UpdateProperty(ref _brush, value); }
+            get { return _brush; }
         }
 
-        private string getICon()
+        public double Opactiy
         {
-            return BlockHelper.GetBlockICon(GetType());
+            set { UpdateProperty(ref _opactiy, value); }
+            get { return _opactiy; }
         }
+
 
         #region
 
