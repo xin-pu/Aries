@@ -7,7 +7,6 @@
         xmlns:graphx="http://schemas.panthernet.ru/graphx/"
         xmlns:controls="clr-namespace:Aries.Controls"
         xmlns:core="clr-namespace:Aries.Core"
-        xmlns:aries="clr-namespace:Aries"
         mc:Ignorable="d"
         Height="768" Width="1366"
         Icon="Aries.ico"
@@ -98,8 +97,29 @@
 
 
         <StatusBar DockPanel.Dock="Bottom" 
-                   Height="40" BorderThickness="0,1,0,0">
+                   Height="45" BorderThickness="0,1,0,0">
+            <StatusBarItem DataContext="{Binding AriesManager}" Margin="0">
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Graph Name: " VerticalAlignment="Center"
+                               Foreground="{DynamicResource ReverseTextBrush}"/>
+                    <ComboBox ItemsSource="{Binding LogicCoreCvs}" 
+                              Height="20"
+                              SelectedItem="{Binding LogicCoreCvSelect}"
+                              DisplayMemberPath="Name"
+                              Width="200"/>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="5,0">
+                        <TextBlock Text="{Binding LogicCoreCvSelect.CreateTime,StringFormat='{}Create at:  {0}'}" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"/>
 
+                        <TextBlock Text="{Binding LogicCoreCvSelect.LastUpdateTime,StringFormat='{}Update at:  {0}'}" 
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Right"/>
+                    </StackPanel>
+                  
+                </StackPanel>
+            </StatusBarItem>
+            <Separator Width="2" Foreground="Aqua"/>
         </StatusBar>
 
         <Grid>
@@ -119,14 +139,7 @@
                     </ResourceDictionary>
                 </Border.Resources>
                 <DockPanel DataContext="{Binding AriesManager}">
-                    <StackPanel DockPanel.Dock="Top" Height="50" Orientation="Horizontal" HorizontalAlignment="Stretch">
-                        <TextBlock Text="Name:" VerticalAlignment="Center"/>
-                        <ListView ItemsSource="{Binding LogicCoreCvs}" 
-                                  SelectedItem="{Binding LogicCoreCvSelect}"
-                                  DisplayMemberPath="Name"
-                                  Width="200"/>
-                        <Separator Width="2"></Separator>
-                    </StackPanel>
+                    
                     <Grid DataContext="{Binding LogicCoreCvSelect}">
                         <hc:Watermark Name="Watermark"
                                       DataContext="{Binding WaterMaskManager}"
@@ -195,7 +208,7 @@
                 </TabItem>
                 <TabItem Header="属性">
 
-                    <hc:PropertyGrid/>
+                    <hc:PropertyGrid SelectedObject="{Binding AriesManager.LogicCoreCvSelect.WaterMaskManager}"/>
                 </TabItem>
                 <TabItem Header="历史">
 

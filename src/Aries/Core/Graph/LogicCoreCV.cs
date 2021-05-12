@@ -1,24 +1,24 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Aries.Annotations;
 using Aries.OpenCV.GraphModel;
 using GraphX.Logic.Models;
 using QuickGraph;
 
 namespace Aries.Core
 {
+    [Serializable]
     public class LogicCoreCV :
         GXLogicCore<BlockVertex, BlockEdge, BidirectionalGraph<BlockVertex, BlockEdge>>,INotifyPropertyChanged
     {
 
-
-        public LogicCoreCV()
+        public LogicCoreCV(string name)
         {
             WaterMaskManager = new WaterMaskManager();
             BackGroundManager = new BackGroundManager();
-            Name = $"Default";
+            Name = name;
             CreateTime=DateTime.Now;
+            LastUpdateTime=DateTime.Now;
         }
 
         public WaterMaskManager WaterMaskManager { set; get; }
