@@ -29,20 +29,20 @@
                    Name="Bar">
             <TabControl DockPanel.Dock="Top" Height="100"
                         Width="{Binding ElementName=Bar,Path=ActualWidth}">
-                <TabItem Header="文件" FontSize="13">
+                <TabItem Header="文件" FontSize="13" DataContext="{Binding FileSystemManager}">
                     <StatusBar VerticalAlignment="Stretch" >
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="新建" Icon="&#xef47;"/>
-                                <controls:TabButton Content="打开" Icon="&#xef4c;"/>
-                                <controls:TabButton Content="关闭" Icon="&#xef4d;"/>
+                                <controls:TabButton Content="新建" Icon="&#xef47;" Command="{Binding GraphCVNewCommand}"/>
+                                <controls:TabButton Content="打开" Icon="&#xef4c;" Command="{Binding GraphCVOpenCommand}"/>
+                                <controls:TabButton Content="关闭" Icon="&#xef4d;" Command="{Binding GraphCVCloseCommand}"/>
                             </StackPanel>
                         </StatusBarItem>
                         <Separator Background="Black"/>
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="保存" Icon="&#xf0a6;"/>
-                                <controls:TabButton Content="另存为" Icon="&#xf0a6;"/>
+                                <controls:TabButton Content="保存" Icon="&#xf0a6;" Command="{Binding GraphCVSaveCommand}"/>
+                                <controls:TabButton Content="另存为" Icon="&#xf0a6;" Command="{Binding GraphCVSaveAsCommand}"/>
                             </StackPanel>
                         </StatusBarItem>
                         <Separator Background="Black"/>
@@ -53,7 +53,7 @@
                         </StatusBarItem>
                     </StatusBar>
                 </TabItem>
-                <TabItem Header="开始" FontSize="13">
+                <TabItem Header="控制" FontSize="13">
                     <StatusBar VerticalAlignment="Stretch">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
@@ -65,7 +65,7 @@
                     </StatusBar>
                 </TabItem>
                 <TabItem Header="页面样式" FontSize="13">
-                    <StatusBar VerticalAlignment="Stretch">
+                    <StatusBar VerticalAlignment="Stretch" DataContext="{Binding AriesManager.LogicCoreCvSelect}">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
                                 <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
@@ -75,10 +75,10 @@
                         </StatusBarItem>
 
                         <Separator Background="Black"/>
-                        <StatusBarItem>
+                        <StatusBarItem DataContext="{Binding WaterMaskManager}">
                             <StackPanel Orientation="Horizontal">
                                 <controls:TabButton Content="水印" Icon="&#xef68;"/>
-                                <controls:TabButton Content="移除水印" Icon="&#xf117;"/>
+                                <controls:TabButton Content="移除水印" Icon="&#xf117;" Command="{Binding RemoveWaterMaskCommand}"/>
                             </StackPanel>
                         </StatusBarItem>
                     </StatusBar>
@@ -118,19 +118,34 @@
                         </ResourceDictionary.MergedDictionaries>
                     </ResourceDictionary>
                 </Border.Resources>
-                <Grid>
-                    <hc:Watermark Name="Watermark"
-                                  FontSize="100"
-                                  FontWeight="Bold"
-                                  MarkMargin="30"
-                                  Angle="45"
-                                  Opacity="0.2"
-                                  MarkBrush="Gray"
-                                  Mark="Aries"/>
-                    <graphx:ZoomControl Background="Transparent" x:Name="dg_zoomctrl">
-                        <core:GraphAreaCV x:Name="dg_Area"/>
-                    </graphx:ZoomControl>
-                </Grid>
+                <DockPanel DataContext="{Binding AriesManager}">
+                    <StackPanel DockPanel.Dock="Top" Height="50" Orientation="Horizontal" HorizontalAlignment="Stretch">
+                        <TextBlock Text="Name:" VerticalAlignment="Center"/>
+                        <ListView ItemsSource="{Binding LogicCoreCvs}" 
+                                  SelectedItem="{Binding LogicCoreCvSelect}"
+                                  DisplayMemberPath="Name"
+                                  Width="200"/>
+                        <Separator Width="2"></Separator>
+                    </StackPanel>
+                    <Grid DataContext="{Binding LogicCoreCvSelect}">
+                        <hc:Watermark Name="Watermark"
+                                      DataContext="{Binding WaterMaskManager}"
+                                      FontSize="{Binding FontSize}"
+                                      FontWeight="Bold"
+                                      MarkMargin="{Binding MaskMargin}"
+                                      Angle="{Binding Angle}"
+                                      Opacity="{Binding Opacity}"
+                                      MarkBrush="{Binding Brush}"
+                                      Mark="Aries"
+                                      Visibility="{Binding IsOpen,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+
+                        <graphx:ZoomControl Name="ZoomControl"
+                                            Background="Transparent">
+                            <core:GraphAreaCV x:Name="dg_Area"/>
+                        </graphx:ZoomControl>
+                    </Grid>
+                </DockPanel>
+               
 
             </Border>
             <GridSplitter Grid.Column="0" 

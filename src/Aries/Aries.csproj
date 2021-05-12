@@ -110,6 +110,7 @@
     <Compile Include="Core\Graph\LogicCoreCV.cs" />
     <Compile Include="Core\Graph\BackGroundManager.cs" />
     <Compile Include="Core\Graph\WaterMaskManager.cs" />
+    <Compile Include="Core\Manager\FileSystemManager.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -148,6 +149,10 @@
     <ProjectReference Include="..\Aries.OpenCV\Aries.OpenCV.csproj">
       <Project>{2E7767E8-C9EE-4A13-9F9C-4E76DDBCC935}</Project>
       <Name>Aries.OpenCV</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Aries.Utility\Aries.Utility.csproj">
+      <Project>{6EAF2B10-9A2F-4CE4-982B-F437063CE6B3}</Project>
+      <Name>Aries.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

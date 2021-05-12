@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
+using Aries.Utility;
 
 namespace Aries.Core
 {
@@ -13,6 +15,7 @@ namespace Aries.Core
         private double _angle = 45;
         private Brush _brush = new SolidColorBrush(Colors.Gray);
         private Thickness _maskMargin = new Thickness(30);
+        private bool _isOpen = true;
 
         public string Mask
         {
@@ -20,13 +23,13 @@ namespace Aries.Core
             get { return _mask; }
         }
 
-        public int FonnSize
+        public int FontSize
         {
             set { UpdateProperty(ref _fontSize, value); }
             get { return _fontSize; }
         }
 
-        public double Opactiy
+        public double Opacity
         {
             set { UpdateProperty(ref _opactiy, value); }
             get { return _opactiy; }
@@ -48,6 +51,23 @@ namespace Aries.Core
         {
             set { UpdateProperty(ref _maskMargin, value); }
             get { return _maskMargin; }
+        }
+
+        public bool IsOpen
+        {
+            set { UpdateProperty(ref _isOpen, value); }
+            get { return _isOpen; }
+        }
+
+        public ICommand RemoveWaterMaskCommand
+        {
+            get { return new RelayCommand(RemoveWaterMaskCommand_Execute); }
+        }
+
+
+        private void RemoveWaterMaskCommand_Execute()
+        {
+            IsOpen = !IsOpen;
         }
 
         #region

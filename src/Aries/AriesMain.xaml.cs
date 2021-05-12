@@ -14,25 +14,12 @@ namespace Aries
         public MainWindow()
         {
             InitializeComponent();
-
-            InitialToolKit();
-            InitialGraph();
             DataContext = this;
         }
 
         public ToolKitManager ToolKitManager => ToolKitManager.Instance;
-
-        private void InitialToolKit()
-        {
-
-        }
-
-        private void InitialGraph()
-        {
-            var dgLogic = new LogicCoreCV();
-            dg_Area.LogicCore = dgLogic;
-        }
-
+        public FileSystemManager FileSystemManager => FileSystemManager.Instance;
+        public AriesManager AriesManager => AriesManager.Instance;
 
 
         #region Function about Graph
@@ -50,7 +37,8 @@ namespace Aries
                 dg_Area.UpdateLayout(); //update layout to update vertex size
             }
             else dg_Area.RelayoutGraph(true);
-            dg_zoomctrl.ZoomToFill();
+
+            ZoomControl.ZoomToFill();
         }
 
         private BlockVertex fillDataVertex(BlockVertex item)
@@ -58,6 +46,7 @@ namespace Aries
             item.Name = "123";
             return item;
         }
+
         #endregion
 
     }
