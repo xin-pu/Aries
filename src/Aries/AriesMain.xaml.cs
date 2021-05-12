@@ -20,7 +20,7 @@ namespace Aries
             DataContext = this;
         }
 
-        public BlockToolKitManager ToolKitManager => BlockToolKitManager.Instance;
+        public ToolKitManager ToolKitManager => ToolKitManager.Instance;
 
         private void InitialToolKit()
         {

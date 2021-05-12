@@ -104,7 +104,7 @@
     <Compile Include="Controls\ToolKitButton.cs" />
     <Compile Include="Controls\ProcessingButton.cs" />
     <Compile Include="Controls\TabButton.cs" />
-    <Compile Include="BlockToolKitManager.cs" />
+    <Compile Include="Core\Manager\ToolKitManager.cs" />
     <Compile Include="Core\Manager\AriesManager.cs" />
     <Compile Include="Core\Graph\GraphAreaCV.cs" />
     <Compile Include="Core\Graph\LogicCoreCV.cs" />

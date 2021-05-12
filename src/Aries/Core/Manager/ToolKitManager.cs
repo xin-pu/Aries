@@ -7,22 +7,22 @@ using System.Runtime.CompilerServices;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
 
-namespace Aries
+namespace Aries.Core
 {
-    public class BlockToolKitManager
+    public class ToolKitManager
     {
 
         public List<ToolKitGroupByType> BlockToolKitStructs { set; get; }
 
-        private static readonly Lazy<BlockToolKitManager> lazy =
-            new Lazy<BlockToolKitManager>(() => new BlockToolKitManager());
+        private static readonly Lazy<ToolKitManager> lazy =
+            new Lazy<ToolKitManager>(() => new ToolKitManager());
 
-        public static BlockToolKitManager Instance
+        public static ToolKitManager Instance
         {
             get { return lazy.Value; }
         }
 
-        public BlockToolKitManager()
+        public ToolKitManager()
         {
             BlockToolKitStructs = new List<ToolKitGroupByType>(0);
             Sync();
@@ -50,7 +50,6 @@ namespace Aries
         }
 
     }
-
 
     public class ToolKitGroupByType : INotifyPropertyChanged
     {

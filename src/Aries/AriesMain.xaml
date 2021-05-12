@@ -25,25 +25,60 @@
         </StackPanel>
     </hc:Window.NonClientAreaContent>
     <DockPanel>
-        <StatusBar DockPanel.Dock="Top" >
-            <TabControl DockPanel.Dock="Top" Height="100">
-                <TabItem Header="文件" FontSize="13"/>
-                <TabItem Header="开始" FontSize="13"/>
+        <StatusBar DockPanel.Dock="Top" 
+                   Name="Bar">
+            <TabControl DockPanel.Dock="Top" Height="100"
+                        Width="{Binding ElementName=Bar,Path=ActualWidth}">
+                <TabItem Header="文件" FontSize="13">
+                    <StatusBar VerticalAlignment="Stretch" >
+                        <StatusBarItem>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:TabButton Content="新建" Icon="&#xef47;"/>
+                                <controls:TabButton Content="打开" Icon="&#xef4c;"/>
+                                <controls:TabButton Content="关闭" Icon="&#xef4d;"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <Separator Background="Black"/>
+                        <StatusBarItem>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:TabButton Content="保存" Icon="&#xf0a6;"/>
+                                <controls:TabButton Content="另存为" Icon="&#xf0a6;"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                        <Separator Background="Black"/>
+                        <StatusBarItem>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:TabButton Content="选项" Icon="&#xef7d;"/>
+                            </StackPanel>
+                        </StatusBarItem>
+                    </StatusBar>
+                </TabItem>
+                <TabItem Header="开始" FontSize="13">
+                    <StatusBar VerticalAlignment="Stretch">
+                        <StatusBarItem>
+                            <StackPanel Orientation="Horizontal">
+                                <controls:TabButton Content="运行" Icon="&#xf07e;"/>
+                                <controls:TabButton Content="停止" Icon="&#xf0db;"/>
+                            </StackPanel>
+                        </StatusBarItem>
+
+                    </StatusBar>
+                </TabItem>
                 <TabItem Header="页面样式" FontSize="13">
                     <StatusBar VerticalAlignment="Stretch">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="背景颜色" Icon="&#xf06c;"/>
-                                <controls:TabButton Content="背景图片" Icon="&#xf06c;"/>
-                                <controls:TabButton Content="移除背景" Icon="&#xf06c;"/>
+                                <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
+                                <controls:TabButton Content="背景图片" Icon="&#xef48;"/>
+                                <controls:TabButton Content="移除背景" Icon="&#xf117;"/>
                             </StackPanel>
                         </StatusBarItem>
 
                         <Separator Background="Black"/>
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="水印" Icon="&#xf06c;"/>
-                                <controls:TabButton Content="移除水印" Icon="&#xf06c;"/>
+                                <controls:TabButton Content="水印" Icon="&#xef68;"/>
+                                <controls:TabButton Content="移除水印" Icon="&#xf117;"/>
                             </StackPanel>
                         </StatusBarItem>
                     </StatusBar>
@@ -52,12 +87,9 @@
                     <StatusBar VerticalAlignment="Stretch">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="居中对齐" Icon="&#xf06c;"/>
+                                <controls:TabButton Content="格式化" Icon="&#xf0c7;"/>
                             </StackPanel>
                         </StatusBarItem>
-                        
-                      
-                        
                     </StatusBar>
                 </TabItem>
                 <TabItem Header="帮助" FontSize="13"/>
@@ -118,7 +150,7 @@
                         </TreeView.ItemsPanel>
                        
                         <TreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type aries:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
+                            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -132,7 +164,7 @@
                                                Grid.Column="1"/>
                                 </Grid>
                             </HierarchicalDataTemplate>
-                            <DataTemplate DataType="{x:Type aries:ToolKitStruct}">
+                            <DataTemplate DataType="{x:Type core:ToolKitStruct}">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                     <TextBlock Text="{Binding Icon}" Style="{DynamicResource FIconStyle}"
                                                FontSize="13"
