@@ -27,7 +27,6 @@ namespace Aries.Core
             get { return new RelayCommand(GraphCVCloseCommand_Execute, GraphCVCloseSaveCommand_CanExecute); }
         }
 
-
         public ICommand GraphCVSaveCommand
         {
             get { return new RelayCommand(GraphCVSaveCommand_Execute, GraphCVSaveCommand_CanExecute); }
@@ -68,6 +67,8 @@ namespace Aries.Core
             }
         }
 
+        public MainWindow MainWindow { set; get; }
+
         private bool GraphCVCloseSaveCommand_CanExecute()
         {
             return ariesManager.GraphCvCore != null;
@@ -82,22 +83,11 @@ namespace Aries.Core
         private void GraphCVNewCommand_Execute()
         {
             ID++;
-            var area = MainWindow.Instance.dg_Area;
+            var area = MainWindow.dg_Area;
             area.Children.Clear();
             var dgLogic = new GraphCVCore($"Default_{ID}", area);
             ariesManager.GraphCvCores.Add(dgLogic);
             ariesManager.GraphCvCore = dgLogic;
-
-           
-            var a = new Blur();
-            area.AddVertexAndData(a, new VertexControl(a));
-
-            if (area.VertexList.Count == 1)
-            {
-                area.VertexList.First().Value.SetPosition(0, 0);
-                area.UpdateLayout();
-            }
-            else area.RelayoutGraph(true);
         }
 
         private bool GraphCVSaveCommand_CanExecute()

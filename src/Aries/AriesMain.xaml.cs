@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Aries.Core;
-using Aries.OpenCV.Blocks.Processing;
 using Aries.OpenCV.GraphModel;
+using GraphX.Common.Enums;
 using GraphX.Controls;
 
 namespace Aries
@@ -15,8 +15,17 @@ namespace Aries
         public MainWindow()
         {
             InitializeComponent();
-            dg_Area.LogicCore = new LogicCoreCV();
+            AddBlock = Add_Block;
+            dg_Area.LogicCore = new LogicCoreCV
+            {
+                DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.KK,
+                DefaultOverlapRemovalAlgorithm = OverlapRemovalAlgorithmTypeEnum.FSA,
+                DefaultOverlapRemovalAlgorithmParams = {VerticalGap = 50},
+                DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.None,
+                EdgeCurvingEnabled = true
+            };
             DataContext = this;
+            FileSystemManager.MainWindow = this;
         }
 
         public ToolKitManager ToolKitManager => ToolKitManager.Instance;
@@ -24,25 +33,18 @@ namespace Aries
         public AriesManager AriesManager => AriesManager.Instance;
 
 
-        private static readonly Lazy<MainWindow> lazy =
-            new Lazy<MainWindow>(() => new MainWindow());
-
-        public static MainWindow Instance
-        {
-            get { return lazy.Value; }
-        }
-
-        
         #region Function about Graph
 
-        private void OnTestClick(object sender, System.Windows.RoutedEventArgs e)
+
+        #endregion
+
+        public static Action<BlockVertex> AddBlock;
+
+        private void Add_Block(BlockVertex blockVertex)
         {
 
-            
+            dg_Area.AddVertexAndData(blockVertex, new VertexControl(blockVertex));
 
-            var data = fillDataVertex(new Blur());
-            dg_Area.AddVertexAndData(data, new VertexControl(data));
-            
             //we have to check if there is only one vertex and set coordinates manulay 
             //because layout algorithms skip all logic if there are less than two vertices
             if (dg_Area.VertexList.Count == 1)
@@ -54,15 +56,6 @@ namespace Aries
 
             ZoomControl.ZoomToFill();
         }
-
-        private BlockVertex fillDataVertex(BlockVertex item)
-        {
-            item.Name = "123";
-            return item;
-        }
-
-        #endregion
-
     }
 
 

@@ -5,8 +5,10 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
+using Aries.OpenCV.Blocks.Processing;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
+using GraphX.Controls;
 
 namespace Aries.Core
 {
@@ -34,8 +36,7 @@ namespace Aries.Core
         [XmlIgnore] 
         public GraphAreaCV GraphAreaCv { set; get; }
         
-            
-
+        
         public WaterMaskManager WaterMaskManager
         {
             set { UpdateProperty(ref _waterMaskManager, value); }
@@ -80,6 +81,21 @@ namespace Aries.Core
         public GraphCVCore()
         {
            
+        }
+
+        public void AppendBlock(BlockVertex blockVertex)
+        {
+            GraphAreaCv.AddVertexAndData(blockVertex, new VertexControl(blockVertex));
+
+            //we have to check if there is only one vertex and set coordinates manulay 
+            //because layout algorithms skip all logic if there are less than two vertices
+            if (GraphAreaCv.VertexList.Count == 1)
+            {
+                GraphAreaCv.VertexList.First().Value.SetPosition(0, 0);
+                GraphAreaCv.UpdateLayout(); //update layout to update vertex size
+            }
+            else GraphAreaCv.RelayoutGraph(true);
+            
         }
 
         public void Save(string filename)

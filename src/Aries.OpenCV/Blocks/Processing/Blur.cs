@@ -27,6 +27,7 @@ namespace Aries.OpenCV.Blocks.Processing
 
         public Blur()
         {
+            Name = "BLUR";
             KSize = new Size(3, 3);
             AnchorPoint = new Point(-1, -1);
             BorderTypes = BorderTypes.Default;

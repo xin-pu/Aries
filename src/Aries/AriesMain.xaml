@@ -64,7 +64,7 @@
                     </StatusBar>
                 </TabItem>
                 <TabItem Header="页面样式" FontSize="13">
-                    <StatusBar VerticalAlignment="Stretch" DataContext="{Binding AriesManager.LogicCoreCvSelect}">
+                    <StatusBar VerticalAlignment="Stretch" DataContext="{Binding AriesManager.GraphCvCore}">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
                                 <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
@@ -193,15 +193,29 @@
                                 </Grid>
                             </HierarchicalDataTemplate>
                             <DataTemplate DataType="{x:Type core:ToolKitStruct}">
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                    <TextBlock Text="{Binding Icon}" Style="{DynamicResource FIconStyle}"
+                                <Grid HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="50"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding Icon}"
+                                               Style="{DynamicResource FIconStyle}"
                                                FontSize="13"
                                                HorizontalAlignment="Left"
-                                               Margin="5,0"/>
+                                               Grid.Column="0"/>
                                     <TextBlock Text="{Binding Name}" 
                                                FontStyle="Italic"
-                                               FontWeight="DemiBold"/>
-                                </StackPanel>
+                                               FontWeight="DemiBold"
+                                               Grid.Column="1"
+                                               VerticalAlignment="Center"/>
+                                    <Button Command="{Binding CreateBlockCommand}"
+                                            Style="{DynamicResource MyTextButton}"
+                                            Content="&#xf0d4;"
+                                            FontSize="18"
+                                            Grid.Column="2"/>
+                                </Grid>
                             </DataTemplate>
                         </TreeView.Resources>
                     </TreeView>
@@ -220,7 +234,8 @@
                 </TabItem>
 
                 <TabItem Header="记录">
-
+                    <StackPanel Orientation="Vertical">
+                    </StackPanel>
                 </TabItem>
 
             </TabControl>

@@ -26,6 +26,7 @@ namespace Aries.OpenCV.GraphModel
             return BlockHelper.GetBlockICon(GetType());
         }
 
+
         #region
 
         internal void UpdateProperty<T>(ref T properValue, T newValue, [CallerMemberName] string propertyName = "")

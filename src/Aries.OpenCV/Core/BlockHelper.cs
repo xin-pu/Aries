@@ -49,5 +49,10 @@ namespace Aries.OpenCV.Core
         };
 
 
+        public static BlockVertex CreateBlockVertex(Type type)
+        {
+            return new Blur() {Name = type.Name};
+        }
+
     }
 }

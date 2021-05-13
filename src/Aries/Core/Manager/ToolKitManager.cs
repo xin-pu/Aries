@@ -4,8 +4,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
+using Aries.Utility;
 
 namespace Aries.Core
 {
@@ -124,6 +126,17 @@ namespace Aries.Core
         {
             set { UpdateProperty(ref _blockType, value); }
             get { return _blockType; }
+        }
+
+        public ICommand CreateBlockCommand
+        {
+            get { return new RelayCommand(CreateBlockCommand_Execute); }
+        }
+
+        private void CreateBlockCommand_Execute()
+        {
+            var block = BlockHelper.CreateBlockVertex(ClassType);
+            MainWindow.AddBlock.Invoke(block);
         }
 
         #region
