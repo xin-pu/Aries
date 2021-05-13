@@ -171,7 +171,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             mStop = true;
         }
 
-        public List<PathFinderNode> FindPath(Point start, Point end)
+        public List<PathFinderNode> FindPath(GPoint start, GPoint end)
         {
             //!PCL-NON-COMPL! HighResolutionTime.Start();
 
@@ -318,7 +318,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                             newNode.H       = (int) (mHEstimate * (Math.Pow((newNode.X - end.X) , 2) + Math.Pow((newNode.Y - end.Y), 2)));
                             break;
                         case HeuristicFormula.Custom1:
-                            Point dxy       = new Point(Math.Abs(end.X - newNode.X), Math.Abs(end.Y - newNode.Y));
+                            GPoint dxy       = new GPoint(Math.Abs(end.X - newNode.X), Math.Abs(end.Y - newNode.Y));
                             int Orthogonal  = (int)Math.Abs(dxy.X - dxy.Y);
                             int Diagonal    = (int)Math.Abs(((dxy.X + dxy.Y) - Orthogonal) / 2);
                             newNode.H       = mHEstimate * (int)(Diagonal + Orthogonal + dxy.X + dxy.Y);

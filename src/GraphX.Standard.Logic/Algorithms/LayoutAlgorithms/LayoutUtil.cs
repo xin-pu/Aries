@@ -99,7 +99,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             return crossCount;
         }
 
-        public static Point GetClippingPoint(Size size, Point s, Point t)
+        public static GPoint GetClippingPoint(Size size, GPoint s, GPoint t)
         {
             double[] sides = new double[4];
             sides[0] = (s.X - size.Width / 2.0 - t.X) / (s.X - t.X);

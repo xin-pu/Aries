@@ -37,6 +37,9 @@ namespace Aries
 
         private void OnTestClick(object sender, System.Windows.RoutedEventArgs e)
         {
+
+            
+
             var data = fillDataVertex(new Blur());
             dg_Area.AddVertexAndData(data, new VertexControl(data));
             

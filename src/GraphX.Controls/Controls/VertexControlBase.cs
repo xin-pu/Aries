@@ -210,9 +210,9 @@ namespace GraphX.Controls
         /// </summary>
         /// <param name="final"></param>
         /// <param name="round"></param>
-        internal Measure.Point GetPositionGraphX(bool final = false, bool round = false)
+        internal Measure.GPoint GetPositionGraphX(bool final = false, bool round = false)
         {
-            return round ? new Measure.Point(final ? (int)GraphAreaBase.GetFinalX(this) : (int)GraphAreaBase.GetX(this), final ? (int)GraphAreaBase.GetFinalY(this) : (int)GraphAreaBase.GetY(this)) : new Measure.Point(final ? GraphAreaBase.GetFinalX(this) : GraphAreaBase.GetX(this), final ? GraphAreaBase.GetFinalY(this) : GraphAreaBase.GetY(this));
+            return round ? new Measure.GPoint(final ? (int)GraphAreaBase.GetFinalX(this) : (int)GraphAreaBase.GetX(this), final ? (int)GraphAreaBase.GetFinalY(this) : (int)GraphAreaBase.GetY(this)) : new Measure.GPoint(final ? GraphAreaBase.GetFinalX(this) : GraphAreaBase.GetX(this), final ? GraphAreaBase.GetFinalY(this) : GraphAreaBase.GetY(this));
         }
 
 #endregion

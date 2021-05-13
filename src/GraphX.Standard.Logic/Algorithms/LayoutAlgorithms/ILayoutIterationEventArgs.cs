@@ -26,6 +26,6 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         /// </summary>
         string Message { get; }
 
-        IDictionary<TVertex, Point> VertexPositions { get; }
+        IDictionary<TVertex, GPoint> VertexPositions { get; }
     }
 }

@@ -20,17 +20,17 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 		    public int Index { get; private set; }
 
-		    private Point _position;
+		    private GPoint _position;
 
-			public Point Position
+			public GPoint Position
 			{
 				get { return _position; }
 			}
 
 		    public double Weight { get; private set; }
 
-		    private Point _minPos;
-			private Point _maxPos;
+		    private GPoint _minPos;
+			private GPoint _maxPos;
 
 			#endregion
 
@@ -44,7 +44,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 		    private const int MAX_DEPTH = 20;
 
-			public QuadTree( int index, Point position, double weight, Point minPos, Point maxPos )
+			public QuadTree( int index, GPoint position, double weight, GPoint minPos, GPoint maxPos )
 			{
 				Index = index;
 				_position = position;
@@ -53,7 +53,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 				_maxPos = maxPos;
 			}
 
-			public void AddNode( int nodeIndex, Point nodePos, double nodeWeight, int depth )
+			public void AddNode( int nodeIndex, GPoint nodePos, double nodeWeight, int depth )
 			{
 				if ( depth > MAX_DEPTH )
 					return;
@@ -71,7 +71,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 				AddNode2( nodeIndex, nodePos, nodeWeight, depth );
 			}
 
-		    private void AddNode2( int nodeIndex, Point nodePos, double nodeWeight, int depth )
+		    private void AddNode2( int nodeIndex, GPoint nodePos, double nodeWeight, int depth )
 			{
 				//Debug.WriteLine( string.Format( "AddNode2 {0} {1} {2} {3}", nodeIndex, nodePos, nodeWeight, depth ) );
 				var childIndex = 0;
@@ -89,8 +89,8 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 				if ( _children[childIndex] == null )
 				{
-					var newMin = new Point();
-					var newMax = new Point();
+					var newMin = new GPoint();
+					var newMax = new GPoint();
 					if ( nodePos.X <= middleX )
 					{
 						newMin.X = _minPos.X;
@@ -125,7 +125,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 			/// <param name="oldPos"></param>
 			/// <param name="newPos"></param>
 			/// <param name="nodeWeight"></param>
-			public void MoveNode( Point oldPos, Point newPos, double nodeWeight )
+			public void MoveNode( GPoint oldPos, GPoint newPos, double nodeWeight )
 			{
 				_position += ( ( newPos - oldPos ) * ( nodeWeight / Weight ) );
 

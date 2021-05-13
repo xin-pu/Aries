@@ -172,7 +172,7 @@ namespace GraphX.Logic.Algorithms.OverlapRemoval
             {
                 var u = WrappedRectangles[i];
 
-                //i-vel azonos középponttal rendelkezõ téglalapok meghatározása
+                //i-vel azonos középponttal rendelkez?téglalapok meghatározása
                 int k = i;
                 for ( int j = i + 1; j < n; j++ )
                 {
@@ -190,7 +190,7 @@ namespace GraphX.Logic.Algorithms.OverlapRemoval
                 }
                 double g = 0;
 
-                //i-k intervallumban lévõ téglalapokra erõszámítás a tõlük balra lévõkkel
+                //i-k intervallumban lév?téglalapokra erõszámítás a tõlük balra lévõkkel
                 if ( u.CenterX > x0 )
                 {
                     for ( int m = i; m <= k; m++ )
@@ -211,7 +211,7 @@ namespace GraphX.Logic.Algorithms.OverlapRemoval
                     }
                 }
                 //megjegyezzük az elemek eltolásást x tömbbe
-                //bal szélõ elemet újra meghatározzuk
+                //bal szél?elemet újra meghatározzuk
                 for ( int m = i; m <= k; m++ )
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -224,7 +224,7 @@ namespace GraphX.Logic.Algorithms.OverlapRemoval
                     }
                 }
 
-                //az i-k intervallum négyzeteitõl jobbra lévõkkel erõszámítás, legnagyobb erõ tárolása
+                //az i-k intervallum négyzeteitõl jobbra lévõkkel erõszámítás, legnagyobb er?tárolása
                 // delta = max(0, max{f.x(m,j)|i<=m<=k<j<n})
                 double delta = 0;
                 for ( int m = i; m <= k; m++ )

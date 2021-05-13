@@ -164,7 +164,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                 Size vertexSize;
                 vertexSizes.TryGetValue(vertex, out vertexSize);
 
-                var position = new Point();
+                var position = new GPoint();
                 VertexPositions.TryGetValue(vertex, out position);
 
                 //create the information container for this simple vertex
@@ -211,7 +211,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                         movableParentUpdateQueue.Enqueue(vertex);
                     }
 
-                    var position = new Point();
+                    var position = new GPoint();
                     VertexPositions.TryGetValue(vertex, out position);
 
                     //create the information container for this compound vertex

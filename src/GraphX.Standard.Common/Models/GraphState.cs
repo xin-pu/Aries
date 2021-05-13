@@ -25,7 +25,7 @@ namespace GraphX.Common.Models
         /// <summary>
         /// Saved vertex positions
         /// </summary>
-        public Dictionary<TVertex, Point> VertexPositions { get; private set; }
+        public Dictionary<TVertex, GPoint> VertexPositions { get; private set; }
 
         /// <summary>
         /// Saved visible edges with route points
@@ -37,7 +37,7 @@ namespace GraphX.Common.Models
         /// </summary>
         public IAlgorithmStorage<TVertex, TEdge> AlgorithmStorage { get; private set; }
 
-        public GraphState(string id, TGraph graph, IAlgorithmStorage<TVertex, TEdge> storage, Dictionary<TVertex, Point> vPos, List<TEdge> vEdges, string description = "")
+        public GraphState(string id, TGraph graph, IAlgorithmStorage<TVertex, TEdge> storage, Dictionary<TVertex, GPoint> vPos, List<TEdge> vEdges, string description = "")
         {
             ID = id; 
             Graph = graph; 

@@ -19,7 +19,7 @@ namespace GraphX.Common.Interfaces
         /// <summary>
         /// Gets vertices positions: initial and resulting (after Compute)
         /// </summary>
-        IDictionary<TVertex, Point> VertexPositions { get; }
+        IDictionary<TVertex, GPoint> VertexPositions { get; }
 
         /// <summary>
         /// Gets or sets visual vertices sizes (autofilled if NeedVertexSizes property is set to true)

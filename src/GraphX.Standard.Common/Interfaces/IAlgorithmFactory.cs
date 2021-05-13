@@ -38,7 +38,7 @@ namespace GraphX.Common.Interfaces
         /// <param name="positions">Optional vertex positions</param>
         /// <param name="sizes">Optional vertex sizes</param>
         /// <param name="parameters">Optional algorithm parameters</param>
-        ILayoutAlgorithm<TVertex, TEdge, TGraph> CreateLayoutAlgorithm(LayoutAlgorithmTypeEnum newAlgorithmType, TGraph iGraph, IDictionary<TVertex, Point> positions = null, IDictionary<TVertex, Size> sizes = null, ILayoutParameters parameters = null);
+        ILayoutAlgorithm<TVertex, TEdge, TGraph> CreateLayoutAlgorithm(LayoutAlgorithmTypeEnum newAlgorithmType, TGraph iGraph, IDictionary<TVertex, GPoint> positions = null, IDictionary<TVertex, Size> sizes = null, ILayoutParameters parameters = null);
         /// <summary>
         /// Create and initializes overlap removal algorithm
         /// </summary>
@@ -56,7 +56,7 @@ namespace GraphX.Common.Interfaces
         /// </summary>
         /// <param name="algorithmType">Overlap removal algorithm type</param>
         IOverlapRemovalParameters CreateOverlapRemovalParameters(OverlapRemovalAlgorithmTypeEnum algorithmType);
-        IExternalEdgeRouting<TVertex, TEdge> CreateEdgeRoutingAlgorithm(EdgeRoutingAlgorithmTypeEnum newAlgorithmType, Rect graphArea, TGraph iGraph, IDictionary<TVertex, Point> positions, IDictionary<TVertex, Rect> rectangles, IEdgeRoutingParameters parameters = null);
+        IExternalEdgeRouting<TVertex, TEdge> CreateEdgeRoutingAlgorithm(EdgeRoutingAlgorithmTypeEnum newAlgorithmType, Rect graphArea, TGraph iGraph, IDictionary<TVertex, GPoint> positions, IDictionary<TVertex, Rect> rectangles, IEdgeRoutingParameters parameters = null);
         IEdgeRoutingParameters CreateEdgeRoutingParameters(EdgeRoutingAlgorithmTypeEnum algorithmType);
 
         /// <summary>

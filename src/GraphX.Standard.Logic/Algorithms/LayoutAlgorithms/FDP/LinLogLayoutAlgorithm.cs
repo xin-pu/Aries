@@ -22,7 +22,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 	        EnsureUniqueRandomInitialPositions = true;
 	    }
 
-		public LinLogLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, Point> positions,
+		public LinLogLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, GPoint> positions,
 		                              LinLogLayoutParameters parameters )
 			: base( visitedGraph, positions, parameters ) 
         { 
@@ -37,7 +37,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 			public TVertex OriginalVertex;
 			public LinLogEdge[] Attractions;
 			public double RepulsionWeight;
-			public Point Position;
+			public GPoint Position;
 		}
 
 		class LinLogEdge
@@ -47,7 +47,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		}
 
 		private LinLogVertex[] _vertices;
-		private Point _baryCenter;
+		private GPoint _baryCenter;
 		private double _repulsionMultiplier;
 
 		#endregion
@@ -60,7 +60,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 			    case 0:
 			        return;
 			    case 1:
-			        VertexPositions.Add(VisitedGraph.Vertices.First(), new Point(0, 0));
+			        VertexPositions.Add(VisitedGraph.Vertices.First(), new GPoint(0, 0));
 			        return;
 			}
 
@@ -245,7 +245,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		}
 
 		/// <summary>
-		/// Kiszámítja az <code>index</code> sorszámú pontra ható erõt a 
+		/// Kiszámítja az <code>index</code> sorszám?pontra hat?erõt a 
 		/// quadTree segítségével.
 		/// </summary>
 		/// <param name="index">A node sorszáma, melyre a repulzív erõt számítani akarjuk.</param>
@@ -405,7 +405,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 		private void ComputeBaryCenter()
 		{
-			_baryCenter = new Point( 0, 0 );
+			_baryCenter = new GPoint( 0, 0 );
 			var repWeightSum = 0.0;
 			foreach ( var v in _vertices )
 			{
@@ -436,9 +436,9 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		/// </summary>
 		private QuadTree BuildQuadTree()
 		{
-			//a minimális és maximális pozíció számítása
-			var minPos = new Point( double.MaxValue, double.MaxValue );
-			var maxPos = new Point( -double.MaxValue, -double.MaxValue );
+			//a minimális és maximális pozíci?számítása
+			var minPos = new GPoint( double.MaxValue, double.MaxValue );
+			var maxPos = new GPoint( -double.MaxValue, -double.MaxValue );
 
 			foreach ( var v in _vertices )
 			{
@@ -451,7 +451,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 				maxPos.Y = Math.Max( maxPos.Y, v.Position.Y );
 			}
 
-			//a nemnulla repulsionWeight-el rendelkezõ node-ok hozzáadása a QuadTree-hez.
+			//a nemnulla repulsionWeight-el rendelkez?node-ok hozzáadása a QuadTree-hez.
 			QuadTree result = null;
 			foreach ( var v in _vertices )
 			{

@@ -24,12 +24,12 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		{ }
 
 		public LayoutIterationEventArgs( int iteration, double statusInPercent,
-		                                 IDictionary<TVertex, Point> vertexPositions )
+		                                 IDictionary<TVertex, GPoint> vertexPositions )
 			: this( iteration, statusInPercent, string.Empty, vertexPositions, null, null )
 		{ }
 
 		public LayoutIterationEventArgs( int iteration, double statusInPercent, string message,
-		                                 IDictionary<TVertex, Point> vertexPositions,
+		                                 IDictionary<TVertex, GPoint> vertexPositions,
 		                                 IDictionary<TVertex, TVertexInfo> vertexInfos,
 		                                 IDictionary<TEdge, TEdgeInfo> edgeInfos)
 			: base( iteration, statusInPercent, message, vertexPositions )
@@ -78,12 +78,12 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		{ }
 
 		public LayoutIterationEventArgs( int iteration, double statusInPercent,
-		                                 IDictionary<TVertex, Point> vertexPositions )
+		                                 IDictionary<TVertex, GPoint> vertexPositions )
 			: this( iteration, statusInPercent, string.Empty, vertexPositions )
 		{ }
 
 		public LayoutIterationEventArgs( int iteration, double statusInPercent, string message,
-		                                 IDictionary<TVertex, Point> vertexPositions )
+		                                 IDictionary<TVertex, GPoint> vertexPositions )
 		{
 			this.StatusInPercent = statusInPercent;
 			this.Iteration = iteration;
@@ -112,7 +112,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		/// </summary>
 		public string Message { get; private set; }
 
-		public IDictionary<TVertex, Point> VertexPositions { get; private set; }
+		public IDictionary<TVertex, GPoint> VertexPositions { get; private set; }
 
 		public virtual object GetVertexInfo( TVertex vertex )
 		{

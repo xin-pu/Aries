@@ -47,7 +47,7 @@ namespace GraphX.Common.Models
         /// <summary>
         /// Routing points collection used to make Path visual object
         /// </summary>
-        public virtual Point[] RoutingPoints { get; set; }
+        public virtual GPoint[] RoutingPoints { get; set; }
 
         /// <summary>
         /// Source vertex

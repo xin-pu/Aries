@@ -76,12 +76,12 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
                 if ((Parameters.Direction == LayoutDirection.TopToBottom ||  Parameters.Direction == LayoutDirection.BottomToTop) && sourcePosition.X != targetPosition.X)
                 {
-                    var pt = new Point(targetPosition.X + targetSize.Width/2, sourcePosition.Y + sourceSize.Height/2);
-                    var src = new Point(sourcePosition.X + sourceSize.Width/2, sourcePosition.Y + sourceSize.Height/2);
+                    var pt = new GPoint(targetPosition.X + targetSize.Width/2, sourcePosition.Y + sourceSize.Height/2);
+                    var src = new GPoint(sourcePosition.X + sourceSize.Width/2, sourcePosition.Y + sourceSize.Height/2);
                     
                     if (Parameters.Direction == LayoutDirection.TopToBottom)
                     {
-                        var pt2 = new Point(targetPosition.X + targetSize.Width/2, targetPosition.Y);
+                        var pt2 = new GPoint(targetPosition.X + targetSize.Width/2, targetPosition.Y);
                         _edgeRoutingPoints[edge] =
                             new[]
                             {
@@ -92,7 +92,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                     }
                     else
                     {
-                        var pt2 = new Point(targetPosition.X + targetSize.Width / 2, targetPosition.Y + targetSize.Height / 2);
+                        var pt2 = new GPoint(targetPosition.X + targetSize.Width / 2, targetPosition.Y + targetSize.Height / 2);
                         _edgeRoutingPoints[edge] =
                             new[]
                             {
@@ -104,11 +104,11 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                 }
                 else if ((Parameters.Direction == LayoutDirection.LeftToRight || Parameters.Direction == LayoutDirection.RightToLeft) && sourcePosition.Y != targetPosition.Y)
                 {
-                    var src = new Point(sourcePosition.X + sourceSize.Width / 2, sourcePosition.Y + sourceSize.Height/2);
-                    var pt = new Point(sourcePosition.X + sourceSize.Width/2, targetPosition.Y + targetSize.Height/2);
+                    var src = new GPoint(sourcePosition.X + sourceSize.Width / 2, sourcePosition.Y + sourceSize.Height/2);
+                    var pt = new GPoint(sourcePosition.X + sourceSize.Width/2, targetPosition.Y + targetSize.Height/2);
                     if (Parameters.Direction == LayoutDirection.LeftToRight)
                     {
-                        var pt2 = new Point(targetPosition.X, targetPosition.Y + targetSize.Height / 2);
+                        var pt2 = new GPoint(targetPosition.X, targetPosition.Y + targetSize.Height / 2);
                         _edgeRoutingPoints[edge] =
                             new[]
                             {
@@ -119,7 +119,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                     }
                     else
                     {
-                        var pt2 = new Point(targetPosition.X + targetSize.Width, targetPosition.Y + targetSize.Height / 2);
+                        var pt2 = new GPoint(targetPosition.X + targetSize.Width, targetPosition.Y + targetSize.Height / 2);
                         _edgeRoutingPoints[edge] =
                             new[]
                             {
@@ -137,11 +137,11 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         {
             foreach (var kvp in _dummyVerticesOfEdges)
             {
-                var routePoints = new Point[kvp.Value.Count];
+                var routePoints = new GPoint[kvp.Value.Count];
                 for (int i = 0; i < kvp.Value.Count; i++)
                 {
                     var vertex = kvp.Value[i];
-                    routePoints[i] = new Point(vertex.HorizontalPosition, vertex.VerticalPosition);
+                    routePoints[i] = new GPoint(vertex.HorizontalPosition, vertex.VerticalPosition);
                 }
                 _edgeRoutingPoints[kvp.Key] = routePoints;
             }
@@ -153,7 +153,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             foreach (var vertex in _graph.Vertices)
             {
                 if (vertex.Type == VertexTypes.Original)
-                    VertexPositions[vertex.OriginalVertex] = new Point(vertex.HorizontalPosition, vertex.VerticalPosition);
+                    VertexPositions[vertex.OriginalVertex] = new GPoint(vertex.HorizontalPosition, vertex.VerticalPosition);
             }
 
         }

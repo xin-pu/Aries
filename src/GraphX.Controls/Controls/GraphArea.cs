@@ -716,13 +716,13 @@ namespace GraphX.Controls
         }
 
 
-        public Dictionary<TVertex, Size> GetVertexSizesAndPositions(out IDictionary<TVertex, Measure.Point> vertexPositions)
+        public Dictionary<TVertex, Size> GetVertexSizesAndPositions(out IDictionary<TVertex, Measure.GPoint> vertexPositions)
         {
             //measure if needed and get all vertex sizes
             Measure(new USize(double.PositiveInfinity, double.PositiveInfinity));
             var count = _vertexlist.Count(a => ((IGraphXVertex)a.Value.Vertex).SkipProcessing != ProcessingOptionEnum.Exclude);
             var vertexSizes = new Dictionary<TVertex, Size>(count);
-            vertexPositions = new Dictionary<TVertex, Measure.Point>(count);
+            vertexPositions = new Dictionary<TVertex, Measure.GPoint>(count);
             //go through the vertex presenters and get the actual layoutpositions
             foreach (var vc in VertexList.Where(vc => ((IGraphXVertex)vc.Value.Vertex).SkipProcessing != ProcessingOptionEnum.Exclude))
             {
@@ -735,7 +735,7 @@ namespace GraphX.Controls
         /// <summary>
         /// Returns all vertices positions list
         /// </summary>
-        public Dictionary<TVertex, Measure.Point> GetVertexPositions()
+        public Dictionary<TVertex, Measure.GPoint> GetVertexPositions()
         {
             return VertexList.Where(a => ((IGraphXVertex)a.Value.Vertex).SkipProcessing != ProcessingOptionEnum.Exclude).ToDictionary(vertex => vertex.Key, vertex => vertex.Value.GetPositionGraphX());
         }
@@ -836,7 +836,7 @@ namespace GraphX.Controls
             {
 #endif
             Dictionary<TVertex, Size> vertexSizes = null;
-            IDictionary<TVertex, Measure.Point> vertexPositions = null;
+            IDictionary<TVertex, Measure.GPoint> vertexPositions = null;
             IGXLogicCore<TVertex, TEdge, TGraph> localLogicCore = null;
 
 #if WPF
@@ -1525,7 +1525,7 @@ namespace GraphX.Controls
         {
             if (LogicCore == null)
                 throw new GX_InvalidDataException("LogicCore is not initialized!");
-            LogicCore.ComputeEdgeRoutesByVertex((TVertex)vc.Vertex, vertexDataNeedUpdate ? (Measure.Point?)vc.GetPositionGraphX() : null, vertexDataNeedUpdate ? (Size?)new Size(vc.ActualWidth, vc.ActualHeight) : null);
+            LogicCore.ComputeEdgeRoutesByVertex((TVertex)vc.Vertex, vertexDataNeedUpdate ? (Measure.GPoint?)vc.GetPositionGraphX() : null, vertexDataNeedUpdate ? (Size?)new Size(vc.ActualWidth, vc.ActualHeight) : null);
         }
         #endregion
 
@@ -1875,7 +1875,7 @@ namespace GraphX.Controls
             foreach (var item in EdgesList)
             {
                 // item.Key.RoutingPoints = new Point[] { new Point(0, 123), new Point(12, 12), new Point(10, 234.5) };
-                dlist.Add(new GraphSerializationData { Position = new Measure.Point(), Data = item.Key, IsVisible = item.Value.Visibility == Visibility.Visible, HasLabel = item.Value.EdgeLabelControls.Count > 0 });
+                dlist.Add(new GraphSerializationData { Position = new Measure.GPoint(), Data = item.Key, IsVisible = item.Value.Visibility == Visibility.Visible, HasLabel = item.Value.EdgeLabelControls.Count > 0 });
                 if (item.Key.ID == -1) throw new GX_InvalidDataException("ExtractSerializationData() -> All edge datas must have positive unique ID!");
             }
             return dlist;
@@ -1950,7 +1950,7 @@ namespace GraphX.Controls
 
         private void RestoreAlgorithmStorage()
         {
-            IDictionary<TVertex, Measure.Point> vPositions;
+            IDictionary<TVertex, Measure.GPoint> vPositions;
             var vSizes = GetVertexSizesAndPositions(out vPositions);
             LogicCore.GenerateAlgorithmStorage(vSizes, vPositions);
         }

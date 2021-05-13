@@ -13,7 +13,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             int iteration, 
             double statusInPercent, 
             string message,
-            IDictionary<TVertex, Point> vertexPositions,
+            IDictionary<TVertex, GPoint> vertexPositions,
             IDictionary<TVertex, Size> innerCanvasSizes)
             : base(iteration, statusInPercent, message, vertexPositions)
         {

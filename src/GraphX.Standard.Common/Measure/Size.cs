@@ -57,9 +57,9 @@ namespace GraphX.Measure
             return new Vector(size._width, size._height);
         }
 
-        public static explicit operator Point(Size size)
+        public static explicit operator GPoint(Size size)
         {
-            return new Point(size._width, size._height);
+            return new GPoint(size._width, size._height);
         }
 
         #endregion

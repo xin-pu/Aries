@@ -7,6 +7,6 @@ namespace GraphX.Common.Interfaces
         /// <summary>
         /// Routing points collection used to make Path visual object
         /// </summary>
-        Point[] RoutingPoints { get; set; }
+        GPoint[] RoutingPoints { get; set; }
     }
 }

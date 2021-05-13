@@ -16,7 +16,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
     {
         readonly IDictionary<TVertex, Size> _sizes;
 
-        public CircularLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions, IDictionary<TVertex, Size> vertexSizes, CircularLayoutParameters parameters )
+        public CircularLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions, IDictionary<TVertex, Size> vertexSizes, CircularLayoutParameters parameters )
             : base( visitedGraph, vertexPositions, parameters )
         {
             _sizes = vertexSizes;
@@ -40,7 +40,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             //if we have empty input positions list we have to fill positions for frozen vertices manualy
             if(VertexPositions.Count == 0)
                 foreach(var item in VisitedGraph.Vertices.Where(v => v.SkipProcessing == ProcessingOptionEnum.Freeze))
-                    VertexPositions.Add(item, new Point());
+                    VertexPositions.Add(item, new GPoint());
             double[] halfSize = new double[usableVertices.Count];
             int i = 0;
             foreach ( var v in usableVertices)
@@ -67,7 +67,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                 a = Math.Sin( halfSize[i] * 0.5 / radius ) * 2;
                 angle += a;
                 //if ( ReportOnIterationEndNeeded )
-                    VertexPositions[v] = new Point( Math.Cos( angle ) * radius + radius, Math.Sin( angle ) * radius + radius );
+                    VertexPositions[v] = new GPoint( Math.Cos( angle ) * radius + radius, Math.Sin( angle ) * radius + radius );
                 angle += a;
             }
 
@@ -86,7 +86,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
                 a = Math.Sin( halfSize[i] * 0.5 / radius ) * 2;
                 angle += a;
-                VertexPositions[v] = new Point( Math.Cos( angle ) * radius + radius, Math.Sin( angle ) * radius + radius );
+                VertexPositions[v] = new GPoint( Math.Cos( angle ) * radius + radius, Math.Sin( angle ) * radius + radius );
                 angle += a;
             }
         }

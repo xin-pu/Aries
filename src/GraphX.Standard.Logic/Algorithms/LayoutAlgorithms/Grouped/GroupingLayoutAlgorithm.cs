@@ -26,7 +26,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms.Grouped
 
         readonly GroupingLayoutAlgorithmParameters<TVertex, TEdge> _params;
 
-        public GroupingLayoutAlgorithm(TGraph graph, IDictionary<TVertex, Point> positions, GroupingLayoutAlgorithmParameters<TVertex, TEdge> groupParams)
+        public GroupingLayoutAlgorithm(TGraph graph, IDictionary<TVertex, GPoint> positions, GroupingLayoutAlgorithmParameters<TVertex, TEdge> groupParams)
             :base(graph, positions)
         {
             _params = groupParams;
@@ -101,7 +101,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms.Grouped
                     if (right[0] == null) right[0] = 0;
                     if (top[0] == null) top[0] = 0;
                     if (bottom[0] == null) bottom[0] = 0;
-                    listRect.Add(gp.GroupId, gp.ZoneRectangle ?? new Rect(new Point(left[0].Value, top[0].Value), new Point(right[0].Value, bottom[0].Value)));
+                    listRect.Add(gp.GroupId, gp.ZoneRectangle ?? new Rect(new GPoint(left[0].Value, top[0].Value), new GPoint(right[0].Value, bottom[0].Value)));
                 }
             }
 
@@ -128,7 +128,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms.Grouped
             var offsetY = rectangle.Y - originalRect.Y;
             VertexPositions.Where(a => a.Key.GroupId == groupId).Select(a=> a.Key).ToList().ForEach(a =>
             {
-                VertexPositions[a] = new Point( VertexPositions[a].X + offsetX, VertexPositions[a].Y + offsetY);
+                VertexPositions[a] = new GPoint( VertexPositions[a].X + offsetX, VertexPositions[a].Y + offsetY);
             });
             var gp = _params.GroupParametersList.FirstOrDefault(a => a.GroupId == groupId);
             if(gp == null)

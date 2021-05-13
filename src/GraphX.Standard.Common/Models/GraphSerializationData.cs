@@ -11,7 +11,7 @@ namespace GraphX.Common.Models
         /// <summary>
         /// Gets or sets control position
         /// </summary>
-        public Point Position { get; set; }
+        public GPoint Position { get; set; }
         /// <summary>
         /// Gets or sets control visibility
         /// </summary>

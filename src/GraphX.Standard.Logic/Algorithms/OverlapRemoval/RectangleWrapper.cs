@@ -23,7 +23,7 @@ namespace GraphX.Logic.Algorithms.OverlapRemoval
 		/// </summary>
 		/// <param name="rectangle"></param>
 		/// <param name="id">Az adott téglalap azonosítója (az overlap-removal végén tudnunk kell, hogy 
-		/// melyik téglalap melyik objektumhoz tartozik. Az azonosítás megoldható lesz id alapján.</param>
+		/// melyik téglalap melyik objektumhoz tartozik. Az azonosítás megoldhat?lesz id alapján.</param>
 		public RectangleWrapper( Rect rectangle, TObject id )
 		{
 			Rectangle = rectangle;
@@ -40,9 +40,9 @@ namespace GraphX.Logic.Algorithms.OverlapRemoval
 			get { return Rectangle.Top + Rectangle.Height / 2; }
 		}
 
-		public Point Center
+		public GPoint Center
 		{
-			get { return new Point( CenterX, CenterY ); }
+			get { return new GPoint( CenterX, CenterY ); }
 		}
 	}
 }

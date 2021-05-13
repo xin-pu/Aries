@@ -11,16 +11,16 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
     {
         private readonly IDictionary<TVertex, TVertexInfo> _vertexInfos;
 
-        public Point GravitationCenter { get; private set; }
+        public GPoint GravitationCenter { get; private set; }
 
         public TestingCompoundLayoutIterationEventArgs(
             int iteration, 
             double statusInPercent, 
             string message, 
-            IDictionary<TVertex, Point> vertexPositions, 
+            IDictionary<TVertex, GPoint> vertexPositions, 
             IDictionary<TVertex, Size> innerCanvasSizes,
             IDictionary<TVertex, TVertexInfo> vertexInfos,
-            Point gravitationCenter) 
+            GPoint gravitationCenter) 
             : base(iteration, statusInPercent, message, vertexPositions, innerCanvasSizes)
         {
             _vertexInfos = vertexInfos;

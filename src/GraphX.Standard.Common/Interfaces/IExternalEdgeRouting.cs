@@ -19,7 +19,7 @@ namespace GraphX.Common.Interfaces
         /// Compute edge routing for single edge
         /// </summary>
         /// <param name="edge">Supplied edge data</param>
-        Point[] ComputeSingle(TEdge edge);
+        GPoint[] ComputeSingle(TEdge edge);
 
         /// <summary>
         /// Update data stored in algorithm for specified vertex
@@ -27,7 +27,7 @@ namespace GraphX.Common.Interfaces
         /// <param name="vertex">Data vertex</param>
         /// <param name="position">Vertex position</param>
         /// <param name="size">Vertex size</param>
-        void UpdateVertexData(TVertex vertex, Point position, Rect size);
+        void UpdateVertexData(TVertex vertex, GPoint position, Rect size);
 
         /// <summary>
         /// Gets or sets visual vertices sizes (autofilled before Compute() call)
@@ -37,12 +37,12 @@ namespace GraphX.Common.Interfaces
         /// <summary>
         /// Gets or sets visual vertices positions (autofilled before Compute() call)
         /// </summary>
-        IDictionary<TVertex, Point> VertexPositions { get; set; }
+        IDictionary<TVertex, GPoint> VertexPositions { get; set; }
 
         /// <summary>
         /// Gets resulting edge routes collection 
         /// </summary>
-        IDictionary<TEdge, Point[]> EdgeRoutes { get; }
+        IDictionary<TEdge, GPoint[]> EdgeRoutes { get; }
 
         /// <summary>
         /// Gets or sets GraphArea allowed rendering size

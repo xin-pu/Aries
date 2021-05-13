@@ -21,7 +21,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         protected readonly IList<Layer> Layers = new List<Layer>();
         private int _direction;
 
-        public SimpleTreeLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions, IDictionary<TVertex, Size> vertexSizes, SimpleTreeLayoutParameters parameters )
+        public SimpleTreeLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions, IDictionary<TVertex, Size> vertexSizes, SimpleTreeLayoutParameters parameters )
             : base( visitedGraph, vertexPositions, parameters )
         {
             VertexSizes = vertexSizes == null ? new Dictionary<TVertex, Size>() : new Dictionary<TVertex, Size>(vertexSizes);
@@ -200,7 +200,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 					var x = d.Position - size.Width / 2.0;
 					var y = _direction * (layerSize + (layer.Size - size.Height) / 2.0);
-					var pos = changeCoordinates ? new Point(y, x) : new Point(x, y);
+					var pos = changeCoordinates ? new GPoint(y, x) : new GPoint(x, y);
 
 					VertexPositions[v] = pos;
                 }

@@ -8,7 +8,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         where TEdge : IEdge<TVertex>
         where TGraph : IVertexAndEdgeListGraph<TVertex, TEdge>
     {
-        IDictionary<TVertex, Point> Positions { get; }
+        IDictionary<TVertex, GPoint> Positions { get; }
         IDictionary<TVertex, Size> Sizes { get; }
 
         TGraph Graph { get; }

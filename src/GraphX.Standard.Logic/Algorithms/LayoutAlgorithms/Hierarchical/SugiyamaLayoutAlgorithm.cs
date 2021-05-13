@@ -38,19 +38,19 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         private const string LONG_EDGES_TAG = "LongEdges"; //long edges will be replaced with dummy vertices
         #endregion
 
-        public IDictionary<TEdge, Point[]> EdgeRoutes { get; private set; }
+        public IDictionary<TEdge, GPoint[]> EdgeRoutes { get; private set; }
 
         #region Constructors
         public SugiyamaLayoutAlgorithm(
             TGraph visitedGraph,
             IDictionary<TVertex, Size> vertexSizes,
-            IDictionary<TVertex, Point> vertexPositions,
+            IDictionary<TVertex, GPoint> vertexPositions,
             SugiyamaLayoutParameters parameters,
             Func<TEdge, EdgeTypes> edgePredicate )
             : base( visitedGraph, vertexPositions, parameters )
         {
             _edgePredicate = edgePredicate;
-            EdgeRoutes = new Dictionary<TEdge, Point[]>();
+            EdgeRoutes = new Dictionary<TEdge, GPoint[]>();
 
             ConvertGraph( vertexSizes );
         }
@@ -835,7 +835,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                 if ( v.IsDummyVertex )
                     continue;
 
-                Point pos = v.RealPosition;
+                GPoint pos = v.RealPosition;
                 if ( !shouldTranslate )
                 {
                     pos.X += v.Size.Width * 0.5 + translation.X;
@@ -875,7 +875,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             if (_graph.VertexCount == 1)
             {
                 VertexPositions.Clear();
-                VertexPositions[_graph.Vertices.First().Original] = new Point(0,0);
+                VertexPositions[_graph.Vertices.First().Original] = new GPoint(0,0);
                 return;
             }
             //

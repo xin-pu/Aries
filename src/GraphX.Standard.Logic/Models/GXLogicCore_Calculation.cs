@@ -58,7 +58,7 @@ namespace GraphX.Logic.Models
         /// </summary>
         /// <param name="vertexSizes">Vertices sizes</param>
         /// <param name="vertexPositions">Vertices positions</param>
-        public IExternalLayout<TVertex, TEdge> GenerateLayoutAlgorithm(Dictionary<TVertex, Size>  vertexSizes, IDictionary<TVertex, Point> vertexPositions)
+        public IExternalLayout<TVertex, TEdge> GenerateLayoutAlgorithm(Dictionary<TVertex, Size>  vertexSizes, IDictionary<TVertex, GPoint> vertexPositions)
         {
             var alg = ExternalLayoutAlgorithm ?? AlgorithmFactory.CreateLayoutAlgorithm(DefaultLayoutAlgorithm, _graph, vertexPositions, vertexSizes, DefaultLayoutAlgorithmParams);
             if (alg != null && alg.NeedVertexSizes) alg.VertexSizes = vertexSizes;
@@ -71,7 +71,7 @@ namespace GraphX.Logic.Models
         /// <param name="desiredSize">Desired rectangular area size that will be taken into account</param>
         /// <param name="vertexPositions">Vertices positions</param>
         /// <param name="rectangles">Vertices rectangular sizes</param>
-        public IExternalEdgeRouting<TVertex, TEdge> GenerateEdgeRoutingAlgorithm(Size desiredSize, IDictionary<TVertex, Point> vertexPositions = null, IDictionary<TVertex, Rect> rectangles = null)
+        public IExternalEdgeRouting<TVertex, TEdge> GenerateEdgeRoutingAlgorithm(Size desiredSize, IDictionary<TVertex, GPoint> vertexPositions = null, IDictionary<TVertex, Rect> rectangles = null)
         {
             if (ExternalEdgeRoutingAlgorithm == null && DefaultEdgeRoutingAlgorithm != EdgeRoutingAlgorithmTypeEnum.None)
             {
@@ -87,7 +87,7 @@ namespace GraphX.Logic.Models
         /// <param name="dataVertex">Vertex data</param>
         /// <param name="vertexPosition">Vertex position</param>
         /// <param name="vertexSize">Vertex size</param>
-        public void ComputeEdgeRoutesByVertex(TVertex dataVertex, Point? vertexPosition = null, Size? vertexSize = null)
+        public void ComputeEdgeRoutesByVertex(TVertex dataVertex, GPoint? vertexPosition = null, Size? vertexSize = null)
         {
             if (AlgorithmStorage?.EdgeRouting == null)
                 throw new GX_InvalidDataException("GXC: Algorithm storage is not initialized!");
@@ -108,12 +108,12 @@ namespace GraphX.Logic.Models
                 item.RoutingPoints = AlgorithmStorage.EdgeRouting.ComputeSingle(item);
         }
 
-        public IDictionary<TVertex, Point> Compute(CancellationToken cancellationToken)
+        public IDictionary<TVertex, GPoint> Compute(CancellationToken cancellationToken)
         {
             if (_graph == null)
                 throw new GX_InvalidDataException("LogicCore -> Graph property not set!");
 
-            IDictionary<TVertex, Point> resultCoords;
+            IDictionary<TVertex, GPoint> resultCoords;
             Dictionary<TVertex, Rect> rectangles = null; //rectangled size data
             
             if (AlgorithmStorage.Layout != null)
@@ -135,9 +135,9 @@ namespace GraphX.Logic.Models
                 var t = DateTime.Now;
                 AlgorithmStorage.OverlapRemoval.Compute(cancellationToken);
                 Debug.WriteLine("Overlap: "+(t - DateTime.Now));
-                resultCoords = new Dictionary<TVertex, Point>();
+                resultCoords = new Dictionary<TVertex, GPoint>();
                 foreach (var res in AlgorithmStorage.OverlapRemoval.Rectangles)
-                    resultCoords.Add(res.Key, new Point(res.Value.Left, res.Value.Top));
+                    resultCoords.Add(res.Key, new GPoint(res.Value.Left, res.Value.Top));
             }
 
             //Edge Routing
@@ -169,7 +169,7 @@ namespace GraphX.Logic.Models
             return resultCoords;
         }
 
-        private Rect CalculateContentRectangle(IDictionary<TVertex, Point> actualPositions = null)
+        private Rect CalculateContentRectangle(IDictionary<TVertex, GPoint> actualPositions = null)
         {
             double minX=0;
             double minY=0;
@@ -186,7 +186,7 @@ namespace GraphX.Logic.Models
                 if (pos.Y > maxY) maxY = pos.Y;
             }
 
-            return new Rect(new Point(minX, minY), new Size(maxX - minX, maxY - minY));
+            return new Rect(new GPoint(minX, minY), new Size(maxX - minX, maxY - minY));
         }
     }
 }

@@ -105,7 +105,7 @@ namespace GraphX.Controls
         }
 #endif
 
-        public static Point ToWindows(this Measure.Point point)
+        public static Point ToWindows(this Measure.GPoint point)
         {
             return new Point(point.X, point.Y);
         }
@@ -124,7 +124,7 @@ namespace GraphX.Controls
         }
 
 
-        public static Point[] ToWindows(this Measure.Point[] points)
+        public static Point[] ToWindows(this Measure.GPoint[] points)
         {
             if (points == null) return null;
             var list = new Point[points.Length];
@@ -133,10 +133,10 @@ namespace GraphX.Controls
             return list;
         }
 
-        public static Measure.Point[] ToGraphX(this Point[] points)
+        public static Measure.GPoint[] ToGraphX(this Point[] points)
         {
             if (points == null) return null;
-            var list = new Measure.Point[points.Length];
+            var list = new Measure.GPoint[points.Length];
             for (int i = 0; i < points.Length; i++)
                 list[i] = points[i].ToGraphX();
             return list;
@@ -147,9 +147,9 @@ namespace GraphX.Controls
             return new Size(rect.Width, rect.Height);
         }
 
-        public static Measure.Point ToGraphX(this Point point)
+        public static Measure.GPoint ToGraphX(this Point point)
         {
-            return new Measure.Point(point.X, point.Y);
+            return new Measure.GPoint(point.X, point.Y);
         }
 
         public static Measure.Size ToGraphX(this Size point)

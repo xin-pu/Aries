@@ -9,6 +9,7 @@ namespace Aries.OpenCV.Blocks.Export
             ExportResult = InputMat.Width;
         }
 
-      
     }
+
+    
 }

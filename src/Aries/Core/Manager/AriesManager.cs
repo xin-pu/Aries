@@ -8,20 +8,20 @@ namespace Aries.Core
     public class AriesManager : INotifyPropertyChanged
     {
 
-        public ObservableCollection<GraphCVManager> _logicCoreCvs;
+        public ObservableCollection<GraphCVCore> _graphCvCores;
 
-        public GraphCVManager _logicCoreCvSelect;
+        public GraphCVCore _graphCvCore;
 
-        public ObservableCollection<GraphCVManager> LogicCoreCvs
+        public ObservableCollection<GraphCVCore> GraphCvCores
         {
-            set { UpdateProperty(ref _logicCoreCvs, value); }
-            get { return _logicCoreCvs; }
+            set { UpdateProperty(ref _graphCvCores, value); }
+            get { return _graphCvCores; }
         }
 
-        public GraphCVManager LogicCoreCvSelect
+        public GraphCVCore GraphCvCore
         {
-            set { UpdateProperty(ref _logicCoreCvSelect, value); }
-            get { return _logicCoreCvSelect; }
+            set { UpdateProperty(ref _graphCvCore, value); }
+            get { return _graphCvCore; }
         }
 
         private static readonly Lazy<AriesManager> lazy =
@@ -34,7 +34,7 @@ namespace Aries.Core
 
         public AriesManager()
         {
-            LogicCoreCvs = new ObservableCollection<GraphCVManager>();
+            GraphCvCores = new ObservableCollection<GraphCVCore>();
         }
 
         #region

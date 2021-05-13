@@ -31,7 +31,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         where TEdge : class, IGraphXEdge<TVertex>
         where TVertex : class, IGraphXVertex
     {
-        public BundleEdgeRouting(Rect graphArea, TGraph graph, IDictionary<TVertex, Point> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null)
+        public BundleEdgeRouting(Rect graphArea, TGraph graph, IDictionary<TVertex, GPoint> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null)
             : base(graph, vertexPositions, vertexSizes, parameters)
         {
             Parameters = parameters;
@@ -54,7 +54,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         {
             BundleAllEdges(Graph, cancellationToken);
         }
-        public override Point[] ComputeSingle(TEdge edge)
+        public override GPoint[] ComputeSingle(TEdge edge)
         {
             BundleEdges(Graph, new List<TEdge>() { edge });
             return EdgeRoutes.ContainsKey(edge) ? EdgeRoutes[edge] : null;
@@ -299,7 +299,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                 ed.ControlPoints = e.RoutingPoints; //e.GetValue(ReservedMetadataKeys.PerEdgeIntermediateCurvePoints);
 
                 if (_subdivisionPoints == 0) _subdivisionPoints = ed.ControlPoints.Length;
-                ed.NewControlPoints = new Point[_subdivisionPoints];
+                ed.NewControlPoints = new GPoint[_subdivisionPoints];
                 ed.K = _springConstant * (_subdivisionPoints + 1) / ed.Length;
                 if (ed.K > 0.5f) ed.K = 0.5f;
                 //ed.edges = new HashSet<int>();
@@ -465,15 +465,15 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             var q1 = ed2.V1;
             var q2 = ed2.V2;
 
-            var pn = new Point();
+            var pn = new GPoint();
             pn.X = p1.Y - p2.Y;
             pn.Y = p2.X - p1.X;
 
             var pn1 = VectorTools.Plus(pn, p1);
             var pn2 = VectorTools.Plus(pn, p2);
 
-            var i1 = new Point();
-            var i2 = new Point();
+            var i1 = new GPoint();
+            var i2 = new GPoint();
 
             float r1 = 0, r2 = 0;
 
@@ -548,7 +548,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         /// <returns>
         /// True if lines are not parallel, false otherwise
         /// </returns>
-        private bool Intersects(Point p1, Point p2, Point q1, Point q2, ref Point intersection)
+        private bool Intersects(GPoint p1, GPoint p2, GPoint q1, GPoint q2, ref GPoint intersection)
         {
             var q = (p1.Y - q1.Y) * (q2.X - q1.X) - (p1.X - q1.X) * (q2.Y - q1.Y);
             var d = (p2.X - p1.X) * (q2.Y - q1.Y) - (p2.Y - p1.Y) * (q2.X - q1.X);
@@ -640,10 +640,10 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         private void DivideEdge(EdgeGroupData ed, int subdivisionPointsNum)
         {
             var r = ed.Length / (subdivisionPointsNum + 1);
-            var sPoints = new Point[subdivisionPointsNum];
-            ed.NewControlPoints = new Point[subdivisionPointsNum];
-            Point move;
-            move = ed.Length == 0 ? new Point(0, 0) : VectorTools.Multiply(VectorTools.Minus(ed.V2, ed.V1), 1f / ed.Length);
+            var sPoints = new GPoint[subdivisionPointsNum];
+            ed.NewControlPoints = new GPoint[subdivisionPointsNum];
+            GPoint move;
+            move = ed.Length == 0 ? new GPoint(0, 0) : VectorTools.Multiply(VectorTools.Minus(ed.V2, ed.V1), 1f / ed.Length);
             for (var i = 0; i < subdivisionPointsNum; i++)
                 sPoints[i] = VectorTools.Plus(ed.V1, VectorTools.Multiply(move, r * (i + 1)));
             ed.ControlPoints = sPoints;
@@ -716,18 +716,18 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             for (var i = 0; i < _subdivisionPoints; i++)
             {
                 var p = ed.ControlPoints[i];
-                Point p1, p2;
+                GPoint p1, p2;
                 p1 = i == 0 ? ed.V1 : ed.ControlPoints[i - 1];
                 p2 = i == (_subdivisionPoints - 1) ? ed.V2 : ed.ControlPoints[i + 1];
                 //SizeF sp = new SizeF(p);
                 var f = VectorTools.Multiply(VectorTools.Plus(VectorTools.Minus(p1, p), VectorTools.Minus(p2, p)), ed.K);
-                var r = new Point(0, 0);
+                var r = new GPoint(0, 0);
                 foreach (var epd in ed.CompatibleGroups.Values)
                 {
 	                if (!epd.Ed1.ControlPoints.Any() || !epd.Ed2.ControlPoints.Any())
 		                continue;
 
-                    Point q;
+                    GPoint q;
                     var j = 1f;
                     EdgeGroupData ed2;
                     if ((epd.Ed1.ID.K1 == ed.ID.K1) && (epd.Ed1.ID.K2 == ed.ID.K2))
@@ -762,7 +762,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                 if (rl>0)
                     r = VectorTools.Multiply(r, (float)(1.0/Math.Sqrt(rl)));
 
-                var move = new Point(f.X + r.X, f.Y + r.Y);
+                var move = new GPoint(f.X + r.X, f.Y + r.Y);
                 VectorTools.Length(move);
 
                 //float len = ed.Length / (subdivisionPoints + 1);
@@ -812,7 +812,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             foreach (var ed in groupsToMove.Values)
             {
                 ed.ControlPoints = ed.NewControlPoints;
-                ed.NewControlPoints = new Point[_subdivisionPoints];
+                ed.NewControlPoints = new GPoint[_subdivisionPoints];
             }
 
             //if (cooldown > 0.05) cooldown *= 0.95f; else cooldown = 0;
@@ -865,7 +865,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             {
                 if (e.IsSelfLoop) continue;
                 var controlPoints = e.RoutingPoints;//(PointF[])e.GetValue(ReservedMetadataKeys.PerEdgeIntermediateCurvePoints);
-                var newControlPoints = new Point[controlPoints.Length];
+                var newControlPoints = new GPoint[controlPoints.Length];
                 for (var i = 0; i < controlPoints.Length; i++)
                 {
                     //STRONG CHANGE
@@ -1015,15 +1015,15 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         /// </summary>
         class EdgeGroupData
         {
-            public Point V1;
+            public GPoint V1;
 
-            public Point V2;
+            public GPoint V2;
 
-            public Point Middle;
+            public GPoint Middle;
 
-            public Point[] ControlPoints;
+            public GPoint[] ControlPoints;
 
-            public Point[] NewControlPoints;
+            public GPoint[] NewControlPoints;
 
             public Dictionary<KeyPair, GroupPairData> CompatibleGroups;
 

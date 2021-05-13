@@ -39,20 +39,20 @@ namespace GraphX.Measure
                 _height = value;
             } }
 
-        public Point BottomLeft { get { return new Point(_x, Bottom); } }
-        public Point TopLeft { get { return new Point(_x, _y); } }
-        public Point TopRight { get { return new Point(Right, _y); } }
-        public Point BottomRight { get { return new Point(Right, Bottom); } }
+        public GPoint BottomLeft { get { return new GPoint(_x, Bottom); } }
+        public GPoint TopLeft { get { return new GPoint(_x, _y); } }
+        public GPoint TopRight { get { return new GPoint(Right, _y); } }
+        public GPoint BottomRight { get { return new GPoint(Right, Bottom); } }
 
         private static readonly Rect SEmpty;
         public static Rect Empty { get { return SEmpty; } }
         public bool IsEmpty { get { return (_width < 0.0); } }
 
-        public Point Location
+        public GPoint Location
         {
             get
             {
-                return new Point(_x, _y);
+                return new GPoint(_x, _y);
             }
             set
             {
@@ -98,7 +98,7 @@ namespace GraphX.Measure
         }
 
 
-        public Rect(Point location, Size size)
+        public Rect(GPoint location, Size size)
         {
             if (size.IsEmpty)
             {
@@ -128,7 +128,7 @@ namespace GraphX.Measure
             _height = height;
         }
 
-        public Rect(Point point1, Point point2)
+        public Rect(GPoint point1, GPoint point2)
         {
             _x = Math.Min(point1._x, point2._x);
             _y = Math.Min(point1._y, point2._y);
@@ -136,7 +136,7 @@ namespace GraphX.Measure
             _height = Math.Max(Math.Max(point1._y, point2._y) - _y, 0);
         }
 
-        public Rect(Point point, Vector vector)
+        public Rect(GPoint point, Vector vector)
             : this(point, point + vector)
         {
         }
@@ -311,18 +311,18 @@ namespace GraphX.Measure
             return rect1;
         }
 
-        public void Union(Point point)
+        public void Union(GPoint point)
         {
             Union(new Rect(point, point));
         }
 
-        public static Rect Union(Rect rect, Point point)
+        public static Rect Union(Rect rect, GPoint point)
         {
             rect.Union(new Rect(point, point));
             return rect;
         }
 
-        public bool Contains(Point point)
+        public bool Contains(GPoint point)
         {
             return Contains(point._x, point._y);
         }

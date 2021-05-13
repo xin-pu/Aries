@@ -17,7 +17,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		#region Private fields
 		private Queue<TVertex> _queue;
 		private Dictionary<TVertex, ISOMData> _isomDataDict;
-		private Point _tempPos;
+		private GPoint _tempPos;
 		private double _adaptation;
 		private int _radius;
 		#endregion
@@ -30,7 +30,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 			Init( oldParameters );
 		}
 
-		public ISOMLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions,
+		public ISOMLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions,
 		                            ISOMLayoutParameters oldParameters )
 			: base( visitedGraph, vertexPositions, oldParameters )
 		{
@@ -53,7 +53,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             if (VisitedGraph.VertexCount == 1)
             {
                 if(!VertexPositions.ContainsKey(VisitedGraph.Vertices.First()))
-                    VertexPositions.Add(VisitedGraph.Vertices.First(), new Point(0, 0));
+                    VertexPositions.Add(VisitedGraph.Vertices.First(), new GPoint(0, 0));
                 return;
             }
 
@@ -109,7 +109,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		/// </summary>
 		protected void Adjust(CancellationToken cancellationToken, System.Random rnd)
 		{
-		    _tempPos = new Point {
+		    _tempPos = new GPoint {
                 X = 0.1 * Parameters.Width + (rnd.NextDouble() * 0.8 * Parameters.Width), 
                 Y = 0.1 * Parameters.Height + (rnd.NextDouble() * 0.8 * Parameters.Height)
             };
@@ -176,7 +176,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		/// </summary>
 		/// <param name="tempPos">The position.</param>
 		/// <returns>Returns with the reference of the closest vertex.</returns>
-		private TVertex GetClosest( Point tempPos )
+		private TVertex GetClosest( GPoint tempPos )
 		{
 			var vertex = default( TVertex );
 			var distance = double.MaxValue;

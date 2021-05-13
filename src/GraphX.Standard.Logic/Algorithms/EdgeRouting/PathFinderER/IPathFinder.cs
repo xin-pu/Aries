@@ -78,7 +78,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
 
         #region Methods
         void FindPathStop();
-        List<PathFinderNode> FindPath(Point start, Point end);
+        List<PathFinderNode> FindPath(GPoint start, GPoint end);
         #endregion
 
     }

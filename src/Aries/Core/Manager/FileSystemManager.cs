@@ -1,8 +1,8 @@
 ﻿using Aries.Utility;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Aries.OpenCV.Blocks.Import;
 using Aries.OpenCV.Blocks.Processing;
 using GraphX.Controls;
 using Microsoft.Win32;
@@ -30,7 +30,7 @@ namespace Aries.Core
 
         public ICommand GraphCVSaveCommand
         {
-            get { return new RelayCommand(GraphCVSaveCommand_Execute, GraphCVCloseSaveCommand_CanExecute); }
+            get { return new RelayCommand(GraphCVSaveCommand_Execute, GraphCVSaveCommand_CanExecute); }
         }
 
         public ICommand GraphCVSaveAsCommand
@@ -52,18 +52,31 @@ namespace Aries.Core
 
         private void GraphCVOpenCommand_Execute()
         {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = @"aries(*.ar)|*.ar",
+            };
+            openFileDialog.ShowDialog();
+            if (File.Exists(openFileDialog.FileName))
+            {
+                var graphCvCore = GraphCVCore.Open(openFileDialog.FileName);
+                ariesManager.GraphCvCores.Add(graphCvCore);
+                ariesManager.GraphCvCore = graphCvCore;
 
+                /// Add Code Later
+                /// Import BlockEdges and BlockVertices to Area
+            }
         }
 
         private bool GraphCVCloseSaveCommand_CanExecute()
         {
-            return ariesManager.LogicCoreCvSelect != null;
+            return ariesManager.GraphCvCore != null;
         }
 
         private void GraphCVCloseCommand_Execute()
         {
-            ariesManager.LogicCoreCvs.Remove(ariesManager.LogicCoreCvSelect);
-            ariesManager.LogicCoreCvSelect = ariesManager.LogicCoreCvs.FirstOrDefault();
+            ariesManager.GraphCvCores.Remove(ariesManager.GraphCvCore);
+            ariesManager.GraphCvCore = ariesManager.GraphCvCores.FirstOrDefault();
         }
 
         private void GraphCVNewCommand_Execute()
@@ -71,9 +84,9 @@ namespace Aries.Core
             ID++;
             var area = MainWindow.Instance.dg_Area;
             area.Children.Clear();
-            var dgLogic = new GraphCVManager($"Default_{ID}", area);
-            ariesManager.LogicCoreCvs.Add(dgLogic);
-            ariesManager.LogicCoreCvSelect = dgLogic;
+            var dgLogic = new GraphCVCore($"Default_{ID}", area);
+            ariesManager.GraphCvCores.Add(dgLogic);
+            ariesManager.GraphCvCore = dgLogic;
 
            
             var a = new Blur();
@@ -82,20 +95,20 @@ namespace Aries.Core
             if (area.VertexList.Count == 1)
             {
                 area.VertexList.First().Value.SetPosition(0, 0);
-                area.UpdateLayout(); //update layout to update vertex size
+                area.UpdateLayout();
             }
             else area.RelayoutGraph(true);
         }
 
+        private bool GraphCVSaveCommand_CanExecute()
+        {
+            var fileName = ariesManager.GraphCvCore?.FileName;
+            return fileName != null && File.Exists(fileName);
+        }
+
         private void GraphCVSaveCommand_Execute()
         {
-            var saveDialog = new SaveFileDialog
-            {
-                Filter = @"aries(*.ar)|*.ar",
-            };
-            var res = saveDialog.ShowDialog();
-            if (res != true || saveDialog.FileName == "") return;
-            ariesManager.LogicCoreCvSelect.Save(saveDialog.FileName);
+            ariesManager.GraphCvCore.Save(ariesManager.GraphCvCore.FileName);
         }
 
         private void GraphCVSaveAsCommand_Execute()
@@ -106,7 +119,7 @@ namespace Aries.Core
             };
             var res = saveDialog.ShowDialog();
             if (res != true || saveDialog.FileName == "") return;
-            ariesManager.LogicCoreCvSelect.Save(saveDialog.FileName);
+            ariesManager.GraphCvCore.Save(saveDialog.FileName);
         }
 
 

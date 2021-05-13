@@ -25,8 +25,8 @@ namespace GraphX.Common.Interfaces
         IExternalEdgeRouting<TVertex, TEdge> EdgeRouting { get; }
 
         void RemoveSingleEdge(TEdge edge);
-        void AddSingleEdge(TEdge edge, Point[] routingPoints = null);
+        void AddSingleEdge(TEdge edge, GPoint[] routingPoints = null);
         void RemoveSingleVertex(TVertex vertex);
-        void AddSingleVertex(TVertex vertex, Point position, Rect size);
+        void AddSingleVertex(TVertex vertex, GPoint position, Rect size);
     }
 }

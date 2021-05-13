@@ -33,7 +33,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 			/// <summary>
 			/// The real position (x and y coordinates) of the vertex.
 			/// </summary>
-			public Point RealPosition;
+			public GPoint RealPosition;
 
 			/// <summary>
 			/// Used in the algorithms for temporary storage.

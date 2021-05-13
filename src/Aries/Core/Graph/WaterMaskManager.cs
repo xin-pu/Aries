@@ -10,13 +10,24 @@ namespace Aries.Core
 {
     public class WaterMaskManager : INotifyPropertyChanged
     {
-        private string _mask = "Aries";
-        private int _fontSize = 100;
-        private double _opactiy = 0.2;
-        private double _angle = 45;
-        private Brush _brush = new SolidColorBrush(Colors.Gray);
-        private Thickness _maskMargin = new Thickness(30);
-        private bool _isOpen = true;
+        private string _mask;
+        private int _fontSize;
+        private double _opactiy;
+        private double _angle;
+        private Color _color;
+        private Thickness _maskMargin;
+        private bool _isOpen;
+
+        public WaterMaskManager()
+        {
+            Mask = "Aries";
+            FontSize = 100;
+            Opacity = 0.2;
+            Angle = 45;
+            Color = Colors.Gray;
+            MaskMargin = new Thickness(30);
+            IsOpen = true;
+        }
 
         public string Mask
         {
@@ -41,12 +52,11 @@ namespace Aries.Core
             set { UpdateProperty(ref _angle, value); }
             get { return _angle; }
         }
-        
-        [XmlIgnore]
-        public Brush Brush
+
+        public Color Color
         {
-            set { UpdateProperty(ref _brush, value); }
-            get { return _brush; }
+            set { UpdateProperty(ref _color, value); }
+            get { return _color; }
         }
 
         public Thickness MaskMargin
@@ -62,11 +72,16 @@ namespace Aries.Core
         }
 
         [XmlIgnore]
+        public Brush Brush
+        {
+            get { return new SolidColorBrush(Color); }
+        }
+
+        [XmlIgnore]
         public ICommand RemoveWaterMaskCommand
         {
             get { return new RelayCommand(RemoveWaterMaskCommand_Execute); }
         }
-
 
         private void RemoveWaterMaskCommand_Execute()
         {

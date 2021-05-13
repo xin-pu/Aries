@@ -11,33 +11,28 @@ using Aries.OpenCV.GraphModel;
 namespace Aries.Core
 {
     [Serializable]
-    public class GraphCVManager: INotifyPropertyChanged
+    public class GraphCVCore: INotifyPropertyChanged
     {
         private string _name;
+        private string _fileName;
         private DateTime _createDateTime;
         private DateTime _lastUpdateTime;
         
         private WaterMaskManager _waterMaskManager;
         private BackGroundManager _backGroundManager;
 
-        public GraphCVManager(string name, GraphAreaCV area)
+        public GraphCVCore(string name, GraphAreaCV area)
         {
-            try
-            {
-                WaterMaskManager = new WaterMaskManager();
-                BackGroundManager = new BackGroundManager();
-                Name = name;
-                CreateTime = DateTime.Now;
-                LastUpdateTime = DateTime.Now;
-                GraphAreaCv = area;
-            }
-            catch (Exception ex)
-            {
-
-            }
+            WaterMaskManager = new WaterMaskManager();
+            BackGroundManager = new BackGroundManager();
+            Name = name;
+            CreateTime = DateTime.Now;
+            LastUpdateTime = DateTime.Now;
+            GraphAreaCv = area;
         }
 
-        [XmlIgnore] public GraphAreaCV GraphAreaCv { set; get; }
+        [XmlIgnore] 
+        public GraphAreaCV GraphAreaCv { set; get; }
         
             
 
@@ -59,6 +54,12 @@ namespace Aries.Core
             get { return _name; }
         }
 
+        public string FileName
+        {
+            set { UpdateProperty(ref _fileName, value); }
+            get { return _fileName; }
+        }
+
         public DateTime CreateTime
         {
             set { UpdateProperty(ref _createDateTime, value); }
@@ -76,21 +77,29 @@ namespace Aries.Core
 
         public List<BlockVertex> BlockVertices { set; get; }
 
-        public GraphCVManager()
+        public GraphCVCore()
         {
            
         }
 
         public void Save(string filename)
         {
-            BlockVertices = GraphAreaCv.VertexList.Keys.ToList();
-            BlockEdges = GraphAreaCv.EdgesList.Keys.ToList();
-            using (var fs = new FileStream(filename, FileMode.Create))
-            {
-                var formatter = new XmlSerializer(typeof(GraphCVManager),
-                    BlockHelper.GetBlockClassType().ToArray());
-                formatter.Serialize(fs, this);
-            }
+            BlockVertices = GraphAreaCv.VertexList?.Keys.ToList();
+            BlockEdges = GraphAreaCv.EdgesList?.Keys.ToList();
+            using var fs = new FileStream(filename, FileMode.Create);
+            var formatter = new XmlSerializer(typeof(GraphCVCore),
+                BlockHelper.GetBlockClassType().ToArray());
+            formatter.Serialize(fs, this);
+        }
+
+        public static GraphCVCore Open(string filename)
+        {
+            using var fs = new FileStream(filename, FileMode.Open);
+            var formatter = new XmlSerializer(typeof(GraphCVCore),
+                BlockHelper.GetBlockClassType().ToArray());
+            var graphCvCore = (GraphCVCore) formatter.Deserialize(fs);
+            graphCvCore.FileName = filename;
+            return graphCvCore;
         }
 
         #region

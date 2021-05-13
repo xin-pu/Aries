@@ -96,7 +96,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         /// </summary>
         private readonly CompoundVertexData _rootCompoundVertex =
             new CompoundVertexData(
-                null, null, false, new Point(),
+                null, null, false, new GPoint(),
                 new Size(), new Thickness(),
                 CompoundVertexInnerLayoutType.Automatic);
 
@@ -115,7 +115,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             IDictionary<TVertex, Size> vertexSizes,
             IDictionary<TVertex, Thickness> vertexBorders,
             IDictionary<TVertex, CompoundVertexInnerLayoutType> layoutTypes,
-            IDictionary<TVertex, Point> vertexPositions,
+            IDictionary<TVertex, GPoint> vertexPositions,
             CompoundFDPLayoutParameters oldParameters)
             : base(visitedGraph, vertexPositions, oldParameters)
         {
@@ -175,7 +175,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             public CompoundVertexData(TVertex vertex,
                                       VertexData movableParent,
                                       bool isFixedToParent,
-                                      Point position,
+                                      GPoint position,
                                       Size size,
                                       Thickness borders,
                                       CompoundVertexInnerLayoutType innerVertexLayoutType)
@@ -242,18 +242,18 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                 RecalculateBounds();
             }
 
-            public Point InnerCanvasCenter
+            public GPoint InnerCanvasCenter
             {
                 get
                 {
-                    return new Point(
+                    return new GPoint(
                         Position.X - Size.Width / 2 + Borders.Left + InnerCanvasSize.Width / 2,
                         Position.Y - Size.Height / 2 + Borders.Top + InnerCanvasSize.Height / 2
                         );
                 }
                 set
                 {
-                    Position = new Point(
+                    Position = new GPoint(
                         value.X - InnerCanvasSize.Width / 2 - Borders.Left + Size.Width / 2,
                         value.Y - InnerCanvasSize.Height / 2 - Borders.Top + Size.Height / 2
                         );
@@ -268,8 +268,8 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                     return;
                 }
 
-                Point topLeft = new Point(double.PositiveInfinity, double.PositiveInfinity);
-                Point bottomRight = new Point(double.NegativeInfinity, double.NegativeInfinity);
+                GPoint topLeft = new GPoint(double.PositiveInfinity, double.PositiveInfinity);
+                GPoint bottomRight = new GPoint(double.NegativeInfinity, double.NegativeInfinity);
                 foreach (var child in _children)
                 {
                     topLeft.X = Math.Min(topLeft.X, child.Position.X - child.Size.Width / 2);
@@ -279,7 +279,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                     bottomRight.Y = Math.Max(bottomRight.Y, child.Position.Y + child.Size.Height / 2);
                 }
                 InnerCanvasSize = new Size(bottomRight.X - topLeft.X, bottomRight.Y - topLeft.Y);
-                InnerCanvasCenter = new Point((topLeft.X + bottomRight.X) / 2.0, (topLeft.Y + bottomRight.Y) / 2.0);
+                InnerCanvasCenter = new GPoint((topLeft.X + bottomRight.X) / 2.0, (topLeft.Y + bottomRight.Y) / 2.0);
             }
         }
 
@@ -294,7 +294,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             /// </summary>
             private readonly Size _size;
 
-            public SimpleVertexData(TVertex vertex, VertexData movableParent, bool isFixed, Point position, Size size)
+            public SimpleVertexData(TVertex vertex, VertexData movableParent, bool isFixed, GPoint position, Size size)
                 : base(vertex, movableParent, isFixed, position)
             {
                 _size = size;
@@ -336,7 +336,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             private Vector _childrenForce;
             protected VertexData _movableParent;
 
-            protected VertexData(TVertex vertex, VertexData movableParent, bool isFixedToParent, Point position)
+            protected VertexData(TVertex vertex, VertexData movableParent, bool isFixedToParent, GPoint position)
             {
                 Vertex = vertex;
                 MovableParent = movableParent;
@@ -379,7 +379,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             /// <summary>
             /// The position of the vertex.
             /// </summary>
-            public Point Position;
+            public GPoint Position;
 
             /// <summary>
             /// Gets or sets the spring force.

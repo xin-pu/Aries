@@ -217,7 +217,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             }
         }
 
-        private Vector GetSpringForce(double idealLength, Point uPos, Point vPos, Size uSize, Size vSize, Random rnd)
+        private Vector GetSpringForce(double idealLength, GPoint uPos, GPoint vPos, Size uSize, Size vSize, Random rnd)
         {
             var positionVector = (uPos - vPos);
             if (positionVector.Length == 0)
@@ -251,7 +251,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             return Fs;
         }
 
-        private Vector GetRepulsionForce(Point uPos, Point vPos, Size uSize, Size vSize, double repulsionRange, Random rnd)
+        private Vector GetRepulsionForce(GPoint uPos, GPoint vPos, Size uSize, Size vSize, double repulsionRange, Random rnd)
         {
             var positionVector = (uPos - vPos);
             if (positionVector.Length == 0)

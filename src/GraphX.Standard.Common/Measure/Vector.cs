@@ -90,9 +90,9 @@ namespace GraphX.Measure
 
 
         
-        public static Point operator +(Vector value1, Point value2)
+        public static GPoint operator +(Vector value1, GPoint value2)
         {
-            return new Point(value1.X + value2.X, value1.Y + value2.Y);
+            return new GPoint(value1.X + value2.X, value1.Y + value2.Y);
         }
 
        /* public static Vector operator /(Vector value1, Vector value2)
@@ -100,7 +100,7 @@ namespace GraphX.Measure
             return new Vector(value1.X / value2.X, value1.Y / value2.Y);
         }*/
 
-        public static Vector operator -(Vector value1, Point value2)
+        public static Vector operator -(Vector value1, GPoint value2)
         {
             return new Vector(value1.X - value2.X, value1.Y - value2.Y);
         }
@@ -164,6 +164,6 @@ namespace GraphX.Measure
             return $"{_x}:{_y}";
         }
 
-        public Point ToPoint => new Point(_x, _y);
+        public GPoint ToPoint => new GPoint(_x, _y);
     }
 }

@@ -13,6 +13,6 @@ namespace GraphX.Common.Interfaces
         /// <summary>
         /// Get resulting edge routes collection 
         /// </summary>
-        IDictionary<TEdge, Point[]> EdgeRoutes { get; }
+        IDictionary<TEdge, GPoint[]> EdgeRoutes { get; }
     }
 }

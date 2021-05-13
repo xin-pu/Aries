@@ -25,7 +25,7 @@ namespace GraphX.Logic.Models
         /// <param name="positions">Optional vertex positions</param>
         /// <param name="sizes">Optional vertex sizes</param>
         /// <param name="parameters">Optional algorithm parameters</param>
-        public ILayoutAlgorithm<TVertex, TEdge, TGraph> CreateLayoutAlgorithm(LayoutAlgorithmTypeEnum newAlgorithmType, TGraph iGraph, IDictionary<TVertex, Point> positions = null, IDictionary<TVertex, Size> sizes = null, ILayoutParameters parameters = null)
+        public ILayoutAlgorithm<TVertex, TEdge, TGraph> CreateLayoutAlgorithm(LayoutAlgorithmTypeEnum newAlgorithmType, TGraph iGraph, IDictionary<TVertex, GPoint> positions = null, IDictionary<TVertex, Size> sizes = null, ILayoutParameters parameters = null)
         {
             if (iGraph == null) return null;
             if (parameters == null) parameters = CreateLayoutParameters(newAlgorithmType);
@@ -222,7 +222,7 @@ namespace GraphX.Logic.Models
         #endregion
 
         #region Edge Routing factory
-        public IExternalEdgeRouting<TVertex, TEdge> CreateEdgeRoutingAlgorithm(EdgeRoutingAlgorithmTypeEnum newAlgorithmType, Rect graphArea, TGraph iGraph, IDictionary<TVertex, Point> positions, IDictionary<TVertex, Rect> rectangles, IEdgeRoutingParameters parameters = null)
+        public IExternalEdgeRouting<TVertex, TEdge> CreateEdgeRoutingAlgorithm(EdgeRoutingAlgorithmTypeEnum newAlgorithmType, Rect graphArea, TGraph iGraph, IDictionary<TVertex, GPoint> positions, IDictionary<TVertex, Rect> rectangles, IEdgeRoutingParameters parameters = null)
         {
             //if (Rectangles == null) return null;
             if (parameters == null) parameters = CreateEdgeRoutingParameters(newAlgorithmType);

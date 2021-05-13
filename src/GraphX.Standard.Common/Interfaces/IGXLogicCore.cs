@@ -132,7 +132,7 @@ namespace GraphX.Common.Interfaces
         /// <param name="dataVertex">Vertex data</param>
         /// <param name="vertexPosition">Vertex position</param>
         /// <param name="vertexSize">Vertex size</param>
-        void ComputeEdgeRoutesByVertex(TVertex dataVertex, Point? vertexPosition = null, Size? vertexSize = null);
+        void ComputeEdgeRoutesByVertex(TVertex dataVertex, GPoint? vertexPosition = null, Size? vertexSize = null);
 
         //void CreateNewAlgorithmFactory();
         //void CreateNewAlgorithmStorage(IExternalLayout<TVertex> layout, IExternalOverlapRemoval<TVertex> or, IExternalEdgeRouting<TVertex, TEdge> er);
@@ -141,7 +141,7 @@ namespace GraphX.Common.Interfaces
         /// Computes graph using parameters set in LogicCore properties
         /// </summary>
         /// <param name="cancellationToken">Optional cancellation token for async operation abort</param>
-        IDictionary<TVertex, Point> Compute(CancellationToken cancellationToken);
+        IDictionary<TVertex, GPoint> Compute(CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets if current algorithm set needs vertices sizes
@@ -158,7 +158,7 @@ namespace GraphX.Common.Interfaces
         /// </summary>
         /// <param name="vertexSizes">Vertices sizes</param>
         /// <param name="vertexPositions">Vertices positions</param>
-        IExternalLayout<TVertex, TEdge> GenerateLayoutAlgorithm(Dictionary<TVertex, Size> vertexSizes, IDictionary<TVertex, Point> vertexPositions);
+        IExternalLayout<TVertex, TEdge> GenerateLayoutAlgorithm(Dictionary<TVertex, Size> vertexSizes, IDictionary<TVertex, GPoint> vertexPositions);
 
         /// <summary>
         /// Generate overlap removal algorithm according to LogicCore overlap removal algorithm default/external properties set
@@ -172,7 +172,7 @@ namespace GraphX.Common.Interfaces
         /// <param name="desiredSize">Desired rectangular area size that will be taken into account</param>
         /// <param name="vertexPositions">Vertices positions</param>
         /// <param name="rectangles">Vertices rectangular sizes</param>
-        IExternalEdgeRouting<TVertex, TEdge> GenerateEdgeRoutingAlgorithm(Size desiredSize, IDictionary<TVertex, Point> vertexPositions = null, IDictionary<TVertex, Rect> rectangles = null);
+        IExternalEdgeRouting<TVertex, TEdge> GenerateEdgeRoutingAlgorithm(Size desiredSize, IDictionary<TVertex, GPoint> vertexPositions = null, IDictionary<TVertex, Rect> rectangles = null);
 
         /// <summary>
         /// Creates algorithm objects based on default/external LogicCore properies and stores them to be able to access them later by, for ex. edge recalculation logic.
@@ -181,7 +181,7 @@ namespace GraphX.Common.Interfaces
         /// <param name="vertexSizes">Vertex sizes</param>
         /// <param name="vertexPositions">Vertex positions</param>
         bool GenerateAlgorithmStorage(Dictionary<TVertex, Size> vertexSizes,
-            IDictionary<TVertex, Point> vertexPositions);
+            IDictionary<TVertex, GPoint> vertexPositions);
 
         /// <summary>
         /// Clear LogicCore data

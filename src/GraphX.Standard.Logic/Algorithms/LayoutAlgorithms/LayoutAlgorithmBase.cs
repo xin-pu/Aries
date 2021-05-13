@@ -27,16 +27,16 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         /// <param name="edges">Edge collection</param>
 	    public abstract void ResetGraph(IEnumerable<TVertex> vertices, IEnumerable<TEdge> edges);
 
-	    public IDictionary<TVertex, Point> VertexPositions { get; set; }
+	    public IDictionary<TVertex, GPoint> VertexPositions { get; set; }
 
 	    public TGraph VisitedGraph { get; set; }
 
-	    protected LayoutAlgorithmBase( TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions = null)
+	    protected LayoutAlgorithmBase( TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions = null)
 	    {
 	        VisitedGraph = visitedGraph;
 	        VertexPositions = vertexPositions != null ? 
-                new Dictionary<TVertex, Point>( vertexPositions.Where(a=> !double.IsNaN(a.Value.X)).ToDictionary(a=> a.Key, b=> b.Value) ) 
-                : new Dictionary<TVertex, Point>(  visitedGraph != null ? visitedGraph.VertexCount : 10 );
+                new Dictionary<TVertex, GPoint>( vertexPositions.Where(a=> !double.IsNaN(a.Value.X)).ToDictionary(a=> a.Key, b=> b.Value) ) 
+                : new Dictionary<TVertex, GPoint>(  visitedGraph != null ? visitedGraph.VertexCount : 10 );
 	    }
 
 	    public IDictionary<TVertex, Size> VertexSizes { get; set; }

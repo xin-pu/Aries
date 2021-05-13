@@ -4,7 +4,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
 {
     public class MatrixItem
     {
-        public Point Point;
+        public GPoint Point;
         public bool IsIntersected;
 
         public int PlaceX;
@@ -12,7 +12,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
 
         public int Weight { get { return IsIntersected ? 0 : 1; } }
 
-        public MatrixItem(Point pt, bool inter, int placeX, int placeY)
+        public MatrixItem(GPoint pt, bool inter, int placeX, int placeY)
         {
             Point = pt; IsIntersected = inter;
             PlaceX = placeX; PlaceY = placeY;

@@ -30,7 +30,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         public FRLayoutAlgorithm(TGraph visitedGraph)
             : base(visitedGraph) { }
 
-        public FRLayoutAlgorithm(TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions, FRLayoutParametersBase parameters)
+        public FRLayoutAlgorithm(TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions, FRLayoutParametersBase parameters)
             : base(visitedGraph, vertexPositions, parameters) { }
         #endregion
 
@@ -41,7 +41,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         {
             if (VisitedGraph.VertexCount == 1)
             {
-                VertexPositions.Add(VisitedGraph.Vertices.First(), new Point(0, 0));
+                VertexPositions.Add(VisitedGraph.Vertices.First(), new GPoint(0, 0));
                 return;
             }
 
@@ -109,7 +109,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             foreach (TVertex v in VisitedGraph.Vertices)
             {
                 force.X = 0; force.Y = 0;
-                Point posV = VertexPositions[v];
+                GPoint posV = VertexPositions[v];
                 foreach (TVertex u in VisitedGraph.Vertices)
                 {
                     cancellationToken.ThrowIfCancellationRequested();
@@ -156,7 +156,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             #region Limit displacement
             foreach (TVertex v in VisitedGraph.Vertices)
             {
-                Point pos = VertexPositions[v];
+                GPoint pos = VertexPositions[v];
 
                 //erõ limitálása a temperature-el
                 Vector delta = forces[v];

@@ -28,7 +28,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 		public BalloonTreeLayoutAlgorithm(
 			TGraph visitedGraph,
-			IDictionary<TVertex, Point> vertexPositions,
+			IDictionary<TVertex, GPoint> vertexPositions,
 			BalloonTreeLayoutParameters oldParameters,
 			TVertex selectedVertex )
 			: base( visitedGraph, vertexPositions, oldParameters )
@@ -85,7 +85,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 		private void SecondWalk( TVertex v, TVertex r, double x, double y, float l, float t )
 		{
-			var pos = new Point( x, y );
+			var pos = new GPoint( x, y );
 			VertexPositions[v] = pos;
 			_visitedVertices.Add( v );
 			var data = _datas[v];

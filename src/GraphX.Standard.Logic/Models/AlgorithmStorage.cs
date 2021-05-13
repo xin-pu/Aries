@@ -20,7 +20,7 @@ namespace GraphX.Logic.Models
                 EdgeRouting.EdgeRoutes.Remove(edge);
         }
 
-        public void AddSingleEdge(TEdge edge, Point[] routingPoints = null)
+        public void AddSingleEdge(TEdge edge, GPoint[] routingPoints = null)
         {
             if (EdgeRouting != null && EdgeRouting.EdgeRoutes != null && !EdgeRouting.EdgeRoutes.ContainsKey(edge))
                 EdgeRouting.EdgeRoutes.Add(edge,routingPoints);
@@ -46,7 +46,7 @@ namespace GraphX.Logic.Models
             }
         }
 
-        public void AddSingleVertex(TVertex vertex, Point position, Rect size)
+        public void AddSingleVertex(TVertex vertex, GPoint position, Rect size)
         {
             if (Layout != null)
             {

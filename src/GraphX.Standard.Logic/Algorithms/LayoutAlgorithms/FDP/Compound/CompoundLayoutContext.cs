@@ -11,7 +11,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
     {
         public CompoundLayoutContext(
             TGraph graph,
-            IDictionary<TVertex, Point> positions,
+            IDictionary<TVertex, GPoint> positions,
             IDictionary<TVertex, Size> sizes,
             LayoutMode mode,
             IDictionary<TVertex, Thickness> vertexBorders,

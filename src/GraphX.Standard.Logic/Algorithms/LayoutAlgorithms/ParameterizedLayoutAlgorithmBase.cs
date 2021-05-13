@@ -47,7 +47,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         {
         }
 
-        protected DefaultParameterizedLayoutAlgorithmBase(TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions, TParam oldParameters) 
+        protected DefaultParameterizedLayoutAlgorithmBase(TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions, TParam oldParameters) 
             : base(visitedGraph, vertexPositions, oldParameters)
         {
         }
@@ -82,7 +82,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 		protected ParameterizedLayoutAlgorithmBase( TGraph visitedGraph )
 			: this( visitedGraph, null, null ) { }
 
-		protected ParameterizedLayoutAlgorithmBase( TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions,
+		protected ParameterizedLayoutAlgorithmBase( TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions,
 		                                       TParam oldParameters )
 			: base( visitedGraph, vertexPositions )
 		{
@@ -159,11 +159,11 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 
 				    if (EnsureUniqueRandomInitialPositions)
 				    {
-				        Point newPoint;
+				        GPoint newPoint;
 				        do
 				        {
 				            newPoint =
-				                new Point(
+				                new GPoint(
 				                    Math.Max(double.Epsilon, rnd.NextDouble()*width + translate_x),
 				                    Math.Max(double.Epsilon, rnd.NextDouble()*height + translate_y));
 				        } while (VertexPositions.Values.Contains(newPoint));
@@ -172,7 +172,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
 				    else
 				    {
 				        VertexPositions[v] =
-				            new Point(
+				            new GPoint(
 				                Math.Max(double.Epsilon, rnd.NextDouble()*width + translate_x),
 				                Math.Max(double.Epsilon, rnd.NextDouble()*height + translate_y));
 				    }
@@ -186,13 +186,13 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
     		NormalizePositions( VertexPositions );
 		}
 
-		protected static void NormalizePositions( IDictionary<TVertex, Point> vertexPositions )
+		protected static void NormalizePositions( IDictionary<TVertex, GPoint> vertexPositions )
 		{
 			if ( vertexPositions == null || vertexPositions.Count == 0 )
 				return;
 
 			//get the topLeft position
-			var topLeft = new Point( float.PositiveInfinity, float.PositiveInfinity );
+			var topLeft = new GPoint( float.PositiveInfinity, float.PositiveInfinity );
 			foreach ( var pos in vertexPositions.Values.ToArray() )
 			{
 				topLeft.X = Math.Min( topLeft.X, pos.X );

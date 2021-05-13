@@ -15,7 +15,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         where TEdge : class, IGraphXEdge<TVertex>
         where TVertex : class, IGraphXVertex
     {
-        public SimpleEdgeRouting(TGraph graph, IDictionary<TVertex, Point> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null)
+        public SimpleEdgeRouting(TGraph graph, IDictionary<TVertex, GPoint> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null)
             : base(graph, vertexPositions, vertexSizes, parameters)
         {
             var erParameters = parameters as SimpleERParameters;
@@ -26,13 +26,13 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             }
         }
 
-        public override void UpdateVertexData(TVertex vertex, Point position, Rect size)
+        public override void UpdateVertexData(TVertex vertex, GPoint position, Rect size)
         {
             VertexPositions.AddOrUpdate(vertex, position);
             VertexSizes.AddOrUpdate(vertex, size);
         }
 
-        public override Point[] ComputeSingle(TEdge edge)
+        public override GPoint[] ComputeSingle(TEdge edge)
         {
             EdgeRoutingTest(edge, CancellationToken.None);
             return EdgeRoutes.ContainsKey(edge) ? EdgeRoutes[edge] : null;
@@ -49,7 +49,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         double side_distance = 5;
         double vertex_margin_distance = 35;
 
-        private IDictionary<TVertex, KeyValuePair<TVertex, Rect>> getSizesCollection(TEdge ctrl, Point end_point)
+        private IDictionary<TVertex, KeyValuePair<TVertex, Rect>> getSizesCollection(TEdge ctrl, GPoint end_point)
         {
             var list = VertexSizes.Where(a => a.Key.ID != ctrl.Source.ID && a.Key.ID != ctrl.Target.ID).OrderByDescending(a => GetDistance(VertexPositions[a.Key], end_point)).ToDictionary(a => a.Key); // new Dictionary<TVertex, Rect>();
             foreach ( var item in list.Values)
@@ -66,8 +66,8 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
 
 			var ss = VertexSizes[ctrl.Source];
 			var es = VertexSizes[ctrl.Target];
-            var startPoint = new Point(ss.X + ss.Width * 0.5, ss.Y + ss.Height * 0.5);
-            var endPoint = new Point(es.X + es.Width * 0.5, es.Y + es.Height * 0.5);
+            var startPoint = new GPoint(ss.X + ss.Width * 0.5, ss.Y + ss.Height * 0.5);
+            var endPoint = new GPoint(es.X + es.Width * 0.5, es.Y + es.Height * 0.5);
 
 			if (startPoint == endPoint) return;
 
@@ -76,7 +76,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             var leftSizes = new Dictionary<TVertex, KeyValuePair<TVertex, Rect>>(originalSizes);
 
 
-            var tempList = new List<Point>();
+            var tempList = new List<GPoint>();
             tempList.Add(startPoint);
 
             bool haveIntersections = true;
@@ -101,7 +101,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                     else
                     {
                         var r = originalSizes[item].Value;
-                        Point checkpoint;
+                        GPoint checkpoint;
                         //check for intersection point. if none found - remove vertex from checklist
                         if (GetIntersectionPoint(r, startPoint, endPoint, out checkpoint) == -1)
                         {
@@ -118,13 +118,13 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                         else if (startPoint.Y < checkpoint.Y) Y = checkpoint.Y - curDrawback;
                         else Y = checkpoint.Y + curDrawback;
                         //set drawback checkpoint
-                        checkpoint = new Point(X, Y);
+                        checkpoint = new GPoint(X, Y);
                         bool isStartPoint = checkpoint == startPoint;
 
                         bool routeFound = false;
                         bool viceversa = false;
                         int counter = 1;
-                        var joint = new Point();
+                        var joint = new GPoint();
                         bool? blocked_direction = null;
                         while (!routeFound)
                         {
@@ -133,7 +133,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                             //choose opposite vector side each cycle
                             var signedDistance = viceversa ? side_distance : -side_distance;
                             //get new point coordinate
-                            joint = new Point(
+                            joint = new GPoint(
                                  checkpoint.X + signedDistance * counter * (mainVector.Y / mainVector.Length),
                                  checkpoint.Y - signedDistance * counter * (mainVector.X / mainVector.Length));
 
@@ -209,24 +209,24 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         }
 
         #region Math helper implementation
-        public static Point GetCloserPoint(Point start, Point a, Point b)
+        public static GPoint GetCloserPoint(GPoint start, GPoint a, GPoint b)
         {
             var r1 = GetDistance(start, a);
             var r2 = GetDistance(start, b);
             return r1 < r2 ? a : b;
         }
 
-        public static double GetDistance(Point a, Point b)
+        public static double GetDistance(GPoint a, GPoint b)
         {
             return ((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y));
         }
 
-        public static sides GetIntersectionData(Rect r, Point p)
+        public static sides GetIntersectionData(Rect r, GPoint p)
         {
             return new sides() { Left = p.X < r.Left, Right = p.X > r.Right, Bottom = p.Y > r.Bottom, Top = p.Y < r.Top };
         }
 
-        public static bool IsIntersected(Rect r, Point a, Point b)
+        public static bool IsIntersected(Rect r, GPoint a, GPoint b)
         {
             // var start = new Point(a.X, a.Y);
             /* код конечных точек отрезка */
@@ -245,7 +245,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
 
                 /* выбираем точку c с ненулевым кодом */
                 sides code;
-                Point c; /* одна из точек */
+                GPoint c; /* одна из точек */
                 if (!codeA.IsInside())
                 {
                     code = codeA;
@@ -296,11 +296,11 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             return true;
         }
 
-        public static int GetIntersectionPoint(Rect r, Point a, Point b, out Point pt)
+        public static int GetIntersectionPoint(Rect r, GPoint a, GPoint b, out GPoint pt)
         {
             sides code;
-            Point c; /* одна из точек */
-            var start = new Point(a.X, a.Y);
+            GPoint c; /* одна из точек */
+            var start = new GPoint(a.X, a.Y);
             /* код конечных точек отрезка */
             var code_a = GetIntersectionData(r, a);
             var code_b = GetIntersectionData(r, b);
@@ -311,7 +311,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                 /* если обе точки с одной стороны прямоугольника, то отрезок не пересекает прямоугольник */
                 if (code_a.SameSide(code_b))
                 {
-                    pt = new Point();
+                    pt = new GPoint();
                     return -1;
                 }
 

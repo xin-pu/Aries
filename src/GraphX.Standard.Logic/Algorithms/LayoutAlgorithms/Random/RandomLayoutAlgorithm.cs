@@ -17,7 +17,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
     {
         private readonly RandomLayoutAlgorithmParams _parameters;
 
-        public RandomLayoutAlgorithm(TGraph graph, IDictionary<TVertex, Point> positions, RandomLayoutAlgorithmParams prms)
+        public RandomLayoutAlgorithm(TGraph graph, IDictionary<TVertex, GPoint> positions, RandomLayoutAlgorithmParams prms)
             : base(graph, positions)
         {
             _parameters = prms;
@@ -45,7 +45,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                     var y = (int) bounds.Y;
                     var size = VertexSizes.FirstOrDefault(a => a.Key == item).Value;
                     VertexPositions.Add(item,
-                        new Point(rnd.Next(x, x + boundsWidth - (int) size.Width),
+                        new GPoint(rnd.Next(x, x + boundsWidth - (int) size.Width),
                             rnd.Next(y, y + boundsHeight - (int) size.Height)));
                 }
             }

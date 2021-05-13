@@ -28,7 +28,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         /// <summary>
         /// Positions of the vertices, stored by indices.
         /// </summary>
-        private Point[] _positions;
+        private GPoint[] _positions;
 
         private double _diameter;
         private double _idealEdgeLength;
@@ -38,7 +38,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         public KKLayoutAlgorithm( TGraph visitedGraph, KKLayoutParameters oldParameters )
             : this( visitedGraph, null, oldParameters ) { }
 
-        public KKLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, Point> vertexPositions,
+        public KKLayoutAlgorithm( TGraph visitedGraph, IDictionary<TVertex, GPoint> vertexPositions,
                                   KKLayoutParameters oldParameters )
             : base( visitedGraph, vertexPositions, oldParameters ) { }
         #endregion
@@ -47,7 +47,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
         {
             if (VisitedGraph.VertexCount == 1)
             {
-                VertexPositions.Add(VisitedGraph.Vertices.First(),new Point(0,0));
+                VertexPositions.Add(VisitedGraph.Vertices.First(),new GPoint(0,0));
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
             _edgeLengths = new double[VisitedGraph.VertexCount, VisitedGraph.VertexCount];
             _springConstants = new double[VisitedGraph.VertexCount, VisitedGraph.VertexCount];
             _vertices = new TVertex[VisitedGraph.VertexCount];
-            _positions = new Point[VisitedGraph.VertexCount];
+            _positions = new GPoint[VisitedGraph.VertexCount];
 
             //initializing with random positions
             InitializeWithRandomPositions( Parameters.Width, Parameters.Height );
@@ -158,7 +158,7 @@ namespace GraphX.Logic.Algorithms.LayoutAlgorithms
                             double xenergy = CalcEnergyIfExchanged( i, j );
                             if ( energy > xenergy )
                             {
-                                Point p = _positions[i];
+                                GPoint p = _positions[i];
                                 _positions[i] = _positions[j];
                                 _positions[j] = p;
                                 return;

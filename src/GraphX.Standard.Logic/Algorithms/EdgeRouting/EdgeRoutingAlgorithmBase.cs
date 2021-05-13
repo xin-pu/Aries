@@ -23,12 +23,12 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         /// <summary>
         /// Gets or sets visual vertices positions (autofilled before Compute() call)
         /// </summary>
-        public IDictionary<TVertex, Point> VertexPositions { get; set; }
+        public IDictionary<TVertex, GPoint> VertexPositions { get; set; }
 
 		/// <summary>
 		/// Gets or sets the resulting routing points of the edges.
 		/// </summary>
-		public IDictionary<TEdge, Point[]> EdgeRoutes
+		public IDictionary<TEdge, GPoint[]> EdgeRoutes
 		{
 			get;
 			private set;
@@ -41,13 +41,13 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         /// <param name="vertexPositions">Vertex positions dictionary</param>
         /// <param name="vertexSizes">Vertex sizes dictionary</param>
         /// <param name="parameters">Algorithm parameters</param>
-        protected EdgeRoutingAlgorithmBase(TGraph graph,  IDictionary<TVertex, Point> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null) 
+        protected EdgeRoutingAlgorithmBase(TGraph graph,  IDictionary<TVertex, GPoint> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null) 
 		{
             Graph = graph;
             Parameters = parameters;
             VertexSizes = vertexSizes ?? new Dictionary<TVertex, Rect>();
-            VertexPositions = vertexPositions ?? new Dictionary<TVertex, Point>();
-            EdgeRoutes = new Dictionary<TEdge, Point[]>();
+            VertexPositions = vertexPositions ?? new Dictionary<TVertex, GPoint>();
+            EdgeRoutes = new Dictionary<TEdge, GPoint[]>();
 		}
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         /// Compute edge routing for single edge
         /// </summary>
         /// <param name="edge">Supplied edge data</param>
-        public abstract Point[] ComputeSingle(TEdge edge);
+        public abstract GPoint[] ComputeSingle(TEdge edge);
 
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         /// <param name="vertex">Data vertex</param>
         /// <param name="position">Vertex position</param>
         /// <param name="size">Vertex size</param>
-        public virtual void UpdateVertexData(TVertex vertex, Point position, Rect size)
+        public virtual void UpdateVertexData(TVertex vertex, GPoint position, Rect size)
         {
             VertexPositions[vertex] = position;
             VertexSizes[vertex] = size;

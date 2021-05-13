@@ -430,9 +430,9 @@ namespace GraphX.Controls
         /// </summary>
         /// <param name="final"></param>
         /// <param name="round"></param>
-        internal Measure.Point GetPositionGraphX(bool final = false, bool round = false)
+        internal Measure.GPoint GetPositionGraphX(bool final = false, bool round = false)
         {
-            return new Measure.Point(final ? GraphAreaBase.GetFinalX(this) : GraphAreaBase.GetX(this), final ? GraphAreaBase.GetFinalY(this) : GraphAreaBase.GetY(this));
+            return new Measure.GPoint(final ? GraphAreaBase.GetFinalX(this) : GraphAreaBase.GetX(this), final ? GraphAreaBase.GetFinalY(this) : GraphAreaBase.GetY(this));
         }
 
         #endregion Position methods
@@ -899,7 +899,7 @@ namespace GraphX.Controls
         /// <param name="useCurrentCoords">Use current vertices coordinates or final coorfinates (for.ex if move animation is active final coords will be its destination)</param>
         /// <param name="externalRoutingPoints">Provided custom routing points will be used instead of stored ones.</param>
         /// <param name="updateLabel">Should edge label be updated in this pass</param>
-        public virtual void PrepareEdgePath(bool useCurrentCoords = false, Measure.Point[] externalRoutingPoints = null, bool updateLabel = true)
+        public virtual void PrepareEdgePath(bool useCurrentCoords = false, Measure.GPoint[] externalRoutingPoints = null, bool updateLabel = true)
         {
             //do not calculate invisible edges
             if ((Visibility != Visibility.Visible && !IsHiddenEdgesUpdated) && this.Source == null || this.Target == null || ManualDrawing || !IsTemplateLoaded) return;

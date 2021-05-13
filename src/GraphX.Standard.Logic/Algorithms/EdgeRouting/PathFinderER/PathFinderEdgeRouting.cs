@@ -15,7 +15,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         where TVertex : class, IGraphXVertex
     {
 
-        public PathFinderEdgeRouting(TGraph graph, IDictionary<TVertex, Point> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null)
+        public PathFinderEdgeRouting(TGraph graph, IDictionary<TVertex, GPoint> vertexPositions, IDictionary<TVertex, Rect> vertexSizes, IEdgeRoutingParameters parameters = null)
             : base(graph, vertexPositions, vertexSizes, parameters)
         {
             if (parameters is PathFinderEdgeRoutingParameters)
@@ -33,13 +33,13 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             }
         }
          
-        public override void UpdateVertexData(TVertex vertex, Point position, Rect size)
+        public override void UpdateVertexData(TVertex vertex, GPoint position, Rect size)
         {
             VertexPositions[vertex] = position;
             VertexSizes[vertex] = size;
         }
 
-        public override Point[] ComputeSingle(TEdge edge)
+        public override GPoint[] ComputeSingle(TEdge edge)
         {
             CalculateMatrix(CancellationToken.None);//maybe shouldnt do this cause can be used from algo storage and already inited
             SetupPathFinder();//
@@ -70,8 +70,8 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                 ComputeER(item, cancellationToken);
         }
 
-        private Point _minPoint = new Point(double.PositiveInfinity, double.PositiveInfinity);
-        private Point _maxPoint = new Point(double.NegativeInfinity, double.NegativeInfinity);
+        private GPoint _minPoint = new GPoint(double.PositiveInfinity, double.PositiveInfinity);
+        private GPoint _maxPoint = new GPoint(double.NegativeInfinity, double.NegativeInfinity);
         private double _horizontalGs = 100;
         private double _verticalGs = 100;
         private double _sideAreaOffset = 500;
@@ -128,8 +128,8 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         #region Calculate matrix
         private void CalculateMatrix(CancellationToken cancellationToken)
         {
-            var tl = new Point(_minPoint.X - _sideAreaOffset, _minPoint.Y - _sideAreaOffset);
-            var br = new Point(_maxPoint.X + _sideAreaOffset, _maxPoint.Y + _sideAreaOffset);
+            var tl = new GPoint(_minPoint.X - _sideAreaOffset, _minPoint.Y - _sideAreaOffset);
+            var br = new GPoint(_maxPoint.X + _sideAreaOffset, _maxPoint.Y + _sideAreaOffset);
 
             var hCount = (int)((br.X - tl.X) / _horizontalGs) + 1;
             var vCount = (int)((br.Y - tl.Y) / _verticalGs) + 1;
@@ -137,7 +137,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             _resMatrix = new MatrixItem[hCount, vCount];
             _validPoints = new List<MatrixItem>();
 
-            var lastPt = new Point(0, 0);
+            var lastPt = new GPoint(0, 0);
 
             //get the intersection matrix
             for (int i = 0; i < hCount; i++)
@@ -145,7 +145,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
                 {
                     cancellationToken.ThrowIfCancellationRequested();
 
-                    lastPt = new Point(tl.X + _horizontalGs * i, tl.Y + _verticalGs * j);
+                    lastPt = new GPoint(tl.X + _horizontalGs * i, tl.Y + _verticalGs * j);
                     _resMatrix[i, j] = new MatrixItem(lastPt, IsOverlapped(lastPt), i, j);
                     if (!_resMatrix[i, j].IsIntersected) _validPoints.Add(_resMatrix[i, j]);
                 }
@@ -172,7 +172,7 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             var lst = _pathFinder.FindPath(startPt, endPt);
 
             if (lst == null) return;
-            var ptlst = new List<Point>();
+            var ptlst = new List<GPoint>();
             foreach (var pt in lst)
             {
                 cancellationToken.ThrowIfCancellationRequested();
@@ -182,25 +182,25 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
             }
             if (EdgeRoutes.ContainsKey(item))
                 EdgeRoutes[item] = ptlst.ToArray();
-            else EdgeRoutes.Add(new KeyValuePair<TEdge,Point[]>(item, ptlst.ToArray()));
+            else EdgeRoutes.Add(new KeyValuePair<TEdge,GPoint[]>(item, ptlst.ToArray()));
         }
 
-        private bool IsOverlapped(Point pt)
+        private bool IsOverlapped(GPoint pt)
         {
             var trect = new Rect(pt.X, pt.Y, 2, 2);
             return VertexSizes.Select(item => new Rect(item.Value.X - _vertexSafeDistance, item.Value.Y - _vertexSafeDistance, item.Value.Width + _vertexSafeDistance, item.Value.Height + _vertexSafeDistance)).Any(rect => rect.IntersectsWith(trect));
         }
 
-        private Point GetClosestPoint(IEnumerable<MatrixItem> points, Point pt)
+        private GPoint GetClosestPoint(IEnumerable<MatrixItem> points, GPoint pt)
         {
             var lst = points.Where(mi => mi.Point != pt).
                            OrderBy(mi => GetFakeDistance(pt, mi.Point)).
                            Take(1);
             if (!lst.Any()) throw new Exception("GetClosestPoint() -> Can't find one!");
-            return  new Point(lst.First().PlaceX, lst.First().PlaceY);
+            return  new GPoint(lst.First().PlaceX, lst.First().PlaceY);
         }
 
-        private double GetFakeDistance(Point source, Point target)
+        private double GetFakeDistance(GPoint source, GPoint target)
         {
             double dx = target.X - source.X; double dy = target.Y - source.Y;
             return dx * dx + dy * dy;

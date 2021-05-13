@@ -102,17 +102,17 @@
                 <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Stretch">
                     <TextBlock Text="Graph Name: " VerticalAlignment="Center"
                                Foreground="{DynamicResource ReverseTextBrush}"/>
-                    <ComboBox ItemsSource="{Binding LogicCoreCvs}" 
+                    <ComboBox ItemsSource="{Binding GraphCvCores}" 
                               Height="20"
-                              SelectedItem="{Binding LogicCoreCvSelect}"
+                              SelectedItem="{Binding GraphCvCore}"
                               DisplayMemberPath="Name"
                               Width="200"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="5,0">
-                        <TextBlock Text="{Binding LogicCoreCvSelect.CreateTime,StringFormat='{}Create at:  {0}'}" 
+                        <TextBlock Text="{Binding GraphCvCore.CreateTime,StringFormat='{}Create at:  {0}'}" 
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"/>
 
-                        <TextBlock Text="{Binding LogicCoreCvSelect.LastUpdateTime,StringFormat='{}Update at:  {0}'}" 
+                        <TextBlock Text="{Binding GraphCvCore.LastUpdateTime,StringFormat='{}Update at:  {0}'}" 
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"/>
                     </StackPanel>
@@ -139,8 +139,8 @@
                     </ResourceDictionary>
                 </Border.Resources>
                 <DockPanel DataContext="{Binding AriesManager}">
-                    
-                    <Grid DataContext="{Binding LogicCoreCvSelect}">
+
+                    <Grid DataContext="{Binding GraphCvCore}">
                         <hc:Watermark Name="Watermark"
                                       DataContext="{Binding WaterMaskManager}"
                                       FontSize="{Binding FontSize}"
@@ -208,8 +208,13 @@
                 </TabItem>
                 <TabItem Header="属性">
 
-                    <hc:PropertyGrid SelectedObject="{Binding AriesManager.LogicCoreCvSelect.WaterMaskManager}"/>
+                    <hc:PropertyGrid SelectedObject="{Binding AriesManager.GraphCvCore.WaterMaskManager}"/>
                 </TabItem>
+
+                <TabItem Header="样式">
+
+                </TabItem>
+
                 <TabItem Header="历史">
 
                 </TabItem>
