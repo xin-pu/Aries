@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Aries.Core;
 using Aries.OpenCV.Blocks.Processing;
 using Aries.OpenCV.GraphModel;
@@ -14,6 +15,7 @@ namespace Aries
         public MainWindow()
         {
             InitializeComponent();
+            dg_Area.LogicCore = new LogicCoreCV();
             DataContext = this;
         }
 
@@ -22,13 +24,22 @@ namespace Aries
         public AriesManager AriesManager => AriesManager.Instance;
 
 
+        private static readonly Lazy<MainWindow> lazy =
+            new Lazy<MainWindow>(() => new MainWindow());
+
+        public static MainWindow Instance
+        {
+            get { return lazy.Value; }
+        }
+
+        
         #region Function about Graph
 
         private void OnTestClick(object sender, System.Windows.RoutedEventArgs e)
         {
             var data = fillDataVertex(new Blur());
             dg_Area.AddVertexAndData(data, new VertexControl(data));
-
+            
             //we have to check if there is only one vertex and set coordinates manulay 
             //because layout algorithms skip all logic if there are less than two vertices
             if (dg_Area.VertexList.Count == 1)

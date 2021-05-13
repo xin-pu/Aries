@@ -149,7 +149,7 @@
                                       Angle="{Binding Angle}"
                                       Opacity="{Binding Opacity}"
                                       MarkBrush="{Binding Brush}"
-                                      Mark="Aries"
+                                      Mark="{Binding Mask}"
                                       Visibility="{Binding IsOpen,Converter={StaticResource Boolean2VisibilityConverter}}"/>
 
                         <graphx:ZoomControl Name="ZoomControl"

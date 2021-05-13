@@ -3,6 +3,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Xml.Serialization;
 using Aries.Utility;
 
 namespace Aries.Core
@@ -40,7 +41,8 @@ namespace Aries.Core
             set { UpdateProperty(ref _angle, value); }
             get { return _angle; }
         }
-
+        
+        [XmlIgnore]
         public Brush Brush
         {
             set { UpdateProperty(ref _brush, value); }
@@ -59,6 +61,7 @@ namespace Aries.Core
             get { return _isOpen; }
         }
 
+        [XmlIgnore]
         public ICommand RemoveWaterMaskCommand
         {
             get { return new RelayCommand(RemoveWaterMaskCommand_Execute); }

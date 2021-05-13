@@ -12,3 +12,8 @@
 /src/Aries.OpenCV/obj
 /src/Aries/bin
 /src/Aries/obj
+/src/GraphX.Standard.Logic/bin/Debug/netstandard2.0
+/src/GraphX.Standard.Logic/obj/Debug/netstandard2.0
+/src/GraphX.Standard.Logic/obj
+/src/GraphX.Standard.Common/obj
+/src/GraphX.Standard.Common/bin/Debug/netstandard2.0

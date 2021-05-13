@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using Aries.OpenCV.Interface;
 using OpenCvSharp;
 
@@ -7,9 +8,13 @@ namespace Aries.OpenCV.GraphModel
 {
     public abstract class ProcessingBlock : BlockVertex, ISaveBlock
     {
-        public BlockType BlockType = BlockType.Processing;
+       
+        [XmlIgnore]
         public Mat InputMat { set; get; }
+        [XmlIgnore]
         public Mat OutPutMat { set; get; }
+
+        public BlockType BlockType = BlockType.Processing;
         public bool EnableSaveBlock { get; set; } = true;
         public string SaveBlockName { set; get; }
 
@@ -26,9 +31,13 @@ namespace Aries.OpenCV.GraphModel
 
     public abstract class ProcessingBlockMultiInput : BlockVertex, ISaveBlock
     {
-        public BlockType BlockType = BlockType.Processing;
+        [XmlIgnore]
         public List<Mat> InputMats { set; get; }
+        [XmlIgnore]
         public Mat OutPutMat { set; get; }
+
+
+        public BlockType BlockType = BlockType.Processing;
         public bool EnableSaveBlock { get; set; } = true;
         public string SaveBlockName { set; get; }
 

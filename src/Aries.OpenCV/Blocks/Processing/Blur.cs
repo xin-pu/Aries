@@ -1,11 +1,15 @@
-﻿using Aries.OpenCV.GraphModel;
+﻿using System;
+using System.Xml.Serialization;
+using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Processing
 {
+    [Serializable]
+    [XmlInclude(typeof(BlockVertex))]
     public class Blur : ProcessingBlock
     {
-   
+
         /// <summary>
         /// The smoothing kernel size
         /// </summary>

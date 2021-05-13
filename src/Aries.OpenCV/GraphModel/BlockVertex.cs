@@ -7,7 +7,7 @@ using GraphX.Common.Models;
 namespace Aries.OpenCV.GraphModel
 {
     [Serializable]
-    public abstract class BlockVertex : VertexBase, INotifyPropertyChanged
+    public class BlockVertex : VertexBase, INotifyPropertyChanged
     {
 
         public string Name { set; get; }
@@ -15,7 +15,7 @@ namespace Aries.OpenCV.GraphModel
 
         public string Icon { set; get; }
 
-        protected BlockVertex()
+        public BlockVertex()
         {
             Name = "Hello";
             Icon = getICon();
@@ -50,4 +50,5 @@ namespace Aries.OpenCV.GraphModel
 
         #endregion
     }
+
 }

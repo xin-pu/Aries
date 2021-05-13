@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -9,17 +8,17 @@ namespace Aries.Core
     public class AriesManager : INotifyPropertyChanged
     {
 
-        public ObservableCollection<LogicCoreCV> _logicCoreCvs;
+        public ObservableCollection<GraphCVManager> _logicCoreCvs;
 
-        public LogicCoreCV _logicCoreCvSelect;
+        public GraphCVManager _logicCoreCvSelect;
 
-        public ObservableCollection<LogicCoreCV> LogicCoreCvs
+        public ObservableCollection<GraphCVManager> LogicCoreCvs
         {
             set { UpdateProperty(ref _logicCoreCvs, value); }
             get { return _logicCoreCvs; }
         }
 
-        public LogicCoreCV LogicCoreCvSelect
+        public GraphCVManager LogicCoreCvSelect
         {
             set { UpdateProperty(ref _logicCoreCvSelect, value); }
             get { return _logicCoreCvSelect; }
@@ -35,7 +34,7 @@ namespace Aries.Core
 
         public AriesManager()
         {
-            LogicCoreCvs = new ObservableCollection<LogicCoreCV>();
+            LogicCoreCvs = new ObservableCollection<GraphCVManager>();
         }
 
         #region

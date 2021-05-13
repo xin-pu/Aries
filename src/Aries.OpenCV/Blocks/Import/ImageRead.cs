@@ -4,7 +4,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Import
 {
-    class ImageRead : ImportBlock
+    public class ImageRead : ImportBlock
     {
 
         public string FileName { set; get; }
