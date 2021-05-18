@@ -9,6 +9,7 @@ namespace Aries.OpenCV.GraphModel
     [Serializable]
     public class BlockVertex : VertexBase, INotifyPropertyChanged
     {
+        public BlockType BlockType { set; get; }
 
         public string Name { set; get; }
         public string InstName { set; get; }

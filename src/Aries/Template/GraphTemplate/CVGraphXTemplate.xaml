@@ -14,11 +14,12 @@
 
     <!-- VERTEX CONTROL -->
     <Style TargetType="{x:Type controls:VertexControl}">
+        
         <!-- Set background color through attached property -->
         <Setter Property="Background" Value="{StaticResource VertexBackGround}"/>
-        <Setter Property="Padding" Value="10,5,10,5"/>
+        <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderBrush" Value="{StaticResource VertexBordBackGround}"/>
-        <Setter Property="BorderThickness" Value="3"/>
+        <Setter Property="BorderThickness" Value="1"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -35,10 +36,29 @@
                     </ControlTemplate.Resources>
                     
                     <Grid>
-                        <Border x:Name="BackgroundNorm" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
-                        <Border x:Name="BackgroundNorm_highlight" Margin="1" BorderBrush="{DynamicResource NormalHighlightBrush}" BorderThickness="1,0,1,1" CornerRadius="5" Opacity="0.65" />
-                        <Border x:Name="BackgroundOver" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" Opacity="0" Background="{DynamicResource MouseOverBrush}" BorderBrush="{DynamicResource MouseOverBorderBrush}"/>
-                        <Border x:Name="BackgroundOver_Highlight" Margin="1" BorderThickness="1,0,1,1" CornerRadius="5" Opacity="0" BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
+                        <Border x:Name="BackgroundNorm" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="2" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"/>
+                        <Border x:Name="BackgroundNorm_highlight" 
+                                Margin="1" 
+                                BorderBrush="{DynamicResource NormalHighlightBrush}" 
+                                BorderThickness="1,0,1,1" 
+                                CornerRadius="2" 
+                                Opacity="0.65" />
+                        <Border x:Name="BackgroundOver" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="2" 
+                                Opacity="0" 
+                                Background="{DynamicResource MouseOverBrush}" 
+                                BorderBrush="{DynamicResource MouseOverBorderBrush}"/>
+                        <Border x:Name="BackgroundOver_Highlight" 
+                                Margin="1" 
+                                BorderThickness="1,0,1,1" 
+                                CornerRadius="2" 
+                                Opacity="0" 
+                                BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
 
                         <Grid UseLayoutRounding="True" SnapsToDevicePixels="True">
                             <Grid.RowDefinitions>
@@ -51,7 +71,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
                                        HorizontalAlignment="Center" FontWeight="Bold" 
-                                       Foreground="Black" Grid.Column="1" Grid.Row="0" Margin="3" MinWidth="120"/>
+                                       Foreground="{DynamicResource PrimaryBrush}" Grid.Column="1" Grid.Row="0" Margin="3" MinWidth="120"/>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -80,6 +100,10 @@
             <Trigger Property="controls:HighlightBehaviour.Highlighted" Value="True">
                 <Setter Property="BorderBrush" Value="Gold"/>
                 <Setter Property="BorderThickness" Value="7"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="Gold"/>
+                <Setter Property="BorderThickness" Value="2"/>
             </Trigger>
         </Style.Triggers>
 

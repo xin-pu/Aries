@@ -5,7 +5,11 @@ namespace Aries.OpenCV.GraphModel
 {
     public abstract class ImportBlock : BlockVertex
     {
-        public BlockType BlockType = BlockType.Import;
+       
+        protected ImportBlock()
+        {
+            BlockType = BlockType.Import;
+        }
         [XmlIgnore]
         public Mat OutPutMat { set; get; }
         public abstract bool CanImport();
