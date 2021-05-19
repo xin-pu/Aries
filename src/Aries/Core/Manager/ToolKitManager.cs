@@ -19,6 +19,7 @@ namespace Aries.Core
             get { return lazy.Value; }
         }
 
+
         public ToolKitManager()
         {
             ToolKitGroups = new List<ToolKitGroup>(0);
@@ -36,6 +37,8 @@ namespace Aries.Core
                 BlockType = BlockHelper.GetBlockType(a),
                 Icon = BlockHelper.GetBlockICon(a)
             }).ToList();
+
+
             typeAll.GroupBy(a => a.BlockType).ToList().ForEach(a =>
             {
                 ToolKitGroups.Add(new ToolKitGroup
@@ -43,6 +46,14 @@ namespace Aries.Core
                     GroupName = a.Key.ToString(),
                     ToolKitStructs = new ObservableCollection<ToolKitStruct>(a)
                 });
+            });
+        }
+
+        public void FreshGraphCvCoreAtWorkSpace(GraphCVCore graphCvCore)
+        {
+            ToolKitGroups.ForEach(a =>
+            {
+                a.ToolKitStructs.ToList().ForEach(b => { b.GraphCvCoreAtWorkSpace = graphCvCore; });
             });
         }
 

@@ -8,17 +8,6 @@ namespace Aries.Views
     /// </summary>
     public partial class AriesCoreUint
     {
-        /// <summary>
-        /// Create For New Command
-        /// </summary>
-        /// <param name="name"></param>
-        public AriesCoreUint(string name)
-        {
-            InitializeComponent();
-            GraphCvCore = new GraphCVCore(name);
-            Initial();
-            DataContext = this;
-        }
 
         /// <summary>
         /// Create For Open Command
@@ -33,6 +22,8 @@ namespace Aries.Views
         }
 
         public GraphCVCore GraphCvCore { set; get; }
+
+        public string UnitName => GraphCvCore.Name;
 
         private void Initial()
         {
@@ -49,6 +40,8 @@ namespace Aries.Views
             GraphCvCore.GraphCvArea = GraphArea;
             
         }
+
+
 
     }
 }

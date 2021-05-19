@@ -115,7 +115,6 @@
     <Compile Include="Controls\TabButton.cs" />
     <Compile Include="Core\Graph\GraphCVCore.cs" />
     <Compile Include="Core\Manager\ToolKitManager.cs" />
-    <Compile Include="Core\Manager\AriesManager.cs" />
     <Compile Include="Core\Graph\GraphCVArea.cs" />
     <Compile Include="Core\Graph\LogicCoreCV.cs" />
     <Compile Include="Core\Graph\BackGroundManager.cs" />

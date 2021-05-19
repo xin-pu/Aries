@@ -1,24 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
-using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
 using GraphX.Controls;
 
 namespace Aries.Core
 {
     [Serializable]
-    public class GraphCVCore: INotifyPropertyChanged,IDisposable
+    public class GraphCVCore : INotifyPropertyChanged, IDisposable
     {
         private string _name;
         private string _fileName;
         private DateTime _createDateTime;
         private DateTime _lastUpdateTime;
-        
+
         private WaterMaskManager _waterMaskManager;
         private BackGroundManager _backGroundManager;
 
@@ -37,11 +35,9 @@ namespace Aries.Core
             AddBlock = AppendBlock;
         }
 
-        [XmlIgnore] 
-        public GraphCVArea GraphCvArea { set; get; }
+        [XmlIgnore] public GraphCVArea GraphCvArea { set; get; }
 
-        [XmlIgnore]
-        public ZoomControl ZoomControl { set; get; }
+        [XmlIgnore] public ZoomControl ZoomControl { set; get; }
 
 
         public WaterMaskManager WaterMaskManager
@@ -80,14 +76,14 @@ namespace Aries.Core
             get { return _lastUpdateTime; }
         }
 
-       
+
         public List<BlockEdge> BlockEdges { set; get; }
 
         public List<BlockVertex> BlockVertices { set; get; }
 
 
-        [XmlIgnore]
-        public Action<BlockVertex> AddBlock;
+        [XmlIgnore] public Action<BlockVertex> AddBlock;
+
         public void AppendBlock(BlockVertex blockVertex)
         {
             GraphCvArea.AddVertexAndData(blockVertex, new VertexControl(blockVertex));
@@ -100,7 +96,7 @@ namespace Aries.Core
                 GraphCvArea.UpdateLayout(); //update layout to update vertex size
             }
             else GraphCvArea.RelayoutGraph(true);
-            
+
         }
 
         #region

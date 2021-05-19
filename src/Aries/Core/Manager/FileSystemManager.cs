@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Xml.Serialization;
 using Aries.OpenCV.Core;
 using Aries.Views;
+using HandyControl.Controls;
 using Microsoft.Win32;
 
 namespace Aries.Core
@@ -21,10 +22,10 @@ namespace Aries.Core
             get { return lazy.Value; }
         }
 
-        private AriesManager ariesManager => AriesManager.Instance;
+ 
 
         private int ID = 0;
-        public MainWindow MainWindow { set; get; }
+        public AriesMain AriesMain { set; get; }
 
 
 
@@ -45,6 +46,13 @@ namespace Aries.Core
             get { return new RelayCommand(GraphCVCloseCommand_Execute, GraphCVCloseSaveCommand_CanExecute); }
         }
 
+        public ICommand GraphCVCloseAllCommand
+        {
+            get { return new RelayCommand(GraphCVCloseAllCommand_Execute, GraphCVCloseAllCommand_CanExecute); }
+        }
+
+
+
         public ICommand GraphCVSaveCommand
         {
             get { return new RelayCommand(GraphCVSaveCommand_Execute, GraphCVSaveCommand_CanExecute); }
@@ -55,24 +63,15 @@ namespace Aries.Core
             get { return new RelayCommand(GraphCVSaveAsCommand_Execute, GraphCVCloseSaveCommand_CanExecute); }
         }
 
-        public ICommand GraphCVSelectCommand
-        {
-            get { return new RelayCommand(GraphCVSelectCommand_Execute); }
-        }
 
- 
 
         private void GraphCVNewCommand_Execute()
         {
             ID++;
-
-            var panel = new AriesCoreUint($"Default_{ID}");
-            MainWindow.WorkSpace.Children.Clear();
-            MainWindow.WorkSpace.Children.Add(panel);
-
-            var graphCvCore = panel.GraphCvCore;
-            ariesManager.GraphCvCores.Add(graphCvCore);
-            ariesManager.GraphCvCore = graphCvCore;
+            var graphCvCore = new GraphCVCore($"Default_{ID}");
+            var panel = new AriesCoreUint(graphCvCore);
+            
+            AddTapToTapControl(panel);
         }
 
 
@@ -86,13 +85,9 @@ namespace Aries.Core
             if (File.Exists(openFileDialog.FileName))
             {
                 var graphCvCore = Open(openFileDialog.FileName);
-                
                 var panel = new AriesCoreUint(graphCvCore);
-                MainWindow.WorkSpace.Children.Clear();
-                MainWindow.WorkSpace.Children.Add(panel);
 
-                ariesManager.GraphCvCores.Add(graphCvCore);
-                ariesManager.GraphCvCore = graphCvCore;
+                AddTapToTapControl(panel);
 
                 /// Add Code Later
                 /// Import BlockEdges and BlockVertices to Area
@@ -103,35 +98,41 @@ namespace Aries.Core
 
         private bool GraphCVCloseSaveCommand_CanExecute()
         {
-            return ariesManager.GraphCvCore != null;
+            return AriesMain.WorkSpace.SelectedItem != null;
         }
 
         private void GraphCVCloseCommand_Execute()
         {
-            MainWindow.WorkSpace.Children.Clear();
+            var selectItem = AriesMain.WorkSpace.SelectedItem;
+            AriesMain.WorkSpace.Items.Remove(selectItem);
+        }
 
-            ariesManager.GraphCvCore.Dispose();
-            ariesManager.GraphCvCores.Remove(ariesManager.GraphCvCore);
+        private bool GraphCVCloseAllCommand_CanExecute()
+        {
+            return true;
+        }
 
-            var nextGraphCvCore = ariesManager.GraphCvCores.FirstOrDefault();
-            if (nextGraphCvCore == null) return;
-            ariesManager.GraphCvCore = nextGraphCvCore;
-
-            var panel = new AriesCoreUint(nextGraphCvCore);
-            MainWindow.WorkSpace.Children.Clear();
-            MainWindow.WorkSpace.Children.Add(panel);
+        private void GraphCVCloseAllCommand_Execute()
+        {
+            AriesMain.WorkSpace.Items.Clear();
         }
 
 
         private bool GraphCVSaveCommand_CanExecute()
         {
-            var fileName = ariesManager.GraphCvCore?.FileName;
+            var selectContent = AriesMain.WorkSpace.SelectedContent;
+            if (selectContent == null)
+                return false;
+            var ariesCoreUint = (AriesCoreUint) selectContent;
+            var fileName = ariesCoreUint.GraphCvCore.FileName;
             return fileName != null && File.Exists(fileName);
         }
 
         private void GraphCVSaveCommand_Execute()
         {
-            Save(ariesManager.GraphCvCore.FileName, ariesManager.GraphCvCore);
+            var selectContent = AriesMain.WorkSpace.SelectedContent;
+            var ariesCoreUint = (AriesCoreUint)selectContent;
+            Save(ariesCoreUint?.GraphCvCore.FileName, ariesCoreUint?.GraphCvCore);
         }
 
         private void GraphCVSaveAsCommand_Execute()
@@ -142,12 +143,21 @@ namespace Aries.Core
             };
             var res = saveDialog.ShowDialog();
             if (res != true || saveDialog.FileName == "") return;
-            Save(saveDialog.FileName,ariesManager.GraphCvCore);
+            var selectContent = AriesMain.WorkSpace.SelectedContent;
+            var ariesCoreUint = (AriesCoreUint)selectContent;
+            Save(saveDialog.FileName, ariesCoreUint.GraphCvCore);
         }
 
-        private void GraphCVSelectCommand_Execute()
+        private void AddTapToTapControl(AriesCoreUint ariesCoreUint)
         {
-            
+            var tabItem = new TabItem
+            {
+                Header = ariesCoreUint.GraphCvCore.Name,
+                Content = ariesCoreUint,
+            };
+            AriesMain.WorkSpace.Items.Add(tabItem);
+            AriesMain.WorkSpace.SelectedItem = tabItem;
+
         }
 
         #endregion

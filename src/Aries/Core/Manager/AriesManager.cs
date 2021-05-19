@@ -2,27 +2,14 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Aries.Views;
 
 namespace Aries.Core
 {
     public class AriesManager : INotifyPropertyChanged
     {
 
-        public ObservableCollection<GraphCVCore> _graphCvCores;
 
-        public GraphCVCore _graphCvCore;
-
-        public ObservableCollection<GraphCVCore> GraphCvCores
-        {
-            set { UpdateProperty(ref _graphCvCores, value); }
-            get { return _graphCvCores; }
-        }
-
-        public GraphCVCore GraphCvCore
-        {
-            set { UpdateProperty(ref _graphCvCore, value); }
-            get { return _graphCvCore; }
-        }
 
         private static readonly Lazy<AriesManager> lazy =
             new Lazy<AriesManager>(() => new AriesManager());
@@ -34,8 +21,30 @@ namespace Aries.Core
 
         public AriesManager()
         {
-            GraphCvCores = new ObservableCollection<GraphCVCore>();
+            AriesCoreUints = new ObservableCollection<AriesCoreUint>();
         }
+
+
+        public ObservableCollection<AriesCoreUint> _ariesCoreUints;
+        public AriesCoreUint _ariesCoreUint;
+
+        public MainWindow MainWindow { set; get; }
+
+
+        public ObservableCollection<AriesCoreUint> AriesCoreUints
+        {
+            set { UpdateProperty(ref _ariesCoreUints, value); }
+            get { return _ariesCoreUints; }
+        }
+
+        public AriesCoreUint AriesCoreUint
+        {
+            set { UpdateProperty(ref _ariesCoreUint, value); }
+            get { return _ariesCoreUint; }
+        }
+        
+
+  
 
         #region
 
