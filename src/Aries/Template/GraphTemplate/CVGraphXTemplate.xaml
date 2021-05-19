@@ -95,16 +95,6 @@
         <Setter Property="controls:DragBehaviour.UpdateEdgesOnMove"
                 Value="True" />
 
-        <Setter Property="ContextMenu">
-            <Setter.Value>
-                <ContextMenu IsOpen="True">
-                    <MenuItem Header="Add GraphCV"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Remove Select"></MenuItem>
-                    <MenuItem Header="Remove All"></MenuItem>
-                </ContextMenu>
-            </Setter.Value>
-        </Setter>
 
         <Style.Triggers>
             <Trigger Property="controls:HighlightBehaviour.Highlighted" Value="True">

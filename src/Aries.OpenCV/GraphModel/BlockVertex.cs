@@ -18,7 +18,6 @@ namespace Aries.OpenCV.GraphModel
 
         public BlockVertex()
         {
-            Name = "Hello";
             Icon = getICon();
         }
 

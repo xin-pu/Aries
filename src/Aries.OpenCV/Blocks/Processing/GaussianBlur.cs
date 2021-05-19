@@ -27,6 +27,7 @@ namespace Aries.OpenCV.Blocks.Processing
 
         public GaussianBlur()
         {
+            Name = "GaussianBlur";
             KSize = new Size(3, 3);
             SigmaX = 1D;
             SigmaY = 0D;

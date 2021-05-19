@@ -12,6 +12,7 @@ namespace Aries.OpenCV.Blocks.Import
 
         public ImageRead()
         {
+            Name = "ImageRead";
             ImreadModes = ImreadModes.Color;
             Icon = "&#xef71;";
         }
