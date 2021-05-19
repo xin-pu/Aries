@@ -68,6 +68,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Core\Manager\ToolKitGroup.cs" />
+    <Compile Include="Core\Manager\ToolKitStruct.cs" />
     <Compile Include="Views\AriesCoreUint.xaml.cs">
       <DependentUpon>AriesCoreUint.xaml</DependentUpon>
     </Compile>

@@ -3,13 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Aries.Views"
              xmlns:core="clr-namespace:Aries.Core"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="300"
              DataContext="{Binding ToolKitManager}">
     <TreeView VerticalAlignment="Stretch" Name="TreeView_ToolKit" 
-                              ItemsSource="{Binding BlockToolKitStructs}">
+                              ItemsSource="{Binding ToolKitGroups}">
         <TreeView.ItemsPanel>
             <ItemsPanelTemplate>
                 <StackPanel IsItemsHost="True" Orientation="Vertical"/>
@@ -17,7 +16,7 @@
         </TreeView.ItemsPanel>
 
         <TreeView.Resources>
-            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
+            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroup}" ItemsSource="{Binding ToolKitStructs}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
