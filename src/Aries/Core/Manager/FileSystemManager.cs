@@ -3,14 +3,32 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
-using Aries.OpenCV.Blocks.Processing;
-using GraphX.Controls;
+using System.Xml.Serialization;
+using Aries.OpenCV.Core;
+using Aries.Views;
 using Microsoft.Win32;
 
 namespace Aries.Core
 {
     public class FileSystemManager
     {
+        
+        private static readonly Lazy<FileSystemManager> lazy =
+            new Lazy<FileSystemManager>(() => new FileSystemManager());
+
+        public static FileSystemManager Instance
+        {
+            get { return lazy.Value; }
+        }
+
+        private AriesManager ariesManager => AriesManager.Instance;
+
+        private int ID = 0;
+        public MainWindow MainWindow { set; get; }
+
+
+
+        #region Command 
 
         public ICommand GraphCVNewCommand
         {
@@ -37,17 +55,26 @@ namespace Aries.Core
             get { return new RelayCommand(GraphCVSaveAsCommand_Execute, GraphCVCloseSaveCommand_CanExecute); }
         }
 
-        private int ID = 0;
-
-        private static readonly Lazy<FileSystemManager> lazy =
-            new Lazy<FileSystemManager>(() => new FileSystemManager());
-
-        public static FileSystemManager Instance
+        public ICommand GraphCVSelectCommand
         {
-            get { return lazy.Value; }
+            get { return new RelayCommand(GraphCVSelectCommand_Execute); }
         }
 
-        private AriesManager ariesManager => AriesManager.Instance;
+ 
+
+        private void GraphCVNewCommand_Execute()
+        {
+            ID++;
+
+            var panel = new AriesCoreUint($"Default_{ID}");
+            MainWindow.WorkSpace.Children.Clear();
+            MainWindow.WorkSpace.Children.Add(panel);
+
+            var graphCvCore = panel.GraphCvCore;
+            ariesManager.GraphCvCores.Add(graphCvCore);
+            ariesManager.GraphCvCore = graphCvCore;
+        }
+
 
         private void GraphCVOpenCommand_Execute()
         {
@@ -58,7 +85,12 @@ namespace Aries.Core
             openFileDialog.ShowDialog();
             if (File.Exists(openFileDialog.FileName))
             {
-                var graphCvCore = GraphCVCore.Open(openFileDialog.FileName);
+                var graphCvCore = Open(openFileDialog.FileName);
+                
+                var panel = new AriesCoreUint(graphCvCore);
+                MainWindow.WorkSpace.Children.Clear();
+                MainWindow.WorkSpace.Children.Add(panel);
+
                 ariesManager.GraphCvCores.Add(graphCvCore);
                 ariesManager.GraphCvCore = graphCvCore;
 
@@ -67,7 +99,7 @@ namespace Aries.Core
             }
         }
 
-        public MainWindow MainWindow { set; get; }
+
 
         private bool GraphCVCloseSaveCommand_CanExecute()
         {
@@ -76,19 +108,20 @@ namespace Aries.Core
 
         private void GraphCVCloseCommand_Execute()
         {
+            MainWindow.WorkSpace.Children.Clear();
+
+            ariesManager.GraphCvCore.Dispose();
             ariesManager.GraphCvCores.Remove(ariesManager.GraphCvCore);
-            ariesManager.GraphCvCore = ariesManager.GraphCvCores.FirstOrDefault();
+
+            var nextGraphCvCore = ariesManager.GraphCvCores.FirstOrDefault();
+            if (nextGraphCvCore == null) return;
+            ariesManager.GraphCvCore = nextGraphCvCore;
+
+            var panel = new AriesCoreUint(nextGraphCvCore);
+            MainWindow.WorkSpace.Children.Clear();
+            MainWindow.WorkSpace.Children.Add(panel);
         }
 
-        private void GraphCVNewCommand_Execute()
-        {
-            ID++;
-            var area = MainWindow.dg_Area;
-            area.Children.Clear();
-            var dgLogic = new GraphCVCore($"Default_{ID}", area);
-            ariesManager.GraphCvCores.Add(dgLogic);
-            ariesManager.GraphCvCore = dgLogic;
-        }
 
         private bool GraphCVSaveCommand_CanExecute()
         {
@@ -98,7 +131,7 @@ namespace Aries.Core
 
         private void GraphCVSaveCommand_Execute()
         {
-            ariesManager.GraphCvCore.Save(ariesManager.GraphCvCore.FileName);
+            Save(ariesManager.GraphCvCore.FileName, ariesManager.GraphCvCore);
         }
 
         private void GraphCVSaveAsCommand_Execute()
@@ -109,9 +142,37 @@ namespace Aries.Core
             };
             var res = saveDialog.ShowDialog();
             if (res != true || saveDialog.FileName == "") return;
-            ariesManager.GraphCvCore.Save(saveDialog.FileName);
+            Save(saveDialog.FileName,ariesManager.GraphCvCore);
         }
 
+        private void GraphCVSelectCommand_Execute()
+        {
+            
+        }
 
+        #endregion
+
+
+
+
+        public static GraphCVCore Open(string filename)
+        {
+            using var fs = new FileStream(filename, FileMode.Open);
+            var formatter = new XmlSerializer(typeof(GraphCVCore),
+                BlockHelper.GetBlockClassType().ToArray());
+            var graphCvCore = (GraphCVCore)formatter.Deserialize(fs);
+            graphCvCore.FileName = filename;
+            return graphCvCore;
+        }
+
+        public void Save(string filename, GraphCVCore graphCvCore)
+        {
+            graphCvCore.BlockVertices = graphCvCore.GraphCvArea.VertexList?.Keys.ToList();
+            graphCvCore.BlockEdges = graphCvCore.GraphCvArea.EdgesList?.Keys.ToList();
+            using var fs = new FileStream(filename, FileMode.Create);
+            var formatter = new XmlSerializer(typeof(GraphCVCore),
+                BlockHelper.GetBlockClassType().ToArray());
+            formatter.Serialize(fs, graphCvCore);
+        }
     }
 }

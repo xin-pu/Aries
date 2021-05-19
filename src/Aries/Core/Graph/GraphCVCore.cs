@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
-using Aries.OpenCV.Blocks.Processing;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
 using GraphX.Controls;
@@ -13,7 +12,7 @@ using GraphX.Controls;
 namespace Aries.Core
 {
     [Serializable]
-    public class GraphCVCore: INotifyPropertyChanged
+    public class GraphCVCore: INotifyPropertyChanged,IDisposable
     {
         private string _name;
         private string _fileName;
@@ -23,20 +22,28 @@ namespace Aries.Core
         private WaterMaskManager _waterMaskManager;
         private BackGroundManager _backGroundManager;
 
-        public GraphCVCore(string name, GraphAreaCV area)
+        public GraphCVCore(string name)
         {
             WaterMaskManager = new WaterMaskManager();
             BackGroundManager = new BackGroundManager();
             Name = name;
             CreateTime = DateTime.Now;
             LastUpdateTime = DateTime.Now;
-            GraphAreaCv = area;
+            AddBlock = AppendBlock;
+        }
+
+        public GraphCVCore()
+        {
+            AddBlock = AppendBlock;
         }
 
         [XmlIgnore] 
-        public GraphAreaCV GraphAreaCv { set; get; }
-        
-        
+        public GraphCVArea GraphCvArea { set; get; }
+
+        [XmlIgnore]
+        public ZoomControl ZoomControl { set; get; }
+
+
         public WaterMaskManager WaterMaskManager
         {
             set { UpdateProperty(ref _waterMaskManager, value); }
@@ -78,44 +85,22 @@ namespace Aries.Core
 
         public List<BlockVertex> BlockVertices { set; get; }
 
-        public GraphCVCore()
-        {
-           
-        }
 
+        [XmlIgnore]
+        public Action<BlockVertex> AddBlock;
         public void AppendBlock(BlockVertex blockVertex)
         {
-            GraphAreaCv.AddVertexAndData(blockVertex, new VertexControl(blockVertex));
+            GraphCvArea.AddVertexAndData(blockVertex, new VertexControl(blockVertex));
 
             //we have to check if there is only one vertex and set coordinates manulay 
             //because layout algorithms skip all logic if there are less than two vertices
-            if (GraphAreaCv.VertexList.Count == 1)
+            if (GraphCvArea.VertexList.Count == 1)
             {
-                GraphAreaCv.VertexList.First().Value.SetPosition(0, 0);
-                GraphAreaCv.UpdateLayout(); //update layout to update vertex size
+                GraphCvArea.VertexList.First().Value.SetPosition(0, 0);
+                GraphCvArea.UpdateLayout(); //update layout to update vertex size
             }
-            else GraphAreaCv.RelayoutGraph(true);
+            else GraphCvArea.RelayoutGraph(true);
             
-        }
-
-        public void Save(string filename)
-        {
-            BlockVertices = GraphAreaCv.VertexList?.Keys.ToList();
-            BlockEdges = GraphAreaCv.EdgesList?.Keys.ToList();
-            using var fs = new FileStream(filename, FileMode.Create);
-            var formatter = new XmlSerializer(typeof(GraphCVCore),
-                BlockHelper.GetBlockClassType().ToArray());
-            formatter.Serialize(fs, this);
-        }
-
-        public static GraphCVCore Open(string filename)
-        {
-            using var fs = new FileStream(filename, FileMode.Open);
-            var formatter = new XmlSerializer(typeof(GraphCVCore),
-                BlockHelper.GetBlockClassType().ToArray());
-            var graphCvCore = (GraphCVCore) formatter.Deserialize(fs);
-            graphCvCore.FileName = filename;
-            return graphCvCore;
         }
 
         #region
@@ -141,5 +126,10 @@ namespace Aries.Core
         }
 
         #endregion
+
+        public void Dispose()
+        {
+            GraphCvArea?.Dispose();
+        }
     }
 }

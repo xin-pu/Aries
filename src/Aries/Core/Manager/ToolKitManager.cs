@@ -136,7 +136,7 @@ namespace Aries.Core
         private void CreateBlockCommand_Execute()
         {
             var block = BlockHelper.CreateBlockVertex(ClassType);
-            MainWindow.AddBlock.Invoke(block);
+            AriesManager.Instance.GraphCvCore.AddBlock.Invoke(block);
         }
 
         #region

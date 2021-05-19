@@ -68,6 +68,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\AriesCoreUint.xaml.cs">
+      <DependentUpon>AriesCoreUint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ToolKitUnit.xaml.cs">
+      <DependentUpon>ToolKitUnit.xaml</DependentUpon>
+    </Compile>
     <Page Include="AriesMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -92,6 +98,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AriesCoreUint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ToolKitUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ToolKitButton.cs" />
@@ -100,7 +114,7 @@
     <Compile Include="Core\Graph\GraphCVCore.cs" />
     <Compile Include="Core\Manager\ToolKitManager.cs" />
     <Compile Include="Core\Manager\AriesManager.cs" />
-    <Compile Include="Core\Graph\GraphAreaCV.cs" />
+    <Compile Include="Core\Graph\GraphCVArea.cs" />
     <Compile Include="Core\Graph\LogicCoreCV.cs" />
     <Compile Include="Core\Graph\BackGroundManager.cs" />
     <Compile Include="Core\Graph\WaterMaskManager.cs" />

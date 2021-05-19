@@ -4,7 +4,7 @@ using QuickGraph;
 
 namespace Aries.Core
 {
-    public class GraphAreaCV :
+    public class GraphCVArea :
         GraphArea<BlockVertex, BlockEdge, BidirectionalGraph<BlockVertex, BlockEdge>>
     {
 

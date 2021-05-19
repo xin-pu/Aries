@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Aries.Views.ToolKitUnit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Aries.Views"
+             xmlns:core="clr-namespace:Aries.Core"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="300"
+             DataContext="{Binding ToolKitManager}">
+    <TreeView VerticalAlignment="Stretch" Name="TreeView_ToolKit" 
+                              ItemsSource="{Binding BlockToolKitStructs}">
+        <TreeView.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel IsItemsHost="True" Orientation="Vertical"/>
+            </ItemsPanelTemplate>
+        </TreeView.ItemsPanel>
+
+        <TreeView.Resources>
+            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding GroupName,StringFormat='{}&#xef8c;  {0}'}" Style="{DynamicResource FIconStyle}"
+                                               FontSize="13"
+                                               HorizontalAlignment="Left"
+                                               Grid.Column="0"/>
+                    <TextBlock Text="{Binding ToolKitStructs.Count}" 
+                                               Grid.Column="1"/>
+                </Grid>
+            </HierarchicalDataTemplate>
+            <DataTemplate DataType="{x:Type core:ToolKitStruct}">
+                <Grid HorizontalAlignment="Stretch"
+                                      VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Icon}"
+                                               Style="{DynamicResource FIconStyle}"
+                                               FontSize="13"
+                                               HorizontalAlignment="Left"
+                                               Grid.Column="0"/>
+                    <TextBlock Text="{Binding Name}" 
+                                               FontStyle="Italic"
+                                               FontWeight="DemiBold"
+                                               Grid.Column="1"
+                                               VerticalAlignment="Center"/>
+                    <Button Command="{Binding CreateBlockCommand}"
+                                            Style="{DynamicResource MyTextButton}"
+                                            Content="&#xf0d4;"
+                                            FontSize="18"
+                                            Grid.Column="2"/>
+                </Grid>
+            </DataTemplate>
+        </TreeView.Resources>
+    </TreeView>
+</UserControl>

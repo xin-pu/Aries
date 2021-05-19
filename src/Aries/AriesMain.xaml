@@ -7,6 +7,7 @@
         xmlns:graphx="http://schemas.panthernet.ru/graphx/"
         xmlns:controls="clr-namespace:Aries.Controls"
         xmlns:core="clr-namespace:Aries.Core"
+        xmlns:views="clr-namespace:Aries.Views"
         mc:Ignorable="d"
         Height="768" Width="1366"
         Icon="Aries.ico"
@@ -116,10 +117,9 @@
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="Right"/>
                     </StackPanel>
-                  
+
                 </StackPanel>
             </StatusBarItem>
-            <Separator Width="2" Foreground="Aqua"/>
         </StatusBar>
 
         <Grid>
@@ -131,35 +131,7 @@
             <Border BorderThickness="1" 
                     BorderBrush="{DynamicResource PrimaryBrush}" 
                     Grid.Column="0">
-                <Border.Resources>
-                    <ResourceDictionary>
-                        <ResourceDictionary.MergedDictionaries>
-                            <ResourceDictionary Source="/Template/GraphTemplate/CVGraphXTemplate.xaml"/>
-                        </ResourceDictionary.MergedDictionaries>
-                    </ResourceDictionary>
-                </Border.Resources>
-                <DockPanel DataContext="{Binding AriesManager}">
-
-                    <Grid DataContext="{Binding GraphCvCore}">
-                        <hc:Watermark Name="Watermark"
-                                      DataContext="{Binding WaterMaskManager}"
-                                      FontSize="{Binding FontSize}"
-                                      FontWeight="Bold"
-                                      MarkMargin="{Binding MaskMargin}"
-                                      Angle="{Binding Angle}"
-                                      Opacity="{Binding Opacity}"
-                                      MarkBrush="{Binding Brush}"
-                                      Mark="{Binding Mask}"
-                                      Visibility="{Binding IsOpen,Converter={StaticResource Boolean2VisibilityConverter}}"/>
-
-                        <graphx:ZoomControl Name="ZoomControl"
-                                            Background="Transparent">
-                            <core:GraphAreaCV x:Name="dg_Area"/>
-                        </graphx:ZoomControl>
-                    </Grid>
-                </DockPanel>
-               
-
+                <DockPanel Name="WorkSpace"/>
             </Border>
             <GridSplitter Grid.Column="0" 
                           Width="5" 
@@ -168,61 +140,8 @@
 
             <TabControl Grid.Column="1"
                         TabStripPlacement="Left">
-                <TabItem Header="工具" ToolTip="Tool Kit" DataContext="{Binding ToolKitManager}" >
-                    <TreeView VerticalAlignment="Stretch" Name="TreeView_ToolKit" 
-                              ItemsSource="{Binding BlockToolKitStructs}">
-                        <TreeView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel IsItemsHost="True" Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </TreeView.ItemsPanel>
-                       
-                        <TreeView.Resources>
-                            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroupByType}" ItemsSource="{Binding ToolKitStructs}">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="30"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding GroupName,StringFormat='{}&#xef8c;  {0}'}" Style="{DynamicResource FIconStyle}"
-                                               FontSize="13"
-                                               HorizontalAlignment="Left"
-                                               Grid.Column="0"/>
-                                    <TextBlock Text="{Binding ToolKitStructs.Count}" 
-                                               Grid.Column="1"/>
-                                </Grid>
-                            </HierarchicalDataTemplate>
-                            <DataTemplate DataType="{x:Type core:ToolKitStruct}">
-                                <Grid HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Center">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="50"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Icon}"
-                                               Style="{DynamicResource FIconStyle}"
-                                               FontSize="13"
-                                               HorizontalAlignment="Left"
-                                               Grid.Column="0"/>
-                                    <TextBlock Text="{Binding Name}" 
-                                               FontStyle="Italic"
-                                               FontWeight="DemiBold"
-                                               Grid.Column="1"
-                                               VerticalAlignment="Center"/>
-                                    <Button Command="{Binding CreateBlockCommand}"
-                                            Style="{DynamicResource MyTextButton}"
-                                            Content="&#xf0d4;"
-                                            FontSize="18"
-                                            Grid.Column="2"/>
-                                </Grid>
-                            </DataTemplate>
-                        </TreeView.Resources>
-                    </TreeView>
-                </TabItem>
-                <TabItem Header="属性">
-
-                    <hc:PropertyGrid SelectedObject="{Binding AriesManager.GraphCvCore.WaterMaskManager}"/>
+                <TabItem Header="工具" ToolTip="Tool Kit" >
+                    <views:ToolKitUnit/>
                 </TabItem>
 
                 <TabItem Header="样式">
@@ -234,8 +153,11 @@
                 </TabItem>
 
                 <TabItem Header="记录">
-                    <StackPanel Orientation="Vertical">
-                    </StackPanel>
+                  
+                </TabItem>
+
+                <TabItem Header="水印">
+                    <hc:PropertyGrid SelectedObject="{Binding AriesManager.GraphCvCore.WaterMaskManager}"/>
                 </TabItem>
 
             </TabControl>
