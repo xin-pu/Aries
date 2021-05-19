@@ -19,6 +19,7 @@ namespace Aries.Core
 
         private WaterMaskManager _waterMaskManager;
         private BackGroundManager _backGroundManager;
+        public BlockVertex _selectBlockVertex;
 
         public GraphCVCore(string name)
         {
@@ -81,6 +82,12 @@ namespace Aries.Core
 
         public List<BlockVertex> BlockVertices { set; get; }
 
+        [XmlIgnore]
+        public BlockVertex SelectBlockVertex
+        {
+            set { UpdateProperty(ref _selectBlockVertex, value); }
+            get { return _selectBlockVertex; }
+        }
 
         [XmlIgnore] public Action<BlockVertex> AddBlock;
 

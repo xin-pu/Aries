@@ -19,7 +19,7 @@
         <Setter Property="Background" Value="{StaticResource VertexBackGround}"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderBrush" Value="{StaticResource VertexBordBackGround}"/>
-        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="BorderThickness" Value="2"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -95,14 +95,24 @@
         <Setter Property="controls:DragBehaviour.UpdateEdgesOnMove"
                 Value="True" />
 
+        <Setter Property="ContextMenu">
+            <Setter.Value>
+                <ContextMenu IsOpen="True">
+                    <MenuItem Header="Add GraphCV"></MenuItem>
+                    <Separator></Separator>
+                    <MenuItem Header="Remove Select"></MenuItem>
+                    <MenuItem Header="Remove All"></MenuItem>
+                </ContextMenu>
+            </Setter.Value>
+        </Setter>
 
         <Style.Triggers>
             <Trigger Property="controls:HighlightBehaviour.Highlighted" Value="True">
-                <Setter Property="BorderBrush" Value="Gold"/>
-                <Setter Property="BorderThickness" Value="7"/>
+                <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="BorderBrush" Value="Gold"/>
+                <Setter Property="BorderBrush" Value="CornflowerBlue"/>
                 <Setter Property="BorderThickness" Value="2"/>
             </Trigger>
         </Style.Triggers>

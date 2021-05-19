@@ -6,7 +6,6 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:controls="clr-namespace:Aries.Controls"
         xmlns:views="clr-namespace:Aries.Views"
-        xmlns:aries="clr-namespace:Aries"
         mc:Ignorable="d"
         Height="768" Width="1366"
         Icon="Aries.ico"
@@ -137,6 +136,11 @@
                         TabStripPlacement="Left">
                 <TabItem Header="工具" ToolTip="Tool Kit" >
                     <views:ToolKitUnit/>
+                </TabItem>
+
+                <TabItem Header="参数">
+                    <hc:PropertyGrid SelectedObject="{Binding GraphCvCoreAtWorkSpace.SelectBlockVertex}"/>
+
                 </TabItem>
 
                 <TabItem Header="样式">

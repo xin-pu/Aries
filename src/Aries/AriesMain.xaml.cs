@@ -35,11 +35,17 @@ namespace Aries
 
         public ICommand SelectWorkUnitCommand
         {
-            get { return new RelayCommand(SelectWorkUnitCommand_Execute); }
+            get { return new RelayCommand(SelectWorkUnitCommand_Execute, SelectWorkUnitCommand_CanExecute); }
+        }
+
+        private bool SelectWorkUnitCommand_CanExecute()
+        {
+            return WorkSpace.SelectedContent != null;
         }
 
         private void SelectWorkUnitCommand_Execute()
         {
+
             GraphCvCoreAtWorkSpace = ((AriesCoreUint) WorkSpace.SelectedContent).GraphCvCore;
             ToolKitManager.Instance.FreshGraphCvCoreAtWorkSpace(GraphCvCoreAtWorkSpace);
         }
