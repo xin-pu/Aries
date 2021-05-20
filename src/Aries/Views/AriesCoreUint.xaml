@@ -16,21 +16,29 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid DataContext="{Binding GraphCvCore}">
-        <hc:Watermark Name="Watermark"
-                      DataContext="{Binding WaterMaskManager}"
-                      FontSize="{Binding FontSize}"
-                      FontWeight="Bold"
-                      MarkMargin="{Binding MaskMargin}"
-                      Angle="{Binding Angle}"
-                      Opacity="{Binding Opacity}"
-                      MarkBrush="{Binding Brush}"
-                      Mark="{Binding Mask}"
-                      Visibility="{Binding IsOpen,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+    <Grid>
+        <Border DataContext="{Binding WaterMaskManager}"
+                Background="Transparent">
+            <hc:Watermark Name="Watermark"
+                          FontSize="{Binding FontSize}"
+                          FontWeight="Bold"
+                          MarkMargin="{Binding MaskMargin}"
+                          Angle="{Binding Angle}"
+                          Opacity="{Binding Opacity}"
+                          Mark="{Binding Mask}"
+                          Visibility="{Binding IsOpen,Converter={StaticResource Boolean2VisibilityConverter}}">
+                <hc:Watermark.MarkBrush>
+                    <SolidColorBrush Color="{Binding Color}"/>
+                </hc:Watermark.MarkBrush>
+            </hc:Watermark>
+        </Border>
 
         <graphx:ZoomControl Name="ZoomControl"
                             Background="Transparent">
-            <core:GraphCVArea x:Name="GraphArea"/>
+            <Grid>
+                <core:GraphCVArea x:Name="GraphArea">
+                </core:GraphCVArea>
+            </Grid>
         </graphx:ZoomControl>
     </Grid>
 </UserControl>

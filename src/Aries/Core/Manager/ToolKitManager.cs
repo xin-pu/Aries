@@ -49,11 +49,11 @@ namespace Aries.Core
             });
         }
 
-        public void FreshGraphCvCoreAtWorkSpace(GraphCVCore graphCvCore)
+        public void FreshGraphCvCoreAtWorkSpace(GraphCVArea graphCvCore)
         {
             ToolKitGroups.ForEach(a =>
             {
-                a.ToolKitStructs.ToList().ForEach(b => { b.GraphCvCoreAtWorkSpace = graphCvCore; });
+                a.ToolKitStructs.ToList().ForEach(b => { b.GraphCVAreaAtWorkSpace = graphCvCore; });
             });
         }
 

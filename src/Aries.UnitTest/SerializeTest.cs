@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Xml.Serialization;
-using Aries.OpenCV.Blocks.Processing;
+using Aries.Core;
 using Aries.OpenCV.GraphModel;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -12,7 +12,7 @@ namespace Aries.UnitTest
         [TestMethod]
         public void SerializeBlur()
         {
-            var a = new Blur();
+            var a = new GraphCVFile();
             using (var fs = new FileStream("D:\\Blur.xml", FileMode.Create))
             {
                 var formatter = new XmlSerializer(a.GetType());

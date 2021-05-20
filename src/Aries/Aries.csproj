@@ -48,6 +48,11 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Xml" />
@@ -62,6 +67,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="YAXLib, Version=2.15.0.0, Culture=neutral, PublicKeyToken=15c43682c986900f, processorArchitecture=MSIL">
+      <HintPath>..\packages\YAXLib.2.15\lib\net4.0\YAXLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -69,6 +77,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\Graph\GraphCVEditManager.cs" />
+    <Compile Include="Core\Manager\FileServiceManager.cs" />
     <Compile Include="Core\Manager\ToolKitGroup.cs" />
     <Compile Include="Core\Manager\ToolKitStruct.cs" />
     <Compile Include="Views\AriesCoreUint.xaml.cs">
@@ -114,7 +123,7 @@
     <Compile Include="Controls\ToolKitButton.cs" />
     <Compile Include="Controls\ProcessingButton.cs" />
     <Compile Include="Controls\TabButton.cs" />
-    <Compile Include="Core\Graph\GraphCVCore.cs" />
+    <Compile Include="Core\Graph\GraphCVFile.cs" />
     <Compile Include="Core\Manager\ToolKitManager.cs" />
     <Compile Include="Core\Graph\GraphCVArea.cs" />
     <Compile Include="Core\Graph\LogicCoreCV.cs" />

@@ -69,7 +69,7 @@
                     </StatusBar>
                 </TabItem>
                 <TabItem Header="页面样式" FontSize="13">
-                    <StatusBar VerticalAlignment="Stretch" DataContext="{Binding GraphCvCoreAtWorkSpace}">
+                    <StatusBar VerticalAlignment="Stretch" DataContext="{Binding AriesCoreUint}">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
                                 <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
@@ -82,7 +82,6 @@
                         <StatusBarItem DataContext="{Binding WaterMaskManager}">
                             <StackPanel Orientation="Horizontal">
                                 <controls:TabButton Content="水印" Icon="&#xef68;"/>
-                                <controls:TabButton Content="移除水印" Icon="&#xf117;" Command="{Binding RemoveWaterMaskCommand}"/>
                             </StackPanel>
                         </StatusBarItem>
                     </StatusBar>
@@ -139,7 +138,7 @@
                 </TabItem>
 
                 <TabItem Header="参数">
-                    <hc:PropertyGrid SelectedObject="{Binding GraphCvCoreAtWorkSpace.SelectBlockVertex}"/>
+                    <hc:PropertyGrid SelectedObject="{Binding GraphCvAreaAtWorkSpace.SelectBlockVertex}"/>
 
                 </TabItem>
 
@@ -156,7 +155,7 @@
                 </TabItem>
 
                 <TabItem Header="水印">
-                    <hc:PropertyGrid SelectedObject="{Binding GraphCvCoreAtWorkSpace.WaterMaskManager}"/>
+                    <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.WaterMaskManager}"/>
                 </TabItem>
 
             </TabControl>

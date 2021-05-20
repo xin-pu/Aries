@@ -19,17 +19,22 @@ namespace Aries
             FileSystemManager.AriesMain = this;
         }
 
-        private GraphCVCore _graphCvCoreAtWorkSpace;
+        private GraphCVArea _graphCvAreaAtWorkSpace;
+        public AriesCoreUint _ariesCoreUint;
         public FileSystemManager FileSystemManager => FileSystemManager.Instance;
 
 
-        public GraphCVCore GraphCvCoreAtWorkSpace
+        public GraphCVArea GraphCvAreaAtWorkSpace
         {
-            set { UpdateProperty(ref _graphCvCoreAtWorkSpace, value); }
-            get { return _graphCvCoreAtWorkSpace; }
+            set { UpdateProperty(ref _graphCvAreaAtWorkSpace, value); }
+            get { return _graphCvAreaAtWorkSpace; }
         }
 
-
+        public AriesCoreUint AriesCoreUint
+        {
+            set { UpdateProperty(ref _ariesCoreUint, value); }
+            get { return _ariesCoreUint; }
+        }
 
         #region Command
 
@@ -45,9 +50,9 @@ namespace Aries
 
         private void SelectWorkUnitCommand_Execute()
         {
-
-            GraphCvCoreAtWorkSpace = ((AriesCoreUint) WorkSpace.SelectedContent).GraphCvCore;
-            ToolKitManager.Instance.FreshGraphCvCoreAtWorkSpace(GraphCvCoreAtWorkSpace);
+            AriesCoreUint = (AriesCoreUint) WorkSpace.SelectedContent;
+            GraphCvAreaAtWorkSpace = AriesCoreUint.GraphArea;
+            ToolKitManager.Instance.FreshGraphCvCoreAtWorkSpace(GraphCvAreaAtWorkSpace);
         }
 
 

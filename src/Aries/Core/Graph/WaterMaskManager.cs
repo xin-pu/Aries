@@ -71,22 +71,7 @@ namespace Aries.Core
             get { return _isOpen; }
         }
 
-        [XmlIgnore]
-        public Brush Brush
-        {
-            get { return new SolidColorBrush(Color); }
-        }
-
-        [XmlIgnore]
-        public ICommand RemoveWaterMaskCommand
-        {
-            get { return new RelayCommand(RemoveWaterMaskCommand_Execute); }
-        }
-
-        private void RemoveWaterMaskCommand_Execute()
-        {
-            IsOpen = !IsOpen;
-        }
+        
 
         #region
 

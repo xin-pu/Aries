@@ -10,10 +10,10 @@ namespace Aries.Core
     public class BackGroundManager : INotifyPropertyChanged
     {
         private double _opactiy = 1;
-        private Brush _brush = new SolidColorBrush(Colors.Transparent);
+        private Color _brush = Colors.Transparent;
 
-        [XmlIgnore]
-        public Brush Brush
+    
+        public Color Brush
         {
             set { UpdateProperty(ref _brush, value); }
             get { return _brush; }

@@ -1,10 +1,7 @@
 ﻿using Aries.Utility;
 using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Input;
-using System.Xml.Serialization;
-using Aries.OpenCV.Core;
 using Aries.Views;
 using HandyControl.Controls;
 using Microsoft.Win32;
@@ -13,7 +10,7 @@ namespace Aries.Core
 {
     public class FileSystemManager
     {
-        
+
         private static readonly Lazy<FileSystemManager> lazy =
             new Lazy<FileSystemManager>(() => new FileSystemManager());
 
@@ -22,7 +19,7 @@ namespace Aries.Core
             get { return lazy.Value; }
         }
 
- 
+
 
         private int ID = 0;
         public AriesMain AriesMain { set; get; }
@@ -68,9 +65,11 @@ namespace Aries.Core
         private void GraphCVNewCommand_Execute()
         {
             ID++;
-            var graphCvCore = new GraphCVCore($"Default_{ID}");
-            var panel = new AriesCoreUint(graphCvCore);
-            
+            var name = $"Default_{ID}";
+            var panel = new AriesCoreUint
+            {
+                GraphArea = {Name = name}
+            };
             AddTapToTapControl(panel);
         }
 
@@ -84,13 +83,23 @@ namespace Aries.Core
             openFileDialog.ShowDialog();
             if (File.Exists(openFileDialog.FileName))
             {
-                var graphCvCore = Open(openFileDialog.FileName);
-                var panel = new AriesCoreUint(graphCvCore);
+                var graphCVFile = FileServiceProviderWpf.DeserializeGraphDataFromFile(openFileDialog.FileName);
 
+                var panel = new AriesCoreUint
+                {
+                    BackGroundManager = graphCVFile.BackGroundManager,
+                    WaterMaskManager = graphCVFile.WaterMaskManager,
+                    FileInfo = new FileInfo(openFileDialog.FileName)
+                };
+                
+                var grapArea = panel.GraphArea;
+                grapArea.RebuildFromSerializationData(graphCVFile.GraphSerializationDatas);
+                grapArea.SetVerticesDrag(true, true);
+                grapArea.UpdateAllEdges();
+
+                panel.ZoomControl.ZoomToFill();
                 AddTapToTapControl(panel);
 
-                /// Add Code Later
-                /// Import BlockEdges and BlockVertices to Area
             }
         }
 
@@ -121,18 +130,23 @@ namespace Aries.Core
         private bool GraphCVSaveCommand_CanExecute()
         {
             var selectContent = AriesMain.WorkSpace.SelectedContent;
-            if (selectContent == null)
-                return false;
             var ariesCoreUint = (AriesCoreUint) selectContent;
-            var fileName = ariesCoreUint.GraphCvCore.FileName;
-            return fileName != null && File.Exists(fileName);
+            if (ariesCoreUint?.FileInfo == null)
+                return false;
+            var fileName = ariesCoreUint.FileInfo.FullName;
+            return File.Exists(fileName);
         }
 
         private void GraphCVSaveCommand_Execute()
         {
             var selectContent = AriesMain.WorkSpace.SelectedContent;
-            var ariesCoreUint = (AriesCoreUint)selectContent;
-            Save(ariesCoreUint?.GraphCvCore.FileName, ariesCoreUint?.GraphCvCore);
+            var ariesCoreUint = (AriesCoreUint) selectContent;
+            FileServiceProviderWpf.SerializeGraphDataToFile(ariesCoreUint.FileInfo.FullName, new GraphCVFile
+            {
+                GraphSerializationDatas = ariesCoreUint.GraphArea.ExtractSerializationData(),
+                BackGroundManager = ariesCoreUint.BackGroundManager,
+                WaterMaskManager = ariesCoreUint.WaterMaskManager
+            });
         }
 
         private void GraphCVSaveAsCommand_Execute()
@@ -143,16 +157,22 @@ namespace Aries.Core
             };
             var res = saveDialog.ShowDialog();
             if (res != true || saveDialog.FileName == "") return;
+
             var selectContent = AriesMain.WorkSpace.SelectedContent;
             var ariesCoreUint = (AriesCoreUint)selectContent;
-            Save(saveDialog.FileName, ariesCoreUint.GraphCvCore);
+            FileServiceProviderWpf.SerializeGraphDataToFile(saveDialog.FileName, new GraphCVFile
+            {
+                GraphSerializationDatas = ariesCoreUint.GraphArea.ExtractSerializationData(),
+                BackGroundManager = ariesCoreUint.BackGroundManager,
+                WaterMaskManager = ariesCoreUint.WaterMaskManager
+            });
         }
 
         private void AddTapToTapControl(AriesCoreUint ariesCoreUint)
         {
             var tabItem = new TabItem
             {
-                Header = ariesCoreUint.GraphCvCore.Name,
+                Header = ariesCoreUint.GraphArea.Name,
                 Content = ariesCoreUint,
             };
             AriesMain.WorkSpace.Items.Add(tabItem);
@@ -165,24 +185,6 @@ namespace Aries.Core
 
 
 
-        public static GraphCVCore Open(string filename)
-        {
-            using var fs = new FileStream(filename, FileMode.Open);
-            var formatter = new XmlSerializer(typeof(GraphCVCore),
-                BlockHelper.GetBlockClassType().ToArray());
-            var graphCvCore = (GraphCVCore)formatter.Deserialize(fs);
-            graphCvCore.FileName = filename;
-            return graphCvCore;
-        }
 
-        public void Save(string filename, GraphCVCore graphCvCore)
-        {
-            graphCvCore.BlockVertices = graphCvCore.GraphCvArea.VertexList?.Keys.ToList();
-            graphCvCore.BlockEdges = graphCvCore.GraphCvArea.EdgesList?.Keys.ToList();
-            using var fs = new FileStream(filename, FileMode.Create);
-            var formatter = new XmlSerializer(typeof(GraphCVCore),
-                BlockHelper.GetBlockClassType().ToArray());
-            formatter.Serialize(fs, graphCvCore);
-        }
     }
 }

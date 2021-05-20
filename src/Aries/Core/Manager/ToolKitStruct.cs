@@ -14,7 +14,7 @@ namespace Aries.Core
         public string _icon;
         private Type _classType;
         private BlockType _blockType;
-        public GraphCVCore _graphCvCoreAtWorkSpace;
+        public GraphCVArea _graphCVAreaAtWorkSpace;
 
         public string Name
         {
@@ -40,10 +40,10 @@ namespace Aries.Core
             get { return _blockType; }
         }
 
-        public GraphCVCore GraphCvCoreAtWorkSpace
+        public GraphCVArea GraphCVAreaAtWorkSpace
         {
-            set { UpdateProperty(ref _graphCvCoreAtWorkSpace, value); }
-            get { return _graphCvCoreAtWorkSpace; }
+            set { UpdateProperty(ref _graphCVAreaAtWorkSpace, value); }
+            get { return _graphCVAreaAtWorkSpace; }
         }
 
         public ICommand CreateBlockCommand
@@ -59,7 +59,7 @@ namespace Aries.Core
         private void CreateBlockCommand_Execute()
         {
             var block = BlockHelper.CreateBlockVertex(ClassType);
-            GraphCvCoreAtWorkSpace?.AddBlock(block);
+            GraphCVAreaAtWorkSpace?.AddBlock(block);
         }
 
 

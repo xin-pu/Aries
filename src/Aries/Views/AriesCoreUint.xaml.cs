@@ -1,5 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,30 +21,43 @@ namespace Aries.Views
     /// <summary>
     /// Interaction logic for AriesCoreUint.xaml
     /// </summary>
-    public partial class AriesCoreUint
+    public partial class AriesCoreUint : INotifyPropertyChanged
     {
 
+
+        private WaterMaskManager _waterMaskManager = new WaterMaskManager();
+        private BackGroundManager _backGroundManager = new BackGroundManager();
+
         /// <summary>
-        /// Create For Open Command
+        /// Create For New Command
         /// </summary>
-        /// <param name="graphCvCore"></param>
-        public AriesCoreUint(GraphCVCore graphCvCore)
+        public AriesCoreUint()
         {
             InitializeComponent();
-            GraphCvCore = graphCvCore;
-            Initial();
+            InitialForNew();
             DataContext = this;
-            ZoomControl.SetViewFinderVisibility(ZoomControl, Visibility.Collapsed);
         }
 
-        public GraphCVCore GraphCvCore { set; get; }
+        public FileInfo FileInfo { set; get; }
+
+        public WaterMaskManager WaterMaskManager
+        {
+            set { UpdateProperty(ref _waterMaskManager, value); }
+            get { return _waterMaskManager; }
+        }
+
+        public BackGroundManager BackGroundManager
+        {
+            set { UpdateProperty(ref _backGroundManager, value); }
+            get { return _backGroundManager; }
+        }
 
         public GraphCVEditManager EditorManager { set; get; }
 
-        private void Initial()
+
+        private void InitialForNew()
         {
-            GraphCvCore.ZoomControl = ZoomControl;
-            GraphCvCore.GraphCvArea = GraphArea;
+         
             EditorManager = new GraphCVEditManager(GraphArea, ZoomControl);
             InitialGraphArea();
             InitialZoomControl();
@@ -49,6 +65,7 @@ namespace Aries.Views
             Loaded += DynamicGraph_Loaded;
             Unloaded += DynamicGraph_Unloaded;
         }
+
 
         private void InitialGraphArea()
         {
@@ -94,8 +111,7 @@ namespace Aries.Views
         private void BlockVertexSelected(object sender, VertexSelectedEventArgs args)
         {
             var vertex = args.VertexControl;
-            GraphCvCore.SelectBlockVertex = vertex.GetDataVertex<BlockVertex>();
-
+            GraphArea.SelectBlockVertex = vertex.GetDataVertex<BlockVertex>();
             /// Right Mouse Clicked
             if (args.MouseArgs.RightButton == MouseButtonState.Pressed)
             {
@@ -355,6 +371,29 @@ namespace Aries.Views
 
         #endregion
 
+        #region
+
+        internal void UpdateProperty<T>(ref T properValue, T newValue, [CallerMemberName] string propertyName = "")
+        {
+            if (Equals(properValue, newValue))
+            {
+                return;
+            }
+
+            properValue = newValue;
+
+            OnPropertyChanged(propertyName);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
 
     }
 }

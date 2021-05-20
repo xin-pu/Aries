@@ -65,6 +65,10 @@
       <Project>{2E7767E8-C9EE-4A13-9F9C-4E76DDBCC935}</Project>
       <Name>Aries.OpenCV</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Aries\Aries.csproj">
+      <Project>{449D2FD9-C13A-494D-A415-6CCE4B6DF12A}</Project>
+      <Name>Aries</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GraphX.Controls\GraphX.WPF.Controls.csproj">
       <Project>{d2e33fee-6689-4bb4-a95c-1b5c327a1e8f}</Project>
       <Name>GraphX.WPF.Controls</Name>
