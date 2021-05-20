@@ -35,10 +35,7 @@
 
         <graphx:ZoomControl Name="ZoomControl"
                             Background="Transparent">
-            <Grid>
-                <core:GraphCVArea x:Name="GraphArea">
-                </core:GraphCVArea>
-            </Grid>
+            <core:GraphCVArea x:Name="GraphArea"/>
         </graphx:ZoomControl>
     </Grid>
 </UserControl>
