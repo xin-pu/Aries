@@ -26,11 +26,8 @@
                           Angle="{Binding Angle}"
                           Opacity="{Binding Opacity}"
                           Mark="{Binding Mask}"
-                          Visibility="{Binding IsOpen,Converter={StaticResource Boolean2VisibilityConverter}}">
-                <hc:Watermark.MarkBrush>
-                    <SolidColorBrush Color="{Binding Color}"/>
-                </hc:Watermark.MarkBrush>
-            </hc:Watermark>
+                          Visibility="{Binding IsOpen,Converter={StaticResource Boolean2VisibilityConverter}}"
+                          MarkBrush="{Binding MyColor,Converter={StaticResource VersionConverter}}"/>
         </Border>
 
         <graphx:ZoomControl Name="ZoomControl"

@@ -5,8 +5,9 @@ using GraphX.Common.Models;
 namespace Aries.Core
 {
     [Serializable]
-    public class GraphCVFile 
+    public class GraphCVFileStruct 
     {
+
         public List<GraphSerializationData> GraphSerializationDatas { set; get; }
 
         public WaterMaskManager WaterMaskManager { set; get; }

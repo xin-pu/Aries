@@ -12,7 +12,7 @@ namespace Aries.UnitTest
         [TestMethod]
         public void SerializeBlur()
         {
-            var a = new GraphCVFile();
+            var a = new GraphCVFileStruct();
             using (var fs = new FileStream("D:\\Blur.xml", FileMode.Create))
             {
                 var formatter = new XmlSerializer(a.GetType());

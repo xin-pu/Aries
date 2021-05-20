@@ -1,10 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Xml.Serialization;
-using Aries.Utility;
 
 namespace Aries.Core
 {
@@ -24,7 +21,7 @@ namespace Aries.Core
             FontSize = 100;
             Opacity = 0.2;
             Angle = 45;
-            Color = Colors.Gray;
+            MyColor = Colors.Blue;
             MaskMargin = new Thickness(30);
             IsOpen = true;
         }
@@ -53,7 +50,7 @@ namespace Aries.Core
             get { return _angle; }
         }
 
-        public Color Color
+        public Color MyColor
         {
             set { UpdateProperty(ref _color, value); }
             get { return _color; }

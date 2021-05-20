@@ -76,8 +76,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Core\Graph\GraphCVEditManager.cs" />
-    <Compile Include="Core\Manager\FileServiceManager.cs" />
+    <Compile Include="ColorV.cs" />
+    <Compile Include="Core\GraphCV\EdgeBlueprint.cs" />
+    <Compile Include="Core\GraphCV\GraphCVEditManager.cs" />
     <Compile Include="Core\Manager\ToolKitGroup.cs" />
     <Compile Include="Core\Manager\ToolKitStruct.cs" />
     <Compile Include="Views\AriesCoreUint.xaml.cs">
@@ -123,12 +124,12 @@
     <Compile Include="Controls\ToolKitButton.cs" />
     <Compile Include="Controls\ProcessingButton.cs" />
     <Compile Include="Controls\TabButton.cs" />
-    <Compile Include="Core\Graph\GraphCVFile.cs" />
+    <Compile Include="Core\GraphCV\GraphCVFileStruct.cs" />
     <Compile Include="Core\Manager\ToolKitManager.cs" />
-    <Compile Include="Core\Graph\GraphCVArea.cs" />
-    <Compile Include="Core\Graph\LogicCoreCV.cs" />
-    <Compile Include="Core\Graph\BackGroundManager.cs" />
-    <Compile Include="Core\Graph\WaterMaskManager.cs" />
+    <Compile Include="Core\GraphCV\GraphCVArea.cs" />
+    <Compile Include="Core\GraphCV\GraphCVLogicCore.cs" />
+    <Compile Include="Core\Manager\BackGroundManager.cs" />
+    <Compile Include="Core\Manager\WaterMaskManager.cs" />
     <Compile Include="Core\Manager\FileSystemManager.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

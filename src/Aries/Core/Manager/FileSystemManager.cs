@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Aries.Views;
 using HandyControl.Controls;
 using Microsoft.Win32;
+using YAXLib;
 
 namespace Aries.Core
 {
@@ -20,10 +21,8 @@ namespace Aries.Core
         }
 
 
-
         private int ID = 0;
         public AriesMain AriesMain { set; get; }
-
 
 
         #region Command 
@@ -47,7 +46,6 @@ namespace Aries.Core
         {
             get { return new RelayCommand(GraphCVCloseAllCommand_Execute, GraphCVCloseAllCommand_CanExecute); }
         }
-
 
 
         public ICommand GraphCVSaveCommand
@@ -83,7 +81,7 @@ namespace Aries.Core
             openFileDialog.ShowDialog();
             if (File.Exists(openFileDialog.FileName))
             {
-                var graphCVFile = FileServiceProviderWpf.DeserializeGraphDataFromFile(openFileDialog.FileName);
+                var graphCVFile = DeserializeGraphDataFromFile(openFileDialog.FileName);
 
                 var panel = new AriesCoreUint
                 {
@@ -91,7 +89,7 @@ namespace Aries.Core
                     WaterMaskManager = graphCVFile.WaterMaskManager,
                     FileInfo = new FileInfo(openFileDialog.FileName)
                 };
-                
+
                 var grapArea = panel.GraphArea;
                 grapArea.RebuildFromSerializationData(graphCVFile.GraphSerializationDatas);
                 grapArea.SetVerticesDrag(true, true);
@@ -102,7 +100,6 @@ namespace Aries.Core
 
             }
         }
-
 
 
         private bool GraphCVCloseSaveCommand_CanExecute()
@@ -126,7 +123,6 @@ namespace Aries.Core
             AriesMain.WorkSpace.Items.Clear();
         }
 
-
         private bool GraphCVSaveCommand_CanExecute()
         {
             var selectContent = AriesMain.WorkSpace.SelectedContent;
@@ -141,7 +137,7 @@ namespace Aries.Core
         {
             var selectContent = AriesMain.WorkSpace.SelectedContent;
             var ariesCoreUint = (AriesCoreUint) selectContent;
-            FileServiceProviderWpf.SerializeGraphDataToFile(ariesCoreUint.FileInfo.FullName, new GraphCVFile
+            SerializeGraphDataToFile(ariesCoreUint.FileInfo.FullName, new GraphCVFileStruct
             {
                 GraphSerializationDatas = ariesCoreUint.GraphArea.ExtractSerializationData(),
                 BackGroundManager = ariesCoreUint.BackGroundManager,
@@ -159,8 +155,8 @@ namespace Aries.Core
             if (res != true || saveDialog.FileName == "") return;
 
             var selectContent = AriesMain.WorkSpace.SelectedContent;
-            var ariesCoreUint = (AriesCoreUint)selectContent;
-            FileServiceProviderWpf.SerializeGraphDataToFile(saveDialog.FileName, new GraphCVFile
+            var ariesCoreUint = (AriesCoreUint) selectContent;
+            SerializeGraphDataToFile(saveDialog.FileName, new GraphCVFileStruct
             {
                 GraphSerializationDatas = ariesCoreUint.GraphArea.ExtractSerializationData(),
                 BackGroundManager = ariesCoreUint.BackGroundManager,
@@ -184,7 +180,56 @@ namespace Aries.Core
 
 
 
+        #region Serialize DeSerialize
 
+        /// <summary>
+        /// Serializes data classes list to file
+        /// </summary>
+        /// <param name="filename">File name</param>
+        /// <param name="modelsList">Data classes list</param>
+        public static void SerializeGraphDataToFile(string filename, GraphCVFileStruct modelsList)
+        {
+            using var stream = File.Open(filename, FileMode.Create, FileAccess.Write, FileShare.Read);
+            SerializeDataToStream(stream, modelsList);
+        }
+
+        /// <summary>
+        /// Deserializes data classes list from file
+        /// </summary>
+        /// <param name="filename">File name</param>
+        public static GraphCVFileStruct DeserializeGraphDataFromFile(string filename)
+        {
+            using var stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
+            return DeserializeGraphDataFromStream(stream);
+        }
+
+
+        /// <summary>
+        /// Serializes graph data list to a stream
+        /// </summary>
+        /// <param name="stream">The destination stream</param>
+        /// <param name="modelsList">The graph data</param>
+        public static void SerializeDataToStream(Stream stream, GraphCVFileStruct modelsList)
+        {
+            var serializer = new YAXSerializer(typeof(GraphCVFileStruct));
+            using var textWriter = new StreamWriter(stream);
+            serializer.Serialize(modelsList, textWriter);
+            textWriter.Flush();
+        }
+
+        /// <summary>
+        /// Deserializes graph data from a stream
+        /// </summary>
+        /// <param name="stream">The stream</param>
+        /// <returns>The graph data</returns>
+        public static GraphCVFileStruct DeserializeGraphDataFromStream(Stream stream)
+        {
+            var deserializer = new YAXSerializer(typeof(GraphCVFileStruct));
+            using var textReader = new StreamReader(stream);
+            return (GraphCVFileStruct) deserializer.Deserialize(textReader);
+        }
+
+        #endregion
 
     }
 }
