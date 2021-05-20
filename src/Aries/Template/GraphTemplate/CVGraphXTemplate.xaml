@@ -4,19 +4,16 @@
 
 
 
-    <SolidColorBrush x:Key="VertexBackGround" Color="{DynamicResource BackgroundColor}"/>
+    <SolidColorBrush x:Key="VertexBackGround" Color="Transparent"/>
     <SolidColorBrush x:Key="VertexBordBackGround" Color="{DynamicResource PrimaryColor}"/>
 
-    <LinearGradientBrush x:Key="EdgeBrush" EndPoint="0.5,0" StartPoint="0.5,1">
-        <GradientStop Color="#FF000000"/>
-        <GradientStop Color="#FFBF931E" Offset="1"/>
-    </LinearGradientBrush>
+
 
     <!-- VERTEX CONTROL -->
     <Style TargetType="{x:Type controls:VertexControl}">
         
         <!-- Set background color through attached property -->
-        <Setter Property="Background" Value="{StaticResource VertexBackGround}"/>
+        <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderBrush" Value="{StaticResource VertexBordBackGround}"/>
         <Setter Property="BorderThickness" Value="2"/>
@@ -71,7 +68,7 @@
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
                                        HorizontalAlignment="Center" FontWeight="Bold" 
-                                       Foreground="{DynamicResource PrimaryBrush}" Grid.Column="1" Grid.Row="0" Margin="3" MinWidth="120"/>
+                                       Foreground="{DynamicResource PrimaryBrush}" Grid.Column="1" Grid.Row="0" Margin="3" MinWidth="150"/>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -110,18 +107,18 @@
     </Style>
 
 
-    <!-- EDGE CONTROL -->
-    <!--<Style TargetType="{x:Type controls:EdgeControl}">
+
+    <Style TargetType="{x:Type controls:EdgeControl}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:EdgeControl}">
                     <Grid>
-                        <Path Stroke="{StaticResource EdgeBrush}"
-                          StrokeThickness="2" MinWidth="1" MinHeight="1"
+                        <Path Stroke="Red"
+                          StrokeThickness="1" MinWidth="1" MinHeight="1"
                           ToolTip="{TemplateBinding ToolTip}" 
                             x:Name="PART_edgePath"/>
                         <controls:DefaultEdgePointer NeedRotation="true" x:Name="PART_EdgePointerForTarget" >
-                            <Path Data="M0,0.5 L1,1 1,0" Fill="Black" Stretch="Uniform" Width="15" Height="15"/>
+                            <Path Data="M0,0.5 L1,1 1,0" Fill="Red" Stretch="Uniform" Width="15" Height="15"/>
                         </controls:DefaultEdgePointer>
                     </Grid>
                 </ControlTemplate>
@@ -138,8 +135,8 @@
                 Value="Silver" />
         <Setter Property="Opacity"
                 Value="1" />
-
-        <Setter Property="controls:HighlightBehaviour.IsHighlightEnabled" Value="False"/>
+       
+        <Setter Property="controls:HighlightBehaviour.IsHighlightEnabled" Value="True"/>
 
 
         <Style.Triggers>
@@ -152,5 +149,5 @@
                 <Setter Property="StrokeThickness" Value="2"/>
             </Trigger>
         </Style.Triggers>
-    </Style>-->
+    </Style>
 </ResourceDictionary>

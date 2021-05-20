@@ -40,6 +40,7 @@ namespace Aries.Core
 
         [XmlIgnore] public ZoomControl ZoomControl { set; get; }
 
+        [XmlIgnore] public Action<BlockVertex> AddBlock;
 
         public WaterMaskManager WaterMaskManager
         {
@@ -77,7 +78,6 @@ namespace Aries.Core
             get { return _lastUpdateTime; }
         }
 
-
         public List<BlockEdge> BlockEdges { set; get; }
 
         public List<BlockVertex> BlockVertices { set; get; }
@@ -89,8 +89,7 @@ namespace Aries.Core
             get { return _selectBlockVertex; }
         }
 
-        [XmlIgnore] public Action<BlockVertex> AddBlock;
-
+        
         public void AppendBlock(BlockVertex blockVertex)
         {
             GraphCvArea.AddVertexAndData(blockVertex, new VertexControl(blockVertex));

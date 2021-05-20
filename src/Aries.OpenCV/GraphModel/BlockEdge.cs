@@ -42,6 +42,7 @@ namespace Aries.OpenCV.GraphModel
             get { return _arrowTarget; }
         }
 
+        
         public override string ToString()
         {
             return $"{Header}";

@@ -31,14 +31,18 @@ namespace Aries.Views
             GraphCvCore = graphCvCore;
             Initial();
             DataContext = this;
+            ZoomControl.SetViewFinderVisibility(ZoomControl, Visibility.Collapsed);
         }
 
         public GraphCVCore GraphCvCore { set; get; }
+
+        public GraphCVEditManager EditorManager { set; get; }
 
         private void Initial()
         {
             GraphCvCore.ZoomControl = ZoomControl;
             GraphCvCore.GraphCvArea = GraphArea;
+            EditorManager = new GraphCVEditManager(GraphArea, ZoomControl);
             InitialGraphArea();
             InitialZoomControl();
 
@@ -64,7 +68,8 @@ namespace Aries.Views
                 AnimationFactory.CreateMoveAnimation(MoveAnimation.Move, TimeSpan.FromSeconds(0.5));
             GraphArea.MoveAnimation.Completed += MoveAnimationCompleted;
             GraphArea.VertexSelected += BlockVertexSelected;
-
+            GraphArea.EdgeSelected += BlockEdgeSelected;
+            GraphArea.EdgeDoubleClick += BlockEdgeDoubleClick;
 
         }
 
@@ -100,9 +105,17 @@ namespace Aries.Views
             if (args.MouseArgs.LeftButton == MouseButtonState.Pressed)
             {
                 if (Keyboard.IsKeyDown(Key.LeftCtrl))
+                {
+                    CreateEdgeControl(args.VertexControl);
+
+                }
+                else if (Keyboard.IsKeyDown(Key.S))
+                {
                     SelectVertexIsTagged(args.VertexControl);
+                }
             }
         }
+
 
         private void CreateContextMenu(VertexControl vertexControl)
         {
@@ -123,6 +136,18 @@ namespace Aries.Views
             }
 
             vertexControl.ContextMenu.IsOpen = true;
+        }
+
+        private void BlockEdgeSelected(object sender, EdgeSelectedEventArgs args)
+        {
+            var vc = args.EdgeControl;
+            HighlightBehaviour.SetHighlighted(vc, false);
+            DragBehaviour.SetIsTagged(vc, false);
+        }
+
+        private void BlockEdgeDoubleClick(object sender, EdgeSelectedEventArgs args)
+        {
+            GraphArea.RemoveEdge(args.EdgeControl.Edge as BlockEdge, true);
         }
 
         #endregion
@@ -225,6 +250,40 @@ namespace Aries.Views
         }
 
         #endregion
+
+        #region Edge
+
+        private VertexControl _vertexTemp;
+
+        private void CreateEdgeControl(VertexControl vc)
+        {
+            if (_vertexTemp == null)
+            {
+                EditorManager.CreateVirtualEdge(vc, vc.GetPosition());
+                _vertexTemp = vc;
+                HighlightBehaviour.SetHighlighted(_vertexTemp, true);
+                return;
+            }
+
+            if (_vertexTemp == vc) return;
+
+            var source = (BlockVertex) _vertexTemp.Vertex;
+            var target = (BlockVertex) vc.Vertex;
+
+            var data = new BlockEdge(source, target)
+            {
+                Header = $"{source.BlockType} --> {target.BlockType}",
+            };
+            var ec = new EdgeControl(_vertexTemp, vc, data);
+            GraphArea.InsertEdgeAndData(data, ec, 0, true);
+
+            HighlightBehaviour.SetHighlighted(_vertexTemp, false);
+            _vertexTemp = null;
+            EditorManager.DestroyVirtualEdge();
+        }
+
+        #endregion
+
 
         #region Drag 
 
