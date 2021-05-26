@@ -80,6 +80,8 @@
     <Compile Include="Controls\ConnectionRegion.cs" />
     <Compile Include="Core\GraphCV\EdgeBlueprint.cs" />
     <Compile Include="Core\GraphCV\GraphCVEditManager.cs" />
+    <Compile Include="Core\GraphCV\VertexConnectionPointOut.cs" />
+    <Compile Include="Core\GraphCV\VertexConnectionPointIn.cs" />
     <Compile Include="Core\Manager\GraphStyleManager.cs" />
     <Compile Include="Core\Manager\ToolKitGroup.cs" />
     <Compile Include="Core\Manager\ToolKitStruct.cs" />
@@ -188,6 +190,9 @@
       <Project>{5cb27ff0-44b5-4e2d-979c-e71429f62427}</Project>
       <Name>GraphX.Standard.Logic</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PNG\ItemTestCase.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="http://schemas.panthernet.ru/graphx/">
+                    xmlns:controls="http://schemas.panthernet.ru/graphx/"
+                    xmlns:core="clr-namespace:Aries.Core">
 
 
 
@@ -8,31 +9,57 @@
     <SolidColorBrush x:Key="VertexBordBackGround" Color="{DynamicResource PrimaryColor}"/>
 
 
-    <!--<Style x:Shared="False" TargetType="controls:StaticVertexConnectionPoint">
-        <Setter Property="Shape" Value="Triangle" />
-        <Setter Property="Content">
-            <Setter.Value>
-                <Path Width="10"
-                      Height="10"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Data="M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
-                      Stretch="Uniform"
-                      Stroke="Black"
-                      StrokeThickness="5" />
-            </Setter.Value>
-        </Setter>
-    </Style>-->
-
     <Style x:Shared="False" TargetType="controls:StaticVertexConnectionPoint">
         <Setter Property="Shape" Value="Triangle" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:StaticVertexConnectionPoint">
-                    <TextBlock Text="{TemplateBinding Header}"
-                                Foreground="Black"
-                                Background="Aqua"
-                               Width="30"/>
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="5"
+                              Height="5"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Data="M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
+                              Stretch="Uniform"
+                              Stroke="{DynamicResource PrimaryBrush}"
+                              StrokeThickness="5" />
+                        <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
+                               Style="{DynamicResource LabelSuccess}"
+                                   Margin="2"/>
+                    </StackPanel>
+                   
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Shared="False" TargetType="core:VertexConnectionPointIn">
+        <Setter Property="Shape" Value="Triangle" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="core:VertexConnectionPointIn">
+                    <StackPanel Orientation="Horizontal" 
+                                VerticalAlignment="Top">
+                        <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
+                               Style="{DynamicResource LabelSuccess}"
+                               Margin="2"/>
+                    </StackPanel>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Shared="False" TargetType="core:VertexConnectionPointOut">
+        <Setter Property="Shape" Value="Triangle" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="core:VertexConnectionPointOut">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
+                               Style="{DynamicResource LabelWarning}"
+                               Margin="2"/>
+                    </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -46,7 +73,7 @@
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderBrush" Value="{StaticResource VertexBordBackGround}"/>
         <Setter Property="BorderThickness" Value="2"/>
-
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:VertexControl}">
@@ -61,7 +88,13 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
 
-                    <Grid>
+                    <Grid Height="80">
+                        <Grid.Background>
+                            <ImageBrush ImageSource="../../PNG/ItemTestCase.png"
+                                        Opacity="0.7"
+                                        Stretch="UniformToFill"
+                                        TileMode="None"/>
+                        </Grid.Background>
                         <Border x:Name="BackgroundNorm" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 CornerRadius="2" 
@@ -92,15 +125,20 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <StackPanel Name="Block_InPut" Grid.Column="0"
-                                        Orientation="Vertical">
-                            </StackPanel>
+                            <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryBrush}">
+                                <StackPanel Name="Block_InPut" 
+                                            Orientation="Vertical"/>
+                            </Border>
+                          
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
                                        HorizontalAlignment="Center" FontWeight="Bold" 
                                        Foreground="{DynamicResource PrimaryBrush}" Grid.Column="1" Margin="3" MinWidth="150"/>
-                            <StackPanel Name="Block_OutPut" Grid.Column="2">
-
-                            </StackPanel>
+                            <Border Grid.Column="2" BorderThickness="1,0,0,0" BorderBrush="{DynamicResource PrimaryBrush}">
+                                <StackPanel Name="Block_OutPut"
+                                            Orientation="Vertical"
+                                            VerticalAlignment="Bottom"/>
+                            </Border>
+                          
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>

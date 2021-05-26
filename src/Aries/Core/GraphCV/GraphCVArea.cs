@@ -48,20 +48,21 @@ namespace Aries.Core
                 ? 1
                 : parentControl.VertexConnectionPointsList.Max(a => a.Id) + 1;
 
-            var input = new StaticVertexConnectionPoint
+            var input = new VertexConnectionPointIn
             {
                 Id = newId,
                 Header = "Test1"
             };
+            input.DataContext = input;
             var inputBorder = new Border
             {
                 ToolTip = "Test1",
                 Margin = new Thickness(2),
-                Padding = new Thickness(0),
                 Child = input
             };
 
             parentControl.BlockInput.Children.Add(inputBorder);
+            parentControl.VertexConnectionPointsList.Add(input);
         }
         private void AddOutPut(VertexControl parentControl)
         {
@@ -69,7 +70,7 @@ namespace Aries.Core
                 ? 1
                 : parentControl.VertexConnectionPointsList.Max(a => a.Id) + 1;
 
-            var input = new StaticVertexConnectionPoint
+            var input = new VertexConnectionPointOut
             {
                 Id = newId,
                 Header = "Test1"
@@ -83,6 +84,7 @@ namespace Aries.Core
             };
 
             parentControl.BlockOutput.Children.Add(inputBorder);
+            parentControl.VertexConnectionPointsList.Add(input);
         }
 
 

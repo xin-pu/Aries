@@ -17,6 +17,8 @@ namespace GraphX.Controls
         /// </summary>
         public int Id { get; set; }
 
+        public string Header { set; get; }
+
         public static readonly DependencyProperty ShapeProperty =
             DependencyProperty.Register(nameof(Shape),
                 typeof(VertexShape),
@@ -32,13 +34,8 @@ namespace GraphX.Controls
             set { SetValue(ShapeProperty, value); }
         }
 
-        public string Header { set; get; }
+   
 
-        public static readonly DependencyProperty HeaderProperty =
-            DependencyProperty.Register(nameof(Header),
-                typeof(string),
-                typeof(StaticVertexConnectionPoint),
-                new PropertyMetadata(null));
 
         private Rect _rectangularSize;
 
