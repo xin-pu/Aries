@@ -226,8 +226,8 @@ namespace GraphX.Controls
 
         #endregion
 
-        readonly Dictionary<TEdge, EdgeControl> _edgeslist = new Dictionary<TEdge, EdgeControl>();
-        readonly Dictionary<TVertex, VertexControl> _vertexlist = new Dictionary<TVertex, VertexControl>();
+        public readonly Dictionary<TEdge, EdgeControl> _edgeslist = new Dictionary<TEdge, EdgeControl>();
+        public readonly Dictionary<TVertex, VertexControl> _vertexlist = new Dictionary<TVertex, VertexControl>();
 
         /// <summary>
         /// Gets edge controls read only collection. To modify collection use AddEdge() RemoveEdge() methods.
@@ -1871,15 +1871,60 @@ namespace GraphX.Controls
             var dlist = new List<GraphSerializationData>();
             foreach (var item in VertexList) //ALWAYS serialize vertices first
             {
-                dlist.Add(new GraphSerializationData { Position = item.Value.GetPositionGraphX(), Data = item.Key, IsVisible = item.Value.Visibility == Visibility.Visible, HasLabel = item.Value.VertexLabelControl != null});
-                if (item.Key.ID == -1) throw new GX_InvalidDataException("ExtractSerializationData() -> All vertex datas must have positive unique ID!");
+                var vertetData = item.Key;
+                var vertexControl = item.Value;
+
+                /// Add Vertext Data
+                dlist.Add(new GraphSerializationData
+                {
+                    Position = item.Value.GetPositionGraphX(),
+                    Data = vertetData,
+                    IsVisible = vertexControl.Visibility == Visibility.Visible,
+                    HasLabel = vertexControl.VertexLabelControl != null
+                });
+                if (item.Key.ID == -1)
+                    throw new GX_InvalidDataException(
+                        "ExtractSerializationData() -> All vertex datas must have positive unique ID!");
+
+                /// Add Vertex Connection Point To DataDict
+                if (item.Value.VertexConnectionPointsList.Count > 0)
+                {
+                    foreach (var point in item.Value.VertexConnectionPointsList)
+                    {
+                        dlist.Add(new GraphSerializationData
+                        {
+                            Position = item.Value.GetPositionGraphX(),
+                            Data = new ConnectionPointData
+                            {
+                                ParentID = vertetData.ID,
+                                Header = point.Header,
+                                ID = point.Id,
+                                ConnectionPointType = point.ConnectionPointType
+                            },
+                            IsVisible = true,
+                            HasLabel = false
+                        });
+                    }
+
+                }
             }
+
+            /// Add Edge Datas
             foreach (var item in EdgesList)
             {
                 // item.Key.RoutingPoints = new Point[] { new Point(0, 123), new Point(12, 12), new Point(10, 234.5) };
-                dlist.Add(new GraphSerializationData { Position = new Measure.GPoint(), Data = item.Key, IsVisible = item.Value.Visibility == Visibility.Visible, HasLabel = item.Value.EdgeLabelControls.Count > 0 });
-                if (item.Key.ID == -1) throw new GX_InvalidDataException("ExtractSerializationData() -> All edge datas must have positive unique ID!");
+                dlist.Add(new GraphSerializationData
+                {
+                    Position = new Measure.GPoint(),
+                    Data = item.Key,
+                    IsVisible = item.Value.Visibility == Visibility.Visible,
+                    HasLabel = item.Value.EdgeLabelControls.Count > 0
+                });
+                if (item.Key.ID == -1)
+                    throw new GX_InvalidDataException(
+                        "ExtractSerializationData() -> All edge datas must have positive unique ID!");
             }
+
             return dlist;
         }
 
@@ -1893,14 +1938,21 @@ namespace GraphX.Controls
         {
             if (LogicCore == null)
                 throw new GX_InvalidDataException("LogicCore -> Not initialized!");
+            if (data == null)
+                return;
 
+            var graphSerializationDatas = data.ToList();
+
+            /// Clean first
             RemoveAllEdges();
             RemoveAllVertices();
 
-            if (LogicCore.Graph == null) LogicCore.Graph = Activator.CreateInstance<TGraph>();
+            if (LogicCore.Graph == null)
+                LogicCore.Graph = Activator.CreateInstance<TGraph>();
             else LogicCore.Graph.Clear();
 
-            var vlist = data.Where(a => a.Data is TVertex);
+
+            var vlist = graphSerializationDatas.Where(a => a.Data is TVertex);
             foreach (var item in vlist)
             {
                 var vertexdata = item.Data as TVertex;
@@ -1913,21 +1965,26 @@ namespace GraphX.Controls
                 if (item.HasLabel)
                     GenerateVertexLabel(ctrl);
             }
-            var elist = data.Where(a => a.Data is TEdge);
+
+            var elist = graphSerializationDatas.Where(a => a.Data is TEdge);
 
             foreach (var item in elist)
             {
                 var edgedata = item.Data as TEdge;
                 if (edgedata == null) continue;
-                var sourceid = edgedata.Source.ID; var targetid = edgedata.Target.ID;
-                var datasource = _vertexlist.Keys.FirstOrDefault(a => a.ID == sourceid); var datatarget = _vertexlist.Keys.FirstOrDefault(a => a.ID == targetid);
+                var sourceid = edgedata.Source.ID;
+                var targetid = edgedata.Target.ID;
+                var datasource = _vertexlist.Keys.FirstOrDefault(a => a.ID == sourceid);
+                var datatarget = _vertexlist.Keys.FirstOrDefault(a => a.ID == targetid);
 
                 edgedata.Source = datasource;
                 edgedata.Target = datatarget;
 
                 if (datasource == null || datatarget == null)
-                    throw new GX_SerializationException("DeserializeFromFile() -> Serialization logic is broken! Vertex not found. All vertices must be processed before edges!");
-                var ecc = ControlFactory.CreateEdgeControl(_vertexlist[datasource], _vertexlist[datatarget], edgedata, true, item.IsVisible ? Visibility.Visible : Visibility.Collapsed);
+                    throw new GX_SerializationException(
+                        "DeserializeFromFile() -> Serialization logic is broken! Vertex not found. All vertices must be processed before edges!");
+                var ecc = ControlFactory.CreateEdgeControl(_vertexlist[datasource], _vertexlist[datatarget], edgedata,
+                    true, item.IsVisible ? Visibility.Visible : Visibility.Collapsed);
                 InsertEdge(edgedata, ecc);
                 LogicCore.Graph.AddEdge(edgedata);
                 if (item.HasLabel)
@@ -1941,16 +1998,14 @@ namespace GraphX.Controls
             //to correctly draw arrows in any case except they are manually disabled
             UpdateLayout();
             foreach (var item in EdgesList.Values)
-#if WPF
+
                 item.OnApplyTemplate();
-#elif METRO
-                item.ApplyTemplate();
-#endif
+
 
             RestoreAlgorithmStorage();
         }
 
-        private void RestoreAlgorithmStorage()
+        public void RestoreAlgorithmStorage()
         {
             IDictionary<TVertex, Measure.GPoint> vPositions;
             var vSizes = GetVertexSizesAndPositions(out vPositions);

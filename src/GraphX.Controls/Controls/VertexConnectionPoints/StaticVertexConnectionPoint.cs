@@ -18,6 +18,7 @@ namespace GraphX.Controls
         public int Id { get; set; }
 
         public string Header { set; get; }
+        public ConnectionPointType ConnectionPointType { get; set; }
 
         public static readonly DependencyProperty ShapeProperty =
             DependencyProperty.Register(nameof(Shape),
@@ -34,7 +35,7 @@ namespace GraphX.Controls
             set { SetValue(ShapeProperty, value); }
         }
 
-   
+
 
 
         private Rect _rectangularSize;

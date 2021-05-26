@@ -42,7 +42,8 @@
                                 VerticalAlignment="Top">
                         <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                Style="{DynamicResource LabelSuccess}"
-                               FontSize="11"/>
+                               FontSize="11"
+                               Margin="1"/>
                     </StackPanel>
 
                 </ControlTemplate>
@@ -58,7 +59,8 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                Style="{DynamicResource LabelWarning}"
-                               FontSize="11"/>
+                               FontSize="11"
+                               Margin="1"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>
@@ -127,7 +129,8 @@
                             </Grid.ColumnDefinitions>
                             <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryBrush}">
                                 <StackPanel Name="Block_InPut" 
-                                            Orientation="Vertical"/>
+                                            Orientation="Vertical"
+                                            HorizontalAlignment="Left"/>
                             </Border>
                           
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
@@ -136,7 +139,8 @@
                             <Border Grid.Column="2" BorderThickness="1,0,0,0" BorderBrush="{DynamicResource PrimaryBrush}">
                                 <StackPanel Name="Block_OutPut"
                                             Orientation="Vertical"
-                                            VerticalAlignment="Bottom"/>
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right"/>
                             </Border>
                           
                         </Grid>

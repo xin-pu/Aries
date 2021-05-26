@@ -16,6 +16,10 @@ namespace GraphX.Controls
         /// </summary>
         int Id { get; }
 
+        string Header { set; get; }
+
+        ConnectionPointType ConnectionPointType { set; get; }
+
         /// <summary>
         /// Gets or sets shape form for connection point (affects math calculations for edge end placement)
         /// </summary>

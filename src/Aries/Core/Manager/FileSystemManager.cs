@@ -79,6 +79,7 @@ namespace Aries.Core
                 Filter = @"aries(*.ar)|*.ar",
             };
             openFileDialog.ShowDialog();
+
             if (File.Exists(openFileDialog.FileName))
             {
                 var graphCVFile = DeserializeGraphDataFromFile(openFileDialog.FileName);
