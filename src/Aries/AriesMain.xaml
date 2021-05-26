@@ -69,7 +69,38 @@
                     </StatusBar>
                 </TabItem>
                 <TabItem Header="页面样式" FontSize="13">
-                    <StatusBar VerticalAlignment="Stretch" DataContext="{Binding AriesCoreUint}">
+                    <StatusBar VerticalAlignment="Stretch" >
+                        <StatusBarItem>
+                            <StackPanel Orientation="Vertical" DataContext="{Binding GraphStyleManager}">
+                                <CheckBox Content="箭头标签"
+                                          IsChecked="{Binding IsShowEdgeLabels}"
+                                          Margin="0,2">
+                                    <hc:Interaction.Triggers>
+                                        <hc:EventTrigger EventName="Checked">
+                                            <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                                        </hc:EventTrigger>
+                                        <hc:EventTrigger EventName="Unchecked">
+                                            <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                                        </hc:EventTrigger>
+                                    </hc:Interaction.Triggers>
+                                </CheckBox>
+                                <CheckBox Content="标签方位"
+                                          IsChecked="{Binding IsAlignEdgeLabels}"
+                                          Margin="0,2">
+                                    <hc:Interaction.Triggers>
+                                        <hc:EventTrigger EventName="Checked">
+                                            <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                                        </hc:EventTrigger>
+                                        <hc:EventTrigger EventName="Unchecked">
+                                            <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                                        </hc:EventTrigger>
+                                    </hc:Interaction.Triggers>
+                                </CheckBox>
+                            </StackPanel>
+                        </StatusBarItem>
+
+                        <Separator Background="Black"/>
+
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
                                 <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
@@ -77,9 +108,9 @@
                                 <controls:TabButton Content="移除背景" Icon="&#xf117;"/>
                             </StackPanel>
                         </StatusBarItem>
-
+                     
                         <Separator Background="Black"/>
-                        <StatusBarItem DataContext="{Binding WaterMaskManager}">
+                        <StatusBarItem DataContext="{Binding AriesCoreUint.WaterMaskManager}">
                             <StackPanel Orientation="Horizontal">
                                 <controls:TabButton Content="水印" Icon="&#xef68;"/>
                             </StackPanel>

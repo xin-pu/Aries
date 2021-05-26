@@ -1,4 +1,4 @@
-﻿using System.Xml.Serialization;
+﻿using System.ComponentModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
@@ -10,7 +10,9 @@ namespace Aries.OpenCV.GraphModel
         {
             BlockType = BlockType.Import;
         }
-        [XmlIgnore]
+        
+
+        [Category("Output_MAT")]
         public Mat OutPutMat { set; get; }
         public abstract bool CanImport();
         public abstract void Import();

@@ -17,12 +17,13 @@ namespace Aries
             InitializeComponent();
             DataContext = this;
             FileSystemManager.AriesMain = this;
+            GraphStyleManager.AriesMain = this;
         }
 
         private GraphCVArea _graphCvAreaAtWorkSpace;
         public AriesCoreUint _ariesCoreUint;
         public FileSystemManager FileSystemManager => FileSystemManager.Instance;
-
+        public GraphStyleManager GraphStyleManager => GraphStyleManager.Instance;
 
         public GraphCVArea GraphCvAreaAtWorkSpace
         {

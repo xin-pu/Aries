@@ -1,16 +1,8 @@
-﻿#if WPF
-
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
-#elif METRO
-using Windows.Foundation;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media;
-#endif
 
 using GraphX.Common.Enums;
 
@@ -27,18 +19,26 @@ namespace GraphX.Controls
 
         public static readonly DependencyProperty ShapeProperty =
             DependencyProperty.Register(nameof(Shape),
-                          typeof(VertexShape),
-                          typeof(StaticVertexConnectionPoint),
-                          new PropertyMetadata(VertexShape.Circle));
+                typeof(VertexShape),
+                typeof(StaticVertexConnectionPoint),
+                new PropertyMetadata(VertexShape.Circle));
 
         /// <summary>
         /// Gets or sets shape form for connection point (affects math calculations for edge end placement)
         /// </summary>
         public VertexShape Shape
         {
-            get { return (VertexShape)GetValue(ShapeProperty); }
+            get { return (VertexShape) GetValue(ShapeProperty); }
             set { SetValue(ShapeProperty, value); }
         }
+
+        public string Header { set; get; }
+
+        public static readonly DependencyProperty HeaderProperty =
+            DependencyProperty.Register(nameof(Header),
+                typeof(string),
+                typeof(StaticVertexConnectionPoint),
+                new PropertyMetadata(null));
 
         private Rect _rectangularSize;
 
@@ -55,20 +55,14 @@ namespace GraphX.Controls
 
         public void Show()
         {
-#if WPF
-            SetCurrentValue(UIElement.VisibilityProperty, Visibility.Visible);
-#else
-            SetValue(UIElement.VisibilityProperty, Visibility.Visible);
-#endif
+            SetCurrentValue(VisibilityProperty, Visibility.Visible);
         }
 
         public void Hide()
         {
-#if WPF
-            SetCurrentValue(UIElement.VisibilityProperty, Visibility.Collapsed);
-#else
-            SetValue(UIElement.VisibilityProperty, Visibility.Collapsed);
-#endif
+
+            SetCurrentValue(VisibilityProperty, Visibility.Collapsed);
+
         }
 
         private static VertexControl GetVertexControl(DependencyObject parent)
@@ -79,6 +73,7 @@ namespace GraphX.Controls
                 if (control != null) return control;
                 parent = VisualTreeHelper.GetParent(parent);
             }
+
             return null;
         }
 
@@ -105,7 +100,6 @@ namespace GraphX.Controls
             _vertexControl = null;
         }
 
-#if WPF
 
         public DependencyObject GetParent()
         {
@@ -120,19 +114,6 @@ namespace GraphX.Controls
             RectangularSize = new Rect(position, new Size(ActualWidth, ActualHeight));
         }
 
-#elif METRO
-        public DependencyObject GetParent()
-        {
-            return Parent;
-        }
 
-        protected virtual void OnLayoutUpdated(object sender, object o)
-        {
-            var position = TransformToVisual(VertexControl).TransformPoint(new Point());
-            var vPos = VertexControl.GetPosition();
-            position = new Point(position.X + vPos.X, position.Y + vPos.Y);
-            RectangularSize = new Rect(position, DesiredSize);
-        }
-#endif
     }
 }

@@ -15,6 +15,7 @@ namespace Aries.Core
         public BackGroundManager BackGroundManager { set; get; }
 
 
+
     }
 
 

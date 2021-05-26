@@ -52,6 +52,7 @@ namespace Aries.Views
             get { return _backGroundManager; }
         }
 
+
         public GraphCVEditManager EditorManager { set; get; }
 
 
@@ -71,6 +72,7 @@ namespace Aries.Views
         {
             /// 设置元素块可拖动
             GraphArea.SetVerticesDrag(true, true);
+            GraphArea.SetEdgesDrag(true);
 
             GraphArea.LogicCore = new LogicCoreCV
             {
@@ -297,6 +299,8 @@ namespace Aries.Views
             _vertexTemp = null;
             EditorManager.DestroyVirtualEdge();
         }
+
+
 
         #endregion
 

@@ -66,5 +66,14 @@ namespace Aries.Properties
                 resourceCulture = value;
             }
         }
+
+
+        internal static string CVGraphXTemplate
+        {
+            get
+            {
+                return ResourceManager.GetString("CVGraphXTemplate", resourceCulture);
+            }
+        }
     }
 }

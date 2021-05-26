@@ -18,7 +18,7 @@
 
             </ResourceDictionary.MergedDictionaries>
 
-            <aries:ColorConverter x:Key="VersionConverter" />
+            <aries:ColorConverter x:Key="ColorConverter" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

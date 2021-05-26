@@ -125,24 +125,32 @@ namespace Aries.Core
 
         private bool GraphCVSaveCommand_CanExecute()
         {
-            var selectContent = AriesMain.WorkSpace.SelectedContent;
-            var ariesCoreUint = (AriesCoreUint) selectContent;
-            if (ariesCoreUint?.FileInfo == null)
+            try
+            {
+                var selectContent = AriesMain.WorkSpace.SelectedContent;
+                var ariesCoreUint = (AriesCoreUint) selectContent;
+                if (ariesCoreUint?.FileInfo == null)
+                    return false;
+                var fileName = ariesCoreUint.FileInfo.FullName;
+                return File.Exists(fileName);
+            }
+            catch (Exception)
+            {
                 return false;
-            var fileName = ariesCoreUint.FileInfo.FullName;
-            return File.Exists(fileName);
+            }
         }
 
         private void GraphCVSaveCommand_Execute()
         {
             var selectContent = AriesMain.WorkSpace.SelectedContent;
             var ariesCoreUint = (AriesCoreUint) selectContent;
-            SerializeGraphDataToFile(ariesCoreUint.FileInfo.FullName, new GraphCVFileStruct
-            {
-                GraphSerializationDatas = ariesCoreUint.GraphArea.ExtractSerializationData(),
-                BackGroundManager = ariesCoreUint.BackGroundManager,
-                WaterMaskManager = ariesCoreUint.WaterMaskManager
-            });
+            SerializeGraphDataToFile(ariesCoreUint.FileInfo.FullName,
+                new GraphCVFileStruct
+                {
+                    GraphSerializationDatas = ariesCoreUint.GraphArea.ExtractSerializationData(),
+                    BackGroundManager = ariesCoreUint.BackGroundManager,
+                    WaterMaskManager = ariesCoreUint.WaterMaskManager
+                });
         }
 
         private void GraphCVSaveAsCommand_Execute()

@@ -163,6 +163,8 @@ namespace GraphX.Controls
         /// </summary>
         internal override double EdgeCurvingTolerance => LogicCore?.EdgeCurvingTolerance ?? 0;
 
+        
+
         /// <summary>
         /// Add custom control for
         /// </summary>

@@ -20,7 +20,7 @@ using Rect = GraphX.Measure.Rect;
 namespace GraphX.Controls
 {
     [TemplatePart(Name = "PART_vertexLabel", Type = typeof(IVertexLabelControl))]
-    [TemplatePart(Name = "PART_vcproot", Type = typeof(Panel))]
+    [TemplatePart(Name = "Block_InPut", Type = typeof(Panel))]
     public abstract class VertexControlBase : Control, IGraphControl
     {
         protected internal IVertexLabelControl VertexLabelControl;

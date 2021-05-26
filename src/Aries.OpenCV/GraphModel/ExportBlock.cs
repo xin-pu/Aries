@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System.ComponentModel;
+using System.Xml.Serialization;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
@@ -11,9 +12,10 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Export;
         }
 
-        [XmlIgnore]
+        [Category("Input_MAT")]
         public Mat InputMat { set; get; }
-        [XmlIgnore]
+
+        [Category("Output")]
         public T ExportResult { set; get; }
 
         public abstract void Execute();

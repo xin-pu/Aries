@@ -8,10 +8,39 @@
     <SolidColorBrush x:Key="VertexBordBackGround" Color="{DynamicResource PrimaryColor}"/>
 
 
+    <!--<Style x:Shared="False" TargetType="controls:StaticVertexConnectionPoint">
+        <Setter Property="Shape" Value="Triangle" />
+        <Setter Property="Content">
+            <Setter.Value>
+                <Path Width="10"
+                      Height="10"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      Data="M 38,0.791664C 58.5496,0.791664 75.2083,17.4504 75.2083,38C 75.2083,58.5496 58.5496,75.2083 38,75.2083C 17.4504,75.2083 0.791662,58.5496 0.791662,38C 0.791662,17.4504 17.4504,0.791664 38,0.791664 Z M 38,5.54166C 20.0738,5.54166 5.54167,20.0738 5.54167,38C 5.54167,55.9262 20.0738,70.4583 38,70.4583C 55.9262,70.4583 70.4583,55.9262 70.4583,38C 70.4583,20.0738 55.9262,5.54166 38,5.54166 Z "
+                      Stretch="Uniform"
+                      Stroke="Black"
+                      StrokeThickness="5" />
+            </Setter.Value>
+        </Setter>
+    </Style>-->
+
+    <Style x:Shared="False" TargetType="controls:StaticVertexConnectionPoint">
+        <Setter Property="Shape" Value="Triangle" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:StaticVertexConnectionPoint">
+                    <TextBlock Text="{TemplateBinding Header}"
+                                Foreground="Black"
+                                Background="Aqua"
+                               Width="30"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <!-- VERTEX CONTROL -->
     <Style TargetType="{x:Type controls:VertexControl}">
-        
+
         <!-- Set background color through attached property -->
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="5"/>
@@ -31,7 +60,7 @@
                             <DoubleAnimation Duration="00:00:00.4000000" Storyboard.TargetName="BackgroundOver_Highlight" Storyboard.TargetProperty="Opacity" To="0" />
                         </Storyboard>
                     </ControlTemplate.Resources>
-                    
+
                     <Grid>
                         <Border x:Name="BackgroundNorm" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
@@ -57,18 +86,21 @@
                                 Opacity="0" 
                                 BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
 
-                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
+                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
+                            <StackPanel Name="Block_InPut" Grid.Column="0"
+                                        Orientation="Vertical">
+                            </StackPanel>
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
                                        HorizontalAlignment="Center" FontWeight="Bold" 
-                                       Foreground="{DynamicResource PrimaryBrush}" Grid.Column="1" Grid.Row="0" Margin="3" MinWidth="150"/>
+                                       Foreground="{DynamicResource PrimaryBrush}" Grid.Column="1" Margin="3" MinWidth="150"/>
+                            <StackPanel Name="Block_OutPut" Grid.Column="2">
+
+                            </StackPanel>
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -135,7 +167,7 @@
                 Value="Silver" />
         <Setter Property="Opacity"
                 Value="1" />
-       
+
         <Setter Property="controls:HighlightBehaviour.IsHighlightEnabled" Value="True"/>
 
 
