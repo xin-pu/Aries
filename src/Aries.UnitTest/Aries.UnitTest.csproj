@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="SerializeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BlockTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Windows;
 using System.Windows.Controls;
 using Aries.OpenCV.GraphModel;
 using GraphX.Controls;
@@ -18,10 +18,9 @@ namespace Aries.Core
         public void AddBlock(BlockVertex blockVertex)
         {
             var vertex = new VertexControl(blockVertex);
-
             AddVertexAndData(blockVertex, vertex);
 
-            //we have to check if there is only one vertex and set coordinates manulay 
+            //we have to check if there is only one vertex and set coordinates manually 
             //because layout algorithms skip all logic if there are less than two vertices
             if (VertexList.Count == 1)
             {
@@ -30,8 +29,8 @@ namespace Aries.Core
             }
             else RelayoutGraph(true);
 
-            AddInput(vertex);
-            AddOutPut(vertex);
+            AddAllConnectionPoints(vertex, blockVertex.GetType());
+
             vertex.SetConnectionPointsVisibility(true);
 
         }
@@ -42,7 +41,24 @@ namespace Aries.Core
             get { return _selectBlockVertex; }
         }
 
-        private void AddInput(VertexControl parentControl)
+        private void AddAllConnectionPoints(VertexControl parentControl, Type blockType)
+        {
+            var properties = TypeDescriptor.GetProperties(blockType)
+                .OfType<PropertyDescriptor>()
+                .ToList();
+
+
+            properties.Where(a => a.Category == "Input_MAT")
+                .ToList()
+                .ForEach(
+                    p => { AddInputConnectionPoint(parentControl, p); });
+
+            properties.Where(a => a.Category == "Output_MAT")
+                .ToList()
+                .ForEach(p => { AddOutPutConnectionPoint(parentControl, p); });
+        }
+
+        private void AddInputConnectionPoint(VertexControl parentControl, PropertyDescriptor propertyDescriptor)
         {
             var newId = parentControl.VertexConnectionPointsList.Count == 0
                 ? 1
@@ -51,20 +67,19 @@ namespace Aries.Core
             var input = new VertexConnectionPointIn
             {
                 Id = newId,
-                Header = "Test1"
+                Header = propertyDescriptor.Name,
+                ToolTip = propertyDescriptor.Name
             };
-            input.DataContext = input;
             var inputBorder = new Border
             {
-                ToolTip = "Test1",
-                Margin = new Thickness(2),
                 Child = input
             };
 
             parentControl.BlockInput.Children.Add(inputBorder);
             parentControl.VertexConnectionPointsList.Add(input);
         }
-        private void AddOutPut(VertexControl parentControl)
+
+        private void AddOutPutConnectionPoint(VertexControl parentControl, PropertyDescriptor propertyDescriptor)
         {
             var newId = parentControl.VertexConnectionPointsList.Count == 0
                 ? 1
@@ -73,19 +88,18 @@ namespace Aries.Core
             var input = new VertexConnectionPointOut
             {
                 Id = newId,
-                Header = "Test1"
+                Header = propertyDescriptor.Name,
+                ToolTip = propertyDescriptor.Name
             };
             var inputBorder = new Border
             {
-                ToolTip = "Test1",
-                Margin = new Thickness(2),
-                Padding = new Thickness(0),
                 Child = input
             };
 
             parentControl.BlockOutput.Children.Add(inputBorder);
             parentControl.VertexConnectionPointsList.Add(input);
         }
+
 
 
         #region

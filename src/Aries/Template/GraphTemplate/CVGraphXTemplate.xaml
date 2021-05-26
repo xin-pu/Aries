@@ -42,7 +42,7 @@
                                 VerticalAlignment="Top">
                         <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                Style="{DynamicResource LabelSuccess}"
-                               Margin="2"/>
+                               FontSize="11"/>
                     </StackPanel>
 
                 </ControlTemplate>
@@ -58,7 +58,7 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                Style="{DynamicResource LabelWarning}"
-                               Margin="2"/>
+                               FontSize="11"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

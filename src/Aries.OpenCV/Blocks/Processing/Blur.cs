@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Xml.Serialization;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
@@ -13,16 +14,19 @@ namespace Aries.OpenCV.Blocks.Processing
         /// <summary>
         /// The smoothing kernel size
         /// </summary>
+        [Category("Enter")]
         public Size KSize { set; get; }
 
         /// <summary>
         /// The anchor point. The default value Point(-1,-1) means that the anchor is at the kernel center
         /// </summary>
+        [Category("Enter")]
         public Point AnchorPoint { set; get; }
 
         /// <summary>
         /// The border mode used to extrapolate pixels outside of the image
         /// </summary>
+        [Category("Enter")]
         public BorderTypes BorderTypes { set; get; }
 
         public Blur()
