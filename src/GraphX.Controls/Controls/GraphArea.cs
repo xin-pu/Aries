@@ -1,26 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.ComponentModel;
-using Microsoft.Win32;
-using System.Windows;
-using System.Windows.Threading;
-using Point = System.Windows.Point;
-using USize = System.Windows.Size;
-using Brushes = System.Windows.Media.Brushes;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using GraphX.Common;
 using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Interfaces;
 using GraphX.Common.Models;
 using GraphX.Controls.Models;
-using GraphX.Common;
+using Microsoft.Win32;
 using QuickGraph;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Threading;
+using Brushes = System.Windows.Media.Brushes;
+using Point = System.Windows.Point;
 using Rect = GraphX.Measure.Rect;
 using Size = GraphX.Measure.Size;
+using USize = System.Windows.Size;
 
 namespace GraphX.Controls
 {
@@ -226,51 +226,11 @@ namespace GraphX.Controls
 
             #region Designer Data
 
-#if WPF
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
                 _uiTaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
-#elif METRO
-            if (!DesignMode.DesignModeEnabled)
-            {
-                Transitions = new TransitionCollection { new ContentThemeTransition() };
-#endif
+
                 ControlFactory = new GraphControlFactory(this);
-            }
-            else
-            {
-                /*    Width = DesignSize.Width;
-                    Height = DesignSize.Height;
-                    var vc = new VertexDataExample(1, "Vertex 1");
-                    var ctrl = ControlFactory.CreateVertexControl(vc);
-                    SetX(ctrl, 0); SetY(ctrl, 0, true);
-
-                    var vc2 = new VertexDataExample(2, "Vertex 2");
-                    var ctrl2 = ControlFactory.CreateVertexControl(vc2);
-                    SetX(ctrl2, 200); SetY(ctrl2, 0, true);
-
-                    var vc3 = new VertexDataExample(1, "Vertex 3");
-                    var ctrl3 = ControlFactory.CreateVertexControl(vc3);
-                    SetX(ctrl3, 100); SetY(ctrl3, 100, true);
-
-                    UpdateLayout();
-                    var edge = new EdgeDataExample<VertexDataExample>(vc, vc2, 1) { Text = "One" };
-                    var edgectrl = ControlFactory.CreateEdgeControl(ctrl, ctrl2, edge);
-
-                    base.Children.Add(edgectrl);
-
-                    edge = new EdgeDataExample<VertexDataExample>(vc2, vc3, 1) { Text = "Two" };
-                    edgectrl = ControlFactory.CreateEdgeControl(ctrl2, ctrl3, edge);
-                    base.Children.Add(edgectrl);
-
-                    edge = new EdgeDataExample<VertexDataExample>(vc3, vc, 1) { Text = "Three" };
-                    edgectrl = ControlFactory.CreateEdgeControl(ctrl3, ctrl, edge);
-                    base.Children.Add(edgectrl);
-
-
-                    base.Children.Add(ctrl);
-                    base.Children.Add(ctrl2);
-                    base.Children.Add(ctrl3);*/
             }
             #endregion
         }
@@ -804,24 +764,16 @@ namespace GraphX.Controls
         /// </summary>
         public bool EnableVisualsRenewOnFiltering{ get; set; } = true;
 
-#if WPF
+
         protected virtual void _relayoutGraph(CancellationToken cancellationToken)
         {
-#elif METRO
-        protected virtual Task _relayoutGraph(CancellationToken cancellationToken, bool generateAllEdges = false, bool standalone = true)
-        {
-            return Task.Run(async () =>
-            {
-#endif
+
             Dictionary<TVertex, Size> vertexSizes = null;
             IDictionary<TVertex, Measure.GPoint> vertexPositions = null;
             IGXLogicCore<TVertex, TEdge, TGraph> localLogicCore = null;
 
-#if WPF
             RunOnDispatcherThread(() =>
-#elif METRO
-                await DispatcherHelper.CheckBeginInvokeOnUi(() =>
-#endif
+
             {
                 if (LogicCore == null) return;
 
@@ -843,7 +795,7 @@ namespace GraphX.Controls
 
                     LogicCore.Graph.Vertices.ForEach(v =>
                     {
-                        if(!_vertexlist.ContainsKey(v))
+                        if (!_vertexlist.ContainsKey(v))
                             AddVertex(v, ControlFactory.CreateVertexControl(v));
                     });
 
@@ -864,12 +816,6 @@ namespace GraphX.Controls
                     vertexSizes = GetVertexSizesAndPositions(out vertexPositions);
                 else vertexPositions = GetVertexPositions();
 
-#if METRO
-                    //TODO may be wrong. Fix for vertexControl pos not NaN by default as in WPF
-                    //So if all coordinates are zeroes then it is initial run - clear them
-                    if(vertexPositions.All(a=> a.Value == GraphX.Measure.Point.Zero))
-                        vertexPositions.Clear();
-#endif
 
                 localLogicCore = LogicCore;
             });
@@ -885,17 +831,16 @@ namespace GraphX.Controls
 
             var resultCoords = localLogicCore.Compute(cancellationToken);
             var t = DateTime.Now;
-#if WPF
+
             RunOnDispatcherThread(() =>
-#elif METRO
-                await DispatcherHelper.CheckBeginInvokeOnUi(() =>
-#endif
+
             {
                 if (MoveAnimation != null)
                 {
                     MoveAnimation.CleanupBaseData();
                     MoveAnimation.Cleanup();
                 }
+
                 //setup vertex positions from result data
                 foreach (var item in resultCoords)
                 {
@@ -908,8 +853,10 @@ namespace GraphX.Controls
                     if (MoveAnimation == null || double.IsNaN(GetX(vc)))
                         vc.SetPosition(item.Value.X, item.Value.Y, false);
                     else MoveAnimation.AddVertexData(vc, item.Value);
-                    vc.SetCurrentValue(PositioningCompleteProperty, true); // Style can show vertexes with layout positions assigned
+                    vc.SetCurrentValue(PositioningCompleteProperty,
+                        true); // Style can show vertexes with layout positions assigned
                 }
+
                 if (MoveAnimation != null)
                 {
                     if (MoveAnimation.VertexStorage.Count > 0)
@@ -921,40 +868,18 @@ namespace GraphX.Controls
                         MoveAnimation.RunEdgeAnimation();
                 }
 
-#if WPF
                 SetCurrentValue(LogicCoreProperty, localLogicCore);
                 UpdateLayout(); //update all changes
                 Debug.WriteLine("VIS: " + (t - DateTime.Now));
 
             });
-#elif METRO
-                    MeasureOverride(new Windows.Foundation.Size(double.PositiveInfinity, double.PositiveInfinity));
 
-                    if (generateAllEdges)
-                    {
-                        if (_edgeslist.Count == 0)
-                        {
-                            this.GenerateAllEdgesInternal();
-                            if (EnableVisualPropsRecovery) ReapplyEdgeVisualProperties();
-                        }
-                        else UpdateAllEdges();
-                    }
-                    if (!standalone)
-                    {
-                        if (EnableVisualPropsRecovery) ReapplyVertexVisualProperties();
-                        OnGenerateGraphFinished();
-                    }
-                    else OnRelayoutFinished();
-                });
-            }, cancellationToken);
-#endif
         }
 
         /// <summary>
         /// Relayout graph using the same vertexes
         /// </summary>
         /// <param name="generateAllEdges">Generate all available edges for graph</param>
-#if WPF
         public override void RelayoutGraph(bool generateAllEdges = false)
         {
             LogicCore.PushFilters();
@@ -1008,37 +933,10 @@ namespace GraphX.Controls
             }
         }
 
-#elif METRO
-        public override Task RelayoutGraphAsync(bool generateAllEdges = false)
-        {
-            return RelayoutGraphAsync(CancellationToken.None, generateAllEdges);
-        }
 
-        public Task RelayoutGraphAsync(CancellationToken cancellationToken, bool generateAllEdges = false)
-        {
-            LogicCore.PushFilters();
-            return _relayoutGraphMainAsync(cancellationToken, generateAllEdges, standalone: true);
-        }
-
-        protected virtual async Task _relayoutGraphMainAsync(CancellationToken externalCancellationToken, bool generateAllEdges = false, bool standalone = true)
-        {
-            if (LogicCore == null)
-                throw new GX_InvalidDataException("LogicCore -> Not initialized!");
-
-            await CancelRelayoutAsync();
-
-            _layoutCancellationSource = new CancellationTokenSource();
-
-            if (externalCancellationToken != CancellationToken.None)
-                _linkedLayoutCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(_layoutCancellationSource.Token, externalCancellationToken);
-
-            _layoutTask = _relayoutGraph((_linkedLayoutCancellationSource ?? _layoutCancellationSource).Token, generateAllEdges, standalone);
-            await _layoutTask;
-        }
-#endif
 
         #region WPF/METRO threading stuff
-#if WPF
+
         private void RunOnDispatcherThread(Action action)
         {
             var dispatcher = Application.Current?.Dispatcher ?? Dispatcher;
@@ -1108,9 +1006,7 @@ namespace GraphX.Controls
                 UnwrapAndRethrow(ex);
             }
         }
-#elif METRO
-        private CancellationTokenSource _linkedLayoutCancellationSource;
-#endif
+
         #endregion
 
         #endregion
@@ -1793,7 +1689,6 @@ namespace GraphX.Controls
 
             if (AutoAssignMissingDataId)
                 AutoresolveIds(true);
-            var ddd = VertexList.Select(a => a.Value.VertexConnectionPointsList).ToList();
             var dlist = new List<GraphSerializationData>();
             foreach (var item in VertexList) //ALWAYS serialize vertices first
             {
