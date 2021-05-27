@@ -3,7 +3,7 @@
 namespace Aries.OpenCV.Blocks.Export
 {
 
-    public class Width : ExportBlock<int>
+    public class Width : ExportBlock<int?>
     {
 
         public Width()
@@ -11,9 +11,14 @@ namespace Aries.OpenCV.Blocks.Export
             Name = "Width";
         }
 
+        public override bool CanExecute()
+        {
+            return true;
+        }
+
         public override void Execute()
         {
-            ExportResult = InputMat.Width;
+            ExportResult = InputMat?.Width;
         }
 
 

@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphX.WPF.Controls", "Grap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphX.Standard.Common", "GraphX.Standard.Common\GraphX.Standard.Common.csproj", "{5E0E001B-A4D3-4F7C-937D-F8D388FC42F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphX.Standard.Logic", "GraphX.Standard.Logic\GraphX.Standard.Logic.csproj", "{5CB27FF0-44B5-4E2D-979C-E71429F62427}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphX.Standard.Logic", "GraphX.Standard.Logic\GraphX.Standard.Logic.csproj", "{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,14 +75,14 @@ Global
 		{5E0E001B-A4D3-4F7C-937D-F8D388FC42F7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E0E001B-A4D3-4F7C-937D-F8D388FC42F7}.Release|x86.ActiveCfg = Release|Any CPU
 		{5E0E001B-A4D3-4F7C-937D-F8D388FC42F7}.Release|x86.Build.0 = Release|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Debug|x86.Build.0 = Debug|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Release|x86.ActiveCfg = Release|Any CPU
-		{5CB27FF0-44B5-4E2D-979C-E71429F62427}.Release|x86.Build.0 = Release|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Debug|x86.Build.0 = Debug|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Release|x86.ActiveCfg = Release|Any CPU
+		{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

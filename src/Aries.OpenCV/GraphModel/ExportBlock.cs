@@ -15,7 +15,6 @@ namespace Aries.OpenCV.GraphModel
 
         [Category("OUT_DATA")] public T ExportResult { set; get; }
 
-        public abstract void Execute();
 
         public override string ToString()
         {

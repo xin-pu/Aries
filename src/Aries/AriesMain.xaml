@@ -57,12 +57,12 @@
                         </StatusBarItem>
                     </StatusBar>
                 </TabItem>
-                <TabItem Header="控制" FontSize="13">
+                <TabItem Header="控制" FontSize="13" DataContext="{Binding GraphCvRunManager}">
                     <StatusBar VerticalAlignment="Stretch">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="运行" Icon="&#xf07e;"/>
-                                <controls:TabButton Content="停止" Icon="&#xf0db;"/>
+                                <controls:TabButton Content="运行" Icon="&#xf07e;" Command="{Binding RunGraphCVCommand}"/>
+                                <controls:TabButton Content="停止" Icon="&#xf0db;" Command="{Binding StopGraphCVCommand}"/>
                             </StackPanel>
                         </StatusBarItem>
 

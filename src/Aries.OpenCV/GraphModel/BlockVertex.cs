@@ -7,7 +7,7 @@ using GraphX.Common.Models;
 namespace Aries.OpenCV.GraphModel
 {
     [Serializable]
-    public class BlockVertex : VertexBase, INotifyPropertyChanged
+    public abstract class BlockVertex : VertexBase, INotifyPropertyChanged
     {
         public BlockType BlockType { set; get; }
 
@@ -26,6 +26,8 @@ namespace Aries.OpenCV.GraphModel
             return BlockHelper.GetBlockICon(GetType());
         }
 
+        public abstract bool CanExecute();
+        public abstract void Execute();
 
         #region
 

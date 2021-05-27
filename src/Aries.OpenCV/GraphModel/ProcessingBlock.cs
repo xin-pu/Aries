@@ -22,8 +22,6 @@ namespace Aries.OpenCV.GraphModel
         public string SaveBlockName { set; get; }
 
 
-        public abstract bool CanExecute();
-        public abstract void Execute();
 
         public virtual void SaveBlock()
         {

@@ -21,12 +21,13 @@ namespace Aries.OpenCV.Blocks.Import
             Icon = "&#xef71;";
         }
 
-        public override bool CanImport()
+
+        public override bool CanExecute()
         {
             return File.Exists(FileName);
         }
 
-        public override void Import()
+        public override void Execute()
         {
             OutPutMat = Cv2.ImRead(FileName);
         }

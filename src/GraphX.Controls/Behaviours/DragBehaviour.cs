@@ -363,7 +363,6 @@ namespace GraphX.Controls
 
         #region Edge Drag
 
-
         private static void OnEdgeDrageStarted(object sender, MouseButtonEventArgs e)
         {
             if (!(sender is EdgeControl edgeControl))
@@ -386,10 +385,10 @@ namespace GraphX.Controls
             var disSource = MathHelper.GetDistance(sourcePos, e.MouseDevice.GetPosition(edgeControl.RootArea));
             var disTarget = MathHelper.GetDistance(targetPos, e.MouseDevice.GetPosition(edgeControl.RootArea));
 
-            edgeControl.IsEditTarget = Math.Abs(new[] { disSource, disTarget }.Min() - disTarget) < 0.001;
+            edgeControl.IsEditTarget = Math.Abs(new[] {disSource, disTarget}.Min() - disTarget) < 0.001;
 
             SetIsDragging(obj, true);
-       
+
 
             if (obj is IInputElement element)
             {
@@ -409,32 +408,36 @@ namespace GraphX.Controls
             if (!(sender is EdgeControl edgeControl))
                 return;
 
+            if (!(edgeControl.Edge is IGraphXCommonEdge edge))
+                return;
+
             var graphAreaBase = edgeControl.RootArea;
             var vertexControl = graphAreaBase.GetVertexControlAt(e.GetPosition(graphAreaBase));
 
             if (vertexControl != null)
             {
+                /// Update Source or Target Vertex
                 if (edgeControl.IsEditTarget)
                 {
                     edgeControl.Target = vertexControl;
                 }
                 else
+                {
                     edgeControl.Source = vertexControl;
-
+                }
+                
+                /// Update Source or Target Vertext ConnectionPoint
                 if (vertexControl.VertexConnectionPointsList.Count > 0)
                 {
                     var vertexConnectionPoint =
                         vertexControl.GetConnectionPointAt(e.GetPosition(graphAreaBase));
-
-                    var edge = edgeControl.Edge as IGraphXCommonEdge;
-
-                    if (vertexConnectionPoint != null)
+                    if (edgeControl.IsEditTarget)
                     {
-                        edge.SourceConnectionPointId = vertexConnectionPoint.Id;
+                        edge.TargetConnectionPointId = vertexConnectionPoint?.Id;
                     }
                     else
                     {
-                        edge.SourceConnectionPointId = null;
+                        edge.SourceConnectionPointId = vertexConnectionPoint?.Id;
                     }
                 }
 
@@ -442,7 +445,6 @@ namespace GraphX.Controls
 
                 var obj = (DependencyObject)sender;
                 SetIsDragging(obj, false);
-
 
                 var element = sender as IInputElement;
                 element.MouseMove -= OnVertexDragging;
