@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.ComponentModel;
 using GraphX.Common.Enums;
 using GraphX.Common.Interfaces;
-using GraphX.Controls;
 using GraphX.Controls.Animations;
 using GraphX.Controls.Models;
 
-namespace GraphX
+namespace GraphX.Controls
 {
     public abstract class GraphAreaBase : Canvas, ITrackableContent, IGraphAreaBase
     {
@@ -31,12 +30,13 @@ namespace GraphX
         /// </summary>
         public LogicCoreChangedAction LogicCoreChangeAction
         {
-            get { return (LogicCoreChangedAction)GetValue(LogicCoreChangeActionProperty); }
+            get { return (LogicCoreChangedAction) GetValue(LogicCoreChangeActionProperty); }
             set { SetValue(LogicCoreChangeActionProperty, value); }
         }
 
         public static readonly DependencyProperty LogicCoreChangeActionProperty =
-            DependencyProperty.Register(nameof(LogicCoreChangeAction), typeof(LogicCoreChangedAction), typeof(GraphAreaBase), new PropertyMetadata(LogicCoreChangedAction.None));
+            DependencyProperty.Register(nameof(LogicCoreChangeAction), typeof(LogicCoreChangedAction),
+                typeof(GraphAreaBase), new PropertyMetadata(LogicCoreChangedAction.None));
 
         protected GraphAreaBase()
         {
@@ -46,18 +46,15 @@ namespace GraphX
         #region Attached Dependency Property registrations
 
         public static readonly DependencyProperty XProperty =
-            DependencyProperty.RegisterAttached("X", typeof (double), typeof (GraphAreaBase),
-#if WPF
-                                                 new FrameworkPropertyMetadata(double.NaN,
-                                                                                FrameworkPropertyMetadataOptions.AffectsMeasure |
-                                                                                FrameworkPropertyMetadataOptions.AffectsArrange |
-                                                                                FrameworkPropertyMetadataOptions.AffectsRender |
-                                                                                FrameworkPropertyMetadataOptions.AffectsParentMeasure |
-                                                                                FrameworkPropertyMetadataOptions.AffectsParentArrange |
-                                                                                FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, x_changed));
-#elif METRO
-                                                 new PropertyMetadata(double.NaN, x_changed));
-#endif
+            DependencyProperty.RegisterAttached("X", typeof(double), typeof(GraphAreaBase),
+                new FrameworkPropertyMetadata(double.NaN,
+                    FrameworkPropertyMetadataOptions.AffectsMeasure |
+                    FrameworkPropertyMetadataOptions.AffectsArrange |
+                    FrameworkPropertyMetadataOptions.AffectsRender |
+                    FrameworkPropertyMetadataOptions.AffectsParentMeasure |
+                    FrameworkPropertyMetadataOptions.AffectsParentArrange |
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, x_changed));
+
 
         private static void x_changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -66,27 +63,25 @@ namespace GraphX
 
         public static readonly DependencyProperty FinalXProperty =
             DependencyProperty.RegisterAttached("FinalX", typeof(double), typeof(GraphAreaBase),
-                                                 new PropertyMetadata(double.NaN));
+                new PropertyMetadata(double.NaN));
+
         public static readonly DependencyProperty FinalYProperty =
             DependencyProperty.RegisterAttached("FinalY", typeof(double), typeof(GraphAreaBase),
-                                                 new PropertyMetadata(double.NaN));
+                new PropertyMetadata(double.NaN));
 
 
 
         public static readonly DependencyProperty YProperty =
             DependencyProperty.RegisterAttached("Y", typeof(double), typeof(GraphAreaBase),
-#if WPF
-                                                 new FrameworkPropertyMetadata(double.NaN,
-                                                   FrameworkPropertyMetadataOptions.AffectsMeasure |
-                                                   FrameworkPropertyMetadataOptions.AffectsArrange |
-                                                   FrameworkPropertyMetadataOptions.AffectsRender |
-                                                   FrameworkPropertyMetadataOptions.AffectsParentMeasure |
-                                                   FrameworkPropertyMetadataOptions.AffectsParentArrange |
-                                                   FrameworkPropertyMetadataOptions.BindsTwoWayByDefault
-                                                   , y_changed));
-#elif METRO
-                                                 new PropertyMetadata(double.NaN, y_changed));
-#endif
+
+                new FrameworkPropertyMetadata(double.NaN,
+                    FrameworkPropertyMetadataOptions.AffectsMeasure |
+                    FrameworkPropertyMetadataOptions.AffectsArrange |
+                    FrameworkPropertyMetadataOptions.AffectsRender |
+                    FrameworkPropertyMetadataOptions.AffectsParentMeasure |
+                    FrameworkPropertyMetadataOptions.AffectsParentArrange |
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault
+                    , y_changed));
 
         private static void y_changed(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -95,11 +90,7 @@ namespace GraphX
 
         public static double GetX(DependencyObject obj)
         {
-#if WPF
-            return (double)obj.GetValue(XProperty);
-#elif METRO
-            return (double)obj.GetValue(LeftProperty);
-#endif
+            return (double) obj.GetValue(XProperty);
         }
 
         public static void SetX(DependencyObject obj, double value, bool alsoSetFinal = true)
@@ -111,11 +102,7 @@ namespace GraphX
 
         public static double GetY(DependencyObject obj)
         {
-#if WPF
-            return (double)obj.GetValue(YProperty);
-#elif METRO
-            return (double)obj.GetValue(TopProperty);
-#endif
+            return (double) obj.GetValue(YProperty);
         }
 
         public static void SetY(DependencyObject obj, double value, bool alsoSetFinal = false)
@@ -128,7 +115,7 @@ namespace GraphX
 
         public static double GetFinalX(DependencyObject obj)
         {
-            return (double)obj.GetValue(FinalXProperty);
+            return (double) obj.GetValue(FinalXProperty);
         }
 
         public static void SetFinalX(DependencyObject obj, double value)
@@ -138,7 +125,7 @@ namespace GraphX
 
         public static double GetFinalY(DependencyObject obj)
         {
-            return (double)obj.GetValue(FinalYProperty);
+            return (double) obj.GetValue(FinalYProperty);
         }
 
         public static void SetFinalY(DependencyObject obj, double value)
@@ -148,7 +135,7 @@ namespace GraphX
 
         public static bool GetPositioningComplete(DependencyObject obj)
         {
-            return (bool)obj.GetValue(PositioningCompleteProperty);
+            return (bool) obj.GetValue(PositioningCompleteProperty);
         }
 
         public static void SetPositioningComplete(DependencyObject obj, bool value)
@@ -157,9 +144,12 @@ namespace GraphX
         }
 
         #region DP - ExternalSettings
+
         // todo: ExternalSettings or ExternalSettingsOnly?
-        public static readonly DependencyProperty ExternalSettingsProperty = DependencyProperty.Register("ExternalSettingsOnly", typeof(object),
-                                        typeof(GraphAreaBase), new PropertyMetadata(null));
+        public static readonly DependencyProperty ExternalSettingsProperty = DependencyProperty.Register(
+            "ExternalSettingsOnly", typeof(object),
+            typeof(GraphAreaBase), new PropertyMetadata(null));
+
         /// <summary>
         ///User-defined settings storage for using in templates and converters
         /// </summary>
@@ -168,6 +158,7 @@ namespace GraphX
             get { return GetValue(ExternalSettingsProperty); }
             set { SetValue(ExternalSettingsProperty, value); }
         }
+
         #endregion
 
         #region DP - Animations
@@ -177,24 +168,26 @@ namespace GraphX
         /// </summary>
         public MoveAnimationBase MoveAnimation
         {
-            get { return (MoveAnimationBase)GetValue(MoveAnimationProperty); }
+            get { return (MoveAnimationBase) GetValue(MoveAnimationProperty); }
             set { SetValue(MoveAnimationProperty, value); }
         }
 
         public static readonly DependencyProperty MoveAnimationProperty =
-            DependencyProperty.Register(nameof(MoveAnimation), typeof(MoveAnimationBase), typeof(GraphAreaBase), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(MoveAnimation), typeof(MoveAnimationBase), typeof(GraphAreaBase),
+                new PropertyMetadata(null));
 
         /// <summary>
         /// Gets or sets vertex and edge controls delete animation
         /// </summary>
         public IOneWayControlAnimation DeleteAnimation
         {
-            get { return (IOneWayControlAnimation)GetValue(DeleteAnimationProperty); }
+            get { return (IOneWayControlAnimation) GetValue(DeleteAnimationProperty); }
             set { SetValue(DeleteAnimationProperty, value); }
         }
 
         public static readonly DependencyProperty DeleteAnimationProperty =
-            DependencyProperty.Register(nameof(DeleteAnimation), typeof(IOneWayControlAnimation), typeof(GraphAreaBase), new PropertyMetadata(null, DeleteAnimationPropertyChanged));
+            DependencyProperty.Register(nameof(DeleteAnimation), typeof(IOneWayControlAnimation), typeof(GraphAreaBase),
+                new PropertyMetadata(null, DeleteAnimationPropertyChanged));
 
         private static void DeleteAnimationPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -204,6 +197,7 @@ namespace GraphX
                 var old = animation;
                 old.Completed -= GraphAreaBase_Completed;
             }
+
             var newone = e.NewValue as IOneWayControlAnimation;
             if (newone != null)
                 newone.Completed += GraphAreaBase_Completed;
@@ -227,17 +221,19 @@ namespace GraphX
         /// </summary>
         public IBidirectionalControlAnimation MouseOverAnimation
         {
-            get { return (IBidirectionalControlAnimation)GetValue(MouseOverAnimationProperty); }
+            get { return (IBidirectionalControlAnimation) GetValue(MouseOverAnimationProperty); }
             set { SetValue(MouseOverAnimationProperty, value); }
         }
 
         public static readonly DependencyProperty MouseOverAnimationProperty =
-            DependencyProperty.Register(nameof(MouseOverAnimation), typeof(IBidirectionalControlAnimation), typeof(GraphAreaBase), new PropertyMetadata(null));
+            DependencyProperty.Register(nameof(MouseOverAnimation), typeof(IBidirectionalControlAnimation),
+                typeof(GraphAreaBase), new PropertyMetadata(null));
 
         #endregion
 
         public static readonly DependencyProperty PositioningCompleteProperty =
-            DependencyProperty.RegisterAttached("PositioningComplete", typeof(bool), typeof(GraphAreaBase), new PropertyMetadata(true));
+            DependencyProperty.RegisterAttached("PositioningComplete", typeof(bool), typeof(GraphAreaBase),
+                new PropertyMetadata(true));
 
         #endregion
 
@@ -260,18 +256,12 @@ namespace GraphX
         /// </summary>
         public event VertexSelectedEventHandler VertexDoubleClick;
 
-#if WPF
+
         internal virtual void OnVertexDoubleClick(VertexControl vc, MouseButtonEventArgs e)
         {
             VertexDoubleClick?.Invoke(this, new VertexSelectedEventArgs(vc, e, Keyboard.Modifiers));
         }
-#elif METRO
-        internal virtual void OnVertexDoubleClick(VertexControl vc, PointerRoutedEventArgs e)
-        {
-            if (VertexDoubleClick != null)
-                VertexDoubleClick(this, new VertexSelectedEventArgs(vc, e));
-        }
-#endif
+
 
         /// <summary>
         /// Fires when vertex is selected
@@ -280,15 +270,10 @@ namespace GraphX
 
         internal virtual void OnVertexSelected(VertexControl vc, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            VertexSelected?.Invoke(this, new VertexSelectedEventArgs(vc, e
-#if WPF
-                , keys));
-#elif METRO
-                    ));
-#endif
+            VertexSelected?.Invoke(this, new VertexSelectedEventArgs(vc, e, keys));
         }
 
-#if WPF
+
         /// <summary>
         /// Fires when vertex is clicked
         /// </summary>
@@ -296,10 +281,9 @@ namespace GraphX
 
         internal virtual void OnVertexClicked(VertexControl vc, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            VertexClicked?.Invoke(this, new VertexClickedEventArgs(vc, e
-                , keys));
+            VertexClicked?.Invoke(this, new VertexClickedEventArgs(vc, e, keys));
         }
-#endif
+
 
         /// <summary>
         /// Fires when mouse up on vertex
@@ -308,12 +292,7 @@ namespace GraphX
 
         internal virtual void OnVertexMouseUp(VertexControl vc, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            VertexMouseUp?.Invoke(this, new VertexSelectedEventArgs(vc, e
-#if WPF
-                , keys));
-#elif METRO
-                    ));
-#endif
+            VertexMouseUp?.Invoke(this, new VertexSelectedEventArgs(vc, e, keys));
         }
 
         /// <summary>
@@ -323,12 +302,7 @@ namespace GraphX
 
         internal virtual void OnVertexMouseEnter(VertexControl vc, MouseEventArgs e)
         {
-            VertexMouseEnter?.Invoke(this, new VertexSelectedEventArgs(vc, e
-#if WPF
-                , Keyboard.Modifiers));
-#elif METRO
-                    ));
-#endif
+            VertexMouseEnter?.Invoke(this, new VertexSelectedEventArgs(vc, e, Keyboard.Modifiers));
             MouseOverAnimation?.AnimateVertexForward(vc);
         }
 
@@ -349,12 +323,7 @@ namespace GraphX
 
         internal virtual void OnVertexMouseLeave(VertexControl vc, MouseEventArgs e)
         {
-            VertexMouseLeave?.Invoke(this, new VertexSelectedEventArgs(vc, e
-#if WPF
-                , Keyboard.Modifiers));
-#elif METRO
-));
-#endif
+            VertexMouseLeave?.Invoke(this, new VertexSelectedEventArgs(vc, e, Keyboard.Modifiers));
             MouseOverAnimation?.AnimateVertexBackward(vc);
         }
 
@@ -415,15 +384,10 @@ namespace GraphX
 
         internal virtual void OnEdgeSelected(EdgeControl ec, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            EdgeSelected?.Invoke(this, new EdgeSelectedEventArgs(ec, e
-#if WPF
-                , keys));
-#elif METRO
-                    ));
-#endif
+            EdgeSelected?.Invoke(this, new EdgeSelectedEventArgs(ec, e, keys));
         }
 
-#if WPF
+
         /// <summary>
         /// Fires when edge is clicked
         /// </summary>
@@ -431,69 +395,59 @@ namespace GraphX
 
         internal virtual void OnEdgeClicked(EdgeControl ec, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            EdgeClicked?.Invoke(this, new EdgeClickedEventArgs(ec, e
-                , keys));
+            EdgeClicked?.Invoke(this, new EdgeClickedEventArgs(ec, e, keys));
         }
-#endif
+
 
         public event EdgeSelectedEventHandler EdgeDoubleClick;
+
         internal void OnEdgeDoubleClick(EdgeControl edgeControl, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            EdgeDoubleClick?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e
-#if WPF
-                , keys));
-#elif METRO
-                    ));
-#endif
+            EdgeDoubleClick?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e, keys));
         }
 
         public event EdgeSelectedEventHandler EdgeMouseMove;
+
         internal void OnEdgeMouseMove(EdgeControl edgeControl, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            EdgeMouseMove?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e
-#if WPF
-                , keys));
-#elif METRO
-));
-#endif
+            EdgeMouseMove?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e, keys));
+
         }
 
         public event EdgeSelectedEventHandler EdgeMouseEnter;
+
         internal void OnEdgeMouseEnter(EdgeControl edgeControl, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            EdgeMouseEnter?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e
-#if WPF
-                , keys));
-#elif METRO
-));
-#endif
+            EdgeMouseEnter?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e, keys));
+
             MouseOverAnimation?.AnimateEdgeForward(edgeControl);
         }
 
         public event EdgeSelectedEventHandler EdgeMouseLeave;
+
         internal void OnEdgeMouseLeave(EdgeControl edgeControl, MouseButtonEventArgs e, ModifierKeys keys)
         {
-            EdgeMouseLeave?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e
-#if WPF
-                , keys));
-#elif METRO
-));
-#endif
+            EdgeMouseLeave?.Invoke(this, new EdgeSelectedEventArgs(edgeControl, e, keys));
             MouseOverAnimation?.AnimateEdgeBackward(edgeControl);
         }
 
         #endregion
 
         #region ComputeEdgeRoutesByVertex()
+
         /// <summary>
         /// Compute new edge routes for all edges of the vertex
         /// </summary>
         /// <param name="vc">Vertex visual control</param>
         /// <param name="vertexDataNeedUpdate">If vertex data inside edge routing algorthm needs to be updated</param>
-        internal virtual void ComputeEdgeRoutesByVertex(VertexControl vc, bool vertexDataNeedUpdate = true) { }
+        internal virtual void ComputeEdgeRoutesByVertex(VertexControl vc, bool vertexDataNeedUpdate = true)
+        {
+        }
+
         #endregion
 
         #region Virtual members
+
         /// <summary>
         /// Returns all existing VertexControls addded into the layout
         /// </summary>
@@ -502,12 +456,8 @@ namespace GraphX
 
         public abstract VertexControl GetVertexControlAt(Point position);
 
-#if WPF
         public abstract void RelayoutGraph(bool generateAllEdges = false);
-#else
-        public abstract Task RelayoutGraphAsync(bool generateAllEdges = false);
 
-#endif
 
         // INTERNAL VARIABLES FOR CONTROLS INTEROPERABILITY
         internal abstract bool IsEdgeRoutingEnabled { get; }
@@ -522,19 +472,24 @@ namespace GraphX
         /// <param name="ctrl">Original control</param>
         /// <param name="resultType">Type of resulting related controls</param>
         /// <param name="edgesType">Optional edge controls type</param>
-        public abstract List<IGraphControl> GetRelatedControls(IGraphControl ctrl, GraphControlType resultType = GraphControlType.VertexAndEdge, EdgesType edgesType = EdgesType.Out);
+        public abstract List<IGraphControl> GetRelatedControls(IGraphControl ctrl,
+            GraphControlType resultType = GraphControlType.VertexAndEdge, EdgesType edgesType = EdgesType.Out);
+
         /// <summary>
         /// Get vertex controls related to specified control
         /// </summary>
         /// <param name="ctrl">Original control</param>
         /// <param name="edgesType">Edge types to query for vertices</param>
-        public abstract List<IGraphControl> GetRelatedVertexControls(IGraphControl ctrl, EdgesType edgesType = EdgesType.All);
+        public abstract List<IGraphControl> GetRelatedVertexControls(IGraphControl ctrl,
+            EdgesType edgesType = EdgesType.All);
+
         /// <summary>
         /// Get edge controls related to specified control
         /// </summary>
         /// <param name="ctrl">Original control</param>
         /// <param name="edgesType">Edge types to query</param>
-        public abstract List<IGraphControl> GetRelatedEdgeControls(IGraphControl ctrl, EdgesType edgesType = EdgesType.All);
+        public abstract List<IGraphControl> GetRelatedEdgeControls(IGraphControl ctrl,
+            EdgesType edgesType = EdgesType.All);
 
 
         /// <summary>
@@ -543,7 +498,8 @@ namespace GraphX
         /// <param name="vc">Vertex control</param>
         /// <param name="edgeType">Type of edges to display</param>
         /// <param name="defaultVisibility">Default edge visibility on layout</param>
-        public abstract void GenerateEdgesForVertex(VertexControl vc, EdgesType edgeType, Visibility defaultVisibility = Visibility.Visible);
+        public abstract void GenerateEdgesForVertex(VertexControl vc, EdgesType edgeType,
+            Visibility defaultVisibility = Visibility.Visible);
 
         #endregion
 
@@ -571,12 +527,13 @@ namespace GraphX
         /// <summary>
         /// Translation of the GraphArea object
         /// </summary>
-// public Vector Translation { get; private set; }
+        // public Vector Translation { get; private set; }
         /// <summary>
         /// Gets or sets additional area space for each side of GraphArea. Useful for zoom adjustments.
         /// 0 by default.
         /// </summary>
         public Size SideExpansionSize { get; set; }
+
         /// <summary>
         /// Gets or sets if edge route paths must be taken into consideration while determining area size
         /// </summary>
@@ -607,9 +564,7 @@ namespace GraphX
                         x = 0;
                         y = 0;
                     }
-#if METRO
-                    else continue;
-#endif
+
                     if (COUNT_ROUTE_PATHS && ec != null)
                     {
                         var routingInfo = ec.Edge as IRoutingInfo;
@@ -635,12 +590,11 @@ namespace GraphX
 
                 child.Arrange(new Rect(x, y, child.DesiredSize.Width, child.DesiredSize.Height));
             }
-#if WPF
 
-            return DesignerProperties.GetIsInDesignMode(this) ? DesignSize : (IsInPrintMode ? ContentSize.Size : new Size(10, 10));
-#elif METRO
-            return DesignMode.DesignModeEnabled ? DesignSize : new Size(10, 10);
-#endif
+            return DesignerProperties.GetIsInDesignMode(this)
+                ? DesignSize
+                : (IsInPrintMode ? ContentSize.Size : new Size(10, 10));
+
         }
 
         /// <summary>
@@ -655,11 +609,9 @@ namespace GraphX
             _topLeft = new Point(double.PositiveInfinity, double.PositiveInfinity);
             _bottomRight = new Point(double.NegativeInfinity, double.NegativeInfinity);
 
-#if WPF
+
             foreach (UIElement child in InternalChildren)
-#elif METRO
-            foreach (UIElement child in Children)
-#endif
+
             {
                 //measure the child
                 child.Measure(constraint);
@@ -668,7 +620,7 @@ namespace GraphX
                 var left = GetFinalX(child);
                 var top = GetFinalY(child);
 
-                if(child.Visibility == Visibility.Collapsed) continue;
+                if (child.Visibility == Visibility.Collapsed) continue;
 
                 if (double.IsNaN(left) || double.IsNaN(top))
                 {
@@ -702,6 +654,7 @@ namespace GraphX
                 }
 
             }
+
             _topLeft.X -= SideExpansionSize.Width * .5;
             _topLeft.Y -= SideExpansionSize.Height * .5;
             _bottomRight.X += SideExpansionSize.Width * .5;
@@ -709,12 +662,13 @@ namespace GraphX
             var newSize = ContentSize;
             if (oldSize != newSize)
                 OnContentSizeChanged(oldSize, newSize);
-#if WPF
-            return DesignerProperties.GetIsInDesignMode(this) ? DesignSize : (IsInPrintMode ? ContentSize.Size : new Size(10, 10));
-#elif METRO
-            return DesignMode.DesignModeEnabled ? DesignSize : new Size(10, 10);
-#endif
+
+            return DesignerProperties.GetIsInDesignMode(this)
+                ? DesignSize
+                : (IsInPrintMode ? ContentSize.Size : new Size(10, 10));
+
         }
+
         #endregion
 
     }

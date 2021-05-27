@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Linq;
-#if WPF
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-#elif METRO
-using MouseButtonEventArgs = Windows.UI.Xaml.Input.PointerRoutedEventArgs;
-using MouseEventArgs = Windows.UI.Xaml.Input.PointerRoutedEventArgs;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-#endif
 using GraphX.Controls.Models;
 using GraphX.Common;
 using GraphX.Common.Enums;
@@ -21,9 +12,8 @@ namespace GraphX.Controls
     /// <summary>
     /// Visual edge control
     /// </summary>
-#if WPF
+
     [Serializable]
-#endif
     public class EdgeControl : EdgeControlBase
     {
         #region Dependency Properties
@@ -32,6 +22,7 @@ namespace GraphX.Controls
                                                                                               typeof(EdgeControl),
                                                                                               new PropertyMetadata(5.0));
 
+        public bool IsEditTarget { set; get; }
 
        /// <summary>
        /// Custom edge thickness
@@ -171,7 +162,7 @@ namespace GraphX.Controls
         }
         #endregion
 
-#if WPF
+
         static EdgeControl()
         {
             //override the StyleKey
@@ -218,35 +209,7 @@ namespace GraphX.Controls
             MouseUp -= EdgeControl_MouseUp;
             MouseUp += EdgeControl_MouseUp;
         }
-#elif METRO
-        protected internal virtual void UpdateEventhandling(EventType typ)
-        {
-            switch (typ)
-            {
-                case EventType.MouseClick:
-                    if (EventOptions.MouseClickEnabled) PointerPressed += EdgeControl_MouseDown;
-                    else PointerPressed -= EdgeControl_MouseDown;
-                    break;
-                case EventType.MouseDoubleClick:
-                    //if (EventOptions.MouseDoubleClickEnabled) MouseDoubleClick += EdgeControl_MouseDoubleClick;
-                    //else MouseDoubleClick -= EdgeControl_MouseDoubleClick;
-                    break;
-                case EventType.MouseEnter:
-                    if (EventOptions.MouseEnterEnabled) PointerEntered += EdgeControl_MouseEnter;
-                    else PointerEntered -= EdgeControl_MouseEnter;
-                    break;
-                case EventType.MouseLeave:
-                    if (EventOptions.MouseLeaveEnabled) PointerExited += EdgeControl_MouseLeave;
-                    else PointerExited -= EdgeControl_MouseLeave;
-                    break;
 
-                case EventType.MouseMove:
-                    if (EventOptions.MouseMoveEnabled) PointerMoved += EdgeControl_MouseMove;
-                    else PointerMoved -= EdgeControl_MouseMove;
-                    break;
-            }
-        }
-#endif
 
         public EdgeControl()
             : this(null, null, null)
@@ -261,10 +224,6 @@ namespace GraphX.Controls
             this.SetCurrentValue(ShowArrowsProperty, showArrows);
             IsHiddenEdgesUpdated = true;
 
-#if METRO
-            DefaultStyleKey = typeof(EdgeControl);
-#elif WPF
-#endif
 
             if (!this.IsInDesignMode())
             {

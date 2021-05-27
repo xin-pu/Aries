@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Interfaces;
 
@@ -47,7 +49,7 @@ namespace GraphX.Controls
         #region Built-in snapping behavior
 
         private static readonly Predicate<DependencyObject> _builtinIsSnappingPredicate = obj =>
-            System.Windows.Input.Keyboard.Modifiers == System.Windows.Input.ModifierKeys.Shift;
+            Keyboard.Modifiers == ModifierKeys.Shift;
 
         private static readonly Predicate<DependencyObject> _builtinIsIndividualSnappingPredicate = obj => false;
 
@@ -362,11 +364,32 @@ namespace GraphX.Controls
         #region Edge Drag
 
 
-        private static void OnEdgeDrageStarted(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private static void OnEdgeDrageStarted(object sender, MouseButtonEventArgs e)
         {
+            if (!(sender is EdgeControl edgeControl))
+                return;
             DependencyObject obj = sender as DependencyObject;
 
+            //get the position center of the source
+            var sourcePos = new Point
+            {
+                X = GraphAreaBase.GetX(edgeControl.Source),
+                Y = GraphAreaBase.GetY(edgeControl.Source),
+            };
+
+            var targetPos = new Point
+            {
+                X = GraphAreaBase.GetX(edgeControl.Target),
+                Y = GraphAreaBase.GetY(edgeControl.Target),
+            };
+
+            var disSource = MathHelper.GetDistance(sourcePos, e.MouseDevice.GetPosition(edgeControl.RootArea));
+            var disTarget = MathHelper.GetDistance(targetPos, e.MouseDevice.GetPosition(edgeControl.RootArea));
+
+            edgeControl.IsEditTarget = Math.Abs(new[] { disSource, disTarget }.Min() - disTarget) < 0.001;
+
             SetIsDragging(obj, true);
+       
 
             if (obj is IInputElement element)
             {
@@ -381,7 +404,7 @@ namespace GraphX.Controls
             e.Handled = false;
         }
 
-        private static void OnEdgeDragFinished(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private static void OnEdgeDragFinished(object sender, MouseButtonEventArgs e)
         {
             if (!(sender is EdgeControl edgeControl))
                 return;
@@ -391,7 +414,12 @@ namespace GraphX.Controls
 
             if (vertexControl != null)
             {
-                edgeControl.Target = vertexControl;
+                if (edgeControl.IsEditTarget)
+                {
+                    edgeControl.Target = vertexControl;
+                }
+                else
+                    edgeControl.Source = vertexControl;
 
                 if (vertexControl.VertexConnectionPointsList.Count > 0)
                 {
@@ -402,23 +430,19 @@ namespace GraphX.Controls
 
                     if (vertexConnectionPoint != null)
                     {
-                        edge.TargetConnectionPointId = vertexConnectionPoint.Id;
+                        edge.SourceConnectionPointId = vertexConnectionPoint.Id;
                     }
                     else
                     {
-                        edge.TargetConnectionPointId = null;
+                        edge.SourceConnectionPointId = null;
                     }
                 }
 
                 edgeControl.UpdateEdge();
 
-                var obj = (DependencyObject) sender;
+                var obj = (DependencyObject)sender;
                 SetIsDragging(obj, false);
 
-                //obj.ClearValue(OriginalMouseXProperty);
-                //obj.ClearValue(OriginalMouseYProperty);
-                //obj.ClearValue(OriginalXProperty);
-                //obj.ClearValue(OriginalYProperty);
 
                 var element = sender as IInputElement;
                 element.MouseMove -= OnVertexDragging;
@@ -427,14 +451,19 @@ namespace GraphX.Controls
         }
 
 
-        private static void OnEdgeDragging(object sender, System.Windows.Input.MouseEventArgs e)
+        private static void OnEdgeDragging(object sender, MouseEventArgs e)
         {
             var obj = sender as DependencyObject;
             if (!GetIsDragging(obj))
                 return;
 
             if (sender is EdgeControl edgeControl)
-                edgeControl.PrepareEdgePathFromMousePointer();
+                if (edgeControl.IsEditTarget)
+                    edgeControl.PrepareEdgePathFromMousePointerTargetChange();
+                else
+                {
+                    edgeControl.PrepareEdgePathFromMousePointerSourceChange(true);
+                }
 
             e.Handled = true;
         }
@@ -443,7 +472,7 @@ namespace GraphX.Controls
 
         #region Vertext Drag
 
-        private static void OnVertexDragStarted(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private static void OnVertexDragStarted(object sender, MouseButtonEventArgs e)
 
         {
             var obj = sender as DependencyObject;
@@ -483,7 +512,7 @@ namespace GraphX.Controls
         }
 
 
-        private static void OnVertexDragFinished(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        private static void OnVertexDragFinished(object sender, MouseButtonEventArgs e)
         {
             UpdateVertexEdges(sender as VertexControl);
 
@@ -515,7 +544,7 @@ namespace GraphX.Controls
         }
 
 
-        private static void OnVertexDragging(object sender, System.Windows.Input.MouseEventArgs e)
+        private static void OnVertexDragging(object sender, MouseEventArgs e)
         {
             var obj = sender as DependencyObject;
             if (!GetIsDragging(obj))
@@ -636,7 +665,7 @@ namespace GraphX.Controls
             //Debug.WriteLine("({0:##0.00000}, {1:##0.00000})", x, y);
         }
 
-        private static Point GetPositionInArea(GraphAreaBase area, System.Windows.Input.MouseEventArgs e)
+        private static Point GetPositionInArea(GraphAreaBase area, MouseEventArgs e)
 
         {
             if (area != null)
