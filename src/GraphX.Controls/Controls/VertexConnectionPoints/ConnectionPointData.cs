@@ -5,13 +5,12 @@
         public long ParentID { set; get; }
         public int ID { set; get; }
         public string Header { set; get; }
-        public ConnectionPointType ConnectionPointType { set; get; }
+        public ConnectType ConnectType { set; get; }
     }
 
-
-    public enum ConnectionPointType
+    public enum ConnectType
     {
-        IN,
-        OUT
+        IN_MAT,
+        OUT_MAT
     }
 }

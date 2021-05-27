@@ -18,7 +18,7 @@ namespace GraphX.Controls
         public int Id { get; set; }
 
         public string Header { set; get; }
-        public ConnectionPointType ConnectionPointType { get; set; }
+        public ConnectType ConnectType { get; set; }
 
         public static readonly DependencyProperty ShapeProperty =
             DependencyProperty.Register(nameof(Shape),

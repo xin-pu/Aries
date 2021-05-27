@@ -1,20 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-#if WPF
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.ComponentModel;
-#elif METRO
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.Foundation;
-using MouseButtonEventArgs = Windows.UI.Xaml.Input.PointerRoutedEventArgs;
-using MouseEventArgs = Windows.UI.Xaml.Input.PointerRoutedEventArgs;
-using Windows.ApplicationModel;
-#endif
 using GraphX.Common.Enums;
 using GraphX.Common.Interfaces;
 using GraphX.Controls;

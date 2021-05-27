@@ -1,10 +1,5 @@
 ﻿using System;
-#if WPF
 using System.Windows;
-#elif METRO
-using Windows.Foundation;
-using Windows.UI.Xaml;
-#endif
 using GraphX.Common.Enums;
 
 namespace GraphX.Controls
@@ -18,7 +13,7 @@ namespace GraphX.Controls
 
         string Header { set; get; }
 
-        ConnectionPointType ConnectionPointType { set; get; }
+        ConnectType ConnectType { set; get; }
 
         /// <summary>
         /// Gets or sets shape form for connection point (affects math calculations for edge end placement)

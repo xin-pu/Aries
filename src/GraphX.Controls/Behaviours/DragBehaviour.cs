@@ -1,17 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
-
-#if WPF
-
 using System.Windows;
-
-#elif METRO
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Input;
-using Windows.Foundation;
-using System.Linq;
-#endif
-
 using GraphX.Common.Exceptions;
 using GraphX.Common.Interfaces;
 using GraphX.Common.Models;

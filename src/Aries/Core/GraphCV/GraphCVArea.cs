@@ -74,7 +74,7 @@ namespace Aries.Core
                 Id = newId,
                 Header = propertyDescriptor.Name,
                 ToolTip = propertyDescriptor.Name,
-                ConnectionPointType = ConnectionPointType.IN
+                ConnectType = ConnectType.IN_MAT
             };
             var inputBorder = new Border
             {
@@ -96,7 +96,7 @@ namespace Aries.Core
                 Id = newId,
                 Header = propertyDescriptor.Name,
                 ToolTip = propertyDescriptor.Name,
-                ConnectionPointType = ConnectionPointType.OUT
+                ConnectType = ConnectType.OUT_MAT
             };
             var inputBorder = new Border
             {
@@ -114,7 +114,8 @@ namespace Aries.Core
             {
                 Id = connectionPointData.ID,
                 Header = connectionPointData.Header,
-                ToolTip = connectionPointData.Header
+                ToolTip = connectionPointData.Header,
+                ConnectType = connectionPointData.ConnectType
             };
             var inputBorder = new Border
             {
@@ -130,7 +131,8 @@ namespace Aries.Core
             {
                 Id = connectionPointData.ID,
                 Header = connectionPointData.Header,
-                ToolTip = connectionPointData.Header
+                ToolTip = connectionPointData.Header,
+                ConnectType = connectionPointData.ConnectType
             };
             var inputBorder = new Border
             {
@@ -187,12 +189,12 @@ namespace Aries.Core
                 /// Restore Connection Point
                 pList.Where(a => a.ParentID == vertexdata.ID).ToList().ForEach(p =>
                 {
-                    switch (p.ConnectionPointType)
+                    switch (p.ConnectType)
                     {
-                        case ConnectionPointType.IN:
+                        case ConnectType.IN_MAT:
                             AddInputConnectionPoint(ctrl, p);
                             break;
-                        case ConnectionPointType.OUT:
+                        case ConnectType.OUT_MAT:
                             AddOutputConnectionPoint(ctrl, p);
                             break;
                         default:
@@ -201,9 +203,6 @@ namespace Aries.Core
                 
                 });
             }
-
-
-
 
 
 
