@@ -1,11 +1,6 @@
 ﻿using System;
-#if WPF
 using System.Windows;
-#elif METRO
-using GraphX.Measure;
-using Point = Windows.Foundation.Point;
-using Rect = Windows.Foundation.Rect;
-#endif
+
 
 namespace GraphX.Controls
 {
@@ -33,12 +28,13 @@ namespace GraphX.Controls
     {
         const double D30_DEGREES_IN_RADIANS = Math.PI / 6.0;
 
-        public static double Tangent30Degrees { get; private set; }
+        public static double Tangent30Degrees { get; }
 
         static MathHelper()
         {
             Tangent30Degrees = Math.Tan(D30_DEGREES_IN_RADIANS);
         }
+
         /// <summary>
         /// Returns normalized vector pointing to direction based on two points
         /// </summary>
@@ -50,7 +46,7 @@ namespace GraphX.Controls
             dir.Normalize();
             return dir;
         }
-        
+
         /// <summary>
         /// Returns distance between two specified points
         /// </summary>
@@ -77,11 +73,11 @@ namespace GraphX.Controls
                 X =
                     (int)
                     (cosTheta * (pointToRotate.X - centerPoint.X) -
-                    sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X),
+                     sinTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.X),
                 Y =
                     (int)
                     (sinTheta * (pointToRotate.X - centerPoint.X) +
-                    cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
+                     cosTheta * (pointToRotate.Y - centerPoint.Y) + centerPoint.Y)
             };
         }
 
@@ -93,7 +89,7 @@ namespace GraphX.Controls
         /// <param name="b">Line target point</param>
         public static bool IsIntersected(Rect r, Point a, Point b)
         {
-           // var start = new Point(a.X, a.Y);
+            // var start = new Point(a.X, a.Y);
             /* line endpoints */
             var codeA = GetIntersectionData(r, a);
             var codeB = GetIntersectionData(r, b);
@@ -133,7 +129,7 @@ namespace GraphX.Controls
                 {
                     c.Y += (a.Y - b.Y) * (r.Right - c.X) / (a.X - b.X);
                     c.X = r.Right;
-                }/* if c is below r then move c on the line y = r->y_min
+                } /* if c is below r then move c on the line y = r->y_min
                     if c above the r then move c on the line y = r->y_max */
                 else if (code.Bottom)
                 {
@@ -158,6 +154,7 @@ namespace GraphX.Controls
                     codeB = GetIntersectionData(r, b);
                 }
             }
+
             return true;
         }
 
@@ -184,7 +181,7 @@ namespace GraphX.Controls
                 }
 
                 sides code;
-                Point c; 
+                Point c;
                 if (!codeA.IsInside())
                 {
                     code = codeA;
@@ -228,6 +225,7 @@ namespace GraphX.Controls
                     codeB = GetIntersectionData(r, b);
                 }
             }
+
             pt = GetCloserPoint(start, a, b);
             return 0;
         }
@@ -247,13 +245,13 @@ namespace GraphX.Controls
             public bool SameSide(sides o)
             {
                 return (Left && o.Left) || (Right && o.Right) || (Top && o.Top)
-                    || (Bottom && o.Bottom);
+                       || (Bottom && o.Bottom);
             }
         }
 
         public static sides GetIntersectionData(Rect r, Point p)
         {
-            return new sides() { Left = p.X < r.Left, Right = p.X > r.Right, Bottom = p.Y > r.Bottom, Top = p.Y < r.Top };
+            return new sides() {Left = p.X < r.Left, Right = p.X > r.Right, Bottom = p.Y > r.Bottom, Top = p.Y < r.Top};
         }
 
         public static double GetDistance(Point a, Point b)
@@ -281,9 +279,9 @@ namespace GraphX.Controls
         /// <param name="point2">Target point</param>
         public static double GetPositiveAngleBetweenPoints(Point point1, Point point2)
         {
-           var angle =  Math.Atan2(point1.Y - point2.Y, point1.X - point2.X);
+            var angle = Math.Atan2(point1.Y - point2.Y, point1.X - point2.X);
             while (angle < 0d)
-                angle += Math.PI*2;
+                angle += Math.PI * 2;
             return angle;
         }
 

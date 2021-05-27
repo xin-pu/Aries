@@ -12,10 +12,10 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Processing;
         }
 
-        [Category("Input_MAT")] 
+        [Category("IN_MAT")] 
         public Mat InputMat { set; get; }
 
-        [Category("Output_MAT")]
+        [Category("OUT_MAT")]
         public Mat OutPutMat { set; get; }
 
         public bool EnableSaveBlock { get; set; } = true;

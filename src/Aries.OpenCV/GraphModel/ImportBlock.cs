@@ -12,7 +12,7 @@ namespace Aries.OpenCV.GraphModel
         }
         
 
-        [Category("Output_MAT")]
+        [Category("OUT_MAT")]
         public Mat OutPutMat { set; get; }
         public abstract bool CanImport();
         public abstract void Import();

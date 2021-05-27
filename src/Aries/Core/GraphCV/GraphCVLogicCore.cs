@@ -7,7 +7,7 @@ using QuickGraph;
 
 namespace Aries.Core
 {
-    [Serializable]
+ 
     public class LogicCoreCV :
         GXLogicCore<BlockVertex, BlockEdge, BidirectionalGraph<BlockVertex, BlockEdge>>
     {

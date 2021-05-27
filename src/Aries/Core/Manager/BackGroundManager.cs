@@ -1,17 +1,16 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Media;
 
 namespace Aries.Core
 {
-    [Serializable]
+
     public class BackGroundManager : INotifyPropertyChanged
     {
         private double _opactiy = 1;
         private Color _brush = Colors.Transparent;
 
-    
+
         public Color Brush
         {
             set { UpdateProperty(ref _brush, value); }

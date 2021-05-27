@@ -16,7 +16,8 @@
         </TreeView.ItemsPanel>
 
         <TreeView.Resources>
-            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroup}" ItemsSource="{Binding ToolKitStructs}">
+            <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroup}" 
+                                      ItemsSource="{Binding ToolKitStructs}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>

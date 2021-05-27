@@ -77,7 +77,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ColorV.cs" />
-    <Compile Include="Controls\ConnectionRegion.cs" />
     <Compile Include="Core\GraphCV\EdgeBlueprint.cs" />
     <Compile Include="Core\GraphCV\GraphCVEditManager.cs" />
     <Compile Include="Core\GraphCV\VertexConnectionPointOut.cs" />
@@ -126,7 +125,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ToolKitButton.cs" />
-    <Compile Include="Controls\ProcessingButton.cs" />
     <Compile Include="Controls\TabButton.cs" />
     <Compile Include="Core\GraphCV\GraphCVFileStruct.cs" />
     <Compile Include="Core\Manager\ToolKitManager.cs" />
@@ -166,9 +164,7 @@
   <ItemGroup>
     <Resource Include="Aries.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Themes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Aries.OpenCV\Aries.OpenCV.csproj">
       <Project>{2E7767E8-C9EE-4A13-9F9C-4E76DDBCC935}</Project>
