@@ -39,12 +39,12 @@ namespace Aries.OpenCV.Blocks.Processing
 
         public override bool CanExecute()
         {
-            return true;
+            return InPutMat != null;
         }
 
         public override void Execute()
         {
-            Cv2.Blur(InputMat, OutPutMat, KSize, AnchorPoint, BorderTypes);
+            Cv2.Blur(InPutMat, OutPutMat, KSize, AnchorPoint, BorderTypes);
         }
 
 

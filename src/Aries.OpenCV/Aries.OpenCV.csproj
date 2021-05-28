@@ -95,6 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Aries.Utility\Aries.Utility.csproj">
+      <Project>{6EAF2B10-9A2F-4CE4-982B-F437063CE6B3}</Project>
+      <Name>Aries.Utility</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GraphX.Controls\GraphX.WPF.Controls.csproj">
       <Project>{d2e33fee-6689-4bb4-a95c-1b5c327a1e8f}</Project>
       <Name>GraphX.WPF.Controls</Name>

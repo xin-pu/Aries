@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
 using Aries.OpenCV.GraphModel;
 using Aries.Utility;
 using GraphX.Common.Models;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace Aries.Core
 {
@@ -22,6 +24,11 @@ namespace Aries.Core
 
         public List<GraphSerializationData> GraphSerializationDatas { set; get; }
 
+        public ICommand StepRunGraphCVCommand
+        {
+            get { return new RelayCommand(StepRunGraphCVCommand_Execute); }
+        }
+
         public ICommand RunGraphCVCommand
         {
             get { return new RelayCommand(RunGraphCVCommand_Execute); }
@@ -33,10 +40,25 @@ namespace Aries.Core
         }
 
 
+        private void StepRunGraphCVCommand_Execute()
+        {
+           
+        }
+
         private void RunGraphCVCommand_Execute()
         {
-            GraphSerializationDatas = AriesMain.GraphCvAreaAtWorkSpace.ExtractSerializationData();
-            RunGraphCV();
+            try
+            {
+                RunGraphCV();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+
+            }
         }
 
         private void StopGraphCVCommand_Execute()
@@ -44,20 +66,17 @@ namespace Aries.Core
 
         }
 
-        public void RunGraphCV()
+        public async void RunGraphCV()
         {
-            foreach (var allVertexControl in AriesMain.GraphCvAreaAtWorkSpace.GetAllVertexControls())
+            await Application.Current.Dispatcher.InvokeAsync(async () =>
             {
-                var block = allVertexControl.GetDataVertex<BlockVertex>();
-                try
-                {
-                    block.Execute();
-                }
-                catch
-                {
-                    // ignored
-                }
-            }
+
+
+
+
+
+
+            });
         }
 
     }

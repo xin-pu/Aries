@@ -12,15 +12,12 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Processing;
         }
 
-        [Category("IN_MAT")] 
-        public Mat InputMat { set; get; }
+        [Category("IN_MAT")] public Mat InPutMat { set; get; }
 
-        [Category("OUT_MAT")]
-        public Mat OutPutMat { set; get; }
+        [Category("OUT_MAT")] public Mat OutPutMat { set; get; }
 
         public bool EnableSaveBlock { get; set; } = true;
         public string SaveBlockName { set; get; }
-
 
 
         public virtual void SaveBlock()
@@ -28,8 +25,13 @@ namespace Aries.OpenCV.GraphModel
             SaveBlockName = $"{Name}_{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.jpg";
             OutPutMat?.SaveImage(SaveBlockName);
         }
+
+        public override void Reload()
+        {
+            InPutMat = null;
+            OutPutMat = null;
+            Status = BlockStatus.ToRun;
+        }
     }
-
-
 
 }

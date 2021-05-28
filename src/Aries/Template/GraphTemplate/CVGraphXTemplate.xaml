@@ -42,7 +42,7 @@
                                 VerticalAlignment="Top">
                         <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                Style="{DynamicResource LabelSuccess}"
-                               FontSize="11"
+                               FontSize="9"
                                Margin="1"/>
                     </StackPanel>
 
@@ -58,8 +58,8 @@
                 <ControlTemplate TargetType="core:VertexConnectionPointOut">
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <Label Content="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
-                               Style="{DynamicResource LabelWarning}"
-                               FontSize="11"
+                               Style="{DynamicResource LabelDanger}"
+                               FontSize="9"
                                Margin="1"/>
                     </StackPanel>
                 </ControlTemplate>
@@ -90,10 +90,10 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
 
-                    <Grid Height="80">
+                    <Grid>
                         <Grid.Background>
                             <ImageBrush ImageSource="../../PNG/ItemTestCase.png"
-                                        Opacity="0.7"
+                                        Opacity="1"
                                         Stretch="UniformToFill"
                                         TileMode="None"/>
                         </Grid.Background>
@@ -122,21 +122,29 @@
                                 BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
 
                         <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Border Grid.Column="0" BorderThickness="0,0,1,0" BorderBrush="{DynamicResource PrimaryBrush}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0">
                                 <StackPanel Name="Block_InPut" 
                                             Orientation="Vertical"
                                             HorizontalAlignment="Left"/>
                             </Border>
+                            <Border Grid.Row="1" BorderThickness="0,2" BorderBrush="{DynamicResource PrimaryBrush}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{DynamicResource MyTextBlock}"
+                                               Name="Status"/>
+                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
+                                               HorizontalAlignment="Center" FontWeight="Bold" 
+                                               Foreground="{DynamicResource PrimaryBrush}"  Margin="3" MinWidth="120"
+                                               FontSize="20"/>
+                                </StackPanel>
+                            
+                            </Border>
                           
-                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
-                                       HorizontalAlignment="Center" FontWeight="Bold" 
-                                       Foreground="{DynamicResource PrimaryBrush}" Grid.Column="1" Margin="3" MinWidth="150"/>
-                            <Border Grid.Column="2" BorderThickness="1,0,0,0" BorderBrush="{DynamicResource PrimaryBrush}">
+                            <Border Grid.Row="2" >
                                 <StackPanel Name="Block_OutPut"
                                             Orientation="Vertical"
                                             VerticalAlignment="Bottom"
@@ -146,6 +154,19 @@
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="ToRun">
+                            <Setter TargetName="Status" Property="Foreground" Value="LightSalmon"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Run">
+                            <Setter TargetName="Status" Property="Foreground" Value="PaleVioletRed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Complete">
+                            <Setter TargetName="Status" Property="Foreground" Value="Green"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Exception">
+                            <Setter TargetName="Status" Property="Foreground" Value="OrangeRed"/>
+                        </DataTrigger>
+
                         <Trigger Property="IsMouseOver" Value="true">
                             <Trigger.ExitActions>
                                 <BeginStoryboard Storyboard="{StaticResource HoverOff}" x:Name="HoverOff_BeginStoryboard" />

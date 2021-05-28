@@ -39,12 +39,12 @@ namespace Aries.OpenCV.Blocks.Processing
 
         public override bool CanExecute()
         {
-            return true;
+            return InPutMat != null;
         }
 
         public override void Execute()
         {
-            Cv2.GaussianBlur(InputMat, OutPutMat, KSize, SigmaX, SigmaY);
+            Cv2.GaussianBlur(InPutMat, OutPutMat, KSize, SigmaX, SigmaY);
         }
     }
 }

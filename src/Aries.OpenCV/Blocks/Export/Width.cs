@@ -13,12 +13,12 @@ namespace Aries.OpenCV.Blocks.Export
 
         public override bool CanExecute()
         {
-            return true;
+            return InPutMat != null;
         }
 
         public override void Execute()
         {
-            ExportResult = InputMat?.Width;
+            ExportResult = InPutMat?.Width;
         }
 
 

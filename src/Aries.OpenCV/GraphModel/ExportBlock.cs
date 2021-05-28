@@ -11,14 +11,15 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Export;
         }
 
-        [Category("IN_MAT")] public Mat InputMat { set; get; }
+        [Category("IN_MAT")] public Mat InPutMat { set; get; }
 
         [Category("OUT_DATA")] public T ExportResult { set; get; }
 
-
-        public override string ToString()
+        public override void Reload()
         {
-            return $"{ExportResult}";
+            InPutMat = null;
+            Status = BlockStatus.ToRun;
         }
+
     }
 }
