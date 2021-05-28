@@ -9,6 +9,7 @@ namespace Aries.OpenCV.GraphModel
     {
         protected ProcessingBlock()
         {
+            EnableSaveBlock = true;
             BlockType = BlockType.Processing;
         }
 
@@ -16,13 +17,10 @@ namespace Aries.OpenCV.GraphModel
 
         [Category("OUT_MAT")] public Mat OutPutMat { set; get; }
 
-        public bool EnableSaveBlock { get; set; } = true;
-        public string SaveBlockName { set; get; }
-
+        
 
         public virtual void SaveBlock()
         {
-            SaveBlockName = $"{Name}_{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.jpg";
             OutPutMat?.SaveImage(SaveBlockName);
         }
 
@@ -31,6 +29,17 @@ namespace Aries.OpenCV.GraphModel
             InPutMat = null;
             OutPutMat = null;
             Status = BlockStatus.ToRun;
+        }
+
+        public override void ExecuteCommand_Execute()
+        {
+            base.ExecuteCommand_Execute();
+            if (Status == BlockStatus.Complete && EnableSaveBlock)
+            {
+                SaveBlockName = $"{Name}_{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.jpg";
+                OutPutMat.SaveImage(SaveBlockName);
+            }
+
         }
     }
 

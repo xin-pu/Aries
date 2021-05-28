@@ -15,23 +15,30 @@ namespace Aries.OpenCV.GraphModel
 
         public BlockType BlockType { set; get; }
 
-        public string Name { set; get; }
-        public string InstName { set; get; }
-
         public string Icon { set; get; }
 
-
-
+        [Category("INFO")]
+        public string Name { set; get; }
+        [Category("INFO")]
         public DateTime? StartTime { set; get; }
+        [Category("INFO")]
         public DateTime? StopTime { set; get; }
+        [Category("INFO")]
         public TimeSpan? TimeCost { set; get; }
+        [Category("INFO")]
         public string ErrorMessage { set; get; }
-
+        [Category("INFO")]
         public BlockStatus Status
         {
             set { UpdateProperty(ref _status, value); }
             get { return _status; }
         }
+
+
+        public bool EnableSaveBlock { get; set; }
+        public string SaveBlockName { set; get; }
+
+    
 
         protected BlockVertex()
         {
@@ -48,12 +55,13 @@ namespace Aries.OpenCV.GraphModel
             get { return new RelayCommand(ExecuteCommand_Execute, ExecuteCommand_CanExecute); }
         }
 
+
         public bool ExecuteCommand_CanExecute()
         {
             return CanExecute();
         }
 
-        public void ExecuteCommand_Execute()
+        public virtual void ExecuteCommand_Execute()
         {
             try
             {
