@@ -44,6 +44,10 @@ namespace Aries.OpenCV.Blocks.Processing
 
         public override void Execute()
         {
+            OutPutMat = new Mat();
+            KSize = new Size(3, 3);
+            AnchorPoint = new Point(-1, -1);
+            BorderTypes = BorderTypes.Default;
             Cv2.Blur(InPutMat, OutPutMat, KSize, AnchorPoint, BorderTypes);
         }
 

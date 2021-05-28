@@ -44,6 +44,7 @@ namespace Aries.OpenCV.Blocks.Processing
 
         public override void Execute()
         {
+            OutPutMat=new Mat();
             Cv2.GaussianBlur(InPutMat, OutPutMat, KSize, SigmaX, SigmaY);
         }
     }

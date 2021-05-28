@@ -48,12 +48,12 @@ namespace Aries.OpenCV.GraphModel
             get { return new RelayCommand(ExecuteCommand_Execute, ExecuteCommand_CanExecute); }
         }
 
-        private bool ExecuteCommand_CanExecute()
+        public bool ExecuteCommand_CanExecute()
         {
             return CanExecute();
         }
 
-        private void ExecuteCommand_Execute()
+        public void ExecuteCommand_Execute()
         {
             try
             {
