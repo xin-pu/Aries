@@ -1,4 +1,5 @@
-﻿using Aries.OpenCV.GraphModel;
+﻿using System.ComponentModel;
+using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Processing
@@ -10,11 +11,13 @@ namespace Aries.OpenCV.Blocks.Processing
         /// Gaussian kernel size. ksize.width and ksize.height can differ but they both must be positive and odd.
         /// Or, they can be zero’s and then they are computed from sigma* .
         /// </summary>
+        [Category("Enter")]
         public Size KSize { set; get; }
 
         /// <summary>
         /// Gaussian kernel standard deviation in X direction.
         /// </summary>
+        [Category("Enter")]
         public double SigmaX { set; get; }
 
         /// <summary>
@@ -23,6 +26,7 @@ namespace Aries.OpenCV.Blocks.Processing
         /// respectively (see getGaussianKernel() for details); to fully control the result
         /// regardless of possible future modifications of all this semantics, it is recommended to specify all of ksize, sigmaX, and sigmaY.
         /// </summary>
+        [Category("Enter")]
         public double SigmaY { set; get; }
 
         public GaussianBlur()
