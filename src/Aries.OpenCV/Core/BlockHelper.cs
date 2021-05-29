@@ -33,12 +33,12 @@ namespace Aries.OpenCV.Core
         public static string GetBlockICon(Type blockTypeCLass)
         {
             var typename = blockTypeCLass.Name;
-            return iconDictionary.ContainsKey(typename)
-                ? iconDictionary[typename]
-                : iconDictionary["Default"];
+            return IconDictionary.ContainsKey(typename)
+                ? IconDictionary[typename]
+                : IconDictionary["Default"];
         }
 
-        private static readonly Dictionary<string, string> iconDictionary = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> IconDictionary = new Dictionary<string, string>
         {
             ["Default"] = "\uef71",
             ["ImageRead"] = "\uef71"

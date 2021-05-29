@@ -10,7 +10,6 @@ using Aries.Core;
 using Aries.OpenCV.Blocks.Processing;
 using Aries.OpenCV.GraphModel;
 using Aries.Utility;
-using GraphX;
 using GraphX.Common.Enums;
 using GraphX.Controls;
 using GraphX.Controls.Animations;
@@ -27,6 +26,7 @@ namespace Aries.Views
 
         private WaterMaskManager _waterMaskManager = new WaterMaskManager();
         private BackGroundManager _backGroundManager = new BackGroundManager();
+        private ImageRecordManager _imageRecordManager=new ImageRecordManager();
 
         /// <summary>
         /// Create For New Command
@@ -52,6 +52,11 @@ namespace Aries.Views
             get { return _backGroundManager; }
         }
 
+        public ImageRecordManager ImageRecordManager
+        {
+            set { UpdateProperty(ref _imageRecordManager, value); }
+            get { return _imageRecordManager; }
+        }
 
         public GraphCVEditManager EditorManager { set; get; }
 
