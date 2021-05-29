@@ -76,6 +76,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blocks\Processing\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Export\Width.cs" />
     <Compile Include="GraphModel\BlockType.cs" />

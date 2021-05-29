@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.IO;
 using Aries.OpenCV.GraphModel;
 using Microsoft.Win32;
 using OpenCvSharp;
@@ -31,7 +30,7 @@ namespace Aries.OpenCV.Blocks.Import
             var openFileDailog = new OpenFileDialog();
             openFileDailog.ShowDialog();
             FileName = openFileDailog.FileName;
-            OutPutMat = Cv2.ImRead(FileName);
+            OutPutMat = Cv2.ImRead(FileName, ImreadModes);
         }
     }
 }

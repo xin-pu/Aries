@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Aries.OpenCV.Blocks.Export;
-using Aries.OpenCV.Blocks.Import;
-using Aries.OpenCV.Blocks.Processing;
+using System.Linq;
+using System.Reflection;
 using Aries.OpenCV.GraphModel;
 
 namespace Aries.OpenCV.Core
@@ -11,13 +10,10 @@ namespace Aries.OpenCV.Core
     {
         public static List<Type> GetBlockClassType()
         {
-            return new List<Type>
-            {
-                typeof(Width),
-                typeof(ImageRead),
-                typeof(Blur),
-                typeof(GaussianBlur)
-            };
+            var executingAssembly = Assembly.GetExecutingAssembly();
+            var allTypes = executingAssembly.GetTypes();
+            var blockType = allTypes.Where(a => a.BaseType?.BaseType == typeof(BlockVertex));
+            return blockType.ToList();
         }
 
         public static BlockType GetBlockType(Type blockTypeClass)

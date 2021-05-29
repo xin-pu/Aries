@@ -17,6 +17,8 @@ namespace Aries.UnitTest
             var properties = TypeDescriptor.GetProperties(type)
                 .OfType<PropertyDescriptor>()
                 .ToList();
+
+
            
         }
     }

@@ -14,10 +14,7 @@ namespace Aries.Core
         private static readonly Lazy<ToolKitManager> lazy =
             new Lazy<ToolKitManager>(() => new ToolKitManager());
 
-        public static ToolKitManager Instance
-        {
-            get { return lazy.Value; }
-        }
+        public static ToolKitManager Instance => lazy.Value;
 
 
         public ToolKitManager()

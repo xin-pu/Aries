@@ -29,18 +29,12 @@ namespace Aries.OpenCV.Blocks.Processing
         /// <summary>
         /// The smoothing kernel size
         /// </summary>
-        private Size KSize
-        {
-            get { return new Size(KSize_Width, KSize_Height); }
-        }
+        private Size KSize => new Size(KSize_Width, KSize_Height);
 
         /// <summary>
         /// The anchor point. The default value Point(-1,-1) means that the anchor is at the kernel center
         /// </summary>
-        private Point AnchorPoint
-        {
-            get { return new Point(AnchorPoint_X, AnchorPoint_Y); }
-        }
+        private Point AnchorPoint => new Point(AnchorPoint_X, AnchorPoint_Y);
 
         public Blur()
         {
