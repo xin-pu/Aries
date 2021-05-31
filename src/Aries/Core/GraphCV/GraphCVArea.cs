@@ -249,8 +249,6 @@ namespace Aries.Core
 
 
 
-
-
         #region
 
         internal void UpdateProperty<T>(ref T properValue, T newValue, [CallerMemberName] string propertyName = "")

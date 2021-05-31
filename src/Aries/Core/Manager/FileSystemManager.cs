@@ -83,12 +83,14 @@ namespace Aries.Core
             if (File.Exists(openFileDialog.FileName))
             {
                 var graphCVFile = DeserializeGraphDataFromFile(openFileDialog.FileName);
+                var fileInfo = new FileInfo(openFileDialog.FileName);
 
                 var panel = new AriesCoreUint
                 {
                     BackGroundManager = graphCVFile.BackGroundManager,
                     WaterMaskManager = graphCVFile.WaterMaskManager,
-                    FileInfo = new FileInfo(openFileDialog.FileName)
+                    FileInfo = fileInfo,
+                    WorkDirectory = fileInfo.DirectoryName
                 };
 
                 var grapArea = panel.GraphArea;

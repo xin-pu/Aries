@@ -17,7 +17,6 @@ namespace Aries
             InitializeComponent();
             DataContext = this;
             FileSystemManager.AriesMain = this;
-            GraphCvRunManager.AriesMain = this;
             GraphStyleManager.AriesMain = this;
 
         }
@@ -26,7 +25,6 @@ namespace Aries
         public AriesCoreUint _ariesCoreUint;
         public FileSystemManager FileSystemManager => FileSystemManager.Instance;
         public GraphStyleManager GraphStyleManager => GraphStyleManager.Instance;
-        public GraphCVRunManager GraphCvRunManager => GraphCVRunManager.Instance;
 
         public GraphCVArea GraphCvAreaAtWorkSpace
         {
@@ -39,6 +37,7 @@ namespace Aries
             set { UpdateProperty(ref _ariesCoreUint, value); }
             get { return _ariesCoreUint; }
         }
+
 
         #region Command
 
@@ -61,8 +60,6 @@ namespace Aries
 
 
         #endregion
-
-
 
         #region
 

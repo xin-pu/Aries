@@ -2,9 +2,4 @@
 {
 
 
-    interface ISaveBlock
-    {
-        bool EnableSaveBlock { set; get; }
-        void SaveBlock();
-    }
 }

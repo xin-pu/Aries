@@ -12,8 +12,7 @@ namespace Aries.OpenCV.GraphModel
         }
         
 
-        [Category("OUT_MAT")]
-        public Mat OutPutMat { set; get; }
+        [Category("OUT_MAT")] public Mat OutPutMat { set; get; }
 
 
         public override void Reload()

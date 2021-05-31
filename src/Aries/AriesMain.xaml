@@ -57,7 +57,7 @@
                         </StatusBarItem>
                     </StatusBar>
                 </TabItem>
-                <TabItem Header="控制" FontSize="13" DataContext="{Binding GraphCvRunManager}">
+                <TabItem Header="控制" FontSize="13" DataContext="{Binding AriesCoreUint.GraphCvRunManager}">
                     <StatusBar VerticalAlignment="Stretch">
                         <StatusBarItem>
                             <StackPanel Orientation="Horizontal">
@@ -182,7 +182,7 @@
                 </TabItem>
 
                 <TabItem Header="记录">
-                  
+                    <views:MatRecordUnit DataContext="{Binding AriesCoreUint.MatRecordManager}"></views:MatRecordUnit>
                 </TabItem>
 
                 <TabItem Header="水印">

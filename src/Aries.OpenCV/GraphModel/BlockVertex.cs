@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Aries.OpenCV.Core;
 using Aries.Utility;
 using GraphX.Common.Models;
+using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
@@ -15,7 +19,6 @@ namespace Aries.OpenCV.GraphModel
 
         public BlockType BlockType { set; get; }
         public string CVCategory { set; get; }
-
         public string Icon { set; get; }
 
         [Category("INFO")]
@@ -34,11 +37,6 @@ namespace Aries.OpenCV.GraphModel
             set { UpdateProperty(ref _status, value); }
             get { return _status; }
         }
-
-
-        public bool EnableSaveBlock { get; set; }
-        public string SaveBlockName { set; get; }
-
 
 
         protected BlockVertex()
@@ -89,6 +87,45 @@ namespace Aries.OpenCV.GraphModel
         public abstract void Execute();
 
 
+        public virtual bool EnableSaveBlock { get; set; } = true;
+
+        public virtual List<MatRecord> SaveBlock(string workDirectory)
+        {
+            if (Status != BlockStatus.Complete || !EnableSaveBlock)
+                return new List<MatRecord>(0);
+
+            if (workDirectory == string.Empty || !Directory.Exists(workDirectory))
+                return new List<MatRecord>(0);
+
+            var outMatPro = TypeDescriptor.GetProperties(GetType())
+                .OfType<PropertyDescriptor>()
+                .Where(a => a.PropertyType == typeof(Mat) && a.Category == "OUT_MAT");
+
+            var outMat = outMatPro.Select(a => a.GetValue(this) as Mat)
+                .Where(a => a != null);
+
+            return outMat
+                .Select(mat => MatRecord(workDirectory, mat))
+                .Where(a => a != null)
+                .ToList();
+        }
+
+        private MatRecord MatRecord(string workDirectory, Mat mat)
+        {
+            var fileName = Path.Combine(workDirectory, $"{Name}_{ID}.jpg");
+            var res = mat.SaveImage(fileName);
+            return res
+                ? new MatRecord
+                {
+                    FileName = fileName,
+                    ParentId = ID,
+                    ParentName = Name,
+                    UpDateTime = DateTime.Now
+                }
+                : null;
+        }
+
+
         public object GetProperty(string proName)
         {
             var propertyInfo = GetType().GetProperty(proName);
@@ -101,6 +138,7 @@ namespace Aries.OpenCV.GraphModel
             propertyInfo?.SetValue(this, value);
         }
 
+        
 
         #region
 
@@ -126,13 +164,4 @@ namespace Aries.OpenCV.GraphModel
 
         #endregion
     }
-
-    public enum BlockStatus
-    {
-        ToRun,
-        Run,
-        Complete,
-        Exception
-    }
-
 }

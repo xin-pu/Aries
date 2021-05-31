@@ -137,6 +137,10 @@
                             </Border>
                             <Border Grid.Row="1" BorderThickness="0,2" BorderBrush="{DynamicResource PrimaryBrush}">
                                 <StackPanel Orientation="Horizontal" Name="Status">
+                                    <TextBlock Text="{Binding ID,StringFormat='{}{0}.'}" VerticalAlignment="Center" TextAlignment="Center" 
+                                               HorizontalAlignment="Center" FontWeight="Bold" 
+                                               Foreground="White"  Margin="10,0" 
+                                               FontSize="20"/>
                                     <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
                                                HorizontalAlignment="Center" FontWeight="Bold" 
                                                Foreground="White"  Margin="3" MinWidth="120"

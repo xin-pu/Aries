@@ -81,13 +81,16 @@
     <Compile Include="Core\GraphCV\GraphCVEditManager.cs" />
     <Compile Include="Core\GraphCV\VertexConnectionPointOut.cs" />
     <Compile Include="Core\GraphCV\VertexConnectionPointIn.cs" />
-    <Compile Include="Core\Manager\ImageRecordManager.cs" />
+    <Compile Include="Core\Manager\MatRecordManager.cs" />
     <Compile Include="Core\Manager\GraphCVRunManager.cs" />
     <Compile Include="Core\Manager\GraphStyleManager.cs" />
     <Compile Include="Core\Manager\ToolKitGroup.cs" />
     <Compile Include="Core\Manager\ToolKitStruct.cs" />
     <Compile Include="Views\AriesCoreUint.xaml.cs">
       <DependentUpon>AriesCoreUint.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MatRecordUnit.xaml.cs">
+      <DependentUpon>MatRecordUnit.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ToolKitUnit.xaml.cs">
       <DependentUpon>ToolKitUnit.xaml</DependentUpon>
@@ -117,6 +120,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AriesCoreUint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MatRecordUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

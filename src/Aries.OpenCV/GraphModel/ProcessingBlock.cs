@@ -1,15 +1,12 @@
-﻿using System;
-using System.ComponentModel;
-using Aries.OpenCV.Interface;
+﻿using System.ComponentModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class ProcessingBlock : BlockVertex, ISaveBlock
+    public abstract class ProcessingBlock : BlockVertex
     {
         protected ProcessingBlock()
         {
-            EnableSaveBlock = true;
             BlockType = BlockType.Processing;
         }
 
@@ -17,12 +14,7 @@ namespace Aries.OpenCV.GraphModel
 
         [Category("OUT_MAT")] public Mat OutPutMat { set; get; }
 
-        
 
-        public virtual void SaveBlock()
-        {
-            OutPutMat?.SaveImage(SaveBlockName);
-        }
 
         public override void Reload()
         {
@@ -31,16 +23,7 @@ namespace Aries.OpenCV.GraphModel
             Status = BlockStatus.ToRun;
         }
 
-        public override void ExecuteCommand_Execute()
-        {
-            base.ExecuteCommand_Execute();
-            if (Status == BlockStatus.Complete && EnableSaveBlock)
-            {
-                SaveBlockName = $"{Name}_{DateTime.Now:yyyy-MM-dd-hh-mm-ss}.jpg";
-                OutPutMat.SaveImage(SaveBlockName);
-            }
 
-        }
     }
 
 }

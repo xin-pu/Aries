@@ -79,7 +79,9 @@
     <Compile Include="Blocks\Processing\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Export\Width.cs" />
+    <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\BlockType.cs" />
+    <Compile Include="GraphModel\MatRecord.cs" />
     <Compile Include="GraphModel\ImportBlock.cs" />
     <Compile Include="Blocks\Import\ImageRead.cs" />
     <Compile Include="GraphModel\BlockEdge.cs" />

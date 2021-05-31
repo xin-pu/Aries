@@ -6,25 +6,23 @@ using System.Windows;
 using System.Windows.Input;
 using Aries.OpenCV.GraphModel;
 using Aries.Utility;
-using GraphX.Common.Models;
 using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace Aries.Core
 {
     public class GraphCVRunManager
     {
-        private static readonly Lazy<GraphCVRunManager> lazy =
-            new Lazy<GraphCVRunManager>(() => new GraphCVRunManager());
 
-        public static GraphCVRunManager Instance
+        private GraphCVArea GraphCvArea { get; }
+
+        public string WorkDirectory { set; get; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public Action<List<MatRecord>> AppendMatRecordAction;
+        public Action ClearMatRecordsAction;
+
+        public GraphCVRunManager(GraphCVArea graphCvArea)
         {
-            get { return lazy.Value; }
+            GraphCvArea = graphCvArea;
         }
-
-
-        public AriesMain AriesMain { set; get; }
-
-        public List<GraphSerializationData> GraphSerializationDatas { set; get; }
 
         public ICommand StepRunGraphCVCommand
         {
@@ -40,6 +38,19 @@ namespace Aries.Core
         {
             get { return new RelayCommand(StopGraphCVCommand_Execute); }
         }
+
+        public ICommand OpenWorkDirectorCommand
+        {
+            get { return new RelayCommand(OpenWorkDirectorCommand_Execute); }
+        }
+
+       
+
+        public ICommand ChangeWorkDirectorCommand
+        {
+            get { return new RelayCommand(ChangeWorkDirectorCommand_Execute); }
+        }
+      
 
 
         private void StepRunGraphCVCommand_Execute()
@@ -57,10 +68,6 @@ namespace Aries.Core
             {
                 MessageBox.Show(ex.Message);
             }
-            finally
-            {
-
-            }
         }
 
         private void StopGraphCVCommand_Execute()
@@ -72,13 +79,17 @@ namespace Aries.Core
         {
             await Application.Current.Dispatcher.InvokeAsync(async () =>
             {
-                var vertexs = AriesMain.GraphCvAreaAtWorkSpace.VertexList;
-                var edges = AriesMain.GraphCvAreaAtWorkSpace.EdgesList;
+
+
+                var vertexs = GraphCvArea.VertexList;
+                var edges = GraphCvArea.EdgesList;
 
 
                 /// Prepare Run
+                ClearMatRecordsAction?.Invoke();
                 var verDatas = vertexs.Select(a => a.Key).ToList();
                 verDatas.ForEach(vertex => vertex.Reload());
+                
 
                 while (verDatas.Any(a => a.CanExecute() && a.Status == BlockStatus.ToRun))
                 {
@@ -88,9 +99,17 @@ namespace Aries.Core
                                     a.Status == BlockStatus.ToRun)
                         .ToList();
 
-                    /// Run Execute
-                    var ExecuteTask = vertexsRun.Select(a => Task.Run(a.ExecuteCommand_Execute));
-                    await Task.WhenAll(ExecuteTask);
+                    /// Run Core Execute
+                    var executeTask = vertexsRun.Select(a => Task.Run(a.ExecuteCommand_Execute));
+                    await Task.WhenAll(executeTask);
+
+                    /// Run SaveBlockImage
+                    var saveBlockTask = vertexsRun.Select(a => Task.Run(() =>
+                    {
+                        var imageRecord = a.SaveBlock(WorkDirectory);
+                        AppendMatRecordAction?.Invoke(imageRecord);
+                    }));
+                    await Task.WhenAll(saveBlockTask);
 
                     /// Check Run Status
                     if (vertexsRun.Any(a => a.Status == BlockStatus.Exception))
@@ -127,5 +146,14 @@ namespace Aries.Core
             });
         }
 
+
+        private void OpenWorkDirectorCommand_Execute()
+        {
+            throw new NotImplementedException();
+        }
+        private void ChangeWorkDirectorCommand_Execute()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

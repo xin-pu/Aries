@@ -23,10 +23,11 @@ namespace Aries.Views
     public partial class AriesCoreUint : INotifyPropertyChanged
     {
 
-
+        private GraphCVRunManager _graphCvRunManager;
         private WaterMaskManager _waterMaskManager = new WaterMaskManager();
         private BackGroundManager _backGroundManager = new BackGroundManager();
-        private ImageRecordManager _imageRecordManager=new ImageRecordManager();
+        private MatRecordManager _matRecordManager = new MatRecordManager();
+        
 
         /// <summary>
         /// Create For New Command
@@ -40,6 +41,8 @@ namespace Aries.Views
 
         public FileInfo FileInfo { set; get; }
 
+        public string WorkDirectory { set; get; }
+
         public WaterMaskManager WaterMaskManager
         {
             set { UpdateProperty(ref _waterMaskManager, value); }
@@ -52,10 +55,16 @@ namespace Aries.Views
             get { return _backGroundManager; }
         }
 
-        public ImageRecordManager ImageRecordManager
+        public MatRecordManager MatRecordManager
         {
-            set { UpdateProperty(ref _imageRecordManager, value); }
-            get { return _imageRecordManager; }
+            set { UpdateProperty(ref _matRecordManager, value); }
+            get { return _matRecordManager; }
+        }
+
+        public GraphCVRunManager GraphCvRunManager
+        {
+            set { UpdateProperty(ref _graphCvRunManager, value); }
+            get { return _graphCvRunManager; }
         }
 
         public GraphCVEditManager EditorManager { set; get; }
@@ -63,14 +72,20 @@ namespace Aries.Views
 
         private void InitialForNew()
         {
-         
+
             EditorManager = new GraphCVEditManager(GraphArea, ZoomControl);
             InitialGraphArea();
             InitialZoomControl();
 
+            GraphCvRunManager = new GraphCVRunManager(GraphArea);
+            GraphCvRunManager.AppendMatRecordAction = MatRecordManager.AppendMatRecords;
+            GraphCvRunManager.ClearMatRecordsAction = MatRecordManager.ClearRecords;
+            
             Loaded += DynamicGraph_Loaded;
             Unloaded += DynamicGraph_Unloaded;
+
         }
+
 
 
         private void InitialGraphArea()
@@ -174,8 +189,6 @@ namespace Aries.Views
         }
 
         #endregion
-
-
 
         #region ContextMenu Command
 
@@ -308,7 +321,6 @@ namespace Aries.Views
 
 
         #endregion
-
 
         #region Drag 
 
