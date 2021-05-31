@@ -3,79 +3,123 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:core="clr-namespace:Aries.Core"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="800" d:DesignWidth="300"
              DataContext="{Binding ToolKitManager}">
+
+    <UserControl.Resources>
+
+        <Style x:Key="ToolStyle" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Button Content="{Binding Name}" 
+                                ContentStringFormat="{}&#xef48;  {0}"
+                                Style="{DynamicResource ButtonDashedSuccess}"
+                                Margin="2"
+                                MinWidth="80"
+                                FontWeight="DemiBold"
+                                FontFamily="/Resources/#iconfont"
+                                ToolTip="{Binding ClassType}"
+                                Command="{Binding CreateBlockCommand}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GroupStyle" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Expander Name="Expander"  Padding="0" 
+                                  BorderThickness="0"
+                                  IsExpanded="{Binding IsExpanded}"
+                                  FontFamily="/Resources/#iconfont"
+                                  hc:BorderElement.CornerRadius="10"
+                                  Header="{Binding GroupName}"
+                                  HeaderStringFormat="{}&#xef48; {0}">
+
+                            <ListView  ItemContainerStyle="{StaticResource ToolStyle}" 
+                                       ItemsSource="{Binding ToolKitStructs}" 
+                                       Focusable="True" SelectionMode="Extended"
+                                       Margin="2">
+                                <ListView.Template>
+                                    <ControlTemplate>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                            <ItemsPresenter />
+                                        </ScrollViewer>
+                                    </ControlTemplate>
+                                </ListView.Template>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" HorizontalAlignment="Left"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                            </ListView>
+                        </Expander>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Left">
             <hc:ButtonGroup FontFamily="/Resources/#iconfont"
                             FontWeight="Bold"
-                            Margin="20,0"
+                            Margin="10,0"
                             Style="{StaticResource ButtonGroupSolid}">
-                <RadioButton Content="&#xf0c7; Category" IsChecked="True">
+                <RadioButton Content="&#xf0c7; 功能" IsChecked="True" FontSize="11">
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="Checked">
                             <hc:InvokeCommandAction Command="{Binding GroupByCvCategotyCommand}"/>
                         </hc:EventTrigger>
                     </hc:Interaction.Triggers>
                 </RadioButton>
-                <RadioButton Content="&#xf0c7; BlockType">
+                <RadioButton Content="&#xf0c7; 模式" FontSize="11">
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="Checked">
                             <hc:InvokeCommandAction Command="{Binding GroupByBlockTypeCommand}"/>
                         </hc:EventTrigger>
                     </hc:Interaction.Triggers>
                 </RadioButton>
+                <ToggleButton  Content="展开"
+                               Style="{StaticResource ToggleButtonInfo}"
+                               Name="Expanded"
+                               IsChecked="True">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Click">
+                            <hc:InvokeCommandAction Command="{Binding ExpandAllGroupCommand}" 
+                                                    CommandParameter="{Binding ElementName=Expanded,Path=IsChecked}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </ToggleButton>
             </hc:ButtonGroup>
         </StackPanel>
-        <TreeView VerticalAlignment="Stretch" Name="TreeView_ToolKit" 
-              ItemsSource="{Binding ToolKitGroups}">
-            <TreeView.ItemsPanel>
+        <hc:SearchBar DockPanel.Dock="Top"
+                      hc:InfoElement.Placeholder="123"/>
+
+
+        <ListView  ItemContainerStyle="{StaticResource GroupStyle}" 
+                   ItemsSource="{Binding ToolKitGroups}" 
+                   Focusable="True" SelectionMode="Extended"
+                   Margin="2">
+            <ListView.Template>
+                <ControlTemplate>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ListView.Template>
+            <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel IsItemsHost="True" Orientation="Vertical"/>
                 </ItemsPanelTemplate>
-            </TreeView.ItemsPanel>
+            </ListView.ItemsPanel>
+        </ListView>
 
-            <TreeView.Resources>
-                <HierarchicalDataTemplate DataType="{x:Type core:ToolKitGroup}" 
-                                      ItemsSource="{Binding ToolKitStructs}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="30"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding GroupName,StringFormat='{}&#xef8c;  {0}'}"
-                                   Style="{DynamicResource FIconStyle}"
-                                               FontSize="13"
-                                               HorizontalAlignment="Left"
-                                               Grid.Column="0"/>
-                        <TextBlock Text="{Binding ToolKitStructs.Count}" 
-                                               Grid.Column="1"/>
-                    </Grid>
-                </HierarchicalDataTemplate>
-                <DataTemplate DataType="{x:Type core:ToolKitStruct}">
-                    <Grid HorizontalAlignment="Stretch"
-                                      VerticalAlignment="Center">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="50"/>
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Name}" 
-                               FontWeight="DemiBold"
-                               Grid.Column="0"
-                               VerticalAlignment="Center"/>
-                        <Button Command="{Binding CreateBlockCommand}"
-                                Style="{DynamicResource MyTextButton}"
-                                Content="&#xf0d4;"
-                                FontSize="18"
-                                Grid.Column="1"/>
-                    </Grid>
-                </DataTemplate>
-            </TreeView.Resources>
-        </TreeView>
+
     </DockPanel>
 </UserControl>

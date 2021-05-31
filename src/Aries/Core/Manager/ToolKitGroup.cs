@@ -8,12 +8,19 @@ namespace Aries.Core
     {
 
         private string _groupName;
+        private bool _isExpanded = true;
         private ObservableCollection<ToolKitStruct> _toolKitStructs;
 
         public string GroupName
         {
             set { UpdateProperty(ref _groupName, value); }
             get { return _groupName; }
+        }
+
+        public bool IsExpanded
+        {
+            set { UpdateProperty(ref _isExpanded, value); }
+            get { return _isExpanded; }
         }
 
         public ObservableCollection<ToolKitStruct> ToolKitStructs

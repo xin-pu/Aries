@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Aries.OpenCV.Core;
 using Aries.Utility;
+using GraphX.Common;
 
 namespace Aries.Core
 {
@@ -105,6 +106,22 @@ namespace Aries.Core
                         ToolKitStructs = new ObservableCollection<ToolKitStruct>(a)
                     });
                 });
+        }
+
+
+        public ICommand ExpandAllGroupCommand
+        {
+            get { return new RelayCommand(ExpandAllGroupCommand_Execute);}
+        }
+
+        private void ExpandAllGroupCommand_Execute(object obj)
+        {
+
+            if (obj is bool)
+            {
+                ToolKitGroups.ForEach(group => { group.IsExpanded = (bool) obj; });
+            }
+
         }
 
         #endregion

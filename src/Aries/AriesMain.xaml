@@ -138,13 +138,43 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" MinWidth="300"/>
                 <ColumnDefinition/>
                 <ColumnDefinition Width="0.3*"/>
             </Grid.ColumnDefinitions>
 
+            <TabControl Grid.Column="0"
+                        TabStripPlacement="Right">
+                <TabItem Header="工具箱">
+                    <views:ToolKitUnit/>
+                </TabItem>
+
+                <TabItem Header="样式">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <GroupBox Grid.Row="0" Header="水印样式" Margin="2" BorderBrush="{DynamicResource PrimaryBrush}">
+                            <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.WaterMaskManager}" />
+                        </GroupBox>
+                    
+                        <GroupBox Grid.Row="1" Header="背景样式" Margin="2" BorderBrush="{DynamicResource PrimaryBrush}">
+                            <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.BackGroundManager}" />
+                        </GroupBox>
+                    
+                    </Grid>
+                </TabItem>
+
+
+            </TabControl>
+            <GridSplitter Grid.Column="0" 
+                          Width="5" 
+                          Background="{DynamicResource PrimaryBrush}"
+                          Margin="2"/>
             <Border BorderThickness="1" 
                     BorderBrush="{DynamicResource PrimaryBrush}" 
-                    Grid.Column="0">
+                    Grid.Column="1">
                 <hc:TabControl IsAnimationEnabled="True" 
                                ShowCloseButton="True" 
                                IsDraggable="True"
@@ -157,25 +187,20 @@
                     </hc:Interaction.Triggers>
                 </hc:TabControl>
             </Border>
-            <GridSplitter Grid.Column="0" 
+            <GridSplitter Grid.Column="1" 
                           Width="5" 
                           Background="{DynamicResource PrimaryBrush}"
                           Margin="2"/>
 
-            <TabControl Grid.Column="1"
+            <TabControl Grid.Column="2"
                         TabStripPlacement="Left">
-                <TabItem Header="工具" ToolTip="Tool Kit" >
-                    <views:ToolKitUnit/>
-                </TabItem>
 
                 <TabItem Header="参数">
                     <hc:PropertyGrid SelectedObject="{Binding GraphCvAreaAtWorkSpace.SelectBlockVertex}"/>
 
                 </TabItem>
 
-                <TabItem Header="样式">
-
-                </TabItem>
+             
 
                 <TabItem Header="历史">
 
@@ -185,9 +210,7 @@
                     <views:MatRecordUnit DataContext="{Binding AriesCoreUint.MatRecordManager}"></views:MatRecordUnit>
                 </TabItem>
 
-                <TabItem Header="水印">
-                    <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.WaterMaskManager}"/>
-                </TabItem>
+             
 
             </TabControl>
         </Grid>
