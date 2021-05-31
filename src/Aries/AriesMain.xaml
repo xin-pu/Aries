@@ -140,7 +140,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="300" MinWidth="300"/>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*" MinWidth="350"/>
             </Grid.ColumnDefinitions>
 
             <TabControl Grid.Column="0"
@@ -150,28 +150,17 @@
                 </TabItem>
 
                 <TabItem Header="样式">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <GroupBox Grid.Row="0" Header="水印样式" Margin="2" BorderBrush="{DynamicResource PrimaryBrush}">
-                            <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.WaterMaskManager}" />
-                        </GroupBox>
-                    
-                        <GroupBox Grid.Row="1" Header="背景样式" Margin="2" BorderBrush="{DynamicResource PrimaryBrush}">
-                            <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.BackGroundManager}" />
-                        </GroupBox>
-                    
-                    </Grid>
+                    <views:StyleUnit DataContext="{Binding AriesCoreUint}"/>
                 </TabItem>
 
-
             </TabControl>
+
+
             <GridSplitter Grid.Column="0" 
                           Width="5" 
                           Background="{DynamicResource PrimaryBrush}"
                           Margin="2"/>
+
             <Border BorderThickness="1" 
                     BorderBrush="{DynamicResource PrimaryBrush}" 
                     Grid.Column="1">
@@ -197,14 +186,8 @@
 
                 <TabItem Header="参数">
                     <hc:PropertyGrid SelectedObject="{Binding GraphCvAreaAtWorkSpace.SelectBlockVertex}"/>
-
                 </TabItem>
 
-             
-
-                <TabItem Header="历史">
-
-                </TabItem>
 
                 <TabItem Header="记录">
                     <views:MatRecordUnit DataContext="{Binding AriesCoreUint.MatRecordManager}"></views:MatRecordUnit>

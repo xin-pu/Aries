@@ -4,7 +4,7 @@ using Aries.Utility;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public class MatRecord
+    public class MatRecord:IDisposable
     {
         public long ParentId { set; get; }
         public string ParentName { set; get; }
@@ -18,6 +18,11 @@ namespace Aries.OpenCV.GraphModel
         private void OpenImageCommand_Execute()
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            
         }
     }
 }

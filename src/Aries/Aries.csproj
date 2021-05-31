@@ -92,6 +92,9 @@
     <Compile Include="Views\MatRecordUnit.xaml.cs">
       <DependentUpon>MatRecordUnit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StyleUnit.xaml.cs">
+      <DependentUpon>StyleUnit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ToolKitUnit.xaml.cs">
       <DependentUpon>ToolKitUnit.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MatRecordUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StyleUnit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

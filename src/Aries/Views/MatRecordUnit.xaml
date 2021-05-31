@@ -5,33 +5,109 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="Parent">
+    <UserControl.Resources>
+        <Style x:Key="MatRecordStyle" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <hc:Card MaxWidth="140" 
+                                 BorderThickness="1" 
+                                 Effect="{DynamicResource EffectShadow2}"
+                                 Margin="5">
+                            <hc:Card.ToolTip>
+                                <Image Source="{Binding FileName}"></Image>
+                            </hc:Card.ToolTip>
+                            <Border CornerRadius="4,4,0,0" Width="120" Height="120">
+                                <Image  Source="{Binding FileName}" Width="100"></Image>
+                            </Border>
+                            <hc:Card.Footer>
+                                <StackPanel Margin="5" Width="160">
+                                    <!--Card 的一级内容-->
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" 
+                                                   TextTrimming="CharacterEllipsis" 
+                                                   Text="{Binding ParentId,StringFormat='{}{0}. '}" 
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="15"
+                                                   Foreground="{DynamicResource PrimaryBrush}"/>
+                                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" 
+                                                   TextTrimming="CharacterEllipsis" 
+                                                   Text="{Binding ParentName}" 
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="15"
+                                                   Foreground="{DynamicResource PrimaryBrush}"/>
+                                    </StackPanel>
+                                    
+                                    <!--Card 的二级内容-->
+                                    <TextBlock TextWrapping="NoWrap" Style="{DynamicResource TextBlockDefault}" 
+                                               TextTrimming="CharacterEllipsis" 
+                                               Text="{Binding UpDateTime}" Margin="0,6,0,0"
+                                               HorizontalAlignment="Left"
+                                               FontSize="11"/>
+                                </StackPanel>
+                            </hc:Card.Footer>
+                        </hc:Card>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <DockPanel>
         <StackPanel DockPanel.Dock="Top"
                     Orientation="Horizontal" 
                     HorizontalAlignment="Left">
             <hc:ButtonGroup FontFamily="/Resources/#iconfont"
                             FontWeight="Bold"
-                            Margin="20,0"
+                            Margin="10,0"
                             Style="{StaticResource ButtonGroupSolid}">
-                <Button Content="清除"></Button>
+                <RadioButton Content="&#xf0c7; ID" IsChecked="True" FontSize="11">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding SortByIdCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </RadioButton>
+                <RadioButton Content="&#xf0c7; 名字" FontSize="11">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding SortByNameCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </RadioButton>
+                <RadioButton Content="&#xf0c7; 时间" FontSize="11">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding SortByTimeCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </RadioButton>
+                <Button Content="清除" Style="{DynamicResource ButtonSuccess}"
+                        Command="{Binding ClearRecordsCommand}"/>
             </hc:ButtonGroup>
          
         </StackPanel>
-        <ListView ItemsSource="{Binding MatRecords}" FontSize="13">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="80" Header="ID" DisplayMemberBinding="{Binding ParentId}"/>
-                    <GridViewColumn Width="Auto" Header="名字" DisplayMemberBinding="{Binding ParentName}"/>
-                    <GridViewColumn Width="100" Header="图像">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Source="{Binding FileName}" DataContext="{Binding}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid>
+            <ListView  ItemContainerStyle="{StaticResource MatRecordStyle}" 
+                       ItemsSource="{Binding MatRecords}" 
+                       Focusable="True" SelectionMode="Extended"
+                       Margin="2">
+                <ListView.Template>
+                    <ControlTemplate>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </ListView.Template>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+            </ListView>
+        </Grid>
+       
     </DockPanel>
 </UserControl>
