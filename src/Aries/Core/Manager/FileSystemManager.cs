@@ -165,12 +165,14 @@ namespace Aries.Core
 
             var selectContent = AriesMain.WorkSpace.SelectedContent;
             var ariesCoreUint = (AriesCoreUint) selectContent;
+
             SerializeGraphDataToFile(saveDialog.FileName, new GraphCVFileStruct
             {
                 GraphSerializationDatas = ariesCoreUint.GraphArea.ExtractSerializationData(),
                 BackGroundManager = ariesCoreUint.BackGroundManager,
                 WaterMaskManager = ariesCoreUint.WaterMaskManager
             });
+            ariesCoreUint.FileInfo = new FileInfo(saveDialog.FileName);
         }
 
         private void AddTapToTapControl(AriesCoreUint ariesCoreUint)
