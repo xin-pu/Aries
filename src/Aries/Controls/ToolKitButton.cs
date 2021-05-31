@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Aries.OpenCV.GraphModel;
 
 namespace Aries.Controls
 {
@@ -23,14 +22,14 @@ namespace Aries.Controls
             DependencyProperty.Register("BlockClassType", typeof(Type), typeof(ToolKitButton),
                 new PropertyMetadata(null));
 
-        public BlockType BlockType
+        public string BlockType
         {
-            get { return (BlockType)GetValue(BlockTypeProperty); }
+            get { return GetValue(BlockTypeProperty).ToString(); }
             set { SetValue(BlockTypeProperty, value); }
         }
 
         public static readonly DependencyProperty BlockTypeProperty =
-            DependencyProperty.Register("BlockType", typeof(BlockType), typeof(ToolKitButton),
+            DependencyProperty.Register("BlockType", typeof(string), typeof(ToolKitButton),
                 new PropertyMetadata(null));
 
 

@@ -5,6 +5,8 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Import
 {
+
+    [Category("Read")]
     public class ImageRead : ImportBlock
     {
 

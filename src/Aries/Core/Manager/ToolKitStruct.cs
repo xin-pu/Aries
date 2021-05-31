@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Aries.OpenCV.Core;
-using Aries.OpenCV.GraphModel;
 using Aries.Utility;
 
 namespace Aries.Core
@@ -13,7 +12,8 @@ namespace Aries.Core
         private string _name;
         public string _icon;
         private Type _classType;
-        private BlockType _blockType;
+        private string _blockType;
+        private string _catetogyType;
         public GraphCVArea _graphCVAreaAtWorkSpace;
 
         public string Name
@@ -22,19 +22,19 @@ namespace Aries.Core
             get { return _name; }
         }
 
-        public string Icon
-        {
-            set { UpdateProperty(ref _icon, value); }
-            get { return _icon; }
-        }
-
         public Type ClassType
         {
             set { UpdateProperty(ref _classType, value); }
             get { return _classType; }
         }
 
-        public BlockType BlockType
+        public string CatetogyType
+        {
+            set { UpdateProperty(ref _catetogyType, value); }
+            get { return _catetogyType; }
+        }
+
+        public string BlockType
         {
             set { UpdateProperty(ref _blockType, value); }
             get { return _blockType; }

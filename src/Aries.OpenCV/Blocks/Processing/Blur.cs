@@ -1,13 +1,11 @@
-﻿using System;
-using System.ComponentModel;
-using System.Xml.Serialization;
+﻿using System.ComponentModel;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Processing
 {
-    [Serializable]
-    [XmlInclude(typeof(BlockVertex))]
+
+    [Category("Blur")]
     public class Blur : ProcessingBlock
     {
         [Category("Enter")] public int KSize_Width { set; get; }

@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using Aries.Core;
+﻿using Aries.Core;
 
 namespace Aries.Views
 {
@@ -15,5 +14,7 @@ namespace Aries.Views
         }
 
         public ToolKitManager ToolKitManager => ToolKitManager.Instance;
+
+
     }
 }

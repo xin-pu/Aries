@@ -14,6 +14,7 @@ namespace Aries.OpenCV.GraphModel
         public BlockStatus _status;
 
         public BlockType BlockType { set; get; }
+        public string CVCategory { set; get; }
 
         public string Icon { set; get; }
 
@@ -38,16 +39,17 @@ namespace Aries.OpenCV.GraphModel
         public bool EnableSaveBlock { get; set; }
         public string SaveBlockName { set; get; }
 
-    
+
 
         protected BlockVertex()
         {
-            Icon = getICon();
+            Initial();
         }
 
-        private string getICon()
+        private void Initial()
         {
-            return BlockHelper.GetBlockICon(GetType());
+            CVCategory = BlockHelper.GetCvCategory(GetType());
+            Icon = BlockHelper.GetBlockICon(CVCategory);
         }
 
         public ICommand RunBlockCommand
@@ -78,7 +80,7 @@ namespace Aries.OpenCV.GraphModel
             finally
             {
                 StopTime = DateTime.Now;
-                TimeCost = StartTime - StopTime;
+                TimeCost = StopTime - StartTime;
             }
         }
 

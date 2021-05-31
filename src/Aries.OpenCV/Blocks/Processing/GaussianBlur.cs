@@ -4,6 +4,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Processing
 {
+    [Category("Blur")]
     public class GaussianBlur : ProcessingBlock
     {
         [Category("Enter")] public int KSize_Width { set; get; }
