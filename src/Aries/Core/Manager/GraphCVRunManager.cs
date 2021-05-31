@@ -80,67 +80,73 @@ namespace Aries.Core
             await Application.Current.Dispatcher.InvokeAsync(async () =>
             {
 
-
-                var vertexs = GraphCvArea.VertexList;
-                var edges = GraphCvArea.EdgesList;
-
-
-                /// Prepare Run
-                ClearMatRecordsAction?.Invoke();
-                var verDatas = vertexs.Select(a => a.Key).ToList();
-                verDatas.ForEach(vertex => vertex.Reload());
-                
-
-                while (verDatas.Any(a => a.CanExecute() && a.Status == BlockStatus.ToRun))
+                try
                 {
-                    /// Get Vertext CanRun
-                    var vertexsRun = verDatas
-                        .Where(a => a.CanExecute() &&
-                                    a.Status == BlockStatus.ToRun)
-                        .ToList();
+                    var vertexs = GraphCvArea.VertexList;
+                    var edges = GraphCvArea.EdgesList;
 
-                    /// Run Core Execute
-                    var executeTask = vertexsRun.Select(a => Task.Run(a.ExecuteCommand_Execute));
-                    await Task.WhenAll(executeTask);
 
-                    /// Run SaveBlockImage
-                    var saveBlockTask = vertexsRun.Select(a => Task.Run(() =>
+                    /// Prepare Run
+                    ClearMatRecordsAction?.Invoke();
+                    var verDatas = vertexs.Select(a => a.Key).ToList();
+                    verDatas.ForEach(vertex => vertex.Reload());
+
+
+                    while (verDatas.Any(a => a.CanExecute() && a.Status == BlockStatus.ToRun))
                     {
-                        var imageRecord = a.SaveBlock(WorkDirectory);
-                        AppendMatRecordAction?.Invoke(imageRecord);
-                    }));
-                    await Task.WhenAll(saveBlockTask);
-
-                    /// Check Run Status
-                    if (vertexsRun.Any(a => a.Status == BlockStatus.Exception))
-                        break;
-
-                    /// Update From Source's OutPut to Target's Input
-                    vertexsRun.ForEach(vertexRun =>
-                    {
-                        var edgesFromRun = edges.Keys
-                            .Where(a => a.Source == vertexRun)
+                        /// Get Vertext CanRun
+                        var vertexsRun = verDatas
+                            .Where(a => a.CanExecute() &&
+                                        a.Status == BlockStatus.ToRun)
                             .ToList();
 
+                        /// Run Core Execute
+                        var executeTask = vertexsRun.Select(a => Task.Run(a.ExecuteCommand_Execute));
+                        await Task.WhenAll(executeTask);
 
-                        edgesFromRun.ForEach(edgeActive =>
+                        /// Run SaveBlockImage
+                        var saveBlockTask = vertexsRun.Select(a => Task.Run(() =>
                         {
-                            var source = edgeActive.Source;
-                            var sourceHeaderName = vertexs[source].VertexConnectionPointsList
-                                .FirstOrDefault(a => a.Id == edgeActive.SourceConnectionPointId)?.Header;
+                            var imageRecord = a.SaveBlock(WorkDirectory);
+                            AppendMatRecordAction?.Invoke(imageRecord);
+                        }));
+                        await Task.WhenAll(saveBlockTask);
+
+                        /// Check Run Status
+                        if (vertexsRun.Any(a => a.Status == BlockStatus.Exception))
+                            break;
+
+                        /// Update From Source's OutPut to Target's Input
+                        vertexsRun.ForEach(vertexRun =>
+                        {
+                            var edgesFromRun = edges.Keys
+                                .Where(a => a.Source == vertexRun)
+                                .ToList();
 
 
-                            var target = edgeActive.Target;
-                            var targetHeaderName = vertexs[target].VertexConnectionPointsList
-                                .FirstOrDefault(a => a.Id == edgeActive.TargetConnectionPointId)?.Header;
+                            edgesFromRun.ForEach(edgeActive =>
+                            {
+                                var source = edgeActive.Source;
+                                var sourceHeaderName = vertexs[source].VertexConnectionPointsList
+                                    .FirstOrDefault(a => a.Id == edgeActive.SourceConnectionPointId)?.Header;
 
-                            var data = source.GetProperty(sourceHeaderName);
-                            target.SetProperty(targetHeaderName, data);
+
+                                var target = edgeActive.Target;
+                                var targetHeaderName = vertexs[target].VertexConnectionPointsList
+                                    .FirstOrDefault(a => a.Id == edgeActive.TargetConnectionPointId)?.Header;
+
+                                var data = source.GetProperty(sourceHeaderName);
+                                target.SetProperty(targetHeaderName, data);
 
 
+                            });
                         });
-                    });
 
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ;
                 }
 
             });

@@ -28,7 +28,6 @@ namespace Aries.OpenCV.Blocks.Processing
 
         public Threshold()
         {
-            Name = "Threshold";
             Thresh = 122;
             Maxval=255;
             ThresholdType = ThresholdTypes.Binary;

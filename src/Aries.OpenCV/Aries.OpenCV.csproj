@@ -76,6 +76,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blocks\Import\ElementCreate.cs" />
+    <Compile Include="Blocks\Processing\Erode.cs" />
     <Compile Include="Blocks\Processing\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Export\Width.cs" />

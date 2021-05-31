@@ -46,6 +46,7 @@ namespace Aries.OpenCV.GraphModel
 
         private void Initial()
         {
+            Name = GetType().Name;
             CVCategory = BlockHelper.GetCvCategory(GetType());
             Icon = BlockHelper.GetBlockICon(CVCategory);
         }

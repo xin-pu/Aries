@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
-using OpenCvSharp;
+﻿using System;
+using System.ComponentModel;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class ImportBlock : BlockVertex
+    public abstract class ImportBlock<T> : BlockVertex
     {
        
         protected ImportBlock()
@@ -11,13 +11,13 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Import;
         }
         
+        [Category("OUT_MAT")] public T OutPut { set; get; }
 
-        [Category("OUT_MAT")] public Mat OutPutMat { set; get; }
-
+        public Type OutPutType => typeof(T);
 
         public override void Reload()
         {
-            OutPutMat = null;
+            OutPut = default;
             Status = BlockStatus.ToRun;
         }
     }

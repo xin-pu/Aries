@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks.Import
 {
 
     [Category("Read")]
-    public class ImageRead : ImportBlock
+    public class ImageRead : ImportBlock<Mat>
     {
 
         [Category("Enter")] public string FileName { protected set; get; }
@@ -16,7 +16,6 @@ namespace Aries.OpenCV.Blocks.Import
 
         public ImageRead()
         {
-            Name = "ImageRead";
             ImreadModes = ImreadModes.Color;
             Icon = "&#xef71;";
         }
@@ -32,7 +31,7 @@ namespace Aries.OpenCV.Blocks.Import
             var openFileDailog = new OpenFileDialog();
             openFileDailog.ShowDialog();
             FileName = openFileDailog.FileName;
-            OutPutMat = Cv2.ImRead(FileName, ImreadModes);
+            OutPut = Cv2.ImRead(FileName, ImreadModes);
         }
     }
 }

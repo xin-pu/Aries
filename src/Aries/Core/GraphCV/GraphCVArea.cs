@@ -155,7 +155,10 @@ namespace Aries.Core
                 //update layout to update vertex size
                 UpdateLayout();
             }
-            else RelayoutGraph(true);
+            else
+            {
+                RelayoutGraph(true);
+            }
 
             AddAllConnectionPoints(vertex, blockVertex.GetType());
 

@@ -132,7 +132,7 @@
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0">
                                 <StackPanel Name="Block_InPut" 
-                                            Orientation="Vertical"
+                                            Orientation="Horizontal"
                                             HorizontalAlignment="Left"/>
                             </Border>
                             <Border Grid.Row="1" BorderThickness="0,2" BorderBrush="{DynamicResource PrimaryBrush}">
@@ -151,7 +151,7 @@
                           
                             <Border Grid.Row="2" >
                                 <StackPanel Name="Block_OutPut"
-                                            Orientation="Vertical"
+                                            Orientation="Horizontal"
                                             VerticalAlignment="Bottom"
                                             HorizontalAlignment="Right"/>
                             </Border>
