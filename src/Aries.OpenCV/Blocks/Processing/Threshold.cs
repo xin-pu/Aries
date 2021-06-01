@@ -1,37 +1,27 @@
-﻿using System;
-using System.ComponentModel;
-using System.Xml.Serialization;
+﻿using System.ComponentModel;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks.Processing
 {
-    [Serializable]
-    [XmlInclude(typeof(BlockVertex))]
+    [Category("Threshold")]
     public class Threshold : ProcessingBlock
     {
         /// <summary>
         /// threshold value.
         /// </summary>
-        [Category("Enter")] public double Thresh { set; get; }
+        [Category("Enter")] public double Thresh { set; get; } = 122;
 
         /// <summary>
         /// maximum value to use with the THRESH_BINARY and THRESH_BINARY_INV thresholding types.
         /// </summary>
-        [Category("Enter")] public double Maxval { set; get; }
+        [Category("Enter")] public double Maxval { set; get; } = 255;
 
         /// <summary>
         /// thresholding type (see the details below)
         /// </summary>
-        [Category("Enter")] public ThresholdTypes ThresholdType { set; get; }
+        [Category("Enter")] public ThresholdTypes ThresholdType { set; get; } = ThresholdTypes.Binary;
 
-
-        public Threshold()
-        {
-            Thresh = 122;
-            Maxval=255;
-            ThresholdType = ThresholdTypes.Binary;
-        }
 
         public override bool CanExecute()
         {

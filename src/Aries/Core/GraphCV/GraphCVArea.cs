@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Models;
@@ -164,6 +165,11 @@ namespace Aries.Core
 
         }
 
+        public void ReloadBlocks()
+        {
+            VertexList.Keys.ToList().ForEach(v => v.Reload());
+        }
+
         private void AddAllConnectionPoints(VertexControl parentControl, Type blockType)
         {
             var properties = TypeDescriptor.GetProperties(blockType)
@@ -192,6 +198,8 @@ namespace Aries.Core
                 ParentID = parentControl.GetDataVertex<BlockVertex>().ID,
                 Header = propertyDescriptor.Name,
                 ConnectType = ConnectType.IN_MAT,
+                Icon = BlockHelper.GetPointICon(propertyDescriptor.PropertyType.Name),
+                TypeFullName = propertyDescriptor.PropertyType.FullName
             };
 
             AddInputConnectionPoint(parentControl, data);
@@ -204,7 +212,9 @@ namespace Aries.Core
                 Id = connectionPointData.ID,
                 Header = connectionPointData.Header,
                 ToolTip = connectionPointData.Header,
-                ConnectType = connectionPointData.ConnectType
+                ConnectType = connectionPointData.ConnectType,
+                Icon = connectionPointData.Icon,
+                TypeFullName = connectionPointData.TypeFullName
             };
             var inputBorder = new Border
             {
@@ -226,6 +236,8 @@ namespace Aries.Core
                 ParentID = parentControl.GetDataVertex<BlockVertex>().ID,
                 Header = propertyDescriptor.Name,
                 ConnectType = ConnectType.OUT_MAT,
+                Icon = BlockHelper.GetPointICon(propertyDescriptor.PropertyType.Name),
+                TypeFullName = propertyDescriptor.PropertyType.FullName
             };
 
             AddOutputConnectionPoint(parentControl, data);
@@ -238,7 +250,9 @@ namespace Aries.Core
                 Id = connectionPointData.ID,
                 Header = connectionPointData.Header,
                 ToolTip = connectionPointData.Header,
-                ConnectType = connectionPointData.ConnectType
+                ConnectType = connectionPointData.ConnectType,
+                Icon = connectionPointData.Icon,
+                TypeFullName = connectionPointData.TypeFullName
             };
             var inputBorder = new Border
             {

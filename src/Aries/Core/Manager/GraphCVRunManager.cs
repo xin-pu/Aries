@@ -127,16 +127,20 @@ namespace Aries.Core
                             edgesFromRun.ForEach(edgeActive =>
                             {
                                 var source = edgeActive.Source;
-                                var sourceHeaderName = vertexs[source].VertexConnectionPointsList
-                                    .FirstOrDefault(a => a.Id == edgeActive.SourceConnectionPointId)?.Header;
+                                var sourcePoint = vertexs[source].VertexConnectionPointsList
+                                    .FirstOrDefault(a => a.Id == edgeActive.SourceConnectionPointId);
+                                var sourceHeaderName = sourcePoint?.Header;
 
 
                                 var target = edgeActive.Target;
-                                var targetHeaderName = vertexs[target].VertexConnectionPointsList
-                                    .FirstOrDefault(a => a.Id == edgeActive.TargetConnectionPointId)?.Header;
+                                var targetPoint = vertexs[target].VertexConnectionPointsList
+                                    .FirstOrDefault(a => a.Id == edgeActive.TargetConnectionPointId);
+                                var targetHeaderName = targetPoint?.Header;
 
-                                var data = source.GetProperty(sourceHeaderName);
-                                target.SetProperty(targetHeaderName, data);
+                             
+                              
+                                var mat = source.GetPropertyAsMat(sourceHeaderName);
+                                target.SetPropertyAsMat(targetHeaderName, mat);
 
 
                             });

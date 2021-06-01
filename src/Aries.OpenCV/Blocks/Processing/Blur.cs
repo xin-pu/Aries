@@ -8,21 +8,21 @@ namespace Aries.OpenCV.Blocks.Processing
     [Category("Blur")]
     public class Blur : ProcessingBlock
     {
-        [Category("Enter")] public int KSize_Width { set; get; }
+        [Category("Enter")] public int KSize_Width { set; get; } = 3;
 
 
-        [Category("Enter")] public int KSize_Height { set; get; }
+        [Category("Enter")] public int KSize_Height { set; get; } = 3;
 
-        [Category("Enter")] public int AnchorPoint_X { set; get; }
+        [Category("Enter")] public int AnchorPoint_X { set; get; } = -1;
 
 
-        [Category("Enter")] public int AnchorPoint_Y { set; get; }
+        [Category("Enter")] public int AnchorPoint_Y { set; get; } = -1;
 
         /// <summary>
         /// The border mode used to extrapolate pixels outside of the image
         /// </summary>
         [Category("Enter")]
-        public BorderTypes BorderTypes { set; get; }
+        public BorderTypes BorderTypes { set; get; } = BorderTypes.Default;
 
         /// <summary>
         /// The smoothing kernel size
@@ -34,12 +34,6 @@ namespace Aries.OpenCV.Blocks.Processing
         /// </summary>
         private Point AnchorPoint => new Point(AnchorPoint_X, AnchorPoint_Y);
 
-        public Blur()
-        {
-            KSize_Width = KSize_Height = 3;
-            AnchorPoint_X = AnchorPoint_Y = -1;
-            BorderTypes = BorderTypes.Default;
-        }
 
         public override bool CanExecute()
         {

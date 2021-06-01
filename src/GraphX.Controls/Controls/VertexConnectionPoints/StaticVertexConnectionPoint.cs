@@ -16,9 +16,10 @@ namespace GraphX.Controls
         /// Connector identifier
         /// </summary>
         public int Id { get; set; }
-
         public string Header { set; get; }
         public ConnectType ConnectType { get; set; }
+        public string Icon { set; get; }
+        public string TypeFullName { set; get; }
 
         public static readonly DependencyProperty ShapeProperty =
             DependencyProperty.Register(nameof(Shape),
@@ -79,6 +80,7 @@ namespace GraphX.Controls
 
         private VertexControl _vertexControl;
         protected VertexControl VertexControl => _vertexControl ?? (_vertexControl = GetVertexControl(GetParent()));
+
 
         public StaticVertexConnectionPoint()
         {

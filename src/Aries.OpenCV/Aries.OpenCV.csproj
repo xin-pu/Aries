@@ -34,12 +34,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="OpenCvSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenCvSharp4.4.5.2.20210404\lib\net461\OpenCvSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenCvSharp.Extensions, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6adad1e807fea099, processorArchitecture=MSIL">
-      <HintPath>..\packages\OpenCvSharp4.4.5.2.20210404\lib\net461\OpenCvSharp.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="QuickGraph, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -76,8 +70,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blocks\Import\ElementCreate.cs" />
+    <Compile Include="Blocks\Import\CreateKernel.cs" />
+    <Compile Include="Blocks\Processing\Dilate.cs" />
     <Compile Include="Blocks\Processing\Erode.cs" />
+    <Compile Include="Blocks\Processing\MorphologyEx.cs" />
     <Compile Include="Blocks\Processing\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Export\Width.cs" />
@@ -85,7 +81,7 @@
     <Compile Include="GraphModel\BlockType.cs" />
     <Compile Include="GraphModel\MatRecord.cs" />
     <Compile Include="GraphModel\ImportBlock.cs" />
-    <Compile Include="Blocks\Import\ImageRead.cs" />
+    <Compile Include="Blocks\Import\CreateImage.cs" />
     <Compile Include="GraphModel\BlockEdge.cs" />
     <Compile Include="GraphModel\BlockVertex.cs" />
     <Compile Include="Interface\ISaveBlock.cs" />
@@ -111,6 +107,10 @@
     <ProjectReference Include="..\GraphX.Standard.Common\GraphX.Standard.Common.csproj">
       <Project>{5e0e001b-a4d3-4f7c-937d-f8d388fc42f7}</Project>
       <Name>GraphX.Standard.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenCvSharp\OpenCvSharp.csproj">
+      <Project>{c58fe5b3-a578-4003-a8ae-e094b494efe7}</Project>
+      <Name>OpenCvSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

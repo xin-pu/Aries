@@ -7,17 +7,17 @@ namespace Aries.OpenCV.Blocks.Processing
     [Category("Blur")]
     public class GaussianBlur : ProcessingBlock
     {
-        [Category("Enter")] public int KSize_Width { set; get; }
+        [Category("Enter")] public int KSize_Width { set; get; } = 3;
 
 
-        [Category("Enter")] public int KSize_Height { set; get; }
+        [Category("Enter")] public int KSize_Height { set; get; } = 3;
 
 
         /// <summary>
         /// Gaussian kernel standard deviation in X direction.
         /// </summary>
         [Category("Enter")]
-        public double SigmaX { set; get; }
+        public double SigmaX { set; get; } = 1D;
 
         /// <summary>
         /// Gaussian kernel standard deviation in Y direction; if sigmaY is zero, it is set to be equal to sigmaX,
@@ -26,7 +26,7 @@ namespace Aries.OpenCV.Blocks.Processing
         /// regardless of possible future modifications of all this semantics, it is recommended to specify all of ksize, sigmaX, and sigmaY.
         /// </summary>
         [Category("Enter")]
-        public double SigmaY { set; get; }
+        public double SigmaY { set; get; } = 0D;
 
         /// <summary>
         /// Gaussian kernel size. ksize.width and ksize.height can differ but they both must be positive and odd.
@@ -37,12 +37,6 @@ namespace Aries.OpenCV.Blocks.Processing
             get { return new Size(KSize_Width, KSize_Height); }
         }
 
-        public GaussianBlur()
-        {
-            KSize_Width = KSize_Height = 3;
-            SigmaX = 1D;
-            SigmaY = 0D;
-        }
 
         public override bool CanExecute()
         {

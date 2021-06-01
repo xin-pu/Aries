@@ -17,6 +17,11 @@ namespace Aries.OpenCV.Core
                 ["Default"] = "\uef71",
             };
 
+        private static readonly Dictionary<string, string> PointIconDictionary =
+        new Dictionary<string, string>
+        {
+            ["Default"] = "\uef71",
+        };
 
         public static List<Type> GetAllBlockClassType()
         {
@@ -74,6 +79,12 @@ namespace Aries.OpenCV.Core
                 : IconDictionary["Default"];
         }
 
+        public static string GetPointICon(string typeName)
+        {
+            return PointIconDictionary.ContainsKey(typeName)
+                ? IconDictionary[typeName]
+                : IconDictionary["Default"];
+        }
 
 
         public static BlockVertex CreateBlockVertex(Type type)

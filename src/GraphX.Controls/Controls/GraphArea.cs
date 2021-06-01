@@ -1720,7 +1720,10 @@ namespace GraphX.Controls
                                 ParentID = vertetData.ID,
                                 Header = point.Header,
                                 ID = point.Id,
-                                ConnectType = point.ConnectType
+                                ConnectType = point.ConnectType,
+                                Icon = point.Icon,
+                                TypeFullName = point.TypeFullName
+
                             },
                             IsVisible = true,
                             HasLabel = false

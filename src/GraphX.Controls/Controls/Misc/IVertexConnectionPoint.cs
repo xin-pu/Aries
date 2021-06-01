@@ -12,6 +12,8 @@ namespace GraphX.Controls
         int Id { get; }
 
         string Header { set; get; }
+        string Icon { set; get; }
+        string TypeFullName { set; get; }
 
         ConnectType ConnectType { set; get; }
 

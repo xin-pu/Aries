@@ -7,6 +7,8 @@ namespace GraphX.Controls
         public long ParentID { set; get; }
         public int ID { set; get; }
         public string Header { set; get; }
+        public string Icon { set; get; }
+        public string TypeFullName { set; get; }
         public ConnectType ConnectType { set; get; }
 
     }

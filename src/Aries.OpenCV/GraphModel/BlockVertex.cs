@@ -98,11 +98,10 @@ namespace Aries.OpenCV.GraphModel
             if (workDirectory == string.Empty || !Directory.Exists(workDirectory))
                 return new List<MatRecord>(0);
 
-            var outMatPro = TypeDescriptor.GetProperties(GetType())
+            var outMat = TypeDescriptor.GetProperties(GetType())
                 .OfType<PropertyDescriptor>()
-                .Where(a => a.PropertyType == typeof(Mat) && a.Category == "OUT_MAT");
-
-            var outMat = outMatPro.Select(a => a.GetValue(this) as Mat)
+                .Where(a => a.Category == "OUT_MAT")
+                .Select(a => GetPropertyAsMat(a.Name) as Mat)
                 .Where(a => a != null);
 
             return outMat
@@ -139,7 +138,56 @@ namespace Aries.OpenCV.GraphModel
             propertyInfo?.SetValue(this, value);
         }
 
-        
+        public object GetPropertyAsMat(string proName)
+        {
+            var propertyInfo = GetType().GetProperty(proName);
+            if (propertyInfo == null)
+                return null;
+
+            var type = propertyInfo.PropertyType;
+            var valueObj = propertyInfo.GetValue(this);
+            if (type == typeof(Mat))
+            {
+                return valueObj as Mat;
+            }
+            else if (type == typeof(InputArray))
+            {
+                return (valueObj as InputArray).GetMat();
+            }
+            else if (type == typeof(OutputArray))
+            {
+                return (valueObj as OutputArray).GetMat();
+            }
+            return null;
+        }
+
+        public void SetPropertyAsMat(string proName, object value)
+        {
+            
+            var mat = value as Mat;
+            if (mat == null)
+                return;
+
+            var propertyInfo = GetType().GetProperty(proName);
+            if (propertyInfo == null)
+                return;
+
+            var type = propertyInfo.PropertyType;
+            if (type == typeof(Mat))
+            {
+                propertyInfo.SetValue(this, mat);
+            }
+            else if (type == typeof(InputArray))
+            {
+                propertyInfo.SetValue(this, InputArray.Create(mat));
+            }
+            else if (type == typeof(OutputArray))
+            {
+                propertyInfo.SetValue(this, OutputArray.Create(mat));
+            }
+
+        }
+
 
         #region
 

@@ -147,6 +147,8 @@ namespace Aries.Core
         {
             var selectContent = AriesMain.WorkSpace.SelectedContent;
             var ariesCoreUint = (AriesCoreUint) selectContent;
+            ariesCoreUint.GraphArea.ReloadBlocks();
+
             SerializeGraphDataToFile(ariesCoreUint.FileInfo.FullName,
                 new GraphCVFileStruct
                 {
@@ -167,6 +169,7 @@ namespace Aries.Core
 
             var selectContent = AriesMain.WorkSpace.SelectedContent;
             var ariesCoreUint = (AriesCoreUint) selectContent;
+            ariesCoreUint.GraphArea.ReloadBlocks();
 
             SerializeGraphDataToFile(saveDialog.FileName, new GraphCVFileStruct
             {
