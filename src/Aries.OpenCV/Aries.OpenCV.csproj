@@ -70,10 +70,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blocks\Blur\BilateralFilter.cs" />
+    <Compile Include="Blocks\Blur\MedianBlur.cs" />
+    <Compile Include="Blocks\Filter\Canny.cs" />
+    <Compile Include="Blocks\Filter\Laplacian.cs" />
+    <Compile Include="Blocks\Filter\Scharr.cs" />
+    <Compile Include="Blocks\Filter\Sobel.cs" />
     <Compile Include="Blocks\Import\CreateKernel.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />
+    <Compile Include="Blocks\Threshold\AdaptiveThreshold.cs" />
     <Compile Include="Blocks\Threshold\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Export\Width.cs" />
