@@ -14,15 +14,28 @@
         WindowState="Maximized"
         Background="White">
     <hc:Window.NonClientAreaContent>
-        <StackPanel Height="35" Orientation="Horizontal" HorizontalAlignment="Left">
+        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
             <TextBlock Text="Aries" Foreground="{DynamicResource PrimaryBrush}" 
                        FontSize="15"
                        TextAlignment="Center"
                        VerticalAlignment="Center">
             </TextBlock>
+            <hc:ButtonGroup Orientation="Horizontal" DataContext="{Binding FileSystemManager}">
+                <Button BorderThickness="0" FontSize="16"
+                        Command="{Binding GraphCVSaveCommand}"
+                        ToolTip="保存"
+                        HorizontalContentAlignment="Center"
+                        HorizontalAlignment="Center">
+                    <TextBlock Style="{DynamicResource MyTextBlock}" Text="&#xf0a6;" FontSize="13"
+                               Foreground="{DynamicResource PrimaryBrush}"/>
+                </Button>
+            </hc:ButtonGroup>
+            <Separator Width="1" Style="{DynamicResource SeparatorBaseStyle}"/>
+            <hc:ButtonGroup Orientation="Horizontal" DataContext="{Binding FileSystemManager}">
+              
+            </hc:ButtonGroup>
         </StackPanel>
-
-       
+        
     </hc:Window.NonClientAreaContent>
     <hc:Window.Resources>
 
