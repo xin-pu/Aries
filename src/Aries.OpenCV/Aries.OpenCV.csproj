@@ -71,10 +71,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blocks\Import\CreateKernel.cs" />
-    <Compile Include="Blocks\Processing\Dilate.cs" />
-    <Compile Include="Blocks\Processing\Erode.cs" />
-    <Compile Include="Blocks\Processing\MorphologyEx.cs" />
-    <Compile Include="Blocks\Processing\Threshold.cs" />
+    <Compile Include="Blocks\Morphology\Dilate.cs" />
+    <Compile Include="Blocks\Morphology\Erode.cs" />
+    <Compile Include="Blocks\Morphology\MorphologyEx.cs" />
+    <Compile Include="Blocks\Threshold\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Export\Width.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
@@ -86,8 +86,8 @@
     <Compile Include="GraphModel\BlockVertex.cs" />
     <Compile Include="Interface\ISaveBlock.cs" />
     <Compile Include="GraphModel\ExportBlock.cs" />
-    <Compile Include="Blocks\Processing\Blur.cs" />
-    <Compile Include="Blocks\Processing\GaussianBlur.cs" />
+    <Compile Include="Blocks\Blur\Blur.cs" />
+    <Compile Include="Blocks\Blur\GaussianBlur.cs" />
     <Compile Include="GraphModel\ProcessingBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

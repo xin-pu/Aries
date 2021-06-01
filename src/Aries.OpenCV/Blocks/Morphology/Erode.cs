@@ -2,7 +2,7 @@
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks.Processing
+namespace Aries.OpenCV.Blocks
 {
     [Category("Morphology")]
     public class Erode : ProcessingBlock

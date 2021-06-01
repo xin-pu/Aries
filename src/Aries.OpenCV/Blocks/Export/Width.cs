@@ -1,6 +1,6 @@
 ﻿using Aries.OpenCV.GraphModel;
 
-namespace Aries.OpenCV.Blocks.Export
+namespace Aries.OpenCV.Blocks
 {
 
     public class Width : ExportBlock<int?>

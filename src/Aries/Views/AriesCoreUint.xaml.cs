@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Aries.Core;
-using Aries.OpenCV.Blocks.Processing;
+using Aries.OpenCV.Blocks;
 using Aries.OpenCV.GraphModel;
 using Aries.Utility;
 using GraphX.Common.Enums;
