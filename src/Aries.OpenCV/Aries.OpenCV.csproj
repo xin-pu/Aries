@@ -70,6 +70,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Blocks\Arithmetic\Mul.cs" />
+    <Compile Include="Blocks\Arithmetic\Add.cs" />
+    <Compile Include="Blocks\Arithmetic\Subtract.cs" />
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
     <Compile Include="Blocks\Draw\Circle.cs" />
@@ -90,10 +93,12 @@
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />
+    <Compile Include="Blocks\Property\Depth.cs" />
+    <Compile Include="Blocks\Property\Type.cs" />
     <Compile Include="Blocks\Threshold\AdaptiveThreshold.cs" />
     <Compile Include="Blocks\Threshold\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
-    <Compile Include="Blocks\Export\Width.cs" />
+    <Compile Include="Blocks\Property\Width.cs" />
     <Compile Include="Core\PointPair.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\BlockType.cs" />

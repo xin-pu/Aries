@@ -3,17 +3,18 @@ using Aries.OpenCV.GraphModel;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Draw")]
-    public class Ellipse : ProcessingBlock
+    [Category("Property")]
+    public class Depth : ExportBlock<int?>
     {
         public override bool CanExecute()
         {
-            throw new System.NotImplementedException();
+            return InPutMat != null;
         }
 
         public override void Execute()
         {
-            throw new System.NotImplementedException();
+            ExportResult = InPutMat.Depth();
         }
+
     }
 }

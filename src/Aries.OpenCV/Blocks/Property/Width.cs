@@ -1,9 +1,11 @@
-﻿using Aries.OpenCV.GraphModel;
+﻿using System.ComponentModel;
+using Aries.OpenCV.GraphModel;
+using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
-
-    public class Width : ExportBlock<int?>
+    [Category("Property")]
+    public class Shape : ExportBlock<Size?>
     {
         public override bool CanExecute()
         {
@@ -12,9 +14,8 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            ExportResult = InPutMat?.Width;
+            ExportResult = InPutMat?.Size();
         }
-
 
     }
 
