@@ -72,10 +72,12 @@
   <ItemGroup>
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
+    <Compile Include="Blocks\Hist\DrawHist.cs" />
     <Compile Include="Blocks\Filter\Canny.cs" />
     <Compile Include="Blocks\Filter\Laplacian.cs" />
     <Compile Include="Blocks\Filter\Scharr.cs" />
     <Compile Include="Blocks\Filter\Sobel.cs" />
+    <Compile Include="Blocks\Hist\Hist.cs" />
     <Compile Include="Blocks\Import\CreateKernel.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
@@ -119,6 +121,9 @@
       <Project>{c58fe5b3-a578-4003-a8ae-e094b494efe7}</Project>
       <Name>OpenCvSharp</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Blocks\Draw\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
