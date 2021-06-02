@@ -86,6 +86,7 @@
     <Compile Include="Blocks\Import\CreateCircles.cs" />
     <Compile Include="Blocks\Import\CreateKernel.cs" />
     <Compile Include="Blocks\Import\CreateLines.cs" />
+    <Compile Include="Blocks\Import\CreateTexts.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />
