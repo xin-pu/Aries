@@ -4,6 +4,7 @@ using System.IO;
 using System.Windows.Input;
 using Aries.Views;
 using HandyControl.Controls;
+using HandyControl.Data;
 using Microsoft.Win32;
 using YAXLib;
 
@@ -82,25 +83,31 @@ namespace Aries.Core
 
             if (File.Exists(openFileDialog.FileName))
             {
-                var graphCVFile = DeserializeGraphDataFromFile(openFileDialog.FileName);
-                var fileInfo = new FileInfo(openFileDialog.FileName);
-
-                var panel = new AriesCoreUint
+                try
                 {
-                    BackGroundManager = graphCVFile.BackGroundManager,
-                    WaterMaskManager = graphCVFile.WaterMaskManager,
-                    FileInfo = fileInfo,
-                    WorkDirectory = fileInfo.DirectoryName
-                };
+                    var graphCVFile = DeserializeGraphDataFromFile(openFileDialog.FileName);
+                    var fileInfo = new FileInfo(openFileDialog.FileName);
 
-                var grapArea = panel.GraphArea;
-                grapArea.RebuildFromSerializationData(graphCVFile.GraphSerializationDatas);
-                grapArea.SetVerticesDrag(true, true);
-                grapArea.UpdateAllEdges();
+                    var panel = new AriesCoreUint
+                    {
+                        BackGroundManager = graphCVFile.BackGroundManager,
+                        WaterMaskManager = graphCVFile.WaterMaskManager,
+                        FileInfo = fileInfo,
+                        WorkDirectory = fileInfo.DirectoryName
+                    };
 
-                panel.ZoomControl.ZoomToFill();
-                AddTapToTapControl(panel);
+                    var grapArea = panel.GraphArea;
+                    grapArea.RebuildFromSerializationData(graphCVFile.GraphSerializationDatas);
+                    grapArea.SetVerticesDrag(true, true);
+                    grapArea.UpdateAllEdges();
 
+                    panel.ZoomControl.ZoomToFill();
+                    AddTapToTapControl(panel);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
 

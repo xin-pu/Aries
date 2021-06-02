@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,7 +16,8 @@ namespace Aries.Core
 
         private GraphCVArea GraphCvArea { get; }
 
-        public string WorkDirectory { set; get; } = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public string WorkDirectory { set; get; } =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "Saved Pictures");
         public Action<List<MatRecord>> AppendMatRecordAction;
         public Action ClearMatRecordsAction;
 
@@ -137,12 +139,17 @@ namespace Aries.Core
                                     .FirstOrDefault(a => a.Id == edgeActive.TargetConnectionPointId);
                                 var targetHeaderName = targetPoint?.Header;
 
-                             
-                              
-                                var mat = source.GetPropertyAsMat(sourceHeaderName);
-                                target.SetPropertyAsMat(targetHeaderName, mat);
 
-
+                                if (targetPoint.TypeFullName == sourcePoint.TypeFullName)
+                                {
+                                    var obj = source.GetProperty(sourceHeaderName);
+                                    target.SetProperty(targetHeaderName, obj);
+                                }
+                                else
+                                {
+                                    var mat = source.GetPropertyAsMat(sourceHeaderName);
+                                    target.SetPropertyAsMat(targetHeaderName, mat);
+                                }
                             });
                         });
 

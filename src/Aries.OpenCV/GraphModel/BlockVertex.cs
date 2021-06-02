@@ -150,13 +150,15 @@ namespace Aries.OpenCV.GraphModel
             {
                 return valueObj as Mat;
             }
-            else if (type == typeof(InputArray))
+
+            if (type == typeof(InputArray))
             {
-                return (valueObj as InputArray).GetMat();
+                return (valueObj as InputArray)?.GetMat();
             }
-            else if (type == typeof(OutputArray))
+
+            if (type == typeof(OutputArray))
             {
-                return (valueObj as OutputArray).GetMat();
+                return (valueObj as OutputArray)?.GetMat();
             }
             return null;
         }

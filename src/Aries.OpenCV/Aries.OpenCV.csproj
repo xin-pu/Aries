@@ -72,13 +72,20 @@
   <ItemGroup>
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
+    <Compile Include="Blocks\Draw\Circle.cs" />
+    <Compile Include="Blocks\Draw\Ellipse.cs" />
+    <Compile Include="Blocks\Draw\Line.cs" />
+    <Compile Include="Blocks\Draw\Rectangle.cs" />
+    <Compile Include="Blocks\Draw\PutText.cs" />
     <Compile Include="Blocks\Hist\DrawHist.cs" />
     <Compile Include="Blocks\Filter\Canny.cs" />
     <Compile Include="Blocks\Filter\Laplacian.cs" />
     <Compile Include="Blocks\Filter\Scharr.cs" />
     <Compile Include="Blocks\Filter\Sobel.cs" />
     <Compile Include="Blocks\Hist\Hist.cs" />
+    <Compile Include="Blocks\Import\CreateCircles.cs" />
     <Compile Include="Blocks\Import\CreateKernel.cs" />
+    <Compile Include="Blocks\Import\CreateLines.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />
@@ -86,6 +93,7 @@
     <Compile Include="Blocks\Threshold\Threshold.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Export\Width.cs" />
+    <Compile Include="Core\PointPair.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\BlockType.cs" />
     <Compile Include="GraphModel\MatRecord.cs" />
@@ -122,9 +130,7 @@
       <Name>OpenCvSharp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Blocks\Draw\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

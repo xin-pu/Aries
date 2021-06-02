@@ -8,9 +8,9 @@ using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 using System.ComponentModel;
 
-namespace Aries.OpenCV.Blocks.Import
+namespace Aries.OpenCV.Blocks
 {
-    [Category("Kernel")]
+    [Category("Initial")]
     public class CreateKernel : ImportBlock<Mat>
     {
         [Category("Enter")]

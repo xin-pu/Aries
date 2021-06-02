@@ -3,10 +3,10 @@ using Aries.OpenCV.GraphModel;
 using Microsoft.Win32;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks.Import
+namespace Aries.OpenCV.Blocks
 {
 
-    [Category("Image")]
+    [Category("Initial")]
     public class CreateImage : ImportBlock<Mat>
     {
 
