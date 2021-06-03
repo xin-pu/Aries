@@ -650,7 +650,7 @@ namespace GraphX.Controls
             double verticalChange, SnapModifierFunc xSnapModifier, SnapModifierFunc ySnapModifier)
         {
             if (double.IsNaN(GraphAreaBase.GetX(obj)))
-                GraphAreaBase.SetX(obj, 0, true);
+                GraphAreaBase.SetX(obj, 0);
             if (double.IsNaN(GraphAreaBase.GetY(obj)))
                 GraphAreaBase.SetY(obj, 0, true);
 
@@ -658,7 +658,7 @@ namespace GraphX.Controls
             var x = GetOriginalX(obj) + horizontalChange;
             if (xSnapModifier != null)
                 x = xSnapModifier(area, obj, x);
-            GraphAreaBase.SetX(obj, x, true);
+            GraphAreaBase.SetX(obj, x);
 
             var y = GetOriginalY(obj) + verticalChange;
             if (ySnapModifier != null)

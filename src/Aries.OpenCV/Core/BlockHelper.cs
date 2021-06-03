@@ -18,10 +18,17 @@ namespace Aries.OpenCV.Core
             };
 
         private static readonly Dictionary<string, string> PointIconDictionary =
-        new Dictionary<string, string>
-        {
-            ["Default"] = "\uef71",
-        };
+            new Dictionary<string, string>
+            {
+                ["Size"] = "\ued71",
+                ["CircleSegment[]"] = "\ued6f",
+                ["CircleSegment"] = "\ued6f;",
+                ["LineSegmentPoint[]"] = "\ued74;",
+                ["LineSegmentPoint"] = "\ued74;",
+                ["Mat[]"] = "\ued8d",
+                ["Mat"] = "\ued8d",
+                ["Default"] = "\uef71",
+            };
 
         public static List<Type> GetAllBlockClassType()
         {
@@ -85,8 +92,8 @@ namespace Aries.OpenCV.Core
         public static string GetPointICon(string typeName)
         {
             return PointIconDictionary.ContainsKey(typeName)
-                ? IconDictionary[typeName]
-                : IconDictionary["Default"];
+                ? PointIconDictionary[typeName]
+                : PointIconDictionary["Default"];
         }
 
 
