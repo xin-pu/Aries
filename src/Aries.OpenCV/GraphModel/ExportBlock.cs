@@ -13,7 +13,7 @@ namespace Aries.OpenCV.GraphModel
 
         [Category("IN_MAT")] public Mat InPutMat { set; get; }
 
-        [Category("OUT_DATA")] public T ExportResult { set; get; }
+        [Category("OUT_MAT")] public T ExportResult { set; get; }
 
         public override void Reload()
         {

@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Property")]
-    public class Shape : ExportBlock<Size?>
+    public class Shape : ExportBlock<Size>
     {
         public override bool CanExecute()
         {
@@ -14,7 +14,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            ExportResult = InPutMat?.Size();
+            ExportResult = InPutMat.Size();
         }
 
     }

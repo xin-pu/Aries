@@ -105,8 +105,10 @@
     <Compile Include="Blocks\Property\Type.cs" />
     <Compile Include="Blocks\Threshold\AdaptiveThreshold.cs" />
     <Compile Include="Blocks\Threshold\Threshold.cs" />
+    <Compile Include="Blocks\Transform\Resize.cs" />
+    <Compile Include="Blocks\Transform\WarpAffine.cs" />
     <Compile Include="Core\BlockHelper.cs" />
-    <Compile Include="Blocks\Property\Width.cs" />
+    <Compile Include="Blocks\Property\Shape.cs" />
     <Compile Include="Core\PointPair.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\BlockType.cs" />
@@ -145,9 +147,7 @@
       <Name>OpenCvSharp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Blocks\Transform\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
