@@ -4,10 +4,11 @@ using Aries.Utility;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public class MatRecord:IDisposable
+    public class MatRecord : IDisposable
     {
         public long ParentId { set; get; }
         public string ParentName { set; get; }
+        public string PropertyName { set; get; }
         public string FileName { set; get; }
 
         public DateTime UpDateTime { set; get; }
@@ -17,12 +18,12 @@ namespace Aries.OpenCV.GraphModel
 
         private void OpenImageCommand_Execute()
         {
-            throw new NotImplementedException();
+
         }
 
         public void Dispose()
         {
-            
+
         }
     }
 }

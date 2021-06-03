@@ -43,6 +43,8 @@ namespace Aries.OpenCV.Core
                 return BlockType.Import;
             if (baseType.Name.Contains("ProcessingBlock"))
                 return BlockType.Processing;
+            if (baseType.Name.Contains("GeneralBlock"))
+                return BlockType.General;
             return GetBlockType(baseType);
         }
 

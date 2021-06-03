@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Runtime.InteropServices;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
@@ -22,5 +21,7 @@ namespace Aries.OpenCV.Blocks
         {
             OutPutMat = InPutMat.Add(InPutMat2);
         }
+
+
     }
 }

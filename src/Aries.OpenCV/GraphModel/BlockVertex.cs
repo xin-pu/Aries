@@ -98,21 +98,21 @@ namespace Aries.OpenCV.GraphModel
             if (workDirectory == string.Empty || !Directory.Exists(workDirectory))
                 return new List<MatRecord>(0);
 
-            var outMat = TypeDescriptor.GetProperties(GetType())
+            var outMatDict = TypeDescriptor.GetProperties(GetType())
                 .OfType<PropertyDescriptor>()
                 .Where(a => a.Category == "OUT_MAT")
-                .Select(a => GetPropertyAsMat(a.Name) as Mat)
-                .Where(a => a != null);
+                .Select(a => new KeyValuePair<string, Mat>(a.Name, GetPropertyAsMat(a.Name) as Mat))
+                .Where(a => a.Value != null);
 
-            return outMat
-                .Select(mat => MatRecord(workDirectory, mat))
+            return outMatDict
+                .Select(mat => MatRecord(workDirectory, mat.Key, mat.Value))
                 .Where(a => a != null)
                 .ToList();
         }
 
-        private MatRecord MatRecord(string workDirectory, Mat mat)
+        private MatRecord MatRecord(string workDirectory,string propertyName, Mat mat)
         {
-            var fileName = Path.Combine(workDirectory, $"{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg");
+            var fileName = Path.Combine(workDirectory, $"{Name}_{propertyName}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg");
             var res = mat.ImWrite(fileName);
             return res
                 ? new MatRecord
@@ -120,6 +120,7 @@ namespace Aries.OpenCV.GraphModel
                     FileName = fileName,
                     ParentId = ID,
                     ParentName = Name,
+                    PropertyName = propertyName,
                     UpDateTime = DateTime.Now
                 }
                 : null;

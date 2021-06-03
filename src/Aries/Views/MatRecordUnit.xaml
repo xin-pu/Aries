@@ -37,7 +37,15 @@
                                                    Text="{Binding ParentName}" 
                                                    HorizontalAlignment="Left"
                                                    FontSize="15"
-                                                   Foreground="{DynamicResource PrimaryBrush}"/>
+                                                   Foreground="{DynamicResource PrimaryBrush}"/> 
+
+                                        <TextBlock TextWrapping="NoWrap"  Style="{DynamicResource TextBlockLargeBold}" 
+                                                   TextTrimming="CharacterEllipsis" 
+                                                   Text="{Binding PropertyName}" 
+                                                   HorizontalAlignment="Left"
+                                                   FontSize="15"
+                                                   Foreground="{DynamicResource PrimaryBrush}"
+                                                   Margin="10,0"/>
                                     </StackPanel>
                                     
                                     <!--Card 的二级内容-->

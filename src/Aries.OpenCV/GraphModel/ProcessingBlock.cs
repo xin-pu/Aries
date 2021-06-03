@@ -22,7 +22,6 @@ namespace Aries.OpenCV.GraphModel
             Status = BlockStatus.ToRun;
         }
 
-
     }
 
 }

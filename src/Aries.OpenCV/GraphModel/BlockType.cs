@@ -5,5 +5,6 @@
         Import,
         Processing,
         Export,
+        General
     }
 }
