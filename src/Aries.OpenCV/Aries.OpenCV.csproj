@@ -70,10 +70,16 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Blocks\Arithmetic\Merge.cs" />
-    <Compile Include="Blocks\Arithmetic\Mul.cs" />
+    <Compile Include="Blocks\Arithmetic\AddWeighted.cs" />
+    <Compile Include="Blocks\Arithmetic\ArithmeticBasic.cs" />
+    <Compile Include="Blocks\Arithmetic\BitwiseNot.cs" />
+    <Compile Include="Blocks\Arithmetic\BitwiseXor.cs" />
+    <Compile Include="Blocks\Arithmetic\BitwiseOr.cs" />
+    <Compile Include="Blocks\Channel\Merge.cs" />
+    <Compile Include="Blocks\Arithmetic\Multiply.cs" />
     <Compile Include="Blocks\Arithmetic\Add.cs" />
-    <Compile Include="Blocks\Arithmetic\Split.cs" />
+    <Compile Include="Blocks\Arithmetic\BitwiseAnd.cs" />
+    <Compile Include="Blocks\Channel\Split.cs" />
     <Compile Include="Blocks\Arithmetic\Subtract.cs" />
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />

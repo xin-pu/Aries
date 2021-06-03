@@ -26,8 +26,9 @@ namespace Aries.OpenCV.Core
         public static List<Type> GetAllBlockClassType()
         {
             var executingAssembly = Assembly.GetExecutingAssembly();
-            var allTypes = executingAssembly.GetTypes();
-            var blockType = allTypes.Where(a => a.BaseType?.BaseType == typeof(BlockVertex));
+            var allTypes = executingAssembly.GetTypes().Where(a=>!a.IsAbstract);
+            var blockType = allTypes.Where(a => a.BaseType?.BaseType == typeof(BlockVertex) ||
+                                                a.BaseType?.BaseType?.BaseType == typeof(BlockVertex));
             return blockType.ToList();
         }
 

@@ -4,7 +4,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Arithmetic")]
+    [Category("Channel")]
     public class Split : GeneralBlock
     {
 

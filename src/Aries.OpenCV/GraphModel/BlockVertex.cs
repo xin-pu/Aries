@@ -112,7 +112,7 @@ namespace Aries.OpenCV.GraphModel
 
         private MatRecord MatRecord(string workDirectory,string propertyName, Mat mat)
         {
-            var fileName = Path.Combine(workDirectory, $"{Name}_{propertyName}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg");
+            var fileName = Path.Combine(workDirectory, $"{Name}_{propertyName}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg");
             var res = mat.ImWrite(fileName);
             return res
                 ? new MatRecord
