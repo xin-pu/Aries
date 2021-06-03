@@ -17,7 +17,7 @@ namespace Aries.OpenCV.Blocks
 
         [Category("Enter")] public LineTypes LineType { set; get; } = LineTypes.Link8;
 
-        [Category("Enter")] public int Shift { set; get; } = 1;
+        [Category("Enter")] public int Shift { set; get; } = 0;
 
         public override bool CanExecute()
         {
