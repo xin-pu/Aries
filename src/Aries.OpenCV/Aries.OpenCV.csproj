@@ -85,6 +85,7 @@
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
     <Compile Include="Blocks\Contour\DrawContours.cs" />
     <Compile Include="Blocks\Contour\FindContours.cs" />
+    <Compile Include="Blocks\Contour\HoughCircle.cs" />
     <Compile Include="Blocks\Contour\HoughLinesP.cs" />
     <Compile Include="Blocks\Draw\Circle.cs" />
     <Compile Include="Blocks\Draw\Ellipse.cs" />
