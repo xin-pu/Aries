@@ -367,7 +367,11 @@ namespace GraphX.Controls
         {
             if (!(sender is EdgeControl edgeControl))
                 return;
-            DependencyObject obj = sender as DependencyObject;
+
+            if(edgeControl.Source==null||edgeControl.Target==null)
+                return;
+            
+            var obj = sender as DependencyObject;
 
             //get the position center of the source
             var sourcePos = new Point
