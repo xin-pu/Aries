@@ -3,7 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
-using Aries.OpenCV.Blocks.Processing;
+using Aries.OpenCV.Blocks;
 
 namespace Aries.UnitTest
 {

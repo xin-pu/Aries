@@ -25,7 +25,6 @@ E:\Document Code\Code Web\Aries\src\OpenCvSharp\bin\Debug\net461\System.Memory.d
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\bin\Debug\net461\System.Numerics.Vectors.dll
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\bin\Debug\net461\System.Runtime.CompilerServices.Unsafe.dll
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\bin\Debug\net461\System.ValueTuple.dll
-E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.csprojAssemblyReference.cache
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.AssemblyInfoInputs.cache
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.AssemblyInfo.cs
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.csproj.CoreCompileInputs.cache
