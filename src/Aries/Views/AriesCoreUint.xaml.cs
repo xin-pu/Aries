@@ -23,7 +23,7 @@ namespace Aries.Views
     {
 
         private GraphCVRunManager _graphCvRunManager;
-        private GraphStyleManager _graphStyleManager;
+        private GraphLayoutControl _graphLayoutControl;
         private WaterMaskManager _waterMaskManager = new WaterMaskManager();
         private BackGroundManager _backGroundManager = new BackGroundManager();
         private MatRecordManager _matRecordManager = new MatRecordManager();
@@ -67,10 +67,10 @@ namespace Aries.Views
             get { return _graphCvRunManager; }
         }
 
-        public GraphStyleManager GraphStyleManager
+        public GraphLayoutControl GraphLayoutControl
         {
-            set { UpdateProperty(ref _graphStyleManager, value); }
-            get { return _graphStyleManager; }
+            set { UpdateProperty(ref _graphLayoutControl, value); }
+            get { return _graphLayoutControl; }
         }
 
 
@@ -84,7 +84,7 @@ namespace Aries.Views
             EditorManager = new GraphCVEditManager(GraphArea, ZoomControl);
             InitialGraphArea();
             InitialZoomControl();
-            GraphStyleManager = new GraphStyleManager(GraphArea);
+            GraphLayoutControl = new GraphLayoutControl(GraphArea);
             GraphCvRunManager = new GraphCVRunManager(GraphArea)
             {
                 AppendMatRecordAction = MatRecordManager.AppendMatRecords,

@@ -111,8 +111,9 @@
     <Compile Include="Blocks\Threshold\Threshold.cs" />
     <Compile Include="Blocks\Transform\Resize.cs" />
     <Compile Include="Blocks\Transform\WarpAffine.cs" />
-    <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="Blocks\Property\Shape.cs" />
+    <Compile Include="Core\BlockHelper.cs" />
+    <Compile Include="Core\LayoutHelper.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\BlockType.cs" />
     <Compile Include="GraphModel\GeneralBlock.cs" />

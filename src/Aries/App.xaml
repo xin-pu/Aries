@@ -4,7 +4,7 @@
              xmlns:aries="clr-namespace:Aries"
              xmlns:enums="clr-namespace:GraphX.Common.Enums;assembly=GraphX.Standard.Common"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:fluent="urn:fluent-ribbon"
+             xmlns:core="clr-namespace:Aries.OpenCV.Core;assembly=Aries.OpenCV"
              StartupUri="AriesMain.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -19,7 +19,7 @@
                 <ResourceDictionary Source="Template/BasicTemplate/TextBlockTemplate.xaml"/>
                 <ResourceDictionary Source="Template/BasicTemplate/ButtonTemplate.xaml"/>
 
-             
+
 
             </ResourceDictionary.MergedDictionaries>
 
@@ -42,6 +42,11 @@
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 
+            <ObjectDataProvider MethodName="InitiaLayOutCategtories"
+                                ObjectType="{x:Type core:LayOutCategtory}"
+                                x:Key="LayOutCategtoryProvider">
+            </ObjectDataProvider>
+
             <ObjectDataProvider MethodName="GetValues"
                                 ObjectType="{x:Type sys:Enum}"
                                 x:Key="EdgeRoutingAlgorithmProvider">
@@ -49,7 +54,7 @@
                     <x:Type TypeName="enums:EdgeRoutingAlgorithmTypeEnum" />
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
-            
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

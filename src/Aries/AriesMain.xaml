@@ -17,6 +17,39 @@
         Title="Aries">
 
 
+    <fluent:RibbonWindow.Resources>
+        <Style x:Key="LayoutCategtory" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border Name="MyBorder"
+                                BorderThickness="1"
+                                BorderBrush="{DynamicResource PrimaryBrush}"
+                                Height="50"
+                                Width="60"
+                                Margin="1">
+                            <TextBlock x:Name="Image" 
+                                       Style="{DynamicResource FIconStyle}" 
+                                       Foreground="{TemplateBinding Foreground}"
+                                       FontSize="24"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       Text="{Binding Icon}"
+                                       ToolTip="{Binding Header}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource InfoBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </fluent:RibbonWindow.Resources>
+
     <DockPanel>
         <fluent:Ribbon DockPanel.Dock="Top"
                 BorderThickness="1,0,1,1"
@@ -44,11 +77,10 @@
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 
-            <fluent:RibbonTabItem Header="布局" FontSize="13" DataContext="{Binding AriesCoreUint.GraphStyleManager}">
+            <fluent:RibbonTabItem Header="布局" FontSize="13" DataContext="{Binding AriesCoreUint.GraphLayoutControl}">
                 
                 <fluent:RibbonGroupBox Header="Control">
-                    <fluent:Button  Header="更新布局"
-                                    Command="{Binding RelayoutGraphCommand}"/>
+                    
                     <fluent:CheckBox Header="箭头标签"
                                      IsChecked="{Binding IsShowEdgeLabels}"
                                      Margin="0,2">
@@ -80,56 +112,46 @@
                 <fluent:RibbonGroupBox Header="Layout" BorderThickness="0,0,1,0"
                                  BorderBrush="{DynamicResource PrimaryBrush}"
                                  Margin="10,0">
-
-                    <fluent:ComboBox ItemsSource="{Binding Source={StaticResource LayoutAlgorithmProvider}}"
-                                     SelectedValue="{Binding LayoutAlgorithm}"
-                                     InputWidth="100"
-                                     Header="布局:">
+                    <ListView  ItemsSource="{Binding Source={StaticResource LayOutCategtoryProvider}}"
+                               SelectedValue="{Binding LayOutCategtorySelect}"
+                               ItemContainerStyle="{StaticResource LayoutCategtory}"
+                               Focusable="True" 
+                               SelectionMode="Single"
+                               Margin="2"
+                               Width="270">
                         <hc:Interaction.Triggers>
                             <hc:EventTrigger EventName="SelectionChanged">
-                                <hc:InvokeCommandAction Command="{Binding LayoutAlgorithmTypeEnumChangeCommand}"/>
+                                <hc:InvokeCommandAction Command="{Binding LayOutCategtorySelectedChangeCommand}"/>
                             </hc:EventTrigger>
                         </hc:Interaction.Triggers>
-                    </fluent:ComboBox>
+                        <ListView.Template>
+                            <ControlTemplate>
+                                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                              HorizontalScrollBarVisibility="Disabled">
+                                    <ItemsPresenter />
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ListView.Template>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel IsItemsHost="True" 
+                                           Orientation="Horizontal" 
+                                           HorizontalAlignment="Left"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                    </ListView>
+               
                    
 
                 </fluent:RibbonGroupBox>
 
-                <fluent:RibbonGroupBox Header="Layout" Margin="10,0"
-                                       DataContext="{Binding LogicCoreCv}">
-                    <fluent:ComboBox ItemsSource="{Binding Source={StaticResource OverlapRemovalAlgorithmProvider}}"
-                                     SelectedValue="{Binding DefaultOverlapRemovalAlgorithm}"
-                                     Width="160"
-                                     Header="重叠布局:"
-                                     InputWidth="100"/>
+                <fluent:RibbonGroupBox Header="Layout" Margin="10,0">
                   
-                    <fluent:Spinner Header="VerticalGap"
-                                    Value="{Binding DefaultOverlapRemovalAlgorithmParams.VerticalGap}"
-                                    Minimum="10"
-                                    Maximum="200"
-                                    Increment="10"
-                                    InputWidth="80"
-                                    Format="0"/>
-                    <fluent:Spinner Header="HorizontalGap"
-                                    Value="{Binding DefaultOverlapRemovalAlgorithmParams.HorizontalGap}"
-                                    Minimum="10"
-                                    Maximum="200"
-                                    Increment="10"
-                                    InputWidth="80"
-                                    Format="0"/>
                 </fluent:RibbonGroupBox>
 
 
-                <fluent:RibbonGroupBox Header="Edge" 
-                                       DataContext="{Binding LogicCoreCv}">
-                    <fluent:ComboBox ItemsSource="{Binding Source={StaticResource EdgeRoutingAlgorithmProvider}}"
-                                     SelectedValue="{Binding DefaultEdgeRoutingAlgorithm}"
-                                     Width="160"
-                                     Header="连接布局:"/>
-
-                    <fluent:CheckBox Header="EdgeCurvingEnabled"
-                                     IsChecked="{Binding EdgeCurvingEnabled}"
-                                     Margin="0,2"/>
+                <fluent:RibbonGroupBox Header="Edge">
+                
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 

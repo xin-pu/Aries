@@ -4,7 +4,6 @@ using System.IO;
 using System.Windows.Input;
 using Aries.Views;
 using HandyControl.Controls;
-using HandyControl.Data;
 using Microsoft.Win32;
 using YAXLib;
 

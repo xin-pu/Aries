@@ -93,9 +93,10 @@
     <Compile Include="Core\GraphCV\GraphCVEditManager.cs" />
     <Compile Include="Core\GraphCV\VertexConnectionPointOut.cs" />
     <Compile Include="Core\GraphCV\VertexConnectionPointIn.cs" />
+    <Compile Include="Core\GraphCV\GraphLayoutManager.cs" />
     <Compile Include="Core\Manager\MatRecordManager.cs" />
     <Compile Include="Core\Manager\GraphCVRunManager.cs" />
-    <Compile Include="Core\Manager\GraphStyleManager.cs" />
+    <Compile Include="Core\Manager\GraphLayoutControl.cs" />
     <Compile Include="Core\Manager\ToolKitGroup.cs" />
     <Compile Include="Core\Manager\ToolKitStruct.cs" />
     <Compile Include="Views\AriesCoreUint.xaml.cs">
@@ -158,8 +159,8 @@
     <Compile Include="Core\Manager\ToolKitManager.cs" />
     <Compile Include="Core\GraphCV\GraphCVArea.cs" />
     <Compile Include="Core\GraphCV\LogicCoreCV.cs" />
-    <Compile Include="Core\Manager\BackGroundManager.cs" />
-    <Compile Include="Core\Manager\WaterMaskManager.cs" />
+    <Compile Include="Core\GraphCV\BackGroundManager.cs" />
+    <Compile Include="Core\GraphCV\WaterMaskManager.cs" />
     <Compile Include="Core\Manager\FileSystemManager.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
