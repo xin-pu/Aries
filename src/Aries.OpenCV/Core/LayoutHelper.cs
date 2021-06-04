@@ -13,11 +13,11 @@ namespace Aries.OpenCV.Core
 
         private static readonly Dictionary<LayoutType, string> DictIcon = new Dictionary<LayoutType, string>()
         {
-            [LayoutType.TreeLeftToRight] = "\ued71",
-            [LayoutType.TreeRightToLeft] = "\ued71",
-            [LayoutType.TreeTopTpBottom] = "\uf0c7",
-            [LayoutType.Circle] = "\ued67",
-            [LayoutType.Cunstom] = "\ued71",
+            [LayoutType.TreeLeftToRight] = "\uf118",
+            [LayoutType.TreeRightToLeft] = "\uf119",
+            [LayoutType.TreeTopTpBottom] = "\ue69c",
+            [LayoutType.Circular] = "\ue732",
+            [LayoutType.Custom] = "\ue743",
         };
 
         private static readonly Dictionary<LayoutType, string> DictHeader = new Dictionary<LayoutType, string>()
@@ -25,8 +25,8 @@ namespace Aries.OpenCV.Core
             [LayoutType.TreeLeftToRight] = "从左到右树形布局",
             [LayoutType.TreeRightToLeft] = "从右到左树形布局",
             [LayoutType.TreeTopTpBottom] = "从上到下树形布局",
-            [LayoutType.Circle] = "圆形布局",
-            [LayoutType.Cunstom] = "自定义布局",
+            [LayoutType.Circular] = "圆形布局",
+            [LayoutType.Custom] = "自定义布局",
         };
 
         public static List<LayOutCategtory> InitiaLayOutCategtories()
@@ -52,7 +52,7 @@ namespace Aries.OpenCV.Core
         TreeLeftToRight,
         TreeTopTpBottom,
         TreeRightToLeft,
-        Circle,
-        Cunstom,
+        Circular,
+        Custom,
     }
 }

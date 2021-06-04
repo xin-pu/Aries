@@ -90,11 +90,11 @@ namespace Aries.Core
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
                     logicCoreCv.DefaultLayoutAlgorithmParams = getSimpleTreeLayoutParameters(LayoutDirection.RightToLeft);
                     break;
-                case LayoutType.Circle:
+                case LayoutType.Circular:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Circular;
                     logicCoreCv.DefaultLayoutAlgorithmParams = new CircularLayoutParameters {Seed = 1};
                     break;
-                case LayoutType.Cunstom:
+                case LayoutType.Custom:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
                     break;
                 default:

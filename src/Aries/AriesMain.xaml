@@ -26,22 +26,27 @@
                                 BorderThickness="1"
                                 BorderBrush="{DynamicResource PrimaryBrush}"
                                 Height="50"
-                                Width="60"
+                                Width="50"
                                 Margin="1">
                             <TextBlock x:Name="Image" 
                                        Style="{DynamicResource FIconStyle}" 
-                                       Foreground="{TemplateBinding Foreground}"
                                        FontSize="24"
                                        FontWeight="{TemplateBinding FontWeight}"
                                        Text="{Binding Icon}"
                                        ToolTip="{Binding Header}"/>
                         </Border>
                         <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
+                            </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource InfoBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource InfoBrush}" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource DangerBrush}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -111,14 +116,15 @@
 
                 <fluent:RibbonGroupBox Header="Layout" BorderThickness="0,0,1,0"
                                  BorderBrush="{DynamicResource PrimaryBrush}"
-                                 Margin="10,0">
+                                 Margin="10,0"
+                                 VerticalAlignment="Stretch">
                     <ListView  ItemsSource="{Binding Source={StaticResource LayOutCategtoryProvider}}"
                                SelectedValue="{Binding LayOutCategtorySelect}"
                                ItemContainerStyle="{StaticResource LayoutCategtory}"
                                Focusable="True" 
                                SelectionMode="Single"
                                Margin="2"
-                               Width="270">
+                               Width="300">
                         <hc:Interaction.Triggers>
                             <hc:EventTrigger EventName="SelectionChanged">
                                 <hc:InvokeCommandAction Command="{Binding LayOutCategtorySelectedChangeCommand}"/>
@@ -134,9 +140,10 @@
                         </ListView.Template>
                         <ListView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel IsItemsHost="True" 
+                                <StackPanel IsItemsHost="True" 
                                            Orientation="Horizontal" 
-                                           HorizontalAlignment="Left"/>
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
                             </ItemsPanelTemplate>
                         </ListView.ItemsPanel>
                     </ListView>
@@ -198,10 +205,8 @@
                 <TabItem Header="样式">
                     <views:StyleUnit DataContext="{Binding AriesCoreUint}"/>
                 </TabItem>
-                <TabItem Header="样式">
-                    <hc:PropertyGrid Name="LayOutStyle" SelectedObject="{Binding AriesCoreUint.GraphStyleManager.LayoutParameters}"/>
-                </TabItem>
-              
+         
+                     
 
             </TabControl>
 
