@@ -1,26 +1,48 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Aries.Utility;
+using GraphX.Common.Enums;
+using GraphX.Common.Interfaces;
+using GraphX.Logic.Algorithms.LayoutAlgorithms;
+using GraphX.Measure;
 
 namespace Aries.Core
 {
-    public class GraphStyleManager
+    public class GraphStyleManager : INotifyPropertyChanged
     {
 
-        private static readonly Lazy<GraphStyleManager> lazy =
-            new Lazy<GraphStyleManager>(() => new GraphStyleManager());
+        private LogicCoreCV _logicCoreCv;
+        public ILayoutParameters _layoutParameters;
 
-        public static GraphStyleManager Instance
+        public GraphCVArea GraphCvArea { set; get; }
+
+        public LogicCoreCV LogicCoreCv
         {
-            get { return lazy.Value; }
+            set { UpdateProperty(ref _logicCoreCv, value); }
+            get { return _logicCoreCv; }
         }
+
+
+        public ILayoutParameters LayoutParameters
+        {
+            set { UpdateProperty(ref _layoutParameters, value); }
+            get { return _layoutParameters; }
+        }
+
+        public GraphStyleManager(GraphCVArea graphCvArea)
+        {
+            GraphCvArea = graphCvArea;
+            LogicCoreCv = GraphCvArea.GetLogicCore<LogicCoreCV>();
+        }
+
 
 
         public bool IsShowEdgeLabels { set; get; }
 
         public bool IsAlignEdgeLabels { set; get; }
 
-        public AriesMain AriesMain { set; get; }
 
         public ICommand ShowEdgeLabelCommand
         {
@@ -29,7 +51,7 @@ namespace Aries.Core
 
         private void ShowEdgeLabelCommand_Execute()
         {
-            AriesMain.GraphCvAreaAtWorkSpace.ShowAllEdgesLabels(IsShowEdgeLabels);
+            GraphCvArea.ShowAllEdgesLabels(IsShowEdgeLabels);
         }
 
         public ICommand AlignEdgeLabelsCommand
@@ -39,7 +61,44 @@ namespace Aries.Core
 
         private void AlignEdgeLabelsCommand_Execute()
         {
-            AriesMain.GraphCvAreaAtWorkSpace.AlignAllEdgesLabels(IsAlignEdgeLabels);
+            GraphCvArea.AlignAllEdgesLabels(IsAlignEdgeLabels);
         }
+
+
+        public ICommand RelayoutGraphCommand
+        {
+            get { return new RelayCommand(RelayoutGraphCommand_Execute); }
+        }
+
+        private void RelayoutGraphCommand_Execute()
+        {
+
+            GraphCvArea.RelayoutGraph();
+        }
+
+
+        #region
+
+        internal void UpdateProperty<T>(ref T properValue, T newValue, [CallerMemberName] string propertyName = "")
+        {
+            if (Equals(properValue, newValue))
+            {
+                return;
+            }
+
+            properValue = newValue;
+
+            OnPropertyChanged(propertyName);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

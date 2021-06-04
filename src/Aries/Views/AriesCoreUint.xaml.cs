@@ -14,6 +14,7 @@ using GraphX.Common.Enums;
 using GraphX.Controls;
 using GraphX.Controls.Animations;
 using GraphX.Controls.Models;
+using GraphX.Logic.Algorithms.LayoutAlgorithms;
 
 namespace Aries.Views
 {
@@ -24,10 +25,11 @@ namespace Aries.Views
     {
 
         private GraphCVRunManager _graphCvRunManager;
+        private GraphStyleManager _graphStyleManager;
         private WaterMaskManager _waterMaskManager = new WaterMaskManager();
         private BackGroundManager _backGroundManager = new BackGroundManager();
         private MatRecordManager _matRecordManager = new MatRecordManager();
-        
+   
 
         /// <summary>
         /// Create For New Command
@@ -67,7 +69,33 @@ namespace Aries.Views
             get { return _graphCvRunManager; }
         }
 
+        public GraphStyleManager GraphStyleManager
+        {
+            set { UpdateProperty(ref _graphStyleManager, value); }
+            get { return _graphStyleManager; }
+        }
+
+
         public GraphCVEditManager EditorManager { set; get; }
+
+        public LogicCoreCV LogicCoreCv { set; get; } = new LogicCoreCV
+        {
+            DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree,
+            DefaultLayoutAlgorithmParams = new SimpleTreeLayoutParameters
+            {
+                VertexGap = 200,
+                LayerGap = 200,
+                ComponentGap = 100,
+                Direction = LayoutDirection.TopToBottom,
+                OptimizeWidthAndHeight = true,
+                SpanningTreeGeneration = SpanningTreeGeneration.BFS
+            },
+            DefaultOverlapRemovalAlgorithm = OverlapRemovalAlgorithmTypeEnum.FSA,
+            DefaultOverlapRemovalAlgorithmParams = {VerticalGap = 200, HorizontalGap = 200},
+            DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.SimpleER,
+            EdgeCurvingEnabled = true,
+
+        };
 
 
         private void InitialForNew()
@@ -76,11 +104,13 @@ namespace Aries.Views
             EditorManager = new GraphCVEditManager(GraphArea, ZoomControl);
             InitialGraphArea();
             InitialZoomControl();
+            GraphStyleManager = new GraphStyleManager(GraphArea);
+            GraphCvRunManager = new GraphCVRunManager(GraphArea)
+            {
+                AppendMatRecordAction = MatRecordManager.AppendMatRecords,
+                ClearMatRecordsAction = MatRecordManager.ClearRecords
+            };
 
-            GraphCvRunManager = new GraphCVRunManager(GraphArea);
-            GraphCvRunManager.AppendMatRecordAction = MatRecordManager.AppendMatRecords;
-            GraphCvRunManager.ClearMatRecordsAction = MatRecordManager.ClearRecords;
-            
             Loaded += DynamicGraph_Loaded;
             Unloaded += DynamicGraph_Unloaded;
 
@@ -94,15 +124,8 @@ namespace Aries.Views
             GraphArea.SetVerticesDrag(true, true);
             GraphArea.SetEdgesDrag(true);
 
-            GraphArea.LogicCore = new LogicCoreCV
-            {
-                DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.KK,
-                DefaultOverlapRemovalAlgorithm = OverlapRemovalAlgorithmTypeEnum.FSA,
-                DefaultOverlapRemovalAlgorithmParams = {VerticalGap = 50},
-                DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.None,
-                EdgeCurvingEnabled = true,
+            GraphArea.LogicCore = LogicCoreCv;
 
-            };
             GraphArea.MoveAnimation =
                 AnimationFactory.CreateMoveAnimation(MoveAnimation.Move, TimeSpan.FromSeconds(0.5));
             GraphArea.MoveAnimation.Completed += MoveAnimationCompleted;

@@ -12,7 +12,7 @@ using System;
 using System.Reflection;
 
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f773202b0efee657ba4ec32b7c15b01ee53f199")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ebe5bd87dca2263b6604d0c5ae1bffa4895c1da0")]
 [assembly: System.Reflection.AssemblyTitleAttribute("OpenCvSharp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/shimat/opencvsharp.git")]

@@ -8,7 +8,8 @@ namespace Aries.Core
     public class LogicCoreCV :
         GXLogicCore<BlockVertex, BlockEdge, BidirectionalGraph<BlockVertex, BlockEdge>>
     {
-
+       
+        
 
     }
 }

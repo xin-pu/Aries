@@ -1,4 +1,4 @@
-﻿<hc:Window x:Class="Aries.AriesMain"
+﻿<fluent:RibbonWindow x:Class="Aries.AriesMain"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,147 +6,150 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:controls="clr-namespace:Aries.Controls"
         xmlns:views="clr-namespace:Aries.Views"
+        xmlns:fluent="urn:fluent-ribbon"
         mc:Ignorable="d"
         Height="768" Width="1366"
+        IsIconVisible="True"
         Icon="Aries.ico"
-        ShowTitle="True"
-        ShowNonClientArea="True"
         WindowState="Maximized"
-        Background="White">
-    <hc:Window.NonClientAreaContent>
-        <StackPanel  Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center">
-            <TextBlock Text="Aries" Foreground="{DynamicResource PrimaryBrush}" 
-                       FontSize="15"
-                       TextAlignment="Center"
-                       VerticalAlignment="Center">
-            </TextBlock>
-            <hc:ButtonGroup Orientation="Horizontal" DataContext="{Binding FileSystemManager}">
-                <Button BorderThickness="0" FontSize="16"
-                        Command="{Binding GraphCVSaveCommand}"
-                        ToolTip="保存"
-                        HorizontalContentAlignment="Center"
-                        HorizontalAlignment="Center">
-                    <TextBlock Style="{DynamicResource MyTextBlock}" Text="&#xf0a6;" FontSize="13"
-                               Foreground="{DynamicResource PrimaryBrush}"/>
-                </Button>
-            </hc:ButtonGroup>
-            <Separator Width="1" Style="{DynamicResource SeparatorBaseStyle}"/>
-            <hc:ButtonGroup Orientation="Horizontal" DataContext="{Binding FileSystemManager}">
-              
-            </hc:ButtonGroup>
-        </StackPanel>
-        
-    </hc:Window.NonClientAreaContent>
-    <hc:Window.Resources>
+        Background="White"
+        BorderBrush="{DynamicResource PrimaryBrush}"
+        Title="Aries">
 
-    </hc:Window.Resources>
+
     <DockPanel>
-        <StatusBar DockPanel.Dock="Top" 
-                   Name="Bar">
-            <TabControl DockPanel.Dock="Top" Height="100"
-                        Width="{Binding ElementName=Bar,Path=ActualWidth}">
-                <TabItem Header="文件" FontSize="13" DataContext="{Binding FileSystemManager}">
-                    <StatusBar VerticalAlignment="Stretch" >
-                        <StatusBarItem>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="新建" Icon="&#xef47;" Command="{Binding GraphCVNewCommand}"/>
-                                <controls:TabButton Content="打开" Icon="&#xef4c;" Command="{Binding GraphCVOpenCommand}"/>
-                                <controls:TabButton Content="关闭" Icon="&#xef4d;" Command="{Binding GraphCVCloseCommand}"/>
-                                <controls:TabButton Content="全部关闭" Icon="&#xef4d;" Command="{Binding GraphCVCloseAllCommand}"/>
-                            </StackPanel>
-                        </StatusBarItem>
-                        <Separator Background="Black"/>
-                        <StatusBarItem>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="保存" Icon="&#xf0a6;" Command="{Binding GraphCVSaveCommand}"/>
-                                <controls:TabButton Content="另存为" Icon="&#xf0a6;" Command="{Binding GraphCVSaveAsCommand}"/>
-                            </StackPanel>
-                        </StatusBarItem>
-                        <Separator Background="Black"/>
-                        <StatusBarItem>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="选项" Icon="&#xef7d;"/>
-                            </StackPanel>
-                        </StatusBarItem>
-                    </StatusBar>
-                </TabItem>
-                <TabItem Header="控制" FontSize="13" DataContext="{Binding AriesCoreUint.GraphCvRunManager}">
-                    <StatusBar VerticalAlignment="Stretch">
-                        <StatusBarItem>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="运行" Icon="&#xf07e;" Command="{Binding RunGraphCVCommand}"/>
-                                <controls:TabButton Content="停止" Icon="&#xf0db;" Command="{Binding StopGraphCVCommand}"/>
-                            </StackPanel>
-                        </StatusBarItem>
+        <fluent:Ribbon DockPanel.Dock="Top"
+                BorderThickness="1,0,1,1">
+            <fluent:RibbonTabItem Header="文件" FontSize="13" DataContext="{Binding FileSystemManager}">
+                <fluent:RibbonGroupBox Header="File">
 
-                    </StatusBar>
-                </TabItem>
-                <TabItem Header="页面样式" FontSize="13">
-                    <StatusBar VerticalAlignment="Stretch" >
-                        <StatusBarItem>
-                            <StackPanel Orientation="Vertical" DataContext="{Binding GraphStyleManager}">
-                                <CheckBox Content="箭头标签"
-                                          IsChecked="{Binding IsShowEdgeLabels}"
-                                          Margin="0,2">
-                                    <hc:Interaction.Triggers>
-                                        <hc:EventTrigger EventName="Checked">
-                                            <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
-                                        </hc:EventTrigger>
-                                        <hc:EventTrigger EventName="Unchecked">
-                                            <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
-                                        </hc:EventTrigger>
-                                    </hc:Interaction.Triggers>
-                                </CheckBox>
-                                <CheckBox Content="标签方位"
-                                          IsChecked="{Binding IsAlignEdgeLabels}"
-                                          Margin="0,2">
-                                    <hc:Interaction.Triggers>
-                                        <hc:EventTrigger EventName="Checked">
-                                            <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
-                                        </hc:EventTrigger>
-                                        <hc:EventTrigger EventName="Unchecked">
-                                            <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
-                                        </hc:EventTrigger>
-                                    </hc:Interaction.Triggers>
-                                </CheckBox>
-                            </StackPanel>
-                        </StatusBarItem>
+                    <controls:TabButton Content="新建" Icon="&#xef47;" Command="{Binding GraphCVNewCommand}"/>
+                    <controls:TabButton Content="打开" Icon="&#xef4c;" Command="{Binding GraphCVOpenCommand}"/>
+                    <controls:TabButton Content="关闭" Icon="&#xef4d;" Command="{Binding GraphCVCloseCommand}"/>
+                    <controls:TabButton Content="全部关闭" Icon="&#xef4d;" Command="{Binding GraphCVCloseAllCommand}"/>
+                </fluent:RibbonGroupBox>
 
-                        <Separator Background="Black"/>
+                <fluent:RibbonGroupBox Header="Save">
+                    <controls:TabButton Content="保存" Icon="&#xf0a6;" Command="{Binding GraphCVSaveCommand}"/>
+                    <controls:TabButton Content="另存为" Icon="&#xf0a6;" Command="{Binding GraphCVSaveAsCommand}"/>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <fluent:RibbonTabItem Header="控制" FontSize="13" DataContext="{Binding AriesCoreUint.GraphCvRunManager}">
+                <fluent:RibbonGroupBox Header="Control">
+                    <controls:TabButton Content="运行" Icon="&#xf07e;" Command="{Binding RunGraphCVCommand}"/>
+                    <controls:TabButton Content="停止" Icon="&#xf0db;" Command="{Binding StopGraphCVCommand}"/>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
 
-                        <StatusBarItem>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
-                                <controls:TabButton Content="背景图片" Icon="&#xef48;"/>
-                                <controls:TabButton Content="移除背景" Icon="&#xf117;"/>
-                            </StackPanel>
-                        </StatusBarItem>
-                     
-                        <Separator Background="Black"/>
-                        <StatusBarItem DataContext="{Binding AriesCoreUint.WaterMaskManager}">
-                            <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="水印" Icon="&#xef68;"/>
-                            </StackPanel>
-                        </StatusBarItem>
-                    </StatusBar>
-                </TabItem>
-                <TabItem Header="视图" FontSize="13">
-                    <StatusBar VerticalAlignment="Stretch">
-                        <StatusBarItem>
-                            <StackPanel Orientation="Horizontal">
-                                <controls:TabButton Content="格式化" Icon="&#xf0c7;"/>
-                            </StackPanel>
-                        </StatusBarItem>
-                    </StatusBar>
-                </TabItem>
-                <TabItem Header="帮助" FontSize="13"/>
-            </TabControl>
-        </StatusBar>
+            <fluent:RibbonTabItem Header="布局" FontSize="13" DataContext="{Binding AriesCoreUint.GraphStyleManager}">
+                
+                <fluent:RibbonGroupBox Header="Control">
+                    <fluent:Button  Header="更新布局"
+                                    Command="{Binding RelayoutGraphCommand}"/>
+                    <fluent:CheckBox Header="箭头标签"
+                                     IsChecked="{Binding IsShowEdgeLabels}"
+                                     Margin="0,2">
+                        <hc:Interaction.Triggers>
+                            <hc:EventTrigger EventName="Checked">
+                                <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                            </hc:EventTrigger>
+                            <hc:EventTrigger EventName="Unchecked">
+                                <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                            </hc:EventTrigger>
+                        </hc:Interaction.Triggers>
+                    </fluent:CheckBox>
+                    <fluent:CheckBox Header="标签方位"
+                                     IsChecked="{Binding IsAlignEdgeLabels}"
+                                     Margin="0,2">
+                        <hc:Interaction.Triggers>
+                            <hc:EventTrigger EventName="Checked">
+                                <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                            </hc:EventTrigger>
+                            <hc:EventTrigger EventName="Unchecked">
+                                <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                            </hc:EventTrigger>
+                        </hc:Interaction.Triggers>
+                    </fluent:CheckBox>
+
+                </fluent:RibbonGroupBox>
 
 
+                <fluent:RibbonGroupBox Header="Layout" BorderThickness="0,0,1,0"
+                                 BorderBrush="{DynamicResource PrimaryBrush}"
+                                 Margin="10,0"
+                                 DataContext="{Binding LogicCoreCv}">
+
+                    <fluent:ComboBox ItemsSource="{Binding Source={StaticResource LayoutAlgorithmProvider}}"
+                                     SelectedValue="{Binding DefaultLayoutAlgorithm}"
+                                     InputWidth="100"
+                                     Header="布局:"/>
+
+
+                </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="Layout" Margin="10,0"
+                                       DataContext="{Binding LogicCoreCv}">
+                    <fluent:ComboBox ItemsSource="{Binding Source={StaticResource OverlapRemovalAlgorithmProvider}}"
+                                     SelectedValue="{Binding DefaultOverlapRemovalAlgorithm}"
+                                     Width="160"
+                                     Header="重叠布局:"
+                                     InputWidth="100"/>
+                  
+                    <fluent:Spinner Header="VerticalGap"
+                                    Value="{Binding DefaultOverlapRemovalAlgorithmParams.VerticalGap}"
+                                    Minimum="10"
+                                    Maximum="200"
+                                    Increment="10"
+                                    InputWidth="80"
+                                    Format="0"/>
+                    <fluent:Spinner Header="HorizontalGap"
+                                    Value="{Binding DefaultOverlapRemovalAlgorithmParams.HorizontalGap}"
+                                    Minimum="10"
+                                    Maximum="200"
+                                    Increment="10"
+                                    InputWidth="80"
+                                    Format="0"/>
+                </fluent:RibbonGroupBox>
+
+
+                <fluent:RibbonGroupBox Header="Edge" 
+                                       DataContext="{Binding LogicCoreCv}">
+                    <fluent:ComboBox ItemsSource="{Binding Source={StaticResource EdgeRoutingAlgorithmProvider}}"
+                                     SelectedValue="{Binding DefaultEdgeRoutingAlgorithm}"
+                                     Width="160"
+                                     Header="连接布局:"/>
+
+                    <fluent:CheckBox Header="EdgeCurvingEnabled"
+                                     IsChecked="{Binding EdgeCurvingEnabled}"
+                                     Margin="0,2"/>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+
+            <fluent:RibbonTabItem Header="页面样式" FontSize="13">
+                <fluent:RibbonGroupBox>
+                        <StackPanel Orientation="Horizontal">
+                            <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
+                            <controls:TabButton Content="背景图片" Icon="&#xef48;"/>
+                            <controls:TabButton Content="移除背景" Icon="&#xf117;"/>
+                        </StackPanel>
+                    </fluent:RibbonGroupBox>
+
+                   
+
+                <fluent:RibbonGroupBox DataContext="{Binding AriesCoreUint.WaterMaskManager}">
+                        <StackPanel Orientation="Horizontal">
+                            <controls:TabButton Content="水印" Icon="&#xef68;"/>
+                        </StackPanel>
+                    </fluent:RibbonGroupBox>
+              
+            </fluent:RibbonTabItem>
+
+           
+
+        </fluent:Ribbon>
         <StatusBar DockPanel.Dock="Bottom" 
                    Height="50" BorderThickness="0,1,0,0">
-           
         </StatusBar>
 
         <Grid>
@@ -164,6 +167,9 @@
 
                 <TabItem Header="样式">
                     <views:StyleUnit DataContext="{Binding AriesCoreUint}"/>
+                </TabItem>
+                <TabItem Header="布局测试">
+                    <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.LogicCoreCv.DefaultLayoutAlgorithmParams}"/>
                 </TabItem>
 
             </TabControl>
@@ -213,4 +219,4 @@
 
 
     </DockPanel>
-</hc:Window>
+</fluent:RibbonWindow>
