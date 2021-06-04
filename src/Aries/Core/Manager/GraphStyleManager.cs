@@ -6,7 +6,6 @@ using Aries.Utility;
 using GraphX.Common.Enums;
 using GraphX.Common.Interfaces;
 using GraphX.Logic.Algorithms.LayoutAlgorithms;
-using GraphX.Measure;
 
 namespace Aries.Core
 {
@@ -15,6 +14,7 @@ namespace Aries.Core
 
         private LogicCoreCV _logicCoreCv;
         public ILayoutParameters _layoutParameters;
+        public LayoutAlgorithmTypeEnum _layoutAlgorithm;
 
         public GraphCVArea GraphCvArea { set; get; }
 
@@ -22,6 +22,12 @@ namespace Aries.Core
         {
             set { UpdateProperty(ref _logicCoreCv, value); }
             get { return _logicCoreCv; }
+        }
+
+        public LayoutAlgorithmTypeEnum LayoutAlgorithm
+        {
+            set { UpdateProperty(ref _layoutAlgorithm, value); }
+            get { return _layoutAlgorithm; }
         }
 
 
@@ -35,8 +41,9 @@ namespace Aries.Core
         {
             GraphCvArea = graphCvArea;
             LogicCoreCv = GraphCvArea.GetLogicCore<LogicCoreCV>();
+            LayoutAlgorithm = LogicCoreCv.DefaultLayoutAlgorithm;
+            LayoutParameters = LogicCoreCv.DefaultLayoutAlgorithmParams;
         }
-
 
 
         public bool IsShowEdgeLabels { set; get; }
@@ -44,37 +51,93 @@ namespace Aries.Core
         public bool IsAlignEdgeLabels { set; get; }
 
 
+
+        #region Command
+
         public ICommand ShowEdgeLabelCommand
         {
             get { return new RelayCommand(ShowEdgeLabelCommand_Execute); }
         }
 
-        private void ShowEdgeLabelCommand_Execute()
-        {
-            GraphCvArea.ShowAllEdgesLabels(IsShowEdgeLabels);
-        }
 
         public ICommand AlignEdgeLabelsCommand
         {
             get { return new RelayCommand(AlignEdgeLabelsCommand_Execute); }
         }
 
-        private void AlignEdgeLabelsCommand_Execute()
-        {
-            GraphCvArea.AlignAllEdgesLabels(IsAlignEdgeLabels);
-        }
-
-
         public ICommand RelayoutGraphCommand
         {
             get { return new RelayCommand(RelayoutGraphCommand_Execute); }
         }
 
+
+        public ICommand LayoutAlgorithmTypeEnumChangeCommand
+        {
+            get { return new RelayCommand(LayoutAlgorithmTypeEnumChangeCommand_Execute); }
+        }
+
+
+        private void ShowEdgeLabelCommand_Execute()
+        {
+            GraphCvArea.ShowAllEdgesLabels(IsShowEdgeLabels);
+        }
+
+
+        private void AlignEdgeLabelsCommand_Execute()
+        {
+            GraphCvArea.AlignAllEdgesLabels(IsAlignEdgeLabels);
+        }
+
         private void RelayoutGraphCommand_Execute()
         {
-
             GraphCvArea.RelayoutGraph();
         }
+
+        private void LayoutAlgorithmTypeEnumChangeCommand_Execute()
+        {
+            switch (LayoutAlgorithm)
+            {
+                case LayoutAlgorithmTypeEnum.BoundedFR:
+                    break;
+                case LayoutAlgorithmTypeEnum.Circular:
+                    LayoutParameters = CircularLayoutParameters;
+                    break;
+                case LayoutAlgorithmTypeEnum.CompoundFDP:
+                    break;
+                case LayoutAlgorithmTypeEnum.EfficientSugiyama:
+                    break;
+                case LayoutAlgorithmTypeEnum.Sugiyama:
+                    break;
+                case LayoutAlgorithmTypeEnum.FR:
+                    break;
+                case LayoutAlgorithmTypeEnum.ISOM:
+                    break;
+                case LayoutAlgorithmTypeEnum.KK:
+                    break;
+                case LayoutAlgorithmTypeEnum.LinLog:
+                    break;
+                case LayoutAlgorithmTypeEnum.Tree:
+                    LayoutParameters = SimpleTreeLayoutParameters;
+                    break;
+                case LayoutAlgorithmTypeEnum.SimpleRandom:
+                    break;
+                case LayoutAlgorithmTypeEnum.Custom:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            GraphCvArea.LogicCore.DefaultLayoutAlgorithm = LayoutAlgorithm;
+            GraphCvArea.LogicCore.DefaultLayoutAlgorithmParams = LayoutParameters;
+        }
+
+
+        public SimpleTreeLayoutParameters SimpleTreeLayoutParameters { set; get; } = new SimpleTreeLayoutParameters();
+
+        public CircularLayoutParameters CircularLayoutParameters { set; get; } = new CircularLayoutParameters();
+
+        #endregion
+
 
 
         #region

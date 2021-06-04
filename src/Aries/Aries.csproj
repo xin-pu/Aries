@@ -157,7 +157,7 @@
     <Compile Include="Core\GraphCV\GraphCVFileStruct.cs" />
     <Compile Include="Core\Manager\ToolKitManager.cs" />
     <Compile Include="Core\GraphCV\GraphCVArea.cs" />
-    <Compile Include="Core\GraphCV\GraphCVLogicCore.cs" />
+    <Compile Include="Core\GraphCV\LogicCoreCV.cs" />
     <Compile Include="Core\Manager\BackGroundManager.cs" />
     <Compile Include="Core\Manager\WaterMaskManager.cs" />
     <Compile Include="Core\Manager\FileSystemManager.cs" />

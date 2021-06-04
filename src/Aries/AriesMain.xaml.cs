@@ -17,7 +17,6 @@ namespace Aries
             InitializeComponent();
             DataContext = this;
             FileSystemManager.AriesMain = this;
-
         }
 
         private GraphCVArea _graphCvAreaAtWorkSpace;

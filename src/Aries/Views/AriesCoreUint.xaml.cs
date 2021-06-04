@@ -10,11 +10,9 @@ using Aries.Core;
 using Aries.OpenCV.Blocks;
 using Aries.OpenCV.GraphModel;
 using Aries.Utility;
-using GraphX.Common.Enums;
 using GraphX.Controls;
 using GraphX.Controls.Animations;
 using GraphX.Controls.Models;
-using GraphX.Logic.Algorithms.LayoutAlgorithms;
 
 namespace Aries.Views
 {
@@ -78,25 +76,7 @@ namespace Aries.Views
 
         public GraphCVEditManager EditorManager { set; get; }
 
-        public LogicCoreCV LogicCoreCv { set; get; } = new LogicCoreCV
-        {
-            DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree,
-            DefaultLayoutAlgorithmParams = new SimpleTreeLayoutParameters
-            {
-                VertexGap = 200,
-                LayerGap = 200,
-                ComponentGap = 100,
-                Direction = LayoutDirection.TopToBottom,
-                OptimizeWidthAndHeight = true,
-                SpanningTreeGeneration = SpanningTreeGeneration.BFS
-            },
-            DefaultOverlapRemovalAlgorithm = OverlapRemovalAlgorithmTypeEnum.FSA,
-            DefaultOverlapRemovalAlgorithmParams = {VerticalGap = 200, HorizontalGap = 200},
-            DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.SimpleER,
-            EdgeCurvingEnabled = true,
-
-        };
-
+        public LogicCoreCV LogicCoreCv { set; get; } = new LogicCoreCV();
 
         private void InitialForNew()
         {

@@ -19,7 +19,10 @@
 
     <DockPanel>
         <fluent:Ribbon DockPanel.Dock="Top"
-                BorderThickness="1,0,1,1">
+                BorderThickness="1,0,1,1"
+                IsCollapsed="False"
+                CanCustomizeQuickAccessToolBar="False"
+                IsAutomaticCollapseEnabled="False">
             <fluent:RibbonTabItem Header="文件" FontSize="13" DataContext="{Binding FileSystemManager}">
                 <fluent:RibbonGroupBox Header="File">
 
@@ -76,14 +79,19 @@
 
                 <fluent:RibbonGroupBox Header="Layout" BorderThickness="0,0,1,0"
                                  BorderBrush="{DynamicResource PrimaryBrush}"
-                                 Margin="10,0"
-                                 DataContext="{Binding LogicCoreCv}">
+                                 Margin="10,0">
 
                     <fluent:ComboBox ItemsSource="{Binding Source={StaticResource LayoutAlgorithmProvider}}"
-                                     SelectedValue="{Binding DefaultLayoutAlgorithm}"
+                                     SelectedValue="{Binding LayoutAlgorithm}"
                                      InputWidth="100"
-                                     Header="布局:"/>
-
+                                     Header="布局:">
+                        <hc:Interaction.Triggers>
+                            <hc:EventTrigger EventName="SelectionChanged">
+                                <hc:InvokeCommandAction Command="{Binding LayoutAlgorithmTypeEnumChangeCommand}"/>
+                            </hc:EventTrigger>
+                        </hc:Interaction.Triggers>
+                    </fluent:ComboBox>
+                   
 
                 </fluent:RibbonGroupBox>
 
@@ -168,9 +176,10 @@
                 <TabItem Header="样式">
                     <views:StyleUnit DataContext="{Binding AriesCoreUint}"/>
                 </TabItem>
-                <TabItem Header="布局测试">
-                    <hc:PropertyGrid SelectedObject="{Binding AriesCoreUint.LogicCoreCv.DefaultLayoutAlgorithmParams}"/>
+                <TabItem Header="样式">
+                    <hc:PropertyGrid Name="LayOutStyle" SelectedObject="{Binding AriesCoreUint.GraphStyleManager.LayoutParameters}"/>
                 </TabItem>
+              
 
             </TabControl>
 
