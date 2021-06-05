@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Aries.OpenCV.Core;
 using Aries.Utility;
 using GraphX.Common.Enums;
+using GraphX.Logic.Algorithms.EdgeRouting;
 using GraphX.Logic.Algorithms.LayoutAlgorithms;
 
 namespace Aries.Core
@@ -13,7 +14,8 @@ namespace Aries.Core
     {
 
         private GraphLayoutManager _graphLayoutManager = new GraphLayoutManager();
-        private LayOutCategtory _layOutCategtorySelect;
+        private LayoutCategory _layoutCategorySelect;
+        private EdgeRoutingCategory _edgeRoutingCategory;
         public bool _isShowEdgeLabels = false;
         public bool _isAlignEdgeLabels = true;
 
@@ -32,10 +34,16 @@ namespace Aries.Core
         }
 
 
-        public LayOutCategtory LayOutCategtorySelect
+        public LayoutCategory LayoutCategorySelect
         {
-            set { UpdateProperty(ref _layOutCategtorySelect, value); }
-            get { return _layOutCategtorySelect; }
+            set { UpdateProperty(ref _layoutCategorySelect, value); }
+            get { return _layoutCategorySelect; }
+        }
+
+        public EdgeRoutingCategory EdgeRoutingCategorySelect
+        {
+            set { UpdateProperty(ref _edgeRoutingCategory, value); }
+            get { return _edgeRoutingCategory; }
         }
 
         public bool IsShowEdgeLabels
@@ -68,15 +76,20 @@ namespace Aries.Core
             get { return new RelayCommand(AlignEdgeLabelsCommand_Execute); }
         }
 
-
-        public ICommand LayOutCategtorySelectedChangeCommand
+        
+        public ICommand LayoutCategorySelectedChangeCommand
         {
-            get { return new RelayCommand(LayOutCategtorySelectedChangeCommand_Execute); }
+            get { return new RelayCommand(LayoutCategorySelectedChangeCommand_Execute); }
         }
 
-        private void LayOutCategtorySelectedChangeCommand_Execute()
+        public ICommand EdgeRoutingCategorySelectedChangeCommand
         {
-            switch (LayOutCategtorySelect.LayoutType)
+            get { return new RelayCommand(EdgeRoutingCategorySelectedChangeCommand_Execute); }
+        }
+
+        private void LayoutCategorySelectedChangeCommand_Execute()
+        {
+            switch (LayoutCategorySelect.LayoutType)
             {
                 case LayoutType.TreeLeftToRight:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
@@ -105,6 +118,33 @@ namespace Aries.Core
         }
 
 
+        private void EdgeRoutingCategorySelectedChangeCommand_Execute()
+        {
+            switch (EdgeRoutingCategorySelect.EdgeRoutingAlgorithmType)
+            {
+                case EdgeRoutingAlgorithmTypeEnum.None:
+                    logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.None;
+                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new EdgeRoutingParameters();
+                    break;
+                case EdgeRoutingAlgorithmTypeEnum.PathFinder:
+                    logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.PathFinder;
+                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new PathFinderEdgeRoutingParameters();
+                    break;
+                case EdgeRoutingAlgorithmTypeEnum.SimpleER:
+                    logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.SimpleER;
+                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new SimpleERParameters();
+                    break;
+                case EdgeRoutingAlgorithmTypeEnum.Bundling:
+                    logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.Bundling;
+                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new BundleEdgeRoutingParameters();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            GraphCvArea.RelayoutGraph();
+        }
+
         private void ShowEdgeLabelCommand_Execute()
         {
             GraphCvArea.ShowAllEdgesLabels(IsShowEdgeLabels);
@@ -119,19 +159,18 @@ namespace Aries.Core
 
         public SimpleTreeLayoutParameters getSimpleTreeLayoutParameters(LayoutDirection layoutDirection)
         {
-            return new SimpleTreeLayoutParameters()
+            return new SimpleTreeLayoutParameters
             {
                 ComponentGap = 200,
                 VertexGap = 200,
                 LayerGap = 200,
-                OptimizeWidthAndHeight =true,
+                OptimizeWidthAndHeight = true,
                 SpanningTreeGeneration = SpanningTreeGeneration.BFS,
                 WidthPerHeight = 1,
                 Direction = layoutDirection
             };
-        } 
+        }
 
-        public CircularLayoutParameters CircularLayoutParameters { set; get; } = new CircularLayoutParameters();
 
         #endregion
 

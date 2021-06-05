@@ -38,15 +38,18 @@
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="False">
                                 <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource BackgroundBrush}" />
                                 <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource InfoBrush}" />
-                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource InfoBrush}" />
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource SuccessBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource SuccessBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource BackgroundBrush}" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
-                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource DangerBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource DangerBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource BackgroundBrush}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -114,51 +117,80 @@
                 </fluent:RibbonGroupBox>
 
 
-                <fluent:RibbonGroupBox Header="Layout" BorderThickness="0,0,1,0"
-                                 BorderBrush="{DynamicResource PrimaryBrush}"
-                                 Margin="10,0"
-                                 VerticalAlignment="Stretch">
-                    <ListView  ItemsSource="{Binding Source={StaticResource LayOutCategtoryProvider}}"
-                               SelectedValue="{Binding LayOutCategtorySelect}"
-                               ItemContainerStyle="{StaticResource LayoutCategtory}"
-                               Focusable="True" 
-                               SelectionMode="Single"
-                               Margin="2"
-                               Width="300">
-                        <hc:Interaction.Triggers>
-                            <hc:EventTrigger EventName="SelectionChanged">
-                                <hc:InvokeCommandAction Command="{Binding LayOutCategtorySelectedChangeCommand}"/>
-                            </hc:EventTrigger>
-                        </hc:Interaction.Triggers>
-                        <ListView.Template>
-                            <ControlTemplate>
-                                <ScrollViewer VerticalScrollBarVisibility="Auto"
-                                              HorizontalScrollBarVisibility="Disabled">
-                                    <ItemsPresenter />
-                                </ScrollViewer>
-                            </ControlTemplate>
-                        </ListView.Template>
-                        <ListView.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel IsItemsHost="True" 
-                                           Orientation="Horizontal" 
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
-                            </ItemsPanelTemplate>
-                        </ListView.ItemsPanel>
-                    </ListView>
+                <fluent:RibbonGroupBox Header="Layout"
+                                       VerticalContentAlignment="Center">
+                    <Border  BorderThickness="1"
+                             BorderBrush="{DynamicResource PrimaryBrush}">
+                        <ListView  ItemsSource="{Binding Source={StaticResource LayOutCategoryProvider}}"
+                                   SelectedValue="{Binding LayoutCategorySelect}"
+                                   ItemContainerStyle="{StaticResource LayoutCategtory}"
+                                   Focusable="True" 
+                                   SelectionMode="Single"
+                                   Margin="5" >
+                            <hc:Interaction.Triggers>
+                                <hc:EventTrigger EventName="SelectionChanged">
+                                    <hc:InvokeCommandAction Command="{Binding LayoutCategorySelectedChangeCommand}"/>
+                                </hc:EventTrigger>
+                            </hc:Interaction.Triggers>
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel IsItemsHost="True" 
+                                                Orientation="Horizontal" 
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Border>
+                    
                
                    
 
                 </fluent:RibbonGroupBox>
 
-                <fluent:RibbonGroupBox Header="Layout" Margin="10,0">
-                  
-                </fluent:RibbonGroupBox>
 
-
-                <fluent:RibbonGroupBox Header="Edge">
-                
+                <fluent:RibbonGroupBox Header="Edge"
+                                       VerticalContentAlignment="Center">
+                    <Border  BorderThickness="1"
+                             BorderBrush="{DynamicResource PrimaryBrush}">
+                        <ListView  ItemsSource="{Binding Source={StaticResource EdgeRoutingCategoryProvider}}"
+                                   SelectedValue="{Binding EdgeRoutingCategorySelect}"
+                                   ItemContainerStyle="{StaticResource LayoutCategtory}"
+                                   Focusable="True" 
+                                   SelectionMode="Single"
+                                   Margin="5">
+                            <hc:Interaction.Triggers>
+                                <hc:EventTrigger EventName="SelectionChanged">
+                                    <hc:InvokeCommandAction Command="{Binding EdgeRoutingCategorySelectedChangeCommand}"/>
+                                </hc:EventTrigger>
+                            </hc:Interaction.Triggers>
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel IsItemsHost="True" 
+                                                Orientation="Horizontal" 
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Border>
+                       
                 </fluent:RibbonGroupBox>
             </fluent:RibbonTabItem>
 

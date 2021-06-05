@@ -113,6 +113,9 @@ namespace Aries.Views
             GraphArea.EdgeSelected += BlockEdgeSelected;
             GraphArea.EdgeDoubleClick += BlockEdgeDoubleClick;
 
+            GraphArea.ShowAllEdgesLabels(false);
+            GraphArea.ShowAllEdgesArrows();
+
         }
 
         private void InitialZoomControl()

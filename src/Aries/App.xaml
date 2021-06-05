@@ -42,18 +42,16 @@
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 
-            <ObjectDataProvider MethodName="InitiaLayOutCategtories"
-                                ObjectType="{x:Type core:LayOutCategtory}"
-                                x:Key="LayOutCategtoryProvider">
+            <ObjectDataProvider MethodName="InitiaLayOutCategories"
+                                ObjectType="{x:Type core:LayoutCategory}"
+                                x:Key="LayOutCategoryProvider">
             </ObjectDataProvider>
+            <ObjectDataProvider MethodName="InitialEdgeRoutingCategories"
+                                ObjectType="{x:Type core:EdgeRoutingCategory}"
+                                x:Key="EdgeRoutingCategoryProvider">
+            </ObjectDataProvider>
+            
 
-            <ObjectDataProvider MethodName="GetValues"
-                                ObjectType="{x:Type sys:Enum}"
-                                x:Key="EdgeRoutingAlgorithmProvider">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="enums:EdgeRoutingAlgorithmTypeEnum" />
-                </ObjectDataProvider.MethodParameters>
-            </ObjectDataProvider>
 
         </ResourceDictionary>
     </Application.Resources>

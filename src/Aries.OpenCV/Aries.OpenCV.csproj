@@ -113,7 +113,8 @@
     <Compile Include="Blocks\Transform\WarpAffine.cs" />
     <Compile Include="Blocks\Property\Shape.cs" />
     <Compile Include="Core\BlockHelper.cs" />
-    <Compile Include="Core\LayoutHelper.cs" />
+    <Compile Include="Core\EdgeRoutingCategory.cs" />
+    <Compile Include="Core\LayoutCategory.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\BlockType.cs" />
     <Compile Include="GraphModel\GeneralBlock.cs" />

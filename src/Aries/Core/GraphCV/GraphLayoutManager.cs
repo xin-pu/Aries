@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Aries.OpenCV.Core;
+using GraphX.Common.Enums;
 
 namespace Aries.Core
 {
@@ -8,6 +9,9 @@ namespace Aries.Core
     {
 
         public LayoutType _layoutType = LayoutType.TreeLeftToRight;
+        public EdgeRoutingAlgorithmTypeEnum _edgeRoutingType = 
+            EdgeRoutingAlgorithmTypeEnum.SimpleER;
+
         public bool _isShowEdgeLabels = false;
         public bool _isAlignEdgeLabels = true;
 
@@ -15,6 +19,12 @@ namespace Aries.Core
         {
             set { UpdateProperty(ref _layoutType, value); }
             get { return _layoutType; }
+        }
+
+        public EdgeRoutingAlgorithmTypeEnum EdgeRoutingType
+        {
+            set { UpdateProperty(ref _edgeRoutingType, value); }
+            get { return _edgeRoutingType; }
         }
 
         public bool IsShowEdgeLabels

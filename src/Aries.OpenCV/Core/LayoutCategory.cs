@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using GraphX.Common.Enums;
 
 namespace Aries.OpenCV.Core
 {
     
-    public class LayOutCategtory
+    public class LayoutCategory
     {
         public LayoutType LayoutType { set; get; }
+        public EdgeRoutingAlgorithmTypeEnum EdgeRoutingType { set; get; }
         public string Icon { set; get; }
         public string Header { set; get; }
 
@@ -29,13 +31,13 @@ namespace Aries.OpenCV.Core
             [LayoutType.Custom] = "自定义布局",
         };
 
-        public static List<LayOutCategtory> InitiaLayOutCategtories()
+        public static List<LayoutCategory> InitiaLayOutCategories()
         {
-            var categtories = new List<LayOutCategtory>();
+            var categtories = new List<LayoutCategory>();
             foreach (var value in Enum.GetValues(typeof(LayoutType)))
             {
                 var type = (LayoutType)value;
-                categtories.Add(new LayOutCategtory
+                categtories.Add(new LayoutCategory
                 {
                     Header = DictHeader[type],
                     Icon = DictIcon[type],
@@ -47,6 +49,7 @@ namespace Aries.OpenCV.Core
         }
     }
 
+
     public enum LayoutType
     {
         TreeLeftToRight,
@@ -55,4 +58,7 @@ namespace Aries.OpenCV.Core
         Circular,
         Custom,
     }
+
+
+ 
 }
