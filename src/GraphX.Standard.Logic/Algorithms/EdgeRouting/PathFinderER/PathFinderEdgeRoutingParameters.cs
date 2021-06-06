@@ -6,14 +6,17 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
     {
         /// <summary>
         /// Controls horizontal grid density. Smaller the value more points will be available.
+        /// 控制水平网格密度。值越小，可用的点数就越多。
         /// </summary>
         public double HorizontalGridSize { get; set; }
         /// <summary>
         /// Controls vertical grid density. Smaller the value more points will be available.
+        /// 控制垂直网格密度。值越小，可用的点数就越多。
         /// </summary>
         public double VerticalGridSize { get; set; }
         /// <summary>
         /// Offset from the each side to enlarge grid and leave additional space for routing.
+        /// 从每边偏移以扩大网格并为路由留下额外的空间。
         /// </summary>
         public double SideGridOffset { get; set; }
 
@@ -51,9 +54,9 @@ namespace GraphX.Logic.Algorithms.EdgeRouting
         {
             HorizontalGridSize = 100;
             VerticalGridSize = 100;
-            SideGridOffset = 200;
+            SideGridOffset = 50;
             UseDiagonals = true;
-            PathFinderAlgorithm = PathFindAlgorithm.Manhattan;
+            PathFinderAlgorithm = PathFindAlgorithm.Euclidean;
             PunishChangeDirection = false;
             UseHeavyDiagonals = false;
             Heuristic = 2;

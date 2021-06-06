@@ -128,7 +128,10 @@ namespace Aries.Core
                     break;
                 case EdgeRoutingAlgorithmTypeEnum.PathFinder:
                     logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.PathFinder;
-                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new PathFinderEdgeRoutingParameters();
+                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new PathFinderEdgeRoutingParameters()
+                    {
+                        
+                    };
                     break;
                 case EdgeRoutingAlgorithmTypeEnum.SimpleER:
                     logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.SimpleER;

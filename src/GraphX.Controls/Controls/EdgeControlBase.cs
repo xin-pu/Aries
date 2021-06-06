@@ -1073,6 +1073,7 @@ namespace GraphX.Controls
         }
 
 
+        /// TO DO by Xin.PU
         /// <summary>
         /// Create and apply edge path using calculated ER parameters stored in edge
         /// </summary>
@@ -1186,7 +1187,7 @@ namespace GraphX.Controls
             #endregion
 
             //calculate edge source (p1) and target (p2) endpoints based on different settings
-            if (gEdge?.SourceConnectionPointId != null && gEdge?.TargetConnectionPointId != null)
+            if (gEdge?.SourceConnectionPointId != null && gEdge.TargetConnectionPointId != null)
             {
                 // Get the connection points and their centers
                 var sourceCp = getSourceCpOrThrow();

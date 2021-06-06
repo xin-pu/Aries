@@ -22,7 +22,6 @@
                         <hc:Shield Subject="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Icon}"
                                    Status="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                    Color="Green"
-                                   Margin="2"
                                    FontFamily="/Resources/#iconfont"/>
                     </StackPanel>
 
@@ -42,7 +41,6 @@
                         <hc:Shield Subject="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Icon}"
                                    Status="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                    Color="OrangeRed"
-                                   Margin="2"
                                    FontFamily="/Resources/#iconfont"/>
                     </StackPanel>
                 </ControlTemplate>
@@ -74,12 +72,6 @@
                     </ControlTemplate.Resources>
 
                     <Grid>
-                        <Grid.Background>
-                            <ImageBrush ImageSource="../../PNG/ItemTestCase.png"
-                                        Opacity="1"
-                                        Stretch="UniformToFill"
-                                        TileMode="None"/>
-                        </Grid.Background>
                         <Border x:Name="BackgroundNorm" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 CornerRadius="2" 
@@ -140,16 +132,16 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Status}" Value="ToRun">
-                            <Setter TargetName="Status" Property="Background" Value="LightSalmon"/>
+                            <Setter TargetName="Status" Property="Background" Value="#7FFFA07A"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Run">
-                            <Setter TargetName="Status" Property="Background" Value="PaleVioletRed"/>
+                            <Setter TargetName="Status" Property="Background" Value="#7FDB7093"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Complete">
-                            <Setter TargetName="Status" Property="Background" Value="Green"/>
+                            <Setter TargetName="Status" Property="Background" Value="#7F008000"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Exception">
-                            <Setter TargetName="Status" Property="Background" Value="OrangeRed"/>
+                            <Setter TargetName="Status" Property="Background" Value="#7FFF4500"/>
                         </DataTrigger>
 
                         <Trigger Property="IsMouseOver" Value="true">

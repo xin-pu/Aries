@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
+using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Models;
 using GraphX.Controls;
@@ -214,11 +215,13 @@ namespace Aries.Core
                 ToolTip = connectionPointData.Header,
                 ConnectType = connectionPointData.ConnectType,
                 Icon = connectionPointData.Icon,
-                TypeFullName = connectionPointData.TypeFullName
+                TypeFullName = connectionPointData.TypeFullName,
+                Shape = VertexShape.Rectangle
             };
             var inputBorder = new Border
             {
-                Child = input
+                Child = input,
+                Margin = new Thickness(5)
             };
             parentControl.BlockInput.Children.Add(inputBorder);
             parentControl.VertexConnectionPointsList.Add(input);
@@ -237,7 +240,7 @@ namespace Aries.Core
                 Header = propertyDescriptor.Name,
                 ConnectType = ConnectType.OUT_MAT,
                 Icon = BlockHelper.GetPointICon(propertyDescriptor.PropertyType.Name),
-                TypeFullName = propertyDescriptor.PropertyType.FullName
+                TypeFullName = propertyDescriptor.PropertyType.FullName,
             };
 
             AddOutputConnectionPoint(parentControl, data);
@@ -252,11 +255,13 @@ namespace Aries.Core
                 ToolTip = connectionPointData.Header,
                 ConnectType = connectionPointData.ConnectType,
                 Icon = connectionPointData.Icon,
-                TypeFullName = connectionPointData.TypeFullName
+                TypeFullName = connectionPointData.TypeFullName,
+                Shape = VertexShape.Rectangle
             };
             var inputBorder = new Border
             {
-                Child = input
+                Child = input,
+                Margin = new Thickness(5)
             };
             parentControl.BlockOutput.Children.Add(inputBorder);
             parentControl.VertexConnectionPointsList.Add(input);

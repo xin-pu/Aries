@@ -59,7 +59,6 @@ namespace GraphX.Controls
         #endregion Built-in snapping behavior
 
 
-
         #region Global snapping behavior management
 
         private static Predicate<DependencyObject> _globalIsSnappingPredicate = _builtinIsSnappingPredicate;
@@ -368,10 +367,10 @@ namespace GraphX.Controls
             if (!(sender is EdgeControl edgeControl))
                 return;
 
-            if(edgeControl.Source==null||edgeControl.Target==null)
+            if (edgeControl.Source == null || edgeControl.Target == null)
                 return;
             
-            var obj = sender as DependencyObject;
+            var obj = (DependencyObject) sender;
 
             //get the position center of the source
             var sourcePos = new Point
@@ -464,12 +463,16 @@ namespace GraphX.Controls
                 return;
 
             if (sender is EdgeControl edgeControl)
+            {
                 if (edgeControl.IsEditTarget)
+                {
                     edgeControl.PrepareEdgePathFromMousePointerTargetChange();
+                }
                 else
                 {
                     edgeControl.PrepareEdgePathFromMousePointerSourceChange(true);
                 }
+            }
 
             e.Handled = true;
         }

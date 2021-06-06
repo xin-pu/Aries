@@ -25,7 +25,7 @@ namespace GraphX.Controls
             DependencyProperty.Register(nameof(Shape),
                 typeof(VertexShape),
                 typeof(StaticVertexConnectionPoint),
-                new PropertyMetadata(VertexShape.Circle));
+                new PropertyMetadata(VertexShape.Rectangle));
 
         /// <summary>
         /// Gets or sets shape form for connection point (affects math calculations for edge end placement)
@@ -68,8 +68,7 @@ namespace GraphX.Controls
         {
             while (parent != null)
             {
-                var control = parent as VertexControl;
-                if (control != null) return control;
+                if (parent is VertexControl control) return control;
                 parent = VisualTreeHelper.GetParent(parent);
             }
 
