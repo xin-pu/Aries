@@ -35,7 +35,6 @@ namespace Aries.OpenCV.Blocks
             BMat = res[0];
             GMat = res[1];
             RMat = res[2];
-            
         }
     }
 }

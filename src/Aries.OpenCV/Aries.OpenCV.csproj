@@ -114,6 +114,8 @@
     <Compile Include="Blocks\Threshold\AdaptiveThreshold.cs" />
     <Compile Include="Blocks\Threshold\Threshold.cs" />
     <Compile Include="Blocks\Transform\CvtColor.cs" />
+    <Compile Include="Blocks\Transform\PyrDown.cs" />
+    <Compile Include="Blocks\Transform\PyrUp.cs" />
     <Compile Include="Blocks\Transform\Resize.cs" />
     <Compile Include="Blocks\Transform\Transmit.cs" />
     <Compile Include="Blocks\Transform\WarpAffine.cs" />
