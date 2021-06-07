@@ -76,6 +76,7 @@
     <Compile Include="Blocks\Arithmetic\BitwiseXor.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseOr.cs" />
     <Compile Include="Blocks\Arithmetic\InRange.cs" />
+    <Compile Include="Blocks\Blur\Filter2D.cs" />
     <Compile Include="Blocks\Channel\Merge.cs" />
     <Compile Include="Blocks\Arithmetic\Multiply.cs" />
     <Compile Include="Blocks\Arithmetic\Add.cs" />

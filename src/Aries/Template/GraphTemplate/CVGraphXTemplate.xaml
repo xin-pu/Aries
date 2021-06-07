@@ -132,16 +132,16 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Status}" Value="ToRun">
-                            <Setter TargetName="Status" Property="Background" Value="#7FFFA07A"/>
+                            <Setter TargetName="Status" Property="Background" Value="#BFFFA07A"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Run">
-                            <Setter TargetName="Status" Property="Background" Value="#7FDB7093"/>
+                            <Setter TargetName="Status" Property="Background" Value="#BFDB7093"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Complete">
-                            <Setter TargetName="Status" Property="Background" Value="#7F008000"/>
+                            <Setter TargetName="Status" Property="Background" Value="#BF008000"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Exception">
-                            <Setter TargetName="Status" Property="Background" Value="#7FFF4500"/>
+                            <Setter TargetName="Status" Property="Background" Value="#BFFF4500"/>
                         </DataTrigger>
 
                         <Trigger Property="IsMouseOver" Value="true">

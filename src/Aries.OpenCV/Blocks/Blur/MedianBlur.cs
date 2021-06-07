@@ -5,6 +5,9 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
+    /// <summary>
+    /// 中值滤波
+    /// </summary>
     [Category("Blur")]
     public class MedianBlur : ProcessingBlock
     {
@@ -13,7 +16,7 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return KSize % 2 == 1 && InPutMat != null;
         }
 
         public override void Execute()

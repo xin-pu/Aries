@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
@@ -9,12 +8,12 @@ namespace Aries.OpenCV.Blocks
     public class Sobel : ProcessingBlock
     {
 
-        public MatType MatType { set; get; }
 
-        public int XOrder { set; get; } = 0;
 
-        public int YOrder { set; get; } = 0;
+        [Category("Enter")] public int XOrder { set; get; } = 0;
 
+        [Category("Enter")] public int YOrder { set; get; } = 0;
+        [Category("Enter")] public MatType MatType { set; get; }
         [Category("Enter")] public int KSize { set; get; } = 3;
 
         [Category("Enter")] public double Scale { set; get; } = 1;

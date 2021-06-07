@@ -7,11 +7,11 @@ namespace Aries.OpenCV.Blocks
     [Category("Filter")]
     public class Scharr : ProcessingBlock
     {
-        public MatType MatType { set; get; }
+        [Category("Enter")] public MatType MatType { set; get; }
 
-        public int XOrder { set; get; } = 0;
+        [Category("Enter")] public int XOrder { set; get; } = 0;
 
-        public int YOrder { set; get; } = 0;
+        [Category("Enter")] public int YOrder { set; get; } = 0;
 
         [Category("Enter")] public int KSize { set; get; } = 3;
 

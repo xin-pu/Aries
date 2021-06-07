@@ -13,20 +13,15 @@ namespace Aries.OpenCV.Blocks
     [Category("Initial")]
     public class CreateKernel : ImportBlock<Mat>
     {
-        [Category("Enter")]
-        public int AnchorPoint_X { set; get; } = -1;
+        [Category("Enter")] public int AnchorPoint_X { set; get; } = -1;
 
-        [Category("Enter")]
-        public int AnchorPoint_Y { set; get; } = -1;
+        [Category("Enter")] public int AnchorPoint_Y { set; get; } = -1;
 
-        [Category("Enter")]
-        public int ElementWidth { set; get; } = 3;
+        [Category("Enter")] public int ElementWidth { set; get; } = 3;
 
-        [Category("Enter")]
-        public int ElementHeight { set; get; } = 3;
+        [Category("Enter")] public int ElementHeight { set; get; } = 3;
 
-        [Category("Enter")]
-        public MorphShapes MorphShapes { set; get; } = MorphShapes.Rect;
+        [Category("Enter")] public MorphShapes MorphShapes { set; get; } = MorphShapes.Rect;
 
         public override bool CanExecute()
         {

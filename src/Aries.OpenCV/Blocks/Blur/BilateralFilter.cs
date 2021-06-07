@@ -4,6 +4,9 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
+    /// <summary>
+    /// 双边滤波
+    /// </summary>
     [Category("Blur")]
     public class BilateralFilter : ProcessingBlock
     {
