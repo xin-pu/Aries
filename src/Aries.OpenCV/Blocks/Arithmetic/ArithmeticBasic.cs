@@ -23,7 +23,10 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPut1 != null && InPut2 != null && InPut1.Size() == InPut2.Size();
+            return InPut1 != null && 
+                   InPut2 != null && 
+                   InPut1.Size() == InPut2.Size() && 
+                   Mask != null;
         }
 
     }

@@ -88,7 +88,7 @@
             <fluent:RibbonTabItem Header="布局" FontSize="13" DataContext="{Binding AriesCoreUint.GraphLayoutControl}">
                 
                 <fluent:RibbonGroupBox Header="Control">
-                    
+                    <controls:TabButton Content="刷新" Icon="&#xef8c;" Command="{Binding RelayoutGraphCommand}"/>
                     <fluent:CheckBox Header="箭头标签"
                                      IsChecked="{Binding IsShowEdgeLabels}"
                                      Margin="0,2">

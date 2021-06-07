@@ -75,6 +75,7 @@
     <Compile Include="Blocks\Arithmetic\BitwiseNot.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseXor.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseOr.cs" />
+    <Compile Include="Blocks\Arithmetic\InRange.cs" />
     <Compile Include="Blocks\Channel\Merge.cs" />
     <Compile Include="Blocks\Arithmetic\Multiply.cs" />
     <Compile Include="Blocks\Arithmetic\Add.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Blocks\Import\CreateCircles.cs" />
     <Compile Include="Blocks\Import\CreateKernel.cs" />
     <Compile Include="Blocks\Import\CreateLines.cs" />
+    <Compile Include="Blocks\Import\CreateScalar.cs" />
     <Compile Include="Blocks\Import\CreateTexts.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
@@ -109,7 +111,9 @@
     <Compile Include="Blocks\Property\Type.cs" />
     <Compile Include="Blocks\Threshold\AdaptiveThreshold.cs" />
     <Compile Include="Blocks\Threshold\Threshold.cs" />
+    <Compile Include="Blocks\Transform\CvtColor.cs" />
     <Compile Include="Blocks\Transform\Resize.cs" />
+    <Compile Include="Blocks\Transform\Transmit.cs" />
     <Compile Include="Blocks\Transform\WarpAffine.cs" />
     <Compile Include="Blocks\Property\Shape.cs" />
     <Compile Include="Core\BlockHelper.cs" />

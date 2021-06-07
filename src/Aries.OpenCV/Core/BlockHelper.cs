@@ -20,7 +20,9 @@ namespace Aries.OpenCV.Core
         private static readonly Dictionary<string, string> PointIconDictionary =
             new Dictionary<string, string>
             {
-                ["Size"] = "\ued71",
+                ["Point"] = "\ue6be",
+                ["Scalar"] = "\uef53",
+                ["Size"] = "\ue61b",
                 ["CircleSegment[]"] = "\ued6f",
                 ["CircleSegment"] = "\ued6f",
                 ["LineSegmentPoint[]"] = "\ued74",

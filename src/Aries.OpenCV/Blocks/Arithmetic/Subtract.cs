@@ -9,7 +9,7 @@ namespace Aries.OpenCV.Blocks
         public override void Execute()
         {
             Output = new Mat();
-            Cv2.Subtract(InPut1, InPut2, Output);
+            Cv2.Subtract(InPut1, InPut2, Output, Mask);
         }
     }
 }

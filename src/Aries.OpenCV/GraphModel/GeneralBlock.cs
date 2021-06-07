@@ -16,6 +16,7 @@ namespace Aries.OpenCV.GraphModel
         public override void Reload()
         {
             Status = BlockStatus.ToRun;
+            Mask = null;
         }
 
     }

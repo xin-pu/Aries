@@ -87,9 +87,16 @@ namespace Aries.Core
             get { return new RelayCommand(EdgeRoutingCategorySelectedChangeCommand_Execute); }
         }
 
+
+        public ICommand RelayoutGraphCommand
+        {
+            get { return new RelayCommand(RelayoutGraphCommand_Execute); }
+        }
+
+
         private void LayoutCategorySelectedChangeCommand_Execute()
         {
-            switch (LayoutCategorySelect.LayoutType)
+            switch (LayoutCategorySelect?.LayoutType)
             {
                 case LayoutType.TreeLeftToRight:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
@@ -118,7 +125,8 @@ namespace Aries.Core
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
+                    break;
             }
 
             GraphCvArea.RelayoutGraph();
@@ -146,7 +154,9 @@ namespace Aries.Core
                     logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new BundleEdgeRoutingParameters();
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.None;
+                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new EdgeRoutingParameters();
+                    break;
             }
 
             GraphCvArea.RelayoutGraph();
@@ -163,6 +173,10 @@ namespace Aries.Core
             GraphCvArea.AlignAllEdgesLabels(IsAlignEdgeLabels);
         }
 
+        private void RelayoutGraphCommand_Execute()
+        {
+            GraphCvArea.RelayoutGraph();
+        }
 
         public SimpleTreeLayoutParameters getSimpleTreeLayoutParameters(LayoutDirection layoutDirection)
         {
