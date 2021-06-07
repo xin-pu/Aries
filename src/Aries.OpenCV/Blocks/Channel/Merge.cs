@@ -39,7 +39,7 @@ namespace Aries.OpenCV.Blocks
         public override void Execute()
         {
             MergeMat = new Mat();
-            var mats = new[] {RMat, GMat, BMat};
+            var mats = new[] {BMat, GMat, RMat};
             var matsNotNull = mats.Where(a => a != null).ToArray();
             Cv2.Merge(matsNotNull, MergeMat);
         }

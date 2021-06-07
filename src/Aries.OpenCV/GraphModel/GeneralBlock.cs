@@ -1,11 +1,8 @@
-﻿using System.ComponentModel;
-using OpenCvSharp;
-
-namespace Aries.OpenCV.GraphModel
+﻿namespace Aries.OpenCV.GraphModel
 {
     public abstract class GeneralBlock : BlockVertex
     {
-        [Category("IN_MAT")] public Mat Mask { set; get; }
+
 
         protected GeneralBlock()
         {
@@ -16,7 +13,6 @@ namespace Aries.OpenCV.GraphModel
         public override void Reload()
         {
             Status = BlockStatus.ToRun;
-            Mask = null;
         }
 
     }

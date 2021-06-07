@@ -4,13 +4,24 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
+    /// <summary>
+    ///  Converts image from one color space to another
+    /// </summary>
     [Category("Transform")]
     public class CvtColor : ProcessingBlock
     {
 
-
+        /// <summary>
+        /// The number of channels in the destination image;
+        /// if the parameter is 0, the number of the channels will be derived automatically
+        /// from src and the code
+        /// </summary>
         [Category("Enter")] public int DstN { set; get; } = 0;
 
+        /// <summary>
+        /// ColorConversionCodes.BGR2HSV
+        /// ColorConversionCodes.BGR2GRAY
+        /// </summary>
         [Category("Enter")]
         public ColorConversionCodes ColorConversion { set; get; }
             = ColorConversionCodes.BGR2HSV;

@@ -89,6 +89,7 @@
     <Compile Include="Blocks\Contour\HoughCircle.cs" />
     <Compile Include="Blocks\Contour\HoughLinesP.cs" />
     <Compile Include="Blocks\Draw\Circle.cs" />
+    <Compile Include="Blocks\Draw\CopyMakeBorder.cs" />
     <Compile Include="Blocks\Draw\Ellipse.cs" />
     <Compile Include="Blocks\Draw\Line.cs" />
     <Compile Include="Blocks\Draw\Rectangle.cs" />

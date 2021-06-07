@@ -27,6 +27,7 @@ namespace Aries.OpenCV.Core
                 ["CircleSegment"] = "\ued6f",
                 ["LineSegmentPoint[]"] = "\ued74",
                 ["LineSegmentPoint"] = "\ued74",
+                ["MatType"] =  "\ued8d",
                 ["Mat[]"] = "\ued8d",
                 ["Mat"] = "\ued8d",
                 ["Default"] = "\uef71",

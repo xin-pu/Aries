@@ -11,6 +11,10 @@ namespace Aries.OpenCV.Blocks
 
         [Category("OUT_MAT")] public Mat Output { set; get; }
 
+        [Category("IN_MAT")] public Mat Mask { set; get; }
+
+        [Category("Enter")] public bool EnableMask { set; get; }
+
         public override void Reload()
         {
             InPut = null;
@@ -21,7 +25,8 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPut != null;
+            return InPut != null &&
+                   (!EnableMask || Mask != null);
         }
 
         public override void Execute()

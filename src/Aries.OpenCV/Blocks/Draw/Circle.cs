@@ -21,7 +21,9 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null && Circles != null && Circles.Length > 0;
+            return InPutMat != null && 
+                   Circles != null &&
+                   Circles.Length > 0;
         }
 
         public override void Execute()

@@ -157,7 +157,7 @@ namespace Aries.Core
                 }
                 catch (Exception ex)
                 {
-                    ;
+                    MessageBox.Show(ex.Message);
                 }
 
             });

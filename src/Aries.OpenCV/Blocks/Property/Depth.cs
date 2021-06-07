@@ -4,7 +4,7 @@ using Aries.OpenCV.GraphModel;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Property")]
-    public class Depth : ExportBlock<int?>
+    public class Depth : ExportBlock<int>
     {
         public override bool CanExecute()
         {
