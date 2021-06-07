@@ -93,19 +93,26 @@ namespace Aries.Core
             {
                 case LayoutType.TreeLeftToRight:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
-                    logicCoreCv.DefaultLayoutAlgorithmParams = getSimpleTreeLayoutParameters(LayoutDirection.LeftToRight);
+                    logicCoreCv.DefaultLayoutAlgorithmParams =
+                        getSimpleTreeLayoutParameters(LayoutDirection.LeftToRight);
                     break;
                 case LayoutType.TreeTopTpBottom:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
-                    logicCoreCv.DefaultLayoutAlgorithmParams = getSimpleTreeLayoutParameters(LayoutDirection.TopToBottom);
+                    logicCoreCv.DefaultLayoutAlgorithmParams =
+                        getSimpleTreeLayoutParameters(LayoutDirection.TopToBottom);
                     break;
                 case LayoutType.TreeRightToLeft:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
-                    logicCoreCv.DefaultLayoutAlgorithmParams = getSimpleTreeLayoutParameters(LayoutDirection.RightToLeft);
+                    logicCoreCv.DefaultLayoutAlgorithmParams =
+                        getSimpleTreeLayoutParameters(LayoutDirection.RightToLeft);
                     break;
                 case LayoutType.Circular:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Circular;
-                    logicCoreCv.DefaultLayoutAlgorithmParams = new CircularLayoutParameters {Seed = 1};
+                    logicCoreCv.DefaultLayoutAlgorithmParams = new CircularLayoutParameters
+                    {
+                        Seed = 1,
+                        Ratio = 2
+                    };
                     break;
                 case LayoutType.Custom:
                     logicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
@@ -128,10 +135,7 @@ namespace Aries.Core
                     break;
                 case EdgeRoutingAlgorithmTypeEnum.PathFinder:
                     logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.PathFinder;
-                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new PathFinderEdgeRoutingParameters()
-                    {
-                        
-                    };
+                    logicCoreCv.DefaultEdgeRoutingAlgorithmParams = new PathFinderEdgeRoutingParameters();
                     break;
                 case EdgeRoutingAlgorithmTypeEnum.SimpleER:
                     logicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.SimpleER;
