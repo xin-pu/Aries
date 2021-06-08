@@ -14,7 +14,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            throw new System.NotImplementedException();
+         
         }
     }
 }

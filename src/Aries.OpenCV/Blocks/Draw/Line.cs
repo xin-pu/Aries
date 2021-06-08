@@ -33,7 +33,6 @@ namespace Aries.OpenCV.Blocks
             {
                 Cv2.Line(OutPutMat, pointpair.P1, pointpair.P2, new Scalar(Color), Thickness, LineType, Shift);
             });
-
         }
     }
 }

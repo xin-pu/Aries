@@ -19,6 +19,12 @@ namespace Aries.OpenCV.Blocks
 
         [Category("Enter")] public int Shift { set; get; } = 0;
 
+        public override void Reload()
+        {
+            Circles = null;
+            base.Reload();
+        }
+
         public override bool CanExecute()
         {
             return InPutMat != null && 

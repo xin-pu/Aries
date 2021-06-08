@@ -1,30 +1,48 @@
-﻿using System.ComponentModel;
-using Aries.OpenCV.GraphModel;
+﻿using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
+using System.ComponentModel;
 
 namespace Aries.OpenCV.Blocks
 {
     [Category("Contour")]
     public class HoughCircle : ExportBlock<CircleSegment[]>
     {
-        [Category("Enter")]
-        public HoughModes HoughMode { set; get; } = HoughModes.Gradient;
+        [Category("Enter")] public HoughModes HoughMode { set; get; } = HoughModes.Gradient;
 
+        /// <summary>
+        /// The inverse ratio of the accumulator resolution to the image resolution.
+        /// 累加器分辨率与图像分辨率的反比。
+        /// </summary>
         [Category("Enter")]
-        public double DP { set; get; }
+        public double DP { set; get; } = 1;
 
+        /// <summary>
+        /// 被检测圆的中心之间的最小距离。
+        /// </summary>
         [Category("Enter")]
-        public double MinDIst { set; get; }
+        public double MinDIst { set; get; } = 20;
 
+        /// <summary>
+        /// The first method-specific parameter. [By default this is 100]
+        /// </summary>
         [Category("Enter")]
         public double Param1 { set; get; } = 100;
 
+        /// <summary>
+        /// The second method-specific parameter. [By default this is 100]
+        /// </summary>
         [Category("Enter")]
         public double Param2 { set; get; } = 100;
 
+        /// <summary>
+        /// Minimum circle radius. [By default this is 0]
+        /// </summary>
         [Category("Enter")]
         public int MinRadius { set; get; } = 0;
 
+        /// <summary>
+        /// Maximum circle radius. [By default this is 0]
+        /// </summary>
         [Category("Enter")]
         public int MaxRadius { set; get; } = 0;
 
@@ -36,7 +54,7 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return DP >= 1 && InPutMat != null;
         }
 
         public override void Execute()
