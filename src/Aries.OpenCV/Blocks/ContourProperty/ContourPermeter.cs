@@ -4,7 +4,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Contour")]
+    [Category("ContourProperty")]
     public class ContourPermeter : ExportBlock<double>
     {
         [Category("Enter")] public bool Closed { set; get; }
