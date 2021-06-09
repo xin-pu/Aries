@@ -12,8 +12,14 @@ namespace Aries.OpenCV.Blocks
 
         [Category("Enter")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;
 
+        /// <summary>
+        /// CHAIN_APPROX_NONE - translate all the points from the chain code into points;
+        /// CHAIN_APPROX_SIMPLE - compress horizontal, vertical, and diagonal segments, that is, the function leaves only their ending points;
+        /// CHAIN_APPROX_TC89_L1 - apply one of the flavors of Teh-Chin chain approximation algorithm.
+        /// CHAIN_APPROX_TC89_KCOS - apply one of the flavors of Teh-Chin chain approximation algorithm. 
+        /// </summary>
         [Category("Enter")]
-        public ContourApproximationModes ContourApproximationMode { set; get; } = ContourApproximationModes.ApproxNone;
+        public ContourApproximationModes ContourApproximationMode { set; get; } = ContourApproximationModes.ApproxSimple;
 
         [Category("Enter")] public Point Offset { set; get; }
 

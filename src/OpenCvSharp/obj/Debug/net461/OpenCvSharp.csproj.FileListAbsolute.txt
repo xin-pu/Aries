@@ -33,3 +33,4 @@ E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.csp
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.dll
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.xml
 E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.pdb
+E:\Document Code\Code Web\Aries\src\OpenCvSharp\obj\Debug\net461\OpenCvSharp.csprojAssemblyReference.cache

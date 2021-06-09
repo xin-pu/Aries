@@ -90,6 +90,7 @@
     <Compile Include="Blocks\Contour\HoughCircle.cs" />
     <Compile Include="Blocks\Contour\HoughLines.cs" />
     <Compile Include="Blocks\Contour\HoughLinesP.cs" />
+    <Compile Include="Blocks\Contour\Moment.cs" />
     <Compile Include="Blocks\Draw\Circle.cs" />
     <Compile Include="Blocks\Draw\CopyMakeBorder.cs" />
     <Compile Include="Blocks\Draw\Ellipse.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="Blocks\Import\CreateLines.cs" />
     <Compile Include="Blocks\Import\CreateScalar.cs" />
     <Compile Include="Blocks\Import\CreateTexts.cs" />
+    <Compile Include="Blocks\Logic\ArrayChoice.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />

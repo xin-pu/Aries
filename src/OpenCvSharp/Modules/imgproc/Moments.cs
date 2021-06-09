@@ -30,6 +30,7 @@ namespace OpenCvSharp
         public double Nu20, Nu11, Nu02, Nu30, Nu21, Nu12, Nu03;
 
         #region Init & Disposal
+
         /// <summary>
         /// Default constructor.
         /// All moment values are set to 0.
@@ -37,8 +38,8 @@ namespace OpenCvSharp
         public Moments()
         {
             M00 = M10 = M01 = M20 = M11 = M02 = M30 = M21 = M12 = M03 =
-            Mu20 = Mu11 = Mu02 = Mu30 = Mu21 = Mu12 = Mu03 =
-            Nu20 = Nu11 = Nu02 = Nu30 = Nu21 = Nu12 = Nu03 = 0.0;
+                Mu20 = Mu11 = Mu02 = Mu30 = Mu21 = Mu12 = Mu03 =
+                    Nu20 = Nu11 = Nu02 = Nu30 = Nu21 = Nu12 = Nu03 = 0.0;
         }
 
         /// <summary>
@@ -55,7 +56,7 @@ namespace OpenCvSharp
         /// <param name="m12"></param>
         /// <param name="m03"></param>
         public Moments(double m00, double m10, double m01, double m20, double m11,
-                       double m02, double m30, double m21, double m12, double m03)
+            double m02, double m30, double m21, double m12, double m03)
         {
             Initialize(m00, m10, m01, m20, m11, m02, m30, m21, m12, m03);
         }
@@ -172,7 +173,7 @@ namespace OpenCvSharp
         /// <param name="m12"></param>
         /// <param name="m03"></param>
         private void Initialize(double m00, double m10, double m01, double m20, double m11,
-                       double m02, double m30, double m21, double m12, double m03)
+            double m02, double m30, double m21, double m12, double m03)
         {
             M00 = m00;
             M10 = m10;
@@ -218,6 +219,7 @@ namespace OpenCvSharp
         #endregion
 
         #region Methods
+
         /// <summary>
         /// computes 7 Hu invariants from the moments
         /// </summary>
@@ -261,6 +263,21 @@ namespace OpenCvSharp
             public double m00, m10, m01, m20, m11, m02, m30, m21, m12, m03; /* spatial moments */
             public double mu20, mu11, mu02, mu30, mu21, mu12, mu03; /* central moments */
             public double inv_sqrt_m00; /* m00 != 0 ? 1/sqrt(m00) : 0 */
+        }
+
+        public override string ToString()
+        {
+            return
+                $"spatial moments:\r" +
+                $"{M00},{M01},{M02},{M03}\r" +
+                $"{M10},{M11},{M12}\r" +
+                $"{M20},{M21}\r" +
+                $"{M30}\r" +
+                "central moments:\r" +
+                $"{Mu02},{Mu03}\r" +
+                $"{Mu11},{Mu12}\r" +
+                $"{Mu20},{Mu21}\r" +
+                $"{Mu30}";
         }
     }
 }
