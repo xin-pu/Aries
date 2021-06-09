@@ -85,6 +85,8 @@
     <Compile Include="Blocks\Arithmetic\Subtract.cs" />
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
+    <Compile Include="Blocks\Contour\ContourArea.cs" />
+    <Compile Include="Blocks\Contour\ContourPermeter.cs" />
     <Compile Include="Blocks\Contour\DrawContours.cs" />
     <Compile Include="Blocks\Contour\FindContours.cs" />
     <Compile Include="Blocks\Contour\HoughCircle.cs" />
