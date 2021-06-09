@@ -5,10 +5,10 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Morphology")]
-    public class Erode : ProcessingBlock
+    public class Erode : MatProcessingBlock
     {
 
-        [Category("IN_MAT")] public InputArray Element { set; get; }
+        [Category("INPUT")] public InputArray Element { set; get; }
 
         public override bool CanExecute()
         {

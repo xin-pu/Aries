@@ -5,10 +5,10 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Transform")]
-    public class Resize : ProcessingBlock
+    public class Resize : MatProcessingBlock
     {
 
-        [Category("IN_MAT")] public Size Size { set; get; }
+        [Category("INPUT")] public Size Size { set; get; }
         [Category("Enter")] public double Fx { set; get; } = 0;
         [Category("Enter")] public double Fy { set; get; } = 0;
 

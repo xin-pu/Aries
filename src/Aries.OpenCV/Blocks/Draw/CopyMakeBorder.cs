@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class CopyMakeBorder : ProcessingBlock
+    public class CopyMakeBorder : MatProcessingBlock
     {
 
 
@@ -14,7 +14,7 @@ namespace Aries.OpenCV.Blocks
         [Category("Enter")] public int Left { set; get; } = 0;
         [Category("Enter")] public int Right { set; get; } = 0;
         [Category("Enter")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
-        [Category("IN_MAT")] public Scalar Scalar { set; get; }
+        [Category("INPUT")] public Scalar Scalar { set; get; }
 
         public override bool CanExecute()
         {

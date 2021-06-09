@@ -5,10 +5,10 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Transform")]
-    public class PyrUp : ProcessingBlock
+    public class PyrUp : MatProcessingBlock
     {
 
-        [Category("IN_MAT")] public Size Size { set; get; }
+        [Category("INPUT")] public Size Size { set; get; }
 
         [Category("Enter")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 

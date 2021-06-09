@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     ///  Converts image from one color space to another
     /// </summary>
     [Category("Transform")]
-    public class CvtColor : ProcessingBlock
+    public class CvtColor : MatProcessingBlock
     {
 
         /// <summary>

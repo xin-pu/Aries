@@ -81,9 +81,11 @@ namespace Aries.Core
                     switch (p.ConnectType)
                     {
                         case ConnectType.IN_MAT:
+                        case ConnectType.INPUT:
                             AddInputConnectionPoint(ctrl, p);
                             break;
                         case ConnectType.OUT_MAT:
+                        case ConnectType.OUTPUT:
                             AddOutputConnectionPoint(ctrl, p);
                             break;
                         default:
@@ -177,12 +179,12 @@ namespace Aries.Core
                 .OfType<PropertyDescriptor>()
                 .ToList();
 
-            properties.Where(a => a.Category == "IN_MAT")
+            properties.Where(a => a.Category == "INPUT")
                 .ToList()
                 .ForEach(
                     p => { AddInputConnectionPoint(parentControl, p); });
 
-            properties.Where(a => a.Category == "OUT_MAT")
+            properties.Where(a => a.Category == "OUTPUT")
                 .ToList()
                 .ForEach(p => { AddOutputConnectionPoint(parentControl, p); });
         }

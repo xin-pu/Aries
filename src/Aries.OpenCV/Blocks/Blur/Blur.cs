@@ -6,7 +6,7 @@ namespace Aries.OpenCV.Blocks
 {
 
     [Category("Blur")]
-    public class Blur : ProcessingBlock
+    public class Blur : MatProcessingBlock
     {
         [Category("Enter")] public int KSize_Width { set; get; } = 3;
 

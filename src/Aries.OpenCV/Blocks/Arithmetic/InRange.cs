@@ -5,13 +5,13 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Arithmetic")]
-    public class InRange : ProcessingBlock
+    public class InRange : MatProcessingBlock
     {
 
 
-        [Category("IN_MAT")] public Scalar Lowerb { set; get; }
+        [Category("INPUT")] public Scalar Lowerb { set; get; }
 
-        [Category("IN_MAT")] public Scalar Upperb { set; get; }
+        [Category("INPUT")] public Scalar Upperb { set; get; }
 
 
         public override bool CanExecute()

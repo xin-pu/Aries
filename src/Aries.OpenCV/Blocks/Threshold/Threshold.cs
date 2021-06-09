@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Threshold")]
-    public class Threshold : ProcessingBlock
+    public class Threshold : MatProcessingBlock
     {
         /// <summary>
         /// threshold value.

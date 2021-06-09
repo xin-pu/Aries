@@ -8,11 +8,11 @@ namespace Aries.OpenCV.Blocks
     public class Split : GeneralBlock
     {
 
-        [Category("IN_MAT")] public Mat InPutMat { set; get; }
+        [Category("INPUT")] public Mat InPutMat { set; get; }
 
-        [Category("OUT_MAT")] public Mat RMat { set; get; }
-        [Category("OUT_MAT")] public Mat GMat { set; get; }
-        [Category("OUT_MAT")] public Mat BMat { set; get; }
+        [Category("OUTPUT")] public Mat RMat { set; get; }
+        [Category("OUTPUT")] public Mat GMat { set; get; }
+        [Category("OUTPUT")] public Mat BMat { set; get; }
 
 
         public override void Reload()

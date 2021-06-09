@@ -11,7 +11,7 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Import;
         }
         
-        [Category("OUT_MAT")] public T OutPut { set; get; }
+        [Category("OUTPUT")] public T OutPut { set; get; }
 
         public Type OutPutType => typeof(T);
 

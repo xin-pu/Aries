@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Filter")]
-    public class Sobel : ProcessingBlock
+    public class Sobel : MatProcessingBlock
     {
 
 

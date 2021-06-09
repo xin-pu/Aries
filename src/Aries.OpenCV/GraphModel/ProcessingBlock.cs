@@ -3,17 +3,23 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class ProcessingBlock : BlockVertex
+    public abstract class ProcessingBlock<T1, T2> : BlockVertex
     {
         protected ProcessingBlock()
         {
             BlockType = BlockType.Processing;
         }
 
-        [Category("IN_MAT")] public Mat InPutMat { set; get; }
+        [Category("INPUT")] public T1 InPutMat { set; get; }
 
-        [Category("OUT_MAT")] public Mat OutPutMat { set; get; }
+        [Category("OUTPUT")] public T2 OutPutMat { set; get; }
 
+
+
+    }
+
+    public abstract class MatProcessingBlock : ProcessingBlock<Mat, Mat>
+    {
 
         public override void Reload()
         {
@@ -23,5 +29,8 @@ namespace Aries.OpenCV.GraphModel
         }
 
     }
+
+
+
 
 }

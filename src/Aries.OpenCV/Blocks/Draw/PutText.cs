@@ -6,9 +6,9 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class PutText : ProcessingBlock
+    public class PutText : MatProcessingBlock
     {
-        [Category("IN_MAT")] public TextSegment[] Texts { set; get; }
+        [Category("INPUT")] public TextSegment[] Texts { set; get; }
         [Category("Enter")] public double Color { set; get; } = 255;
 
         [Category("Enter")] public int Thickness { set; get; } = 1;

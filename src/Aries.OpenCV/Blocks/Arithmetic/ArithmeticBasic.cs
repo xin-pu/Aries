@@ -7,12 +7,12 @@ namespace Aries.OpenCV.Blocks
     [Category("Arithmetic")]
     public abstract class ArithmeticBasic : GeneralBlock
     {
-        [Category("IN_MAT")] public Mat InPut1 { set; get; }
-        [Category("IN_MAT")] public Mat InPut2 { set; get; }
+        [Category("INPUT")] public Mat InPut1 { set; get; }
+        [Category("INPUT")] public Mat InPut2 { set; get; }
 
-        [Category("OUT_MAT")] public Mat Output { set; get; }
+        [Category("OUTPUT")] public Mat Output { set; get; }
 
-        [Category("IN_MAT")] public Mat Mask { set; get; }
+        [Category("INPUT")] public Mat Mask { set; get; }
 
         [Category("Enter")] public bool EnableMask { set; get; }
 

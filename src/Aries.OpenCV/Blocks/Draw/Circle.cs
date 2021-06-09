@@ -6,10 +6,10 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class Circle : ProcessingBlock
+    public class Circle : MatProcessingBlock
     {
 
-        [Category("IN_MAT")] public CircleSegment[] Circles { set; get; }
+        [Category("INPUT")] public CircleSegment[] Circles { set; get; }
 
         [Category("Enter")] public double Color { set; get; } = 255;
 

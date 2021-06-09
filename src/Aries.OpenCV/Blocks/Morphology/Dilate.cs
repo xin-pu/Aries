@@ -5,10 +5,10 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Morphology")]
-    public class Dilate : ProcessingBlock
+    public class Dilate : MatProcessingBlock
     {
 
-        [Category("IN_MAT")] public InputArray Element { set; get; }
+        [Category("INPUT")] public InputArray Element { set; get; }
 
         public override bool CanExecute()
         {

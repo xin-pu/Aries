@@ -1,8 +1,10 @@
 ﻿using Aries.Utility;
 using System;
 using System.IO;
+using System.Linq;
 using System.Windows.Input;
 using Aries.Views;
+using GraphX.Controls;
 using HandyControl.Controls;
 using Microsoft.Win32;
 using YAXLib;
@@ -222,7 +224,18 @@ namespace Aries.Core
         public static GraphCVFileStruct DeserializeGraphDataFromFile(string filename)
         {
             using var stream = File.Open(filename, FileMode.Open, FileAccess.Read, FileShare.Read);
-            return DeserializeGraphDataFromStream(stream);
+            var res = DeserializeGraphDataFromStream(stream);
+            foreach (var graphSerializationData in res.GraphSerializationDatas.Where(a =>
+                a.Data.GetType() == typeof(ConnectionPointData)))
+            {
+                var a = graphSerializationData.Data as ConnectionPointData;
+                if (a.ConnectType == ConnectType.IN_MAT)
+                    a.ConnectType = ConnectType.INPUT;
+                if (a.ConnectType == ConnectType.OUT_MAT)
+                    a.ConnectType = ConnectType.OUTPUT;
+            }
+
+            return res;
         }
 
 

@@ -100,7 +100,7 @@ namespace Aries.OpenCV.GraphModel
 
             var outMatDict = TypeDescriptor.GetProperties(GetType())
                 .OfType<PropertyDescriptor>()
-                .Where(a => a.Category == "OUT_MAT")
+                .Where(a => a.Category == "OUTPUT")
                 .Select(a => new KeyValuePair<string, Mat>(a.Name, GetPropertyAsMat(a.Name) as Mat))
                 .Where(a => a.Value != null);
 

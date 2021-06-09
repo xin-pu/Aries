@@ -5,15 +5,24 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Contour")]
-    public class FindContours : ProcessingBlock
+    public class FindContours : ProcessingBlock<Mat, Mat[]>
     {
+
+        [Category("OUTPUT")] public Mat Hierarchy { set; get; }
 
         [Category("Enter")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;
 
         [Category("Enter")]
         public ContourApproximationModes ContourApproximationMode { set; get; } = ContourApproximationModes.ApproxNone;
 
-        public Point Point { set; get; }
+        [Category("Enter")] public Point Offset { set; get; }
+
+        public override void Reload()
+        {
+            InPutMat = null;
+            OutPutMat = null;
+            Status = BlockStatus.ToRun;
+        }
 
         public override bool CanExecute()
         {
@@ -22,9 +31,10 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            OutPutMat=new Mat();
-            var COn = new Mat[0];
-            Cv2.FindContours(InPutMat, out COn, OutPutMat, RetrievalMode, ContourApproximationMode, Point);
+            Hierarchy = new Mat();
+            Mat[] outMats;
+            Cv2.FindContours(InPutMat, out outMats, Hierarchy, RetrievalMode, ContourApproximationMode, Offset);
+            OutPutMat = outMats;
         }
     }
 }

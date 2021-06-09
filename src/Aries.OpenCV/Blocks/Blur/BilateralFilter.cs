@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     /// 双边滤波
     /// </summary>
     [Category("Blur")]
-    public class BilateralFilter : ProcessingBlock
+    public class BilateralFilter : MatProcessingBlock
     {
 
 

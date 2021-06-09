@@ -4,7 +4,7 @@ using Aries.OpenCV.GraphModel;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class Ellipse : ProcessingBlock
+    public class Ellipse : MatProcessingBlock
     {
         public override bool CanExecute()
         {

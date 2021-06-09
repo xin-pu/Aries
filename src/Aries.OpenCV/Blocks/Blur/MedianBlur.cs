@@ -9,7 +9,7 @@ namespace Aries.OpenCV.Blocks
     /// 中值滤波
     /// </summary>
     [Category("Blur")]
-    public class MedianBlur : ProcessingBlock
+    public class MedianBlur : MatProcessingBlock
     {
 
         [Category("Enter")] public int KSize { set; get; } = 3;

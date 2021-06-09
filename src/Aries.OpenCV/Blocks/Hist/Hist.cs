@@ -5,12 +5,12 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Hist")]
-    public class Hist : ProcessingBlock
+    public class Hist : MatProcessingBlock
     {
    
 
 
-        [Category("IN_MAT")] public InputArray Mask { set; get; } = null;
+        [Category("INPUT")] public InputArray Mask { set; get; } = null;
 
       
 
