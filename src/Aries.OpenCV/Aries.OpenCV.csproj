@@ -85,6 +85,7 @@
     <Compile Include="Blocks\Arithmetic\Subtract.cs" />
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
+    <Compile Include="Blocks\Contour\ApproxPolyDP.cs" />
     <Compile Include="Blocks\Contour\ContourArea.cs" />
     <Compile Include="Blocks\Contour\ContourPermeter.cs" />
     <Compile Include="Blocks\Contour\DrawContours.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Blocks\Import\CreateScalar.cs" />
     <Compile Include="Blocks\Import\CreateTexts.cs" />
     <Compile Include="Blocks\Logic\ArrayChoice.cs" />
+    <Compile Include="Blocks\Logic\ToArray.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />

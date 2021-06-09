@@ -21,6 +21,7 @@ namespace Aries.OpenCV.Blocks
         {
             InPutMat = null;
             OutPutMat = null;
+            Contours = null;
             Status = BlockStatus.ToRun;
         }
 
