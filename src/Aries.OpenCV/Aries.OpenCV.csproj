@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -76,6 +78,7 @@
     <Compile Include="Blocks\Arithmetic\BitwiseXor.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseOr.cs" />
     <Compile Include="Blocks\Arithmetic\InRange.cs" />
+    <Compile Include="Blocks\Arithmetic\Normalize.cs" />
     <Compile Include="Blocks\Blur\Filter2D.cs" />
     <Compile Include="Blocks\Channel\Merge.cs" />
     <Compile Include="Blocks\Arithmetic\Multiply.cs" />
@@ -96,6 +99,8 @@
     <Compile Include="Blocks\ContourProperty\ContourPermeter.cs" />
     <Compile Include="Blocks\Contour\DrawContours.cs" />
     <Compile Include="Blocks\Contour\FindContours.cs" />
+    <Compile Include="Blocks\Corner\CornerHarris.cs" />
+    <Compile Include="Blocks\Corner\CornerSubPix.cs" />
     <Compile Include="Blocks\Hough\HoughCircle.cs" />
     <Compile Include="Blocks\Hough\HoughLines.cs" />
     <Compile Include="Blocks\Hough\HoughLinesP.cs" />
