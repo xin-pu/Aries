@@ -22,7 +22,11 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            var openFileDailog = new OpenFileDialog();
+            var openFileDailog = new OpenFileDialog
+            {
+                Title = $"{ID}_{Name}",
+                Filter = "JPG文件|*.jpg|PNG文件|*.png"
+            };
             openFileDailog.ShowDialog();
             FileName = openFileDailog.FileName;
             OutPut = Cv2.ImRead(FileName, ImreadModes);

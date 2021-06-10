@@ -42,6 +42,7 @@ namespace OpenCvSharp
 
         #endregion
 
+        
         /// <summary>
         /// Initializes a new instance of the Rectangle class with the specified location and size.
         /// </summary>

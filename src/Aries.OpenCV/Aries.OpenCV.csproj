@@ -119,11 +119,14 @@
     <Compile Include="Blocks\Import\CreateTexts.cs" />
     <Compile Include="Blocks\Logic\ChoiceFromMats.cs" />
     <Compile Include="Blocks\Logic\CombineToMats.cs" />
+    <Compile Include="Blocks\Logic\CombineToRects.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />
     <Compile Include="Blocks\MatProperty\Depth.cs" />
     <Compile Include="Blocks\MatProperty\Type.cs" />
+    <Compile Include="Blocks\Template\MatchTemplateWithRect.cs" />
+    <Compile Include="Blocks\Template\MatchTemplate.cs" />
     <Compile Include="Blocks\Threshold\AdaptiveThreshold.cs" />
     <Compile Include="Blocks\Threshold\Threshold.cs" />
     <Compile Include="Blocks\Transform\CvtColor.cs" />
