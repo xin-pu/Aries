@@ -10,9 +10,9 @@ namespace Aries.OpenCV.Blocks
     public class CreateImage : ImportBlock<Mat>
     {
 
-        [Category("Enter")] public string FileName { protected set; get; }
+        [Category("ARGUMENT")] public string FileName { protected set; get; }
 
-        [Category("Enter")] public ImreadModes ImreadModes { set; get; } = ImreadModes.Grayscale;
+        [Category("ARGUMENT")] public ImreadModes ImreadModes { set; get; } = ImreadModes.Grayscale;
 
 
         public override bool CanExecute()

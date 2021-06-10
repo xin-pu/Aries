@@ -10,7 +10,7 @@ namespace Aries.OpenCV.Blocks
 
         [Category("INPUT")] public Size Size { set; get; }
 
-        [Category("Enter")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
+        [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 
         public override bool CanExecute()
         {

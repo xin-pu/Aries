@@ -16,13 +16,13 @@ namespace Aries.OpenCV.Blocks
         /// if the parameter is 0, the number of the channels will be derived automatically
         /// from src and the code
         /// </summary>
-        [Category("Enter")] public int DstN { set; get; } = 0;
+        [Category("ARGUMENT")] public int DstN { set; get; } = 0;
 
         /// <summary>
         /// ColorConversionCodes.BGR2HSV
         /// ColorConversionCodes.BGR2GRAY
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public ColorConversionCodes ColorConversion { set; get; }
             = ColorConversionCodes.BGR2HSV;
 

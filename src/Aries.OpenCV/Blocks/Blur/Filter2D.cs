@@ -9,17 +9,17 @@ namespace Aries.OpenCV.Blocks
     {
         [Category("INPUT")] public InputArray Element { set; get; }
 
-        [Category("Enter")] public MatType MatType { set; get; } = MatType.CV_32F;
+        [Category("ARGUMENT")] public MatType MatType { set; get; } = MatType.CV_32F;
 
-        [Category("Enter")] public int AnchorPoint_X { set; get; } = -1;
-
-
-        [Category("Enter")] public int AnchorPoint_Y { set; get; } = -1;
-
-        [Category("Enter")] public double Delta { set; get; } = 0;
+        [Category("ARGUMENT")] public int AnchorPoint_X { set; get; } = -1;
 
 
-        [Category("Enter")] public BorderTypes BorderTypes { set; get; } = BorderTypes.Default;
+        [Category("ARGUMENT")] public int AnchorPoint_Y { set; get; } = -1;
+
+        [Category("ARGUMENT")] public double Delta { set; get; } = 0;
+
+
+        [Category("ARGUMENT")] public BorderTypes BorderTypes { set; get; } = BorderTypes.Default;
 
         /// <summary>
         /// The anchor point. The default value Point(-1,-1) means that the anchor is at the kernel center

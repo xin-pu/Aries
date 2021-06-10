@@ -15,8 +15,6 @@ namespace GraphX.Controls
 
     public enum ConnectType
     {
-        [Obsolete] IN_MAT,
-        [Obsolete] OUT_MAT,
         INPUT,
         OUTPUT
     }

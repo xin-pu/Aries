@@ -85,6 +85,12 @@
     <Compile Include="Blocks\Arithmetic\Subtract.cs" />
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
+    <Compile Include="Blocks\Contour\BoundingRect.cs" />
+    <Compile Include="Blocks\Contour\ContourConvexHull.cs" />
+    <Compile Include="Blocks\Contour\FitEllipse.cs" />
+    <Compile Include="Blocks\Contour\FitLine.cs" />
+    <Compile Include="Blocks\Contour\MinAreaRect.cs" />
+    <Compile Include="Blocks\Contour\MinEnclosingCircle.cs" />
     <Compile Include="Blocks\Contour\ApproxPolyDP.cs" />
     <Compile Include="Blocks\ContourProperty\ContourArea.cs" />
     <Compile Include="Blocks\ContourProperty\ContourPermeter.cs" />
@@ -111,8 +117,8 @@
     <Compile Include="Blocks\Import\CreateLines.cs" />
     <Compile Include="Blocks\Import\CreateScalar.cs" />
     <Compile Include="Blocks\Import\CreateTexts.cs" />
-    <Compile Include="Blocks\Logic\ArrayChoice.cs" />
-    <Compile Include="Blocks\Logic\ToArray.cs" />
+    <Compile Include="Blocks\Logic\ChoiceFromMats.cs" />
+    <Compile Include="Blocks\Logic\CombineToMats.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
     <Compile Include="Blocks\Morphology\Erode.cs" />
     <Compile Include="Blocks\Morphology\MorphologyEx.cs" />
@@ -128,6 +134,7 @@
     <Compile Include="Blocks\Transform\WarpAffine.cs" />
     <Compile Include="Blocks\MatProperty\Shape.cs" />
     <Compile Include="Core\BlockHelper.cs" />
+    <Compile Include="Core\BlockTypeConvert.cs" />
     <Compile Include="Core\EdgeRoutingCategory.cs" />
     <Compile Include="Core\LayoutCategory.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />

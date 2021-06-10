@@ -11,7 +11,7 @@ namespace Aries.OpenCV.Blocks
     public class CreateCircles : ImportBlock<CircleSegment[]>
     {
 
-        [Category("Enter")] public string List_Circles { set; get; }
+        [Category("ARGUMENT")] public string List_Circles { set; get; }
 
         private List<double[]> circleArray { set; get; }
 

@@ -9,10 +9,10 @@ namespace Aries.OpenCV.Blocks
     {
 
         [Category("INPUT")] public Size Size { set; get; }
-        [Category("Enter")] public double Fx { set; get; } = 0;
-        [Category("Enter")] public double Fy { set; get; } = 0;
+        [Category("ARGUMENT")] public double Fx { set; get; } = 0;
+        [Category("ARGUMENT")] public double Fy { set; get; } = 0;
 
-        [Category("Enter")] public InterpolationFlags InterpolationFlags { set; get; } = InterpolationFlags.Linear;
+        [Category("ARGUMENT")] public InterpolationFlags InterpolationFlags { set; get; } = InterpolationFlags.Linear;
 
 
         public override bool CanExecute()

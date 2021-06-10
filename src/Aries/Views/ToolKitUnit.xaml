@@ -46,7 +46,7 @@
                                        Margin="2">
                                 <ListView.Template>
                                     <ControlTemplate>
-                                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                                        <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Disabled">
                                             <ItemsPresenter />
                                         </ScrollViewer>
                                     </ControlTemplate>
@@ -62,6 +62,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+      
     </UserControl.Resources>
     <DockPanel>
         <StackPanel DockPanel.Dock="Top" 
@@ -100,7 +102,7 @@
         </StackPanel>
         <hc:SearchBar DockPanel.Dock="Top"
                       hc:InfoElement.Placeholder="123"/>
-
+       
 
         <ListView  ItemContainerStyle="{StaticResource GroupStyle}" 
                    ItemsSource="{Binding ToolKitGroups}" 

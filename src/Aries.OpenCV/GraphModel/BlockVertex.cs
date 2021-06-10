@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Aries.OpenCV.Core;
 using Aries.Utility;
@@ -86,6 +87,17 @@ namespace Aries.OpenCV.GraphModel
         public abstract void Reload();
         public abstract bool CanExecute();
         public abstract void Execute();
+
+
+        public virtual async Task<bool> CanExecuteAsync()
+        {
+            return await Task.Run(() => CanExecute());
+        }
+
+        public virtual async void ExecuteAsync()
+        {
+            await Task.Run(() => Execute());
+        }
 
 
         public virtual bool EnableSaveBlock { get; set; } = true;

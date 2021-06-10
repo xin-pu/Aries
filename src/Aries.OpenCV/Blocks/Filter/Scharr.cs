@@ -7,19 +7,19 @@ namespace Aries.OpenCV.Blocks
     [Category("Filter")]
     public class Scharr : MatProcessingBlock
     {
-        [Category("Enter")] public MatType MatType { set; get; }
+        [Category("ARGUMENT")] public MatType MatType { set; get; }
 
-        [Category("Enter")] public int XOrder { set; get; } = 0;
+        [Category("ARGUMENT")] public int XOrder { set; get; } = 0;
 
-        [Category("Enter")] public int YOrder { set; get; } = 0;
+        [Category("ARGUMENT")] public int YOrder { set; get; } = 0;
 
-        [Category("Enter")] public int KSize { set; get; } = 3;
+        [Category("ARGUMENT")] public int KSize { set; get; } = 3;
 
-        [Category("Enter")] public double Scale { set; get; } = 1;
+        [Category("ARGUMENT")] public double Scale { set; get; } = 1;
 
-        [Category("Enter")] public double Delta { set; get; } = 0;
+        [Category("ARGUMENT")] public double Delta { set; get; } = 0;
 
-        [Category("Enter")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
+        [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 
         public override bool CanExecute()
         {

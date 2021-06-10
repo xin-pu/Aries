@@ -7,16 +7,16 @@ namespace Aries.OpenCV.Blocks
     [Category("Blur")]
     public class GaussianBlur : MatProcessingBlock
     {
-        [Category("Enter")] public int KSize_Width { set; get; } = 3;
+        [Category("ARGUMENT")] public int KSize_Width { set; get; } = 3;
 
 
-        [Category("Enter")] public int KSize_Height { set; get; } = 3;
+        [Category("ARGUMENT")] public int KSize_Height { set; get; } = 3;
 
 
         /// <summary>
         /// Gaussian kernel standard deviation in X direction.
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public double SigmaX { set; get; } = 1D;
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Aries.OpenCV.Blocks
         /// respectively (see getGaussianKernel() for details); to fully control the result
         /// regardless of possible future modifications of all this semantics, it is recommended to specify all of ksize, sigmaX, and sigmaY.
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public double SigmaY { set; get; } = 0D;
 
         /// <summary>

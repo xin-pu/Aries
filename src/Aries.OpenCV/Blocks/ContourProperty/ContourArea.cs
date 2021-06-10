@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks
     [Category("ContourProperty")]
     public class ContourArea : ExportBlock<double>
     {
-        [Category("Enter")] public bool Oriented { set; get; }
+        [Category("ARGUMENT")] public bool Oriented { set; get; }
 
         public override bool CanExecute()
         {

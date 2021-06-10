@@ -11,7 +11,7 @@ namespace Aries.OpenCV.Blocks
     public class CreateLines : ImportBlock<LineSegmentPoint[]>
     {
 
-        [Category("Enter")] public string List_Points { set; get; }
+        [Category("ARGUMENT")] public string List_Points { set; get; }
 
 
 

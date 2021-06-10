@@ -15,16 +15,16 @@ namespace Aries.OpenCV.Blocks
       
 
 
-        [Category("Enter")] public float Ranges_Min { set; get; } = 0;
-        [Category("Enter")] public float Ranges_Max { set; get; } = 256;
+        [Category("ARGUMENT")] public float Ranges_Min { set; get; } = 0;
+        [Category("ARGUMENT")] public float Ranges_Max { set; get; } = 256;
 
-        [Category("Enter")] public int Dims { set; get; } = 1;
+        [Category("ARGUMENT")] public int Dims { set; get; } = 1;
 
-        [Category("Enter")] public int HistSize { set; get; } = 256;
+        [Category("ARGUMENT")] public int HistSize { set; get; } = 256;
 
-        [Category("Enter")] public bool Uniform { set; get; } = true;
+        [Category("ARGUMENT")] public bool Uniform { set; get; } = true;
 
-        [Category("Enter")] public bool Accumulate { set; get; } = false;
+        [Category("ARGUMENT")] public bool Accumulate { set; get; } = false;
 
         private int[] Channels { get; } = { 0 };
 

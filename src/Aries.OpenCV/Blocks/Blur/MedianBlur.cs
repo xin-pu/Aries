@@ -12,7 +12,7 @@ namespace Aries.OpenCV.Blocks
     public class MedianBlur : MatProcessingBlock
     {
 
-        [Category("Enter")] public int KSize { set; get; } = 3;
+        [Category("ARGUMENT")] public int KSize { set; get; } = 3;
 
         public override bool CanExecute()
         {

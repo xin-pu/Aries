@@ -10,7 +10,7 @@ namespace Aries.OpenCV.Blocks
         [Category("INPUT")]
         public InputArray Shape { set; get; }
 
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public MorphTypes MorphType { set; get; } = MorphTypes.Open;
 
         public override bool CanExecute()

@@ -7,14 +7,14 @@ namespace Aries.OpenCV.Blocks
     [Category("Filter")]
     public class Canny : MatProcessingBlock
     {
-        [Category("Enter")] public double ThresholdLow { set; get; } = 1;
+        [Category("ARGUMENT")] public double ThresholdLow { set; get; } = 1;
 
-        [Category("Enter")] public double ThresholdHigh { set; get; } = 2;
+        [Category("ARGUMENT")] public double ThresholdHigh { set; get; } = 2;
 
 
-        [Category("Enter")] public int ApertureSize { set; get; } = 3;
+        [Category("ARGUMENT")] public int ApertureSize { set; get; } = 3;
 
-        [Category("Enter")] public bool L2gradient { set; get; } = false;
+        [Category("ARGUMENT")] public bool L2gradient { set; get; } = false;
 
         public override bool CanExecute()
         {

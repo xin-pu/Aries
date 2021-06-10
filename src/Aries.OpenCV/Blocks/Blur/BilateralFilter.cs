@@ -12,13 +12,13 @@ namespace Aries.OpenCV.Blocks
     {
 
 
-        [Category("Enter")] public int D { set; get; } = 3;
+        [Category("ARGUMENT")] public int D { set; get; } = 3;
 
-        [Category("Enter")] public double SigmaColor { set; get; } = 3;
+        [Category("ARGUMENT")] public double SigmaColor { set; get; } = 3;
 
-        [Category("Enter")] public double SigmaSpace { set; get; } = 3;
+        [Category("ARGUMENT")] public double SigmaSpace { set; get; } = 3;
 
-        [Category("Enter")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
+        [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 
         public override bool CanExecute()
         {

@@ -11,25 +11,25 @@ namespace Aries.OpenCV.Blocks
         /// <summary>
         /// 
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public double Val0 { set; get; } = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public double Val1 { set; get; } = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public double Val2 { set; get; } = 0;
 
         /// <summary>
         /// 
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public double Val3 { set; get; } = 0;
 
 

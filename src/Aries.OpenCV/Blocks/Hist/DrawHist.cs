@@ -16,9 +16,9 @@ namespace Aries.OpenCV.Blocks
         private int Row { set; get; }
         private float[,] Data { set; get; }
 
-        [Category("Enter")] public double HistWidth { set; get; } = 512;
-        [Category("Enter")] public double HistHeight { set; get; } = 512;
-        [Category("Enter")] public int LineThickNess { set; get; } = -1;
+        [Category("ARGUMENT")] public double HistWidth { set; get; } = 512;
+        [Category("ARGUMENT")] public double HistHeight { set; get; } = 512;
+        [Category("ARGUMENT")] public int LineThickNess { set; get; } = -1;
 
         public override bool CanExecute()
         {

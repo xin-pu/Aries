@@ -80,11 +80,9 @@ namespace Aries.Core
                 {
                     switch (p.ConnectType)
                     {
-                        case ConnectType.IN_MAT:
                         case ConnectType.INPUT:
                             AddInputConnectionPoint(ctrl, p);
                             break;
-                        case ConnectType.OUT_MAT:
                         case ConnectType.OUTPUT:
                             AddOutputConnectionPoint(ctrl, p);
                             break;
@@ -200,7 +198,7 @@ namespace Aries.Core
                 ID = connectionID,
                 ParentID = parentControl.GetDataVertex<BlockVertex>().ID,
                 Header = propertyDescriptor.Name,
-                ConnectType = ConnectType.IN_MAT,
+                ConnectType = ConnectType.INPUT,
                 Icon = BlockHelper.GetPointICon(propertyDescriptor.PropertyType.Name),
                 TypeFullName = propertyDescriptor.PropertyType.FullName
             };
@@ -240,7 +238,7 @@ namespace Aries.Core
                 ID = connectionID,
                 ParentID = parentControl.GetDataVertex<BlockVertex>().ID,
                 Header = propertyDescriptor.Name,
-                ConnectType = ConnectType.OUT_MAT,
+                ConnectType = ConnectType.OUTPUT,
                 Icon = BlockHelper.GetPointICon(propertyDescriptor.PropertyType.Name),
                 TypeFullName = propertyDescriptor.PropertyType.FullName,
             };

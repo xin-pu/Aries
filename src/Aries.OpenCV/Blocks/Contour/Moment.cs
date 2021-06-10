@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks
     [Category("Contour")]
     public class Moment : ExportBlock<Moments>
     {
-        [Category("Enter")] public bool BinaryImage { set; get; } = false;
+        [Category("ARGUMENT")] public bool BinaryImage { set; get; } = false;
 
         public override bool CanExecute()
         {

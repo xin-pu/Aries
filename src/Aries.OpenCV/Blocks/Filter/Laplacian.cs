@@ -7,16 +7,15 @@ namespace Aries.OpenCV.Blocks
     [Category("Filter")]
     public class Laplacian : MatProcessingBlock
     {
-        public MatType MatType { set; get; }
+        [Category("ARGUMENT")] public MatType MatType { set; get; }
 
+        [Category("ARGUMENT")] public int KSize { set; get; } = 1;
 
-        [Category("Enter")] public int KSize { set; get; } = 1;
+        [Category("ARGUMENT")] public double Scale { set; get; } = 1;
 
-        [Category("Enter")] public double Scale { set; get; } = 1;
+        [Category("ARGUMENT")] public double Delta { set; get; } = 0;
 
-        [Category("Enter")] public double Delta { set; get; } = 0;
-
-        [Category("Enter")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
+        [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 
         public override bool CanExecute()
         {

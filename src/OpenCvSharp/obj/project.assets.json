@@ -440,11 +440,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Document Code\\Code Web\\Aries\\src\\OpenCvSharp\\OpenCvSharp.csproj",
+      "projectUniqueName": "E:\\Document Code\\Code Aries\\Aries\\src\\OpenCvSharp\\OpenCvSharp.csproj",
       "projectName": "OpenCvSharp",
-      "projectPath": "E:\\Document Code\\Code Web\\Aries\\src\\OpenCvSharp\\OpenCvSharp.csproj",
+      "projectPath": "E:\\Document Code\\Code Aries\\Aries\\src\\OpenCvSharp\\OpenCvSharp.csproj",
       "packagesPath": "C:\\Users\\Xin.Pu\\.nuget\\packages\\",
-      "outputPath": "E:\\Document Code\\Code Web\\Aries\\src\\OpenCvSharp\\obj\\",
+      "outputPath": "E:\\Document Code\\Code Aries\\Aries\\src\\OpenCvSharp\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [

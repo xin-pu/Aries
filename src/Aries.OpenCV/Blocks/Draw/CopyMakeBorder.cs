@@ -7,14 +7,14 @@ namespace Aries.OpenCV.Blocks
     [Category("Draw")]
     public class CopyMakeBorder : MatProcessingBlock
     {
-
-
-        [Category("Enter")] public int Top { set; get; } = 0;
-        [Category("Enter")] public int Bottom { set; get; } = 0;
-        [Category("Enter")] public int Left { set; get; } = 0;
-        [Category("Enter")] public int Right { set; get; } = 0;
-        [Category("Enter")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
         [Category("INPUT")] public Scalar Scalar { set; get; }
+
+        [Category("ARGUMENT")] public int Top { set; get; } = 0;
+        [Category("ARGUMENT")] public int Bottom { set; get; } = 0;
+        [Category("ARGUMENT")] public int Left { set; get; } = 0;
+        [Category("ARGUMENT")] public int Right { set; get; } = 0;
+        [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
+  
 
         public override bool CanExecute()
         {

@@ -1,17 +1,17 @@
-﻿using System.ComponentModel;
+﻿using OpenCvSharp;
 using Aries.OpenCV.GraphModel;
-using OpenCvSharp;
+using System.ComponentModel;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Logic")]
-    public class ToArray : ProcessingBlock<Mat, Mat[]>
+
+    [Category("Contour")]
+    public class BoundingRect : ProcessingBlock<Mat, Rect>
     {
 
         public override void Reload()
         {
             InPutMat = null;
-            OutPutMat = null;
             Status = BlockStatus.ToRun;
         }
 
@@ -22,7 +22,9 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            OutPutMat = new[] {InPutMat};
+            OutPutMat = Cv2.BoundingRect(InPutMat);
         }
+
+
     }
 }

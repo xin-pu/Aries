@@ -7,11 +7,11 @@ namespace Aries.OpenCV.Blocks
     public class AddWeighted : ArithmeticBasic
     {
 
-        [Category("Enter")] public double Alpha { set; get; } = 0.5;
+        [Category("ARGUMENT")] public double Alpha { set; get; } = 0.5;
 
-        [Category("Enter")] public double Beta { set; get; } = 0.5;
+        [Category("ARGUMENT")] public double Beta { set; get; } = 0.5;
 
-        [Category("Enter")] public double Gamma { set; get; } = 0;
+        [Category("ARGUMENT")] public double Gamma { set; get; } = 0;
 
         /// <summary>
         /// dst = alpha cdot img1 + beta cdot img2 + gamma

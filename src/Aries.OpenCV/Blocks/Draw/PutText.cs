@@ -9,16 +9,16 @@ namespace Aries.OpenCV.Blocks
     public class PutText : MatProcessingBlock
     {
         [Category("INPUT")] public TextSegment[] Texts { set; get; }
-        [Category("Enter")] public double Color { set; get; } = 255;
+        [Category("ARGUMENT")] public double Color { set; get; } = 255;
 
-        [Category("Enter")] public int Thickness { set; get; } = 1;
+        [Category("ARGUMENT")] public int Thickness { set; get; } = 1;
 
-        [Category("Enter")] public LineTypes LineType { set; get; } = LineTypes.Link8;
+        [Category("ARGUMENT")] public LineTypes LineType { set; get; } = LineTypes.Link8;
 
-        [Category("Enter")] public HersheyFonts HersheyFont { set; get; } = HersheyFonts.HersheySimplex;
-        [Category("Enter")] public double FontScale { set; get; } = 11;
+        [Category("ARGUMENT")] public HersheyFonts HersheyFont { set; get; } = HersheyFonts.HersheySimplex;
+        [Category("ARGUMENT")] public double FontScale { set; get; } = 11;
 
-        [Category("Enter")] public bool BottomLeftOrign { set; get; } = false;
+        [Category("ARGUMENT")] public bool BottomLeftOrign { set; get; } = false;
 
         public override bool CanExecute()
         {

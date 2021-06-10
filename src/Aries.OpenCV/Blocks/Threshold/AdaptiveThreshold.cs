@@ -8,16 +8,16 @@ namespace Aries.OpenCV.Blocks
     public class AdaptiveThreshold : MatProcessingBlock
     {
 
-        [Category("Enter")] public double MaxValue { set; get; } = 255;
+        [Category("ARGUMENT")] public double MaxValue { set; get; } = 255;
 
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public AdaptiveThresholdTypes AdaptiveThresholdType { set; get; } = AdaptiveThresholdTypes.MeanC;
 
-        [Category("Enter")] public ThresholdTypes ThresholdType { set; get; } = ThresholdTypes.Binary;
+        [Category("ARGUMENT")] public ThresholdTypes ThresholdType { set; get; } = ThresholdTypes.Binary;
 
-        [Category("Enter")] public int BlockSize { set; get; } = 3;
+        [Category("ARGUMENT")] public int BlockSize { set; get; } = 3;
 
-        [Category("Enter")] public double C { set; get; } = 5;
+        [Category("ARGUMENT")] public double C { set; get; } = 5;
 
         public override bool CanExecute()
         {

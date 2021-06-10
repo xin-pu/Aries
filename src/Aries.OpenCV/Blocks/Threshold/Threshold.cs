@@ -10,17 +10,17 @@ namespace Aries.OpenCV.Blocks
         /// <summary>
         /// threshold value.
         /// </summary>
-        [Category("Enter")] public double Thresh { set; get; } = 122;
+        [Category("ARGUMENT")] public double Thresh { set; get; } = 122;
 
         /// <summary>
         /// maximum value to use with the THRESH_BINARY and THRESH_BINARY_INV thresholding types.
         /// </summary>
-        [Category("Enter")] public double Maxval { set; get; } = 255;
+        [Category("ARGUMENT")] public double Maxval { set; get; } = 255;
 
         /// <summary>
         /// thresholding type (see the details below)
         /// </summary>
-        [Category("Enter")] public ThresholdTypes ThresholdType { set; get; } = ThresholdTypes.Binary;
+        [Category("ARGUMENT")] public ThresholdTypes ThresholdType { set; get; } = ThresholdTypes.Binary;
 
 
         public override bool CanExecute()

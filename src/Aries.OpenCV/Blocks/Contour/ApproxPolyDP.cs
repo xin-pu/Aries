@@ -8,8 +8,8 @@ namespace Aries.OpenCV.Blocks
     public class ApproxPolyDP : MatProcessingBlock
     {
 
-        [Category("Enter")] public double Epsilon { set; get; }
-        [Category("Enter")] public bool Closed { set; get; } = true;
+        [Category("ARGUMENT")] public double Epsilon { set; get; }
+        [Category("ARGUMENT")] public bool Closed { set; get; } = true;
 
 
         public override bool CanExecute()

@@ -10,7 +10,7 @@ namespace Aries.OpenCV.Blocks
     [Category("Initial")]
     public class CreateTexts : ImportBlock<TextSegment[]>
     {
-        [Category("Enter")] public string List_Texts { set; get; }
+        [Category("ARGUMENT")] public string List_Texts { set; get; }
 
         private List<string[]> textArray { set; get; }
 

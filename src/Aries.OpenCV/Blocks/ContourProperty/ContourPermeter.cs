@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks
     [Category("ContourProperty")]
     public class ContourPermeter : ExportBlock<double>
     {
-        [Category("Enter")] public bool Closed { set; get; }
+        [Category("ARGUMENT")] public bool Closed { set; get; }
 
         public override bool CanExecute()
         {

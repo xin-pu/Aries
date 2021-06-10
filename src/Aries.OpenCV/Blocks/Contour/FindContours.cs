@@ -10,7 +10,7 @@ namespace Aries.OpenCV.Blocks
 
         [Category("OUTPUT")] public Mat Hierarchy { set; get; }
 
-        [Category("Enter")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;
+        [Category("ARGUMENT")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;
 
         /// <summary>
         /// CHAIN_APPROX_NONE - translate all the points from the chain code into points;
@@ -18,10 +18,10 @@ namespace Aries.OpenCV.Blocks
         /// CHAIN_APPROX_TC89_L1 - apply one of the flavors of Teh-Chin chain approximation algorithm.
         /// CHAIN_APPROX_TC89_KCOS - apply one of the flavors of Teh-Chin chain approximation algorithm. 
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public ContourApproximationModes ContourApproximationMode { set; get; } = ContourApproximationModes.ApproxSimple;
 
-        [Category("Enter")] public Point Offset { set; get; }
+        [Category("ARGUMENT")] public Point Offset { set; get; }
 
         public override void Reload()
         {

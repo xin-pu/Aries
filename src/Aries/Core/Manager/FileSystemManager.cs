@@ -229,10 +229,6 @@ namespace Aries.Core
                 a.Data.GetType() == typeof(ConnectionPointData)))
             {
                 var a = graphSerializationData.Data as ConnectionPointData;
-                if (a.ConnectType == ConnectType.IN_MAT)
-                    a.ConnectType = ConnectType.INPUT;
-                if (a.ConnectType == ConnectType.OUT_MAT)
-                    a.ConnectType = ConnectType.OUTPUT;
             }
 
             return res;

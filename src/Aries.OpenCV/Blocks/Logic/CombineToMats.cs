@@ -2,13 +2,13 @@
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks.Logic
+namespace Aries.OpenCV.Blocks
 {
     [Category("Logic")]
-    public class ArrayChoice : ProcessingBlock<Mat[], Mat>
+    public class CombineToMats : ProcessingBlock<Mat, Mat[]>
     {
 
-        [Category("Enter")] public uint Index { set; get; } = 0;
+        public Mat InPutMat2 { set; get; }
 
         public override void Reload()
         {
@@ -19,14 +19,12 @@ namespace Aries.OpenCV.Blocks.Logic
 
         public override bool CanExecute()
         {
-            return InPutMat != null && InPutMat.Length > 0;
+            return InPutMat != null;
         }
 
         public override void Execute()
-        {
-            OutPutMat = new Mat();
-            OutPutMat = InPutMat[Index];
+        {   
+            OutPutMat = new[] {InPutMat};
         }
     }
-
 }

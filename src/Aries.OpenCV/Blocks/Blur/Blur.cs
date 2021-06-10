@@ -8,20 +8,20 @@ namespace Aries.OpenCV.Blocks
     [Category("Blur")]
     public class Blur : MatProcessingBlock
     {
-        [Category("Enter")] public int KSize_Width { set; get; } = 3;
+        [Category("ARGUMENT")] public int KSize_Width { set; get; } = 3;
 
 
-        [Category("Enter")] public int KSize_Height { set; get; } = 3;
+        [Category("ARGUMENT")] public int KSize_Height { set; get; } = 3;
 
-        [Category("Enter")] public int AnchorPoint_X { set; get; } = -1;
+        [Category("ARGUMENT")] public int AnchorPoint_X { set; get; } = -1;
 
 
-        [Category("Enter")] public int AnchorPoint_Y { set; get; } = -1;
+        [Category("ARGUMENT")] public int AnchorPoint_Y { set; get; } = -1;
 
         /// <summary>
         /// The border mode used to extrapolate pixels outside of the image
         /// </summary>
-        [Category("Enter")]
+        [Category("ARGUMENT")]
         public BorderTypes BorderTypes { set; get; } = BorderTypes.Default;
 
         /// <summary>

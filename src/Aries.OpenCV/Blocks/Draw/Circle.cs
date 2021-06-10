@@ -11,13 +11,13 @@ namespace Aries.OpenCV.Blocks
 
         [Category("INPUT")] public CircleSegment[] Circles { set; get; }
 
-        [Category("Enter")] public double Color { set; get; } = 255;
+        [Category("ARGUMENT")] public double Color { set; get; } = 255;
 
-        [Category("Enter")] public int Thickness { set; get; } = 1;
+        [Category("ARGUMENT")] public int Thickness { set; get; } = 1;
 
-        [Category("Enter")] public LineTypes LineType { set; get; } = LineTypes.Link8;
+        [Category("ARGUMENT")] public LineTypes LineType { set; get; } = LineTypes.Link8;
 
-        [Category("Enter")] public int Shift { set; get; } = 0;
+        [Category("ARGUMENT")] public int Shift { set; get; } = 0;
 
         public override void Reload()
         {
