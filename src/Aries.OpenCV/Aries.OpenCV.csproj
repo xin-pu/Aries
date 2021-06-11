@@ -78,7 +78,7 @@
     <Compile Include="Blocks\Arithmetic\BitwiseXor.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseOr.cs" />
     <Compile Include="Blocks\Arithmetic\InRange.cs" />
-    <Compile Include="Blocks\Arithmetic\Normalize.cs" />
+    <Compile Include="Blocks\Convert\Normalize.cs" />
     <Compile Include="Blocks\Blur\Filter2D.cs" />
     <Compile Include="Blocks\Channel\Merge.cs" />
     <Compile Include="Blocks\Arithmetic\Multiply.cs" />
@@ -99,8 +99,11 @@
     <Compile Include="Blocks\ContourProperty\ContourPermeter.cs" />
     <Compile Include="Blocks\Contour\DrawContours.cs" />
     <Compile Include="Blocks\Contour\FindContours.cs" />
+    <Compile Include="Blocks\Convert\ConvertScaleAbs.cs" />
     <Compile Include="Blocks\Corner\CornerHarris.cs" />
     <Compile Include="Blocks\Corner\CornerSubPix.cs" />
+    <Compile Include="Blocks\Draw\DrawPoint.cs" />
+    <Compile Include="Blocks\Fetch\FetchPoints.cs" />
     <Compile Include="Blocks\Hough\HoughCircle.cs" />
     <Compile Include="Blocks\Hough\HoughLines.cs" />
     <Compile Include="Blocks\Hough\HoughLinesP.cs" />
