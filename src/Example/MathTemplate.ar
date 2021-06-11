@@ -1,0 +1,1122 @@
+<GraphCVFileStruct xmlns:yaxlib="http://www.sinairv.com/yaxlib/">
+  <GraphSerializationDatas>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.Blocks.CreateImage">
+        <FileName>C:\Users\Xin.Pu\Pictures\IMG_0302.JPG</FileName>
+        <ImreadModes>Grayscale</ImreadModes>
+        <OutPut />
+        <OutPutType>OpenCvSharp.Mat</OutPutType>
+        <BlockType>Import</BlockType>
+        <CVCategory>Initial</CVCategory>
+        <Icon></Icon>
+        <Name>CreateImage</Name>
+        <StartTime>06/10/2021 14:26:17</StartTime>
+        <StopTime>06/10/2021 14:26:21</StopTime>
+        <TimeCost>00:00:04.3813718</TimeCost>
+        <ErrorMessage />
+        <Status>ToRun</Status>
+        <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+          <ExecuteWithPara>False</ExecuteWithPara>
+        </RunBlockCommand>
+        <EnableSaveBlock>True</EnableSaveBlock>
+        <Angle>0</Angle>
+        <GroupId>0</GroupId>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>1</ID>
+      </Data>
+      <Position>
+        <X>680</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>1</ParentID>
+        <ID>1</ID>
+        <Header>OutPut</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>OUTPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>680</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.Blocks.CreateImage">
+        <FileName>C:\Users\Xin.Pu\Pictures\BirdTemplate.jpg</FileName>
+        <ImreadModes>Grayscale</ImreadModes>
+        <OutPut />
+        <OutPutType>OpenCvSharp.Mat</OutPutType>
+        <BlockType>Import</BlockType>
+        <CVCategory>Initial</CVCategory>
+        <Icon></Icon>
+        <Name>CreateImage</Name>
+        <StartTime>06/10/2021 14:26:17</StartTime>
+        <StopTime>06/10/2021 14:26:20</StopTime>
+        <TimeCost>00:00:02.6808058</TimeCost>
+        <ErrorMessage />
+        <Status>ToRun</Status>
+        <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+          <ExecuteWithPara>False</ExecuteWithPara>
+        </RunBlockCommand>
+        <EnableSaveBlock>True</EnableSaveBlock>
+        <Angle>0</Angle>
+        <GroupId>0</GroupId>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>2</ID>
+      </Data>
+      <Position>
+        <X>1047</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>2</ParentID>
+        <ID>1</ID>
+        <Header>OutPut</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>OUTPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>1047</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.Blocks.Template.MatchTemplate">
+        <Template>
+          <Flags>1124024320</Flags>
+          <Dims>2</Dims>
+          <Rows>68</Rows>
+          <Height>68</Height>
+          <Cols>95</Cols>
+          <Width>95</Width>
+          <Data>345217024</Data>
+          <DataPointer yaxlib:realtype="System.Reflection.Pointer" />
+          <DataStart>345217024</DataStart>
+          <DataEnd>345223484</DataEnd>
+          <DataLimit>345223484</DataLimit>
+          <CvPtr>87972192</CvPtr>
+          <IsDisposed>False</IsDisposed>
+          <IsEnabledDispose>True</IsEnabledDispose>
+        </Template>
+        <Mask />
+        <TemplateMatchMode>CCoeff</TemplateMatchMode>
+        <EnableMask>False</EnableMask>
+        <InPutMat />
+        <OutPutMat />
+        <BlockType>Processing</BlockType>
+        <CVCategory>Template</CVCategory>
+        <Icon></Icon>
+        <Name>MatchTemplate</Name>
+        <StartTime>06/10/2021 14:26:21</StartTime>
+        <StopTime>06/10/2021 14:26:52</StopTime>
+        <TimeCost>00:00:30.4799010</TimeCost>
+        <ErrorMessage />
+        <Status>ToRun</Status>
+        <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+          <ExecuteWithPara>False</ExecuteWithPara>
+        </RunBlockCommand>
+        <EnableSaveBlock>True</EnableSaveBlock>
+        <Angle>0</Angle>
+        <GroupId>0</GroupId>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>3</ID>
+      </Data>
+      <Position>
+        <X>200</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>3</ParentID>
+        <ID>1</ID>
+        <Header>Template</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>200</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>3</ParentID>
+        <ID>2</ID>
+        <Header>Mask</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>200</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>3</ParentID>
+        <ID>3</ID>
+        <Header>InPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>200</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>3</ParentID>
+        <ID>4</ID>
+        <Header>OutPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>OUTPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>200</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.Blocks.Template.MatchTemplateWithRect">
+        <Status>ToRun</Status>
+        <ID>4</ID>
+        <Name>MatchTemplateWithRect</Name>
+        <Template>
+          <Flags>1124024320</Flags>
+          <Dims>2</Dims>
+          <Rows>68</Rows>
+          <Height>68</Height>
+          <Cols>95</Cols>
+          <Width>95</Width>
+          <Data>345217024</Data>
+          <DataPointer yaxlib:realtype="System.Reflection.Pointer" />
+          <DataStart>345217024</DataStart>
+          <DataEnd>345223484</DataEnd>
+          <DataLimit>345223484</DataLimit>
+          <CvPtr>87972192</CvPtr>
+          <IsDisposed>False</IsDisposed>
+          <IsEnabledDispose>True</IsEnabledDispose>
+        </Template>
+        <Mask />
+        <TemplateMatchMode>CCoeff</TemplateMatchMode>
+        <EnableMask>False</EnableMask>
+        <InPutMat />
+        <OutPutMat>
+          <Top>453</Top>
+          <Bottom>521</Bottom>
+          <Left>485</Left>
+          <Right>580</Right>
+          <Location />
+          <Size />
+          <TopLeft />
+          <BottomRight />
+        </OutPutMat>
+        <BlockType>Processing</BlockType>
+        <CVCategory>Template</CVCategory>
+        <Icon></Icon>
+        <StartTime>06/10/2021 14:26:21</StartTime>
+        <StopTime>06/10/2021 14:26:52</StopTime>
+        <TimeCost>00:00:30.4789030</TimeCost>
+        <ErrorMessage />
+        <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+          <ExecuteWithPara>False</ExecuteWithPara>
+        </RunBlockCommand>
+        <EnableSaveBlock>True</EnableSaveBlock>
+        <Angle>0</Angle>
+        <GroupId>0</GroupId>
+        <SkipProcessing>Default</SkipProcessing>
+      </Data>
+      <Position>
+        <X>643</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>4</ParentID>
+        <ID>1</ID>
+        <Header>Template</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>643</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>4</ParentID>
+        <ID>2</ID>
+        <Header>Mask</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>643</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>4</ParentID>
+        <ID>3</ID>
+        <Header>InPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>643</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>4</ParentID>
+        <ID>4</ID>
+        <Header>OutPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Rect</TypeFullName>
+        <ConnectType>OUTPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>643</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.Blocks.CombineToRects">
+        <Status>ToRun</Status>
+        <ID>6</ID>
+        <Name>CombineToRects</Name>
+        <InPutMat>
+          <Top>0</Top>
+          <Bottom>0</Bottom>
+          <Left>0</Left>
+          <Right>0</Right>
+          <Location />
+          <Size />
+          <TopLeft />
+          <BottomRight />
+        </InPutMat>
+        <OutPutMat />
+        <BlockType>Processing</BlockType>
+        <CVCategory>Logic</CVCategory>
+        <Icon></Icon>
+        <StartTime />
+        <StopTime />
+        <TimeCost />
+        <ErrorMessage />
+        <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+          <ExecuteWithPara>False</ExecuteWithPara>
+        </RunBlockCommand>
+        <EnableSaveBlock>True</EnableSaveBlock>
+        <Angle>0</Angle>
+        <GroupId>0</GroupId>
+        <SkipProcessing>Default</SkipProcessing>
+      </Data>
+      <Position>
+        <X>681</X>
+        <Y>572</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>6</ParentID>
+        <ID>1</ID>
+        <Header>InPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Rect</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>681</X>
+        <Y>572</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>6</ParentID>
+        <ID>2</ID>
+        <Header>OutPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Rect[]</TypeFullName>
+        <ConnectType>OUTPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>681</X>
+        <Y>572</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.Blocks.Rectangle">
+        <Status>ToRun</Status>
+        <ID>7</ID>
+        <Name>Rectangle</Name>
+        <Rects />
+        <Color>255</Color>
+        <Thickness>1</Thickness>
+        <LineType>Link8</LineType>
+        <Shift>0</Shift>
+        <InPutMat />
+        <OutPutMat />
+        <BlockType>Processing</BlockType>
+        <CVCategory>Draw</CVCategory>
+        <Icon></Icon>
+        <StartTime>06/10/2021 14:26:21</StartTime>
+        <StopTime>06/10/2021 14:26:52</StopTime>
+        <TimeCost>00:00:30.4699348</TimeCost>
+        <ErrorMessage>Object reference not set to an instance of an object.</ErrorMessage>
+        <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+          <ExecuteWithPara>False</ExecuteWithPara>
+        </RunBlockCommand>
+        <EnableSaveBlock>True</EnableSaveBlock>
+        <Angle>0</Angle>
+        <GroupId>0</GroupId>
+        <SkipProcessing>Default</SkipProcessing>
+      </Data>
+      <Position>
+        <X>1122</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>7</ParentID>
+        <ID>1</ID>
+        <Header>Rects</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Rect[]</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>1122</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>7</ParentID>
+        <ID>2</ID>
+        <Header>InPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>INPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>1122</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="GraphX.Controls.ConnectionPointData">
+        <ParentID>7</ParentID>
+        <ID>3</ID>
+        <Header>OutPutMat</Header>
+        <Icon></Icon>
+        <TypeFullName>OpenCvSharp.Mat</TypeFullName>
+        <ConnectType>OUTPUT</ConnectType>
+      </Data>
+      <Position>
+        <X>1122</X>
+        <Y>271</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>False</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.GraphModel.BlockEdge">
+        <Header>Import --&gt; Processing</Header>
+        <Angle>90</Angle>
+        <ArrowTarget>False</ArrowTarget>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>1</ID>
+        <IsSelfLoop>False</IsSelfLoop>
+        <SourceConnectionPointId>1</SourceConnectionPointId>
+        <TargetConnectionPointId>3</TargetConnectionPointId>
+        <RoutingPoints />
+        <Source yaxlib:realtype="Aries.OpenCV.Blocks.CreateImage">
+          <FileName>C:\Users\Xin.Pu\Pictures\IMG_0302.JPG</FileName>
+          <ImreadModes>Grayscale</ImreadModes>
+          <OutPut />
+          <OutPutType>OpenCvSharp.Mat</OutPutType>
+          <BlockType>Import</BlockType>
+          <CVCategory>Initial</CVCategory>
+          <Icon></Icon>
+          <Name>CreateImage</Name>
+          <StartTime>06/10/2021 14:26:17</StartTime>
+          <StopTime>06/10/2021 14:26:21</StopTime>
+          <TimeCost>00:00:04.3813718</TimeCost>
+          <ErrorMessage />
+          <Status>ToRun</Status>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+          <ID>1</ID>
+        </Source>
+        <Target yaxlib:realtype="Aries.OpenCV.Blocks.Template.MatchTemplate">
+          <Template>
+            <Flags>1124024320</Flags>
+            <Dims>2</Dims>
+            <Rows>68</Rows>
+            <Height>68</Height>
+            <Cols>95</Cols>
+            <Width>95</Width>
+            <Data>345217024</Data>
+            <DataPointer yaxlib:realtype="System.Reflection.Pointer" />
+            <DataStart>345217024</DataStart>
+            <DataEnd>345223484</DataEnd>
+            <DataLimit>345223484</DataLimit>
+            <CvPtr>87972192</CvPtr>
+            <IsDisposed>False</IsDisposed>
+            <IsEnabledDispose>True</IsEnabledDispose>
+          </Template>
+          <Mask />
+          <TemplateMatchMode>CCoeff</TemplateMatchMode>
+          <EnableMask>False</EnableMask>
+          <InPutMat />
+          <OutPutMat />
+          <BlockType>Processing</BlockType>
+          <CVCategory>Template</CVCategory>
+          <Icon></Icon>
+          <Name>MatchTemplate</Name>
+          <StartTime>06/10/2021 14:26:21</StartTime>
+          <StopTime>06/10/2021 14:26:52</StopTime>
+          <TimeCost>00:00:30.4799010</TimeCost>
+          <ErrorMessage />
+          <Status>ToRun</Status>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+          <ID>3</ID>
+        </Target>
+        <Weight>1</Weight>
+        <ReversePath>False</ReversePath>
+      </Data>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>True</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.GraphModel.BlockEdge">
+        <Header>Import --&gt; Processing</Header>
+        <Angle>90</Angle>
+        <ArrowTarget>False</ArrowTarget>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>2</ID>
+        <IsSelfLoop>False</IsSelfLoop>
+        <SourceConnectionPointId>1</SourceConnectionPointId>
+        <TargetConnectionPointId>1</TargetConnectionPointId>
+        <RoutingPoints />
+        <Source yaxlib:realtype="Aries.OpenCV.Blocks.CreateImage">
+          <FileName>C:\Users\Xin.Pu\Pictures\BirdTemplate.jpg</FileName>
+          <ImreadModes>Grayscale</ImreadModes>
+          <OutPut />
+          <OutPutType>OpenCvSharp.Mat</OutPutType>
+          <BlockType>Import</BlockType>
+          <CVCategory>Initial</CVCategory>
+          <Icon></Icon>
+          <Name>CreateImage</Name>
+          <StartTime>06/10/2021 14:26:17</StartTime>
+          <StopTime>06/10/2021 14:26:20</StopTime>
+          <TimeCost>00:00:02.6808058</TimeCost>
+          <ErrorMessage />
+          <Status>ToRun</Status>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+          <ID>2</ID>
+        </Source>
+        <Target yaxlib:realtype="Aries.OpenCV.Blocks.Template.MatchTemplate">
+          <Template>
+            <Flags>1124024320</Flags>
+            <Dims>2</Dims>
+            <Rows>68</Rows>
+            <Height>68</Height>
+            <Cols>95</Cols>
+            <Width>95</Width>
+            <Data>345217024</Data>
+            <DataPointer yaxlib:realtype="System.Reflection.Pointer" />
+            <DataStart>345217024</DataStart>
+            <DataEnd>345223484</DataEnd>
+            <DataLimit>345223484</DataLimit>
+            <CvPtr>87972192</CvPtr>
+            <IsDisposed>False</IsDisposed>
+            <IsEnabledDispose>True</IsEnabledDispose>
+          </Template>
+          <Mask />
+          <TemplateMatchMode>CCoeff</TemplateMatchMode>
+          <EnableMask>False</EnableMask>
+          <InPutMat />
+          <OutPutMat />
+          <BlockType>Processing</BlockType>
+          <CVCategory>Template</CVCategory>
+          <Icon></Icon>
+          <Name>MatchTemplate</Name>
+          <StartTime>06/10/2021 14:26:21</StartTime>
+          <StopTime>06/10/2021 14:26:52</StopTime>
+          <TimeCost>00:00:30.4799010</TimeCost>
+          <ErrorMessage />
+          <Status>ToRun</Status>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+          <ID>3</ID>
+        </Target>
+        <Weight>1</Weight>
+        <ReversePath>False</ReversePath>
+      </Data>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>True</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.GraphModel.BlockEdge">
+        <Header>Import --&gt; Processing</Header>
+        <Angle>90</Angle>
+        <ArrowTarget>False</ArrowTarget>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>3</ID>
+        <IsSelfLoop>False</IsSelfLoop>
+        <SourceConnectionPointId>1</SourceConnectionPointId>
+        <TargetConnectionPointId>3</TargetConnectionPointId>
+        <RoutingPoints />
+        <Source yaxlib:realtype="Aries.OpenCV.Blocks.CreateImage">
+          <FileName>C:\Users\Xin.Pu\Pictures\IMG_0302.JPG</FileName>
+          <ImreadModes>Grayscale</ImreadModes>
+          <OutPut />
+          <OutPutType>OpenCvSharp.Mat</OutPutType>
+          <BlockType>Import</BlockType>
+          <CVCategory>Initial</CVCategory>
+          <Icon></Icon>
+          <Name>CreateImage</Name>
+          <StartTime>06/10/2021 14:26:17</StartTime>
+          <StopTime>06/10/2021 14:26:21</StopTime>
+          <TimeCost>00:00:04.3813718</TimeCost>
+          <ErrorMessage />
+          <Status>ToRun</Status>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+          <ID>1</ID>
+        </Source>
+        <Target yaxlib:realtype="Aries.OpenCV.Blocks.Template.MatchTemplateWithRect">
+          <Status>ToRun</Status>
+          <ID>4</ID>
+          <Name>MatchTemplateWithRect</Name>
+          <Template>
+            <Flags>1124024320</Flags>
+            <Dims>2</Dims>
+            <Rows>68</Rows>
+            <Height>68</Height>
+            <Cols>95</Cols>
+            <Width>95</Width>
+            <Data>345217024</Data>
+            <DataPointer yaxlib:realtype="System.Reflection.Pointer" />
+            <DataStart>345217024</DataStart>
+            <DataEnd>345223484</DataEnd>
+            <DataLimit>345223484</DataLimit>
+            <CvPtr>87972192</CvPtr>
+            <IsDisposed>False</IsDisposed>
+            <IsEnabledDispose>True</IsEnabledDispose>
+          </Template>
+          <Mask />
+          <TemplateMatchMode>CCoeff</TemplateMatchMode>
+          <EnableMask>False</EnableMask>
+          <InPutMat />
+          <OutPutMat>
+            <Top>453</Top>
+            <Bottom>521</Bottom>
+            <Left>485</Left>
+            <Right>580</Right>
+            <Location />
+            <Size />
+            <TopLeft />
+            <BottomRight />
+          </OutPutMat>
+          <BlockType>Processing</BlockType>
+          <CVCategory>Template</CVCategory>
+          <Icon></Icon>
+          <StartTime>06/10/2021 14:26:21</StartTime>
+          <StopTime>06/10/2021 14:26:52</StopTime>
+          <TimeCost>00:00:30.4789030</TimeCost>
+          <ErrorMessage />
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+        </Target>
+        <Weight>1</Weight>
+        <ReversePath>False</ReversePath>
+      </Data>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>True</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.GraphModel.BlockEdge">
+        <Header>Import --&gt; Processing</Header>
+        <Angle>90</Angle>
+        <ArrowTarget>False</ArrowTarget>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>4</ID>
+        <IsSelfLoop>False</IsSelfLoop>
+        <SourceConnectionPointId>1</SourceConnectionPointId>
+        <TargetConnectionPointId>1</TargetConnectionPointId>
+        <RoutingPoints />
+        <Source yaxlib:realtype="Aries.OpenCV.Blocks.CreateImage">
+          <FileName>C:\Users\Xin.Pu\Pictures\BirdTemplate.jpg</FileName>
+          <ImreadModes>Grayscale</ImreadModes>
+          <OutPut />
+          <OutPutType>OpenCvSharp.Mat</OutPutType>
+          <BlockType>Import</BlockType>
+          <CVCategory>Initial</CVCategory>
+          <Icon></Icon>
+          <Name>CreateImage</Name>
+          <StartTime>06/10/2021 14:26:17</StartTime>
+          <StopTime>06/10/2021 14:26:20</StopTime>
+          <TimeCost>00:00:02.6808058</TimeCost>
+          <ErrorMessage />
+          <Status>ToRun</Status>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+          <ID>2</ID>
+        </Source>
+        <Target yaxlib:realtype="Aries.OpenCV.Blocks.Template.MatchTemplateWithRect">
+          <Status>ToRun</Status>
+          <ID>4</ID>
+          <Name>MatchTemplateWithRect</Name>
+          <Template>
+            <Flags>1124024320</Flags>
+            <Dims>2</Dims>
+            <Rows>68</Rows>
+            <Height>68</Height>
+            <Cols>95</Cols>
+            <Width>95</Width>
+            <Data>345217024</Data>
+            <DataPointer yaxlib:realtype="System.Reflection.Pointer" />
+            <DataStart>345217024</DataStart>
+            <DataEnd>345223484</DataEnd>
+            <DataLimit>345223484</DataLimit>
+            <CvPtr>87972192</CvPtr>
+            <IsDisposed>False</IsDisposed>
+            <IsEnabledDispose>True</IsEnabledDispose>
+          </Template>
+          <Mask />
+          <TemplateMatchMode>CCoeff</TemplateMatchMode>
+          <EnableMask>False</EnableMask>
+          <InPutMat />
+          <OutPutMat>
+            <Top>453</Top>
+            <Bottom>521</Bottom>
+            <Left>485</Left>
+            <Right>580</Right>
+            <Location />
+            <Size />
+            <TopLeft />
+            <BottomRight />
+          </OutPutMat>
+          <BlockType>Processing</BlockType>
+          <CVCategory>Template</CVCategory>
+          <Icon></Icon>
+          <StartTime>06/10/2021 14:26:21</StartTime>
+          <StopTime>06/10/2021 14:26:52</StopTime>
+          <TimeCost>00:00:30.4789030</TimeCost>
+          <ErrorMessage />
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+        </Target>
+        <Weight>1</Weight>
+        <ReversePath>False</ReversePath>
+      </Data>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>True</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.GraphModel.BlockEdge">
+        <Header>Processing --&gt; Processing</Header>
+        <Angle>90</Angle>
+        <ArrowTarget>False</ArrowTarget>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>6</ID>
+        <IsSelfLoop>False</IsSelfLoop>
+        <SourceConnectionPointId>4</SourceConnectionPointId>
+        <TargetConnectionPointId>1</TargetConnectionPointId>
+        <RoutingPoints />
+        <Source yaxlib:realtype="Aries.OpenCV.Blocks.Template.MatchTemplateWithRect">
+          <Status>ToRun</Status>
+          <ID>4</ID>
+          <Name>MatchTemplateWithRect</Name>
+          <Template>
+            <Flags>1124024320</Flags>
+            <Dims>2</Dims>
+            <Rows>68</Rows>
+            <Height>68</Height>
+            <Cols>95</Cols>
+            <Width>95</Width>
+            <Data>345217024</Data>
+            <DataPointer yaxlib:realtype="System.Reflection.Pointer" />
+            <DataStart>345217024</DataStart>
+            <DataEnd>345223484</DataEnd>
+            <DataLimit>345223484</DataLimit>
+            <CvPtr>87972192</CvPtr>
+            <IsDisposed>False</IsDisposed>
+            <IsEnabledDispose>True</IsEnabledDispose>
+          </Template>
+          <Mask />
+          <TemplateMatchMode>CCoeff</TemplateMatchMode>
+          <EnableMask>False</EnableMask>
+          <InPutMat />
+          <OutPutMat>
+            <Top>453</Top>
+            <Bottom>521</Bottom>
+            <Left>485</Left>
+            <Right>580</Right>
+            <Location />
+            <Size />
+            <TopLeft />
+            <BottomRight />
+          </OutPutMat>
+          <BlockType>Processing</BlockType>
+          <CVCategory>Template</CVCategory>
+          <Icon></Icon>
+          <StartTime>06/10/2021 14:26:21</StartTime>
+          <StopTime>06/10/2021 14:26:52</StopTime>
+          <TimeCost>00:00:30.4789030</TimeCost>
+          <ErrorMessage />
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+        </Source>
+        <Target yaxlib:realtype="Aries.OpenCV.Blocks.CombineToRects">
+          <Status>ToRun</Status>
+          <ID>6</ID>
+          <Name>CombineToRects</Name>
+          <InPutMat>
+            <Top>0</Top>
+            <Bottom>0</Bottom>
+            <Left>0</Left>
+            <Right>0</Right>
+            <Location />
+            <Size />
+            <TopLeft />
+            <BottomRight />
+          </InPutMat>
+          <OutPutMat />
+          <BlockType>Processing</BlockType>
+          <CVCategory>Logic</CVCategory>
+          <Icon></Icon>
+          <StartTime />
+          <StopTime />
+          <TimeCost />
+          <ErrorMessage />
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+        </Target>
+        <Weight>1</Weight>
+        <ReversePath>False</ReversePath>
+      </Data>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>True</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.GraphModel.BlockEdge">
+        <Header>Processing --&gt; Processing</Header>
+        <Angle>90</Angle>
+        <ArrowTarget>False</ArrowTarget>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>7</ID>
+        <IsSelfLoop>False</IsSelfLoop>
+        <SourceConnectionPointId>2</SourceConnectionPointId>
+        <TargetConnectionPointId>1</TargetConnectionPointId>
+        <RoutingPoints />
+        <Source yaxlib:realtype="Aries.OpenCV.Blocks.CombineToRects">
+          <Status>ToRun</Status>
+          <ID>6</ID>
+          <Name>CombineToRects</Name>
+          <InPutMat>
+            <Top>0</Top>
+            <Bottom>0</Bottom>
+            <Left>0</Left>
+            <Right>0</Right>
+            <Location />
+            <Size />
+            <TopLeft />
+            <BottomRight />
+          </InPutMat>
+          <OutPutMat />
+          <BlockType>Processing</BlockType>
+          <CVCategory>Logic</CVCategory>
+          <Icon></Icon>
+          <StartTime />
+          <StopTime />
+          <TimeCost />
+          <ErrorMessage />
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+        </Source>
+        <Target yaxlib:realtype="Aries.OpenCV.Blocks.Rectangle">
+          <Status>ToRun</Status>
+          <ID>7</ID>
+          <Name>Rectangle</Name>
+          <Rects />
+          <Color>255</Color>
+          <Thickness>1</Thickness>
+          <LineType>Link8</LineType>
+          <Shift>0</Shift>
+          <InPutMat />
+          <OutPutMat />
+          <BlockType>Processing</BlockType>
+          <CVCategory>Draw</CVCategory>
+          <Icon></Icon>
+          <StartTime>06/10/2021 14:26:21</StartTime>
+          <StopTime>06/10/2021 14:26:52</StopTime>
+          <TimeCost>00:00:30.4699348</TimeCost>
+          <ErrorMessage>Object reference not set to an instance of an object.</ErrorMessage>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+        </Target>
+        <Weight>1</Weight>
+        <ReversePath>False</ReversePath>
+      </Data>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>True</HasLabel>
+    </GraphSerializationData>
+    <GraphSerializationData>
+      <Data yaxlib:realtype="Aries.OpenCV.GraphModel.BlockEdge">
+        <Header>Import --&gt; Processing</Header>
+        <Angle>90</Angle>
+        <ArrowTarget>False</ArrowTarget>
+        <SkipProcessing>Default</SkipProcessing>
+        <ID>8</ID>
+        <IsSelfLoop>False</IsSelfLoop>
+        <SourceConnectionPointId>1</SourceConnectionPointId>
+        <TargetConnectionPointId>2</TargetConnectionPointId>
+        <RoutingPoints />
+        <Source yaxlib:realtype="Aries.OpenCV.Blocks.CreateImage">
+          <FileName>C:\Users\Xin.Pu\Pictures\IMG_0302.JPG</FileName>
+          <ImreadModes>Grayscale</ImreadModes>
+          <OutPut />
+          <OutPutType>OpenCvSharp.Mat</OutPutType>
+          <BlockType>Import</BlockType>
+          <CVCategory>Initial</CVCategory>
+          <Icon></Icon>
+          <Name>CreateImage</Name>
+          <StartTime>06/10/2021 14:26:17</StartTime>
+          <StopTime>06/10/2021 14:26:21</StopTime>
+          <TimeCost>00:00:04.3813718</TimeCost>
+          <ErrorMessage />
+          <Status>ToRun</Status>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+          <ID>1</ID>
+        </Source>
+        <Target yaxlib:realtype="Aries.OpenCV.Blocks.Rectangle">
+          <Status>ToRun</Status>
+          <ID>7</ID>
+          <Name>Rectangle</Name>
+          <Rects />
+          <Color>255</Color>
+          <Thickness>1</Thickness>
+          <LineType>Link8</LineType>
+          <Shift>0</Shift>
+          <InPutMat />
+          <OutPutMat />
+          <BlockType>Processing</BlockType>
+          <CVCategory>Draw</CVCategory>
+          <Icon></Icon>
+          <StartTime>06/10/2021 14:26:21</StartTime>
+          <StopTime>06/10/2021 14:26:52</StopTime>
+          <TimeCost>00:00:30.4699348</TimeCost>
+          <ErrorMessage>Object reference not set to an instance of an object.</ErrorMessage>
+          <RunBlockCommand yaxlib:realtype="Aries.Utility.RelayCommand">
+            <ExecuteWithPara>False</ExecuteWithPara>
+          </RunBlockCommand>
+          <EnableSaveBlock>True</EnableSaveBlock>
+          <Angle>0</Angle>
+          <GroupId>0</GroupId>
+          <SkipProcessing>Default</SkipProcessing>
+        </Target>
+        <Weight>1</Weight>
+        <ReversePath>False</ReversePath>
+      </Data>
+      <Position>
+        <X>0</X>
+        <Y>0</Y>
+      </Position>
+      <IsVisible>True</IsVisible>
+      <HasLabel>True</HasLabel>
+    </GraphSerializationData>
+  </GraphSerializationDatas>
+  <WaterMaskManager>
+    <Mask>Aries</Mask>
+    <FontSize>100</FontSize>
+    <Opacity>0.2</Opacity>
+    <Angle>45</Angle>
+    <MyColor>
+      <ColorContext />
+      <A>255</A>
+      <R>0</R>
+      <G>0</G>
+      <B>255</B>
+      <ScA>1</ScA>
+      <ScR>0</ScR>
+      <ScG>0</ScG>
+      <ScB>1</ScB>
+    </MyColor>
+    <MaskMargin>
+      <Left>30</Left>
+      <Top>30</Top>
+      <Right>30</Right>
+      <Bottom>30</Bottom>
+    </MaskMargin>
+    <IsOpen>True</IsOpen>
+  </WaterMaskManager>
+  <BackGroundManager>
+    <Brush>
+      <ColorContext />
+      <A>0</A>
+      <R>255</R>
+      <G>255</G>
+      <B>255</B>
+      <ScA>0</ScA>
+      <ScR>1</ScR>
+      <ScG>1</ScG>
+      <ScB>1</ScB>
+    </Brush>
+    <Opactiy>1</Opactiy>
+  </BackGroundManager>
+</GraphCVFileStruct>

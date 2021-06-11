@@ -21,6 +21,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GraphX.Standard.Logic", "Gr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCvSharp", "OpenCvSharp\OpenCvSharp.csproj", "{C58FE5B3-A578-4003-A8AE-E094B494EFE7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestPNG", "TestPNG", "{2932A798-648A-4856-A06C-09A2DC78483B}"
+	ProjectSection(SolutionItems) = preProject
+		TestPNG\AdaptiveThreshold.JPG = TestPNG\AdaptiveThreshold.JPG
+		TestPNG\ApproxPolyDP.jpg = TestPNG\ApproxPolyDP.jpg
+		TestPNG\Arithmetic10.jpg = TestPNG\Arithmetic10.jpg
+		TestPNG\Arithmetic9.jpg = TestPNG\Arithmetic9.jpg
+		TestPNG\BirdTemplate.jpg = TestPNG\BirdTemplate.jpg
+		TestPNG\BirdTemplate2.jpg = TestPNG\BirdTemplate2.jpg
+		TestPNG\Corner.jpg = TestPNG\Corner.jpg
+		TestPNG\cropped-OpenCV_logo_white_600x.png = TestPNG\cropped-OpenCV_logo_white_600x.png
+		TestPNG\IMG_0302.JPG = TestPNG\IMG_0302.JPG
+		TestPNG\MaskTest.JPG = TestPNG\MaskTest.JPG
+		TestPNG\Morphology.JPG = TestPNG\Morphology.JPG
+		TestPNG\ThresholdTest.JPG = TestPNG\ThresholdTest.JPG
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
