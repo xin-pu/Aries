@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="AriesCV.Views.GraphCVView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:AriesCV.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="{DynamicResource TopBackGroundBrush}">
+    <DockPanel>
+        <Border Margin="5" 
+                BorderBrush="{DynamicResource PrimaryBrush}"
+                Background="{DynamicResource SecondaryRegionBrush}">
+            <views:CVToolKitView Width="200"
+                                 DockPanel.Dock="Left"
+                                 Background="Transparent"/>
+        </Border>
+        
+        <StackPanel></StackPanel>
+    </DockPanel>
+</UserControl>

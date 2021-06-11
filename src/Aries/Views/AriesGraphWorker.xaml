@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="Aries.Views.AriesGraphWorker"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Aries.Views"
+             xmlns:fluent="urn:fluent-ribbon"
+             xmlns:controls="clr-namespace:Aries.Controls"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+    <DockPanel>
+        <fluent:Ribbon DockPanel.Dock="Top"
+                BorderThickness="1,0,1,1"
+                IsCollapsed="False"
+                CanCustomizeQuickAccessToolBar="False"
+                IsAutomaticCollapseEnabled="False">
+            <fluent:RibbonTabItem Header="文件" FontSize="13" DataContext="{Binding FileSystemManager}">
+                <fluent:RibbonGroupBox Header="File">
+
+                    <controls:TabButton Content="新建" Icon="&#xef47;" Command="{Binding GraphCVNewCommand}"/>
+                    <controls:TabButton Content="打开" Icon="&#xef4c;" Command="{Binding GraphCVOpenCommand}"/>
+                    <controls:TabButton Content="关闭" Icon="&#xef4d;" Command="{Binding GraphCVCloseCommand}"/>
+                    <controls:TabButton Content="全部关闭" Icon="&#xef4d;" Command="{Binding GraphCVCloseAllCommand}"/>
+                </fluent:RibbonGroupBox>
+
+                <fluent:RibbonGroupBox Header="Save">
+                    <controls:TabButton Content="保存" Icon="&#xf0a6;" Command="{Binding GraphCVSaveCommand}"/>
+                    <controls:TabButton Content="另存为" Icon="&#xf0a6;" Command="{Binding GraphCVSaveAsCommand}"/>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+            <fluent:RibbonTabItem Header="控制" FontSize="13" DataContext="{Binding AriesCoreUint.GraphCvRunManager}">
+                <fluent:RibbonGroupBox Header="Control">
+                    <controls:TabButton Content="运行" Icon="&#xf07e;" Command="{Binding RunGraphCVCommand}"/>
+                    <controls:TabButton Content="停止" Icon="&#xf0db;" Command="{Binding StopGraphCVCommand}"/>
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+            <fluent:RibbonTabItem Header="布局" FontSize="13" DataContext="{Binding AriesCoreUint.GraphLayoutControl}">
+
+                <fluent:RibbonGroupBox Header="Control">
+                    <controls:TabButton Content="刷新" Icon="&#xef8c;" Command="{Binding RelayoutGraphCommand}"/>
+                    <fluent:CheckBox Header="箭头标签"
+                                     IsChecked="{Binding IsShowEdgeLabels}"
+                                     Margin="0,2">
+                        <hc:Interaction.Triggers>
+                            <hc:EventTrigger EventName="Checked">
+                                <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                            </hc:EventTrigger>
+                            <hc:EventTrigger EventName="Unchecked">
+                                <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                            </hc:EventTrigger>
+                        </hc:Interaction.Triggers>
+                    </fluent:CheckBox>
+                    <fluent:CheckBox Header="标签方位"
+                                     IsChecked="{Binding IsAlignEdgeLabels}"
+                                     Margin="0,2">
+                        <hc:Interaction.Triggers>
+                            <hc:EventTrigger EventName="Checked">
+                                <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                            </hc:EventTrigger>
+                            <hc:EventTrigger EventName="Unchecked">
+                                <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                            </hc:EventTrigger>
+                        </hc:Interaction.Triggers>
+                    </fluent:CheckBox>
+
+                </fluent:RibbonGroupBox>
+
+
+                <fluent:RibbonGroupBox Header="Layout"
+                                       VerticalContentAlignment="Center">
+                    <Border  BorderThickness="1"
+                             BorderBrush="{DynamicResource PrimaryBrush}">
+                        <ListView  ItemsSource="{Binding Source={StaticResource LayOutCategoryProvider}}"
+                                   SelectedValue="{Binding LayoutCategorySelect}"
+                                   ItemContainerStyle="{StaticResource LayoutCategtory}"
+                                   Focusable="True" 
+                                   SelectionMode="Single"
+                                   Margin="5" >
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="SelectionChanged">
+                                    <b:InvokeCommandAction Command="{Binding LayoutCategorySelectedChangeCommand}"/>
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel IsItemsHost="True" 
+                                                Orientation="Horizontal" 
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Border>
+
+
+
+
+                </fluent:RibbonGroupBox>
+
+
+                <fluent:RibbonGroupBox Header="Edge"
+                                       VerticalContentAlignment="Center">
+                    <Border  BorderThickness="1"
+                             BorderBrush="{DynamicResource PrimaryBrush}">
+                        <ListView  ItemsSource="{Binding Source={StaticResource EdgeRoutingCategoryProvider}}"
+                                   SelectedValue="{Binding EdgeRoutingCategorySelect}"
+                                   ItemContainerStyle="{StaticResource LayoutCategtory}"
+                                   Focusable="True" 
+                                   SelectionMode="Single"
+                                   Margin="5">
+                            <b:Interaction.Triggers>
+                                <b:EventTrigger EventName="SelectionChanged">
+                                    <b:InvokeCommandAction Command="{Binding EdgeRoutingCategorySelectedChangeCommand}"/>
+                                </b:EventTrigger>
+                            </b:Interaction.Triggers>
+                            <ListView.Template>
+                                <ControlTemplate>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsPresenter />
+                                    </ScrollViewer>
+                                </ControlTemplate>
+                            </ListView.Template>
+                            <ListView.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel IsItemsHost="True" 
+                                                Orientation="Horizontal" 
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ListView.ItemsPanel>
+                        </ListView>
+                    </Border>
+
+                </fluent:RibbonGroupBox>
+            </fluent:RibbonTabItem>
+
+
+            <fluent:RibbonTabItem Header="页面样式" FontSize="13">
+                <fluent:RibbonGroupBox>
+                    <StackPanel Orientation="Horizontal">
+                        <controls:TabButton Content="背景颜色" Icon="&#xef4a;"/>
+                        <controls:TabButton Content="背景图片" Icon="&#xef48;"/>
+                        <controls:TabButton Content="移除背景" Icon="&#xf117;"/>
+                    </StackPanel>
+                </fluent:RibbonGroupBox>
+
+
+
+                <fluent:RibbonGroupBox DataContext="{Binding AriesCoreUint.WaterMaskManager}">
+                    <StackPanel Orientation="Horizontal">
+                        <controls:TabButton Content="水印" Icon="&#xef68;"/>
+                    </StackPanel>
+                </fluent:RibbonGroupBox>
+
+            </fluent:RibbonTabItem>
+
+
+
+        </fluent:Ribbon>
+    </DockPanel>
+</UserControl>

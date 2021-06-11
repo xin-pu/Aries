@@ -13,7 +13,7 @@
 
                 <ResourceDictionary Source="/Fluent;Component/Themes/Generic.xaml" />
 
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skinviolet.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skindark.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/theme.xaml"/>
 
                 <ResourceDictionary Source="Template/BasicTemplate/TextBlockTemplate.xaml"/>

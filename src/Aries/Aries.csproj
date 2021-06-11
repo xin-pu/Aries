@@ -102,6 +102,9 @@
     <Compile Include="Views\AriesCoreUint.xaml.cs">
       <DependentUpon>AriesCoreUint.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AriesGraphWorker.xaml.cs">
+      <DependentUpon>AriesGraphWorker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MatRecordUnit.xaml.cs">
       <DependentUpon>MatRecordUnit.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AriesCoreUint.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AriesGraphWorker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

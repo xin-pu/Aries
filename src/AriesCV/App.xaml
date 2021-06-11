@@ -1,0 +1,26 @@
+<Application x:Class="AriesCV.App" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="Views/AriesMain.xaml" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" 
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+
+
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skinviolet.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/theme.xaml"/>
+
+                <ResourceDictionary Source="Resource/BrushResource.xaml"/>
+
+               
+
+            </ResourceDictionary.MergedDictionaries>
+
+
+            <vm:AriesMainModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:AriesCV.ViewModel" />
+
+            <vm:CVToolKitModelLocator x:Key="GraphCvToolKitModelLocator" d:IsDataSource="True" xmlns:vm="clr-namespace:AriesCV.ViewModel" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

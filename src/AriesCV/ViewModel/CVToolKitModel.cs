@@ -1,0 +1,60 @@
+using System.Collections.ObjectModel;
+using System.Linq;
+using Aries.OpenCV.Core;
+using AriesCV.ViewModel.CVToolKit;
+using GalaSoft.MvvmLight;
+using HandyControl.Controls;
+
+namespace AriesCV.ViewModel
+{
+
+    public class CVToolKitModel : ViewModelBase
+    {
+        /// <summary>
+        /// Initializes a new instance of the MainViewModel class.
+        /// </summary>
+        public CVToolKitModel()
+        {
+            GenerateCVToolKitTreeData();
+        }
+
+        public string Title { set; get; } = "AriesCV";
+
+
+        public ObservableCollection<ToolKitStruct> CVToolKitTreeData { set; get; }
+
+
+        private void GenerateCVToolKitTreeData()
+        {
+            CVToolKitTreeData = new ObservableCollection<ToolKitStruct>();
+            var types = BlockHelper.GetAllCVCategory();
+
+            var toolKitStructs = types.Select(a => new ToolKitStruct
+                {
+                    Name = a.Key.Name,
+                    ClassType = a.Key,
+                    Catetogy = a.Value,
+                    Children = new ObservableCollection<ToolKitStruct>()
+                })
+                .ToList();
+
+
+            toolKitStructs.GroupBy(a => a.Catetogy)
+                .OrderBy(a => a.Key)
+                .ToList()
+                .ForEach(a =>
+                {
+                    CVToolKitTreeData.Add(new ToolKitStruct
+                    {
+                        Name = a.Key,
+                        ClassType = typeof(SideMenu),
+                        Catetogy = a.Key,
+                        Children = new ObservableCollection<ToolKitStruct>(a)
+                    });
+                });
+        }
+
+    }
+
+
+}

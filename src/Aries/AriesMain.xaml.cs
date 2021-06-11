@@ -4,6 +4,7 @@ using System.Windows.Input;
 using Aries.Core;
 using Aries.Utility;
 using Aries.Views;
+using HandyControl.Tools;
 
 namespace Aries
 {
