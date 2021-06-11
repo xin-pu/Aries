@@ -13,7 +13,7 @@ namespace Aries.OpenCV.Core
         private static readonly Dictionary<string, string> IconDictionary =
             new Dictionary<string, string>
             {
-                ["Blur"] = "\uef71",
+                ["Blur"] = "\ue6be",
                 ["Default"] = "\uef71",
             };
 

@@ -25,3 +25,4 @@ E:\Document Code\Code Aries\Aries\AriesCV\dll\x86\opencv_videoio_ffmpeg452.dll
 E:\Document Code\Code Aries\Aries\AriesCV\dll\x64\OpenCvSharpExtern.dll
 E:\Document Code\Code Aries\Aries\AriesCV\dll\x64\opencv_videoio_ffmpeg452_64.dll
 E:\Document Code\Code Aries\Aries\src\AriesCV\obj\Debug\AriesCV.csprojAssemblyReference.cache
+E:\Document Code\Code Aries\Aries\AriesCV\OpenCvSharp.dll.config

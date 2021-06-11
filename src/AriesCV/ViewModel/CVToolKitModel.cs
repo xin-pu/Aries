@@ -1,9 +1,9 @@
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using AriesCV.ViewModel.CVToolKit;
 using GalaSoft.MvvmLight;
-using HandyControl.Controls;
 
 namespace AriesCV.ViewModel
 {
@@ -34,7 +34,8 @@ namespace AriesCV.ViewModel
                     Name = a.Key.Name,
                     ClassType = a.Key,
                     Catetogy = a.Value,
-                    Children = new ObservableCollection<ToolKitStruct>()
+                    Children = new ObservableCollection<ToolKitStruct>(),
+                    ICon = BlockHelper.GetBlockICon(a.Value)
                 })
                 .ToList();
 
@@ -47,7 +48,7 @@ namespace AriesCV.ViewModel
                     CVToolKitTreeData.Add(new ToolKitStruct
                     {
                         Name = a.Key,
-                        ClassType = typeof(SideMenu),
+                        ClassType = typeof(TreeViewItem),
                         Catetogy = a.Key,
                         Children = new ObservableCollection<ToolKitStruct>(a)
                     });

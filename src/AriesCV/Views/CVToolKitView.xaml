@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="300">
     <UserControl.DataContext>
@@ -11,12 +10,17 @@
     </UserControl.DataContext>
     <TreeView ItemsSource="{Binding CVToolKitTreeData}"
               Style="{DynamicResource TreeViewBaseStyle}"
-              TreeViewItem.Expanded="TreeViewItemExpanded">
+              TreeViewItem.Expanded="TreeViewItemExpanded"
+              Background="{DynamicResource LightSuccessBrush}">
         <TreeView.ItemTemplate>
             <HierarchicalDataTemplate ItemsSource="{Binding Children}">
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="{Binding ICon}"></TextBlock>
-                    <TextBlock Text="{Binding Name}"></TextBlock>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding ICon,StringFormat='{}{0} '}"
+                               FontFamily="/Resource/#iconfont"
+                               TextAlignment="Center"/>
+                    <TextBlock Text="{Binding Name}"
+                               FontWeight="DemiBold"
+                               TextAlignment="Center"/>
                 </StackPanel>
             </HierarchicalDataTemplate>
         </TreeView.ItemTemplate>

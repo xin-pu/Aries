@@ -10,7 +10,8 @@
     <DockPanel>
         <Border Margin="5" 
                 BorderBrush="{DynamicResource PrimaryBrush}"
-                Background="{DynamicResource SecondaryRegionBrush}">
+                Background="{DynamicResource SecondaryRegionBrush}"
+                Effect="{DynamicResource Effect}">
             <views:CVToolKitView Width="200"
                                  DockPanel.Dock="Left"
                                  Background="Transparent"/>
