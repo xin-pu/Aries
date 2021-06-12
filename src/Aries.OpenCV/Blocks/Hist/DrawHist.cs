@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.Linq;
 using Aries.OpenCV.GraphModel;
-using Aries.Utility;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
@@ -61,10 +60,7 @@ namespace Aries.OpenCV.Blocks
                 Cv2.Rectangle(OutPutMat,
                     new Point(binWidth * i, HistHeight),
                     new Point(binWidth * (i - 1) - 1, histHeight[i - 1]),
-                    new Scalar(
-                        RandomExt.GetRandomNumber(0, 255),
-                        RandomExt.GetRandomNumber(0, 255),
-                        RandomExt.GetRandomNumber(0, 255)),
+                    new Scalar(0,0,0),
                     LineThickNess);
             }
         }

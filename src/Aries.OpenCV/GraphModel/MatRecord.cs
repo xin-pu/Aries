@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
-using Aries.Utility;
+using GalaSoft.MvvmLight.Command;
 
 namespace Aries.OpenCV.GraphModel
 {
@@ -13,7 +13,7 @@ namespace Aries.OpenCV.GraphModel
 
         public DateTime UpDateTime { set; get; }
 
-        public ICommand OpenImageCommand =>
+        public RelayCommand OpenImageCommand =>
             new RelayCommand(OpenImageCommand_Execute);
 
         private void OpenImageCommand_Execute()

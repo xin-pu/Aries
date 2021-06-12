@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Aries.OpenCV.Core;
-using Aries.Utility;
+using GalaSoft.MvvmLight.Command;
 using GraphX.Common.Models;
 using OpenCvSharp;
 
@@ -52,7 +52,7 @@ namespace Aries.OpenCV.GraphModel
             Icon = BlockHelper.GetBlockICon(CVCategory);
         }
 
-        public ICommand RunBlockCommand
+        public RelayCommand RunBlockCommand
         {
             get { return new RelayCommand(ExecuteCommand_Execute, ExecuteCommand_CanExecute); }
         }
