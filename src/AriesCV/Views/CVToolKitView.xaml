@@ -21,7 +21,9 @@
                                VerticalAlignment="Center"
                                HorizontalAlignment="Stretch"
                                Margin="2"
-                               Height="20">
+                               Height="20"
+                               Visibility="{Binding IsVisiable,Converter={StaticResource Boolean2VisibilityConverter}}"
+                               ToolTip="{Binding ClassType}">
                             <Grid Margin="5,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
@@ -59,38 +61,53 @@
         <TabControl TabStripPlacement="top"
                         Style="{StaticResource TabControlInLine}">
             <TabItem Header="Tool">
-                <ListView  ItemsSource="{Binding CVToolKitData}"
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <hc:SearchBar ShowClearButton="True" IsRealTime="True" 
+                                      Style="{StaticResource SearchBarPlus}" 
+                                      hc:InfoElement.Placeholder="Filter..."
+                                      Margin="0,4,4,4"
+                                      Text="{Binding SearchKey,UpdateSourceTrigger=PropertyChanged}"
+                                      Command="{Binding OnSearchCommand}"
+                                      CommandParameter="{Binding Text,RelativeSource={RelativeSource Self}}">
+                        </hc:SearchBar>
+                                      
+                        
+                    </StackPanel>
+                    <ListView  ItemsSource="{Binding CVToolKitData}"
                                BorderThickness="0"
                                Name="GraphListView"
                                VerticalContentAlignment="Top"
                                VerticalAlignment="Top"
                                ItemContainerStyle="{DynamicResource ToolKitView}"
-                               Background="White">
-                    <ListView.GroupStyle>
-                        <GroupStyle>
-                            <GroupStyle.ContainerStyle>
-                                <Style TargetType="{x:Type GroupItem}">
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                <hc:SimpleStackPanel DataContext="{Binding}">
-                                                    <hc:Divider Content="{Binding Name}" 
+                               Background="Transparent">
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <hc:SimpleStackPanel DataContext="{Binding}">
+                                                        <hc:Divider Content="{Binding Name}" 
                                                                     Padding="16,0" 
                                                                     Margin="5"
                                                                     LineStroke="{DynamicResource DarkSuccessBrush}"
                                                                     LineStrokeThickness="2"
                                                                     FontSize="14"
                                                                     FontWeight="DemiBold"/>
-                                                    <ItemsPresenter/>
-                                                </hc:SimpleStackPanel>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </GroupStyle.ContainerStyle>
-                        </GroupStyle>
-                    </ListView.GroupStyle>
-                </ListView>
+                                                        <ItemsPresenter/>
+                                                    </hc:SimpleStackPanel>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                    </ListView>
+                </DockPanel>
+            
             </TabItem>
             <TabItem Header="Logic">
 

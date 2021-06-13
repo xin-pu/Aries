@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using AriesCV.ViewModel.CVToolKit;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 
 namespace AriesCV.ViewModel
 {
@@ -18,27 +19,64 @@ namespace AriesCV.ViewModel
             GenerateCVToolKitData();
         }
 
-        public string Title { set; get; } = "AriesCV";
+        
+        private string _searchKey;
+        private ObservableCollection<ToolKitStruct> _cVToolKitData;
 
 
-        public ObservableCollection<ToolKitStruct> CVToolKitData { set; get; }
+        public string SearchKey
+        {
+            get { return _searchKey; }
+            set { _searchKey = value; RaisePropertyChanged(() => SearchKey); }
+        }
+    
+
+        public ObservableCollection<ToolKitStruct> CVToolKitData
+        {
+            get { return _cVToolKitData; }
+            set { _cVToolKitData = value; RaisePropertyChanged(() => CVToolKitData); }
+        }
+
 
         private void GenerateCVToolKitData()
         {
-            CVToolKitData = new ObservableCollection<ToolKitStruct>();
             var types = BlockHelper.GetAllCVCategory();
 
-            var toolKitStructs = types.Select(a => new ToolKitStruct()
+            var toolkit = types.Select(a => new ToolKitStruct
                 {
                     Name = a.Key.Name,
                     ClassType = a.Key,
                     Category = a.Value,
-                    ICon = BlockHelper.GetBlockICon(a.Value)
+                    ICon = BlockHelper.GetBlockICon(a.Value),
+                    IsVisiable = true
                 })
                 .ToList();
-            CVToolKitData = new ObservableCollection<ToolKitStruct>(toolKitStructs);
+            CVToolKitData = new ObservableCollection<ToolKitStruct>(toolkit);
         }
 
+
+        public RelayCommand OnSearchCommand
+        {
+            get => new RelayCommand(OnSearchCommand_Execute);
+        }
+
+
+        private void OnSearchCommand_Execute()
+        {
+            if (string.IsNullOrEmpty(SearchKey))
+            {
+                CVToolKitData.ToList().ForEach(a => a.IsVisiable = true);
+            }
+            else
+            {
+                CVToolKitData.ToList().ForEach(item =>
+                {
+                    item.IsVisiable = item.Name.ToUpper().Contains(SearchKey.ToUpper());
+                });
+            }
+        }
+
+        public List<ToolKitStruct> CVToolKitFilter { set; get; }
     }
 
 

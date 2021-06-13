@@ -18,14 +18,14 @@
 
 
     <Style TargetType="TextBlock" x:Key="IConFontTextBlock">
-        <Setter Property="FontFamily" Value="/Resources/#iconfont"/>
+        <Setter Property="FontFamily" Value="/Resource/#iconfont"/>
     </Style>
 
 
     <Style TargetType="TextBlock" x:Key="MyTextBlock">
         <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Normal"/>
-        <Setter Property="FontFamily" Value="/Resources/#iconfont"/>
+        <Setter Property="FontFamily" Value="/Resource/#iconfont"/>
         <Setter Property="TextAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
