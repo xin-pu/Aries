@@ -7,15 +7,19 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="{DynamicResource TopBackGroundBrush}">
+             Background="{DynamicResource CloudGroundBrush}">
     <DockPanel>
-        <hc:SideMenu BorderThickness="1" Width="200" Margin="32">
-            <hc:SideMenuItem Header="Overview">
-                <views:CVToolKitView Width="200"
-                                     DockPanel.Dock="Left"
+        <Border BorderThickness="1" Width="250" Margin="32"
+                CornerRadius="10"
+                Background="White"
+                Effect="{DynamicResource EffectShadow1}">
+            <DockPanel>
+                <views:CVToolKitView DockPanel.Dock="Left"
                                      Background="Transparent"/>
-            </hc:SideMenuItem>
-        </hc:SideMenu>
+            </DockPanel>
+          
+         
+        </Border>
 
         
         <StackPanel></StackPanel>

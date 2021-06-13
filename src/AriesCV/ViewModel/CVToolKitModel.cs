@@ -15,44 +15,28 @@ namespace AriesCV.ViewModel
         /// </summary>
         public CVToolKitModel()
         {
-            GenerateCVToolKitTreeData();
+            GenerateCVToolKitData();
         }
 
         public string Title { set; get; } = "AriesCV";
 
 
-        public ObservableCollection<ToolKitStruct> CVToolKitTreeData { set; get; }
+        public ObservableCollection<ToolKitStruct> CVToolKitData { set; get; }
 
-
-        private void GenerateCVToolKitTreeData()
+        private void GenerateCVToolKitData()
         {
-            CVToolKitTreeData = new ObservableCollection<ToolKitStruct>();
+            CVToolKitData = new ObservableCollection<ToolKitStruct>();
             var types = BlockHelper.GetAllCVCategory();
 
-            var toolKitStructs = types.Select(a => new ToolKitStruct
+            var toolKitStructs = types.Select(a => new ToolKitStruct()
                 {
                     Name = a.Key.Name,
                     ClassType = a.Key,
-                    Catetogy = a.Value,
-                    Children = new ObservableCollection<ToolKitStruct>(),
+                    Category = a.Value,
                     ICon = BlockHelper.GetBlockICon(a.Value)
                 })
                 .ToList();
-
-
-            toolKitStructs.GroupBy(a => a.Catetogy)
-                .OrderBy(a => a.Key)
-                .ToList()
-                .ForEach(a =>
-                {
-                    CVToolKitTreeData.Add(new ToolKitStruct
-                    {
-                        Name = a.Key,
-                        ClassType = typeof(TreeViewItem),
-                        Catetogy = a.Key,
-                        Children = new ObservableCollection<ToolKitStruct>(a)
-                    });
-                });
+            CVToolKitData = new ObservableCollection<ToolKitStruct>(toolKitStructs);
         }
 
     }

@@ -3,7 +3,7 @@
 
 
 
-    <DrawingBrush x:Key="TopBackGroundBrush" Opacity=".3" 
+    <DrawingBrush x:Key="CloudGroundBrush" Opacity=".3" 
                    RenderOptions.CacheInvalidationThresholdMinimum="0.5" 
                    RenderOptions.CacheInvalidationThresholdMaximum="2.0" 
                    RenderOptions.CachingHint="Cache"
@@ -17,10 +17,10 @@
     </DrawingBrush>
 
 
-    <DropShadowEffect x:Key="Effect" BlurRadius="20" Direction="-90"
-                      RenderingBias="Quality" 
-                      Opacity=".2" 
-                      ShadowDepth="1"/>
+    <Style TargetType="TextBlock" x:Key="IConFontTextBlock">
+        <Setter Property="FontFamily" Value="/Resources/#iconfont"/>
+    </Style>
+
 
     <Style TargetType="TextBlock" x:Key="MyTextBlock">
         <Setter Property="FontSize" Value="18"/>
@@ -36,4 +36,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+  
 </ResourceDictionary>

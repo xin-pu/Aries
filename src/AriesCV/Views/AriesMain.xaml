@@ -24,6 +24,7 @@
     <Window.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"></Binding>
     </Window.DataContext>
+
     <Grid>
         <views:GraphCVView/>
     </Grid>

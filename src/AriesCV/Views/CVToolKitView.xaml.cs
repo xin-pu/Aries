@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Threading;
 
 namespace AriesCV.Views
 {
@@ -11,6 +14,11 @@ namespace AriesCV.Views
         public CVToolKitView()
         {
             InitializeComponent();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
+                GraphListView.Items.GroupDescriptions?.Add(new PropertyGroupDescription("Category"));
+            }), DispatcherPriority.Background);
+           
         }
 
 
