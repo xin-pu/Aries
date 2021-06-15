@@ -30,7 +30,8 @@
                                Width="{TemplateBinding Width}"
                                MinWidth="270"
                                HorizontalContentAlignment="Left"
-                               BorderThickness="0">
+                               BorderThickness="0"
+                               Command="{Binding CreateCvBlockCommand}">
                             <Grid Margin="5,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>

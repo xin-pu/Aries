@@ -1,6 +1,7 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using HandyControl.Controls;
 
 namespace AriesCV.ViewModel.CVToolKit
 {
@@ -35,7 +36,7 @@ namespace AriesCV.ViewModel.CVToolKit
 
         private void CreateCvBlockCommand_Execute()
         {
-            throw new NotImplementedException();
+            Growl.Info($"Closing");
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿namespace AriesCV.Views
 {
     /// <summary>
-    /// Interaction logic for CVWorkSpaceView.xaml
+    /// Interaction logic for CVMain.xaml
     /// </summary>
-    public partial class CVWorkSpaceView 
+    public partial class CVWorkerView
     {
-        public CVWorkSpaceView()
+        public CVWorkerView()
         {
             InitializeComponent();
         }

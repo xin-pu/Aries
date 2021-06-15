@@ -53,6 +53,7 @@
     <Reference Include="HandyControl, Version=3.1.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.3.1.0\lib\net472\HandyControl.dll</HintPath>
     </Reference>
+    <Reference Include="QuickGraph, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -76,15 +77,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\TopTabButton.cs" />
+    <Compile Include="Controls\Basic\TopTabButton.cs" />
+    <Compile Include="Service\DataService.cs" />
+    <Compile Include="Controls\VertexConnectionPointIn.cs" />
+    <Compile Include="Controls\VertexConnectionPointOut.cs" />
     <Compile Include="ViewModel\CVMenuSystemModel.cs" />
     <Compile Include="ViewModel\CVToolKitModel.cs" />
     <Compile Include="ViewModel\AriesMainModel.cs" />
+    <Compile Include="Controls\GraphCVAreaView.cs" />
+    <Compile Include="Controls\GraphCVLogicCore.cs" />
     <Page Include="Resource\Style\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resource\Style\TextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CVWorkerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,7 +110,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CVWorkSpaceView.xaml">
+    <Page Include="Views\CVWorkerItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,7 +123,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\CVToolKit\ToolKitStruct.cs" />
+    <Compile Include="ViewModel\CVWorkerModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\CVWorkerView.xaml.cs">
+      <DependentUpon>CVWorkerView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CVMenuSystemView.xaml.cs">
       <DependentUpon>CVMenuSystemView.xaml</DependentUpon>
     </Compile>
@@ -123,9 +137,9 @@
     <Compile Include="Views\CVToolKitView.xaml.cs">
       <DependentUpon>CVToolKitView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\CVWorkSpaceModel.cs" />
-    <Compile Include="Views\CVWorkSpaceView.xaml.cs">
-      <DependentUpon>CVWorkSpaceView.xaml</DependentUpon>
+    <Compile Include="ViewModel\CVWorkItemModel.cs" />
+    <Compile Include="Views\CVWorkerItemView.xaml.cs">
+      <DependentUpon>CVWorkerItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AriesMain.xaml.cs">
       <DependentUpon>AriesMain.xaml</DependentUpon>
@@ -170,9 +184,7 @@
   <ItemGroup>
     <Resource Include="Resource\Image\cloud.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Service\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Aries.OpenCV\Aries.OpenCV.csproj">
       <Project>{2e7767e8-c9ee-4a13-9f9c-4e76ddbcc935}</Project>
