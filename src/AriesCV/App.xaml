@@ -8,7 +8,7 @@
 
 
 
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skinviolet.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skindefault.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/theme.xaml"/>
 
                 <ResourceDictionary Source="Resource/BrushResource.xaml"/>
