@@ -40,6 +40,7 @@ namespace AriesCV.ViewModel
 
         private void GenerateCVToolKitData()
         {
+            CVToolKitData?.Clear();
             var types = BlockHelper.GetAllCVCategory();
 
             var toolkit = types.Select(a => new ToolKitStruct

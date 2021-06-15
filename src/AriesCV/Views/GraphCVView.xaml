@@ -13,45 +13,63 @@
   
     <DockPanel>
         <views:CVMenuSystem DockPanel.Dock="Top"/>
+        
+        <views:CVStatusBarView DockPanel.Dock="Bottom"></views:CVStatusBarView>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
 
 
-        <Border Width="Auto" 
-                DockPanel.Dock="Right"
-                Margin="0"
-                BorderThickness="1" 
-                Background="White"
-                Effect="{DynamicResource EffectShadow1}">
-            <DockPanel>
-                <StackPanel DockPanel.Dock="Top" 
-                            Orientation="Horizontal"
-                            Height="40">
-                  
-                    <Label FontSize="15"
-                           Content="Hello"
-                           BorderThickness="0"
-                           Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+            <Border Width="Auto"
+                    Grid.Column="1">
+                
+            </Border>
 
-                    <ToggleButton Style="{DynamicResource ToggleButtonSwitch}"
-                                  Name="TabItemShow"
-                                  IsChecked="True"/>
+            <Border Width="Auto" 
+                    Grid.Column="1"
+                    Margin="0"
+                    BorderThickness="1" 
+                    Background="White"
+                    Effect="{DynamicResource EffectShadow1}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Top" 
+                                Orientation="Horizontal"
+                                Height="40">
 
-                </StackPanel>
+                        <Label FontSize="15"
+                               Content="Hello"
+                               BorderThickness="0"
+                               Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+
+                        <ToggleButton Style="{DynamicResource ToggleButtonSwitch}"
+                                      Name="TabItemShow"
+                                      IsChecked="True"/>
+
+                    </StackPanel>
 
 
-                <TabControl TabStripPlacement="Left" Name="LeftTabControl">
-                    <TabItem Header="Tool Kit" >
-                        <views:CVToolKitView 
-                            Background="Transparent"
-                            Margin="{DynamicResource TabItemMargin}"
-                            Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
-                    </TabItem>
-                </TabControl>
-            </DockPanel>
-        </Border>
+                    <TabControl TabStripPlacement="Left" Name="LeftTabControl"
+                                FontFamily="/Resource/#iconfont"
+                                FontSize="15"
+                                FontWeight="DemiBold">
+                        <TabItem Header="&#xf06c;"
+                                 ToolTip="CV Tool Kit">
+                            <views:CVToolKitView 
+                                Background="Transparent"
+                                Margin="{DynamicResource TabItemMargin}"
+                                Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                        </TabItem>
+                    </TabControl>
+                </DockPanel>
+            </Border>
+        </Grid>
+
      
 
-        <Border Width="Auto"
-                DockPanel.Dock="Right"/>
+      
 
 
     </DockPanel>

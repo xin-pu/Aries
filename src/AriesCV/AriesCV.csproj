@@ -76,13 +76,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\TopTabButton.cs" />
     <Compile Include="ViewModel\CVMenuSystemModel.cs" />
     <Compile Include="ViewModel\CVToolKitModel.cs" />
     <Compile Include="ViewModel\AriesMainModel.cs" />
-    <Compile Include="ViewModel\CVMenuSystemModelLocator .cs" />
-    <Compile Include="ViewModel\CVToolKitModelLocator.cs" />
-    <Compile Include="ViewModel\AriesMainModelLocator.cs" />
+    <Page Include="Resource\Style\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Style\TextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CVMenuSystem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CVStatusBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -103,8 +113,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\CVToolKit\ToolKitStruct.cs" />
+    <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\CVMenuSystem.xaml.cs">
       <DependentUpon>CVMenuSystem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CVStatusBarView.xaml.cs">
+      <DependentUpon>CVStatusBarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CVToolKitView.xaml.cs">
       <DependentUpon>CVToolKitView.xaml</DependentUpon>
@@ -155,7 +169,9 @@
   <ItemGroup>
     <Resource Include="Resource\Image\cloud.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Service\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aries.OpenCV\Aries.OpenCV.csproj">
       <Project>{2e7767e8-c9ee-4a13-9f9c-4e76ddbcc935}</Project>

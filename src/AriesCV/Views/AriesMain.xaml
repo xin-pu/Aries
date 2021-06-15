@@ -6,7 +6,9 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:views="clr-namespace:AriesCV.Views"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="800" Width="1366"
+        Title="{Binding Title}" 
+        Height="800" Width="1366"
+        DataContext="{Binding AriesMain,Source={StaticResource Locator}}"
         Icon="../Aries.ico">
     <hc:Window.NonClientAreaContent>
         <Grid>
@@ -14,16 +16,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <StackPanel  VerticalAlignment="Stretch" Orientation="Horizontal">
+            <StackPanel  VerticalAlignment="Stretch" 
+                         Orientation="Horizontal">
               
             </StackPanel>
         </Grid>
-        
     </hc:Window.NonClientAreaContent>
 
-    <Window.DataContext>
-        <Binding Path="Main" Source="{StaticResource Locator}"></Binding>
-    </Window.DataContext>
 
     <Grid>
         <views:GraphCVView/>
