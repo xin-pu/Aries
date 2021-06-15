@@ -4,8 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:AriesCV.Views"
+             xmlns:controls="clr-namespace:AriesCV.Controls"
+             xmlns:graphx="http://schemas.panthernet.ru/graphx/"
              mc:Ignorable="d" 
-             d:DesignHeight="766" d:DesignWidth="1360">
+             d:DesignHeight="766" d:DesignWidth="1360"
+             DataContext="{Binding CVWorkerModel,Source={StaticResource Locator}}">
     <DockPanel>
         <views:CVMenuSystemView DockPanel.Dock="Top"/>
 
@@ -19,15 +22,18 @@
 
 
             <Border Grid.Column="0">
-                <TabControl ItemsSource="{Binding Path=F}">
+                <TabControl ItemsSource="{Binding Path=GraphCVWorkItems}">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Animal.Name}"/>
+                            <TextBlock Text="123"/>
                         </DataTemplate>
                     </TabControl.ItemTemplate>
                     <TabControl.ContentTemplate>
                         <DataTemplate>
-                            <TextBlock Text="Something 1"/>
+                            <graphx:ZoomControl Name="ZoomControl" 
+                                                Background="Transparent">
+                                <controls:GraphCVArea x:Name="GraphArea"/>
+                            </graphx:ZoomControl>
                         </DataTemplate>
                     </TabControl.ContentTemplate>
                 </TabControl>
@@ -35,8 +41,8 @@
 
             <Border Width="Auto" 
                     Grid.Column="1"
-                    Margin="0"
-                    BorderThickness="1" 
+                    Margin="1"
+                    BorderThickness="0" 
                     Background="White"
                     Effect="{DynamicResource EffectShadow1}">
                 <DockPanel>

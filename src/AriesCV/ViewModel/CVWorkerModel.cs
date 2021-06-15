@@ -5,6 +5,6 @@ namespace AriesCV.ViewModel
 {
     public class CVWorkerModel
     {
-        public ObservableCollection<ViewModelBase> Tabs { get; set; } =new ObservableCollection<ViewModelBase>();
+        public ObservableCollection<ViewModelBase> GraphCVWorkItems { get; set; } =new ObservableCollection<ViewModelBase>();
     }
 }
