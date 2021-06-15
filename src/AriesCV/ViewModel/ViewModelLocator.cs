@@ -13,17 +13,20 @@ namespace AriesCV.ViewModel
 
         public ViewModelLocator()
         {
-            SimpleIoc.Default.Register(() => new AriesMainModel(), "AriesMain");
-            SimpleIoc.Default.Register(() => new CVMenuSystemModel(),  "CVMenuSystem");
-            SimpleIoc.Default.Register(() => new CVToolKitModel(), "CVToolKit");
+            /// 否则 design time 模式下，会重复注册Instance.
+            SimpleIoc.Default.Reset();
+            SimpleIoc.Default.Register(() => new AriesMainModel());
+            SimpleIoc.Default.Register(() => new CVMenuSystemModel());
+            SimpleIoc.Default.Register(() => new CVToolKitModel());
+            SimpleIoc.Default.Register(() => new CVWorkSpaceModel());
         }
 
 
-        public AriesMainModel AriesMain => SimpleIoc.Default.GetInstance<AriesMainModel>("AriesMain");
-        public CVMenuSystemModel CVMenuSystem => SimpleIoc.Default.GetInstance<CVMenuSystemModel>("CVMenuSystem");
-        public CVToolKitModel CVToolKit => SimpleIoc.Default.GetInstance<CVToolKitModel>("CVToolKit");
+        public AriesMainModel AriesMain => SimpleIoc.Default.GetInstance<AriesMainModel>();
 
-
+        public CVMenuSystemModel CVMenuSystem => SimpleIoc.Default.GetInstance<CVMenuSystemModel>();
+        public CVToolKitModel CVToolKit => SimpleIoc.Default.GetInstance<CVToolKitModel>();
+        public CVWorkSpaceModel CVWorkSpace => SimpleIoc.Default.GetInstance<CVWorkSpaceModel>();
 
 
     }

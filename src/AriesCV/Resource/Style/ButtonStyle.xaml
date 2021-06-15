@@ -11,7 +11,7 @@
                             BorderThickness="1"
                             Width="60"
                             Height="55"
-                            Margin="2,0">
+                            Margin="1">
                         <Grid Margin="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*"></RowDefinition>

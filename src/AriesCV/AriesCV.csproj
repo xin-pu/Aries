@@ -88,7 +88,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CVMenuSystem.xaml">
+    <Page Include="Views\CVMenuSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -100,7 +100,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GraphCVView.xaml">
+    <Page Include="Views\CVWorkSpaceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -114,8 +114,8 @@
     </Compile>
     <Compile Include="ViewModel\CVToolKit\ToolKitStruct.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\CVMenuSystem.xaml.cs">
-      <DependentUpon>CVMenuSystem.xaml</DependentUpon>
+    <Compile Include="Views\CVMenuSystemView.xaml.cs">
+      <DependentUpon>CVMenuSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CVStatusBarView.xaml.cs">
       <DependentUpon>CVStatusBarView.xaml</DependentUpon>
@@ -123,8 +123,9 @@
     <Compile Include="Views\CVToolKitView.xaml.cs">
       <DependentUpon>CVToolKitView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GraphCVView.xaml.cs">
-      <DependentUpon>GraphCVView.xaml</DependentUpon>
+    <Compile Include="ViewModel\CVWorkSpaceModel.cs" />
+    <Compile Include="Views\CVWorkSpaceView.xaml.cs">
+      <DependentUpon>CVWorkSpaceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AriesMain.xaml.cs">
       <DependentUpon>AriesMain.xaml</DependentUpon>

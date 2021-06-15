@@ -5,6 +5,8 @@
              xmlns:viewModel="clr-namespace:AriesCV.ViewModel">
     <Application.Resources>
         <ResourceDictionary>
+          
+
             <ResourceDictionary.MergedDictionaries>
 
                 <ResourceDictionary>
@@ -29,8 +31,9 @@
             </ResourceDictionary.MergedDictionaries>
 
 
-
             <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
+
+
 
         </ResourceDictionary>
 

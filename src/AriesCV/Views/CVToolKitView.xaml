@@ -93,7 +93,7 @@
                                                HorizontalAlignment="Left"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
-                <ListView.GroupStyle>
+                <!--<ListView.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.ContainerStyle>
                             <Style TargetType="{x:Type GroupItem}">
@@ -115,7 +115,7 @@
                             </Style>
                         </GroupStyle.ContainerStyle>
                     </GroupStyle>
-                </ListView.GroupStyle>
+                </ListView.GroupStyle>-->
             </ListView>
         </DockPanel>
    
