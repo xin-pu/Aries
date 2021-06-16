@@ -6,6 +6,7 @@
              xmlns:views="clr-namespace:AriesCV.Views"
              xmlns:controls="clr-namespace:AriesCV.Controls"
              xmlns:graphx="http://schemas.panthernet.ru/graphx/"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="766" d:DesignWidth="1360"
              DataContext="{Binding CVWorkerModel,Source={StaticResource Locator}}">
@@ -22,21 +23,27 @@
 
 
             <Border Grid.Column="0">
-                <TabControl ItemsSource="{Binding Path=GraphCVWorkItems}">
+                <hc:TabControl ItemsSource="{Binding Path=GraphCVWorkItems}"
+                               SelectedItem="{Binding Path=GraphCVSelected}"
+                               ShowCloseButton="True"
+                               ShowOverflowButton="True"
+                               IsAnimationEnabled="True">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Text="123"/>
+                            <TextBlock Text="{Binding Name}"/>
                         </DataTemplate>
                     </TabControl.ItemTemplate>
                     <TabControl.ContentTemplate>
                         <DataTemplate>
-                            <graphx:ZoomControl Name="ZoomControl" 
-                                                Background="Transparent">
-                                <controls:GraphCVArea x:Name="GraphArea"/>
-                            </graphx:ZoomControl>
+                            <Border Background="{DynamicResource LightPrimaryBrush}">
+                                <graphx:ZoomControl Name="ZoomControl" 
+                                                    Background="Transparent">
+                                    <controls:GraphCVArea x:Name="GraphArea"/>
+                                </graphx:ZoomControl>
+                            </Border>
                         </DataTemplate>
                     </TabControl.ContentTemplate>
-                </TabControl>
+                </hc:TabControl>
             </Border>
 
             <Border Width="Auto" 
