@@ -1,7 +1,9 @@
 ﻿using System;
+using Aries.OpenCV.Core;
+using Aries.OpenCV.GraphModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using HandyControl.Controls;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace AriesCV.ViewModel.CVToolKit
 {
@@ -9,6 +11,7 @@ namespace AriesCV.ViewModel.CVToolKit
 
     public class ToolKitStruct : ObservableObject
     {
+
 
         private bool _isVisiable = true;
 
@@ -36,7 +39,13 @@ namespace AriesCV.ViewModel.CVToolKit
 
         private void CreateCvBlockCommand_Execute()
         {
-            Growl.Info($"Closing");
+            var block = BlockHelper.CreateBlockVertex(ClassType);
+            AddBlock(block);
+        }
+
+        private void AddBlock(BlockVertex blockVertex)
+        {
+            Messenger.Default.Send(blockVertex, "AddBlockToken");
         }
     }
 }

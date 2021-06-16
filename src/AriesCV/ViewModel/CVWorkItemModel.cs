@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using AriesCV.Controls;
+using GalaSoft.MvvmLight;
 
 namespace AriesCV.ViewModel
 {
@@ -9,17 +10,7 @@ namespace AriesCV.ViewModel
 
         public string FileInfo { set; get; }
 
-
-        //public MatRecordManager MatRecordManager
-        //{
-        //    set; get;
-        //}
-
-        //public GraphCVRunManager GraphCvRunManager
-        //{
-        //    set; get;
-        //}
-
+        public GraphCVArea GraphCvArea { set; get; }
 
     }
 }

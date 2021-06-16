@@ -27,7 +27,8 @@
                                SelectedItem="{Binding Path=GraphCVSelected}"
                                ShowCloseButton="True"
                                ShowOverflowButton="True"
-                               IsAnimationEnabled="True">
+                               IsAnimationEnabled="True"
+                               Name="GraphCVTabs">
                     <TabControl.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Name}"/>
@@ -35,12 +36,10 @@
                     </TabControl.ItemTemplate>
                     <TabControl.ContentTemplate>
                         <DataTemplate>
-                            <Border Background="{DynamicResource LightPrimaryBrush}">
-                                <graphx:ZoomControl Name="ZoomControl" 
-                                                    Background="Transparent">
-                                    <controls:GraphCVArea x:Name="GraphArea"/>
-                                </graphx:ZoomControl>
-                            </Border>
+                            <graphx:ZoomControl Name="ZoomControl" 
+                                                Background="Transparent">
+                                <controls:GraphCVArea x:Name="GraphArea"/>
+                            </graphx:ZoomControl>
                         </DataTemplate>
                     </TabControl.ContentTemplate>
                 </hc:TabControl>
