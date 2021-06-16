@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Aries.ico</ApplicationIcon>
@@ -56,6 +58,11 @@
     <Reference Include="QuickGraph, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.Common.4.3.0\lib\net451\System.Data.Common.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -71,6 +78,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="YAXLib, Version=2.15.0.0, Culture=neutral, PublicKeyToken=15c43682c986900f, processorArchitecture=MSIL">
+      <HintPath>..\packages\YAXLib.2.15\lib\net4.0\YAXLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -127,8 +137,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\CVToolKit\ToolKitStruct.cs" />
+    <Compile Include="ViewModel\CVWorkerModel.cs" />
     <Compile Include="ViewModel\GraphCV\EdgeBlueprint.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVEditManager.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCV\GraphCVFileStruct.cs" />
     <Compile Include="ViewModel\GraphCV\GraphLayoutManager.cs" />
     <Compile Include="ViewModel\GraphCV\LogicCoreCV.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
@@ -147,7 +159,6 @@
     <Compile Include="Views\CVToolKitView.xaml.cs">
       <DependentUpon>CVToolKitView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\CVWorkItemModel.cs" />
     <Compile Include="Views\AriesMain.xaml.cs">
       <DependentUpon>AriesMain.xaml</DependentUpon>
       <SubType>Code</SubType>

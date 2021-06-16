@@ -27,14 +27,22 @@ namespace AriesCV.ViewModel
         public string SearchKey
         {
             get { return _searchKey; }
-            set { _searchKey = value; RaisePropertyChanged(() => SearchKey); }
+            set
+            {
+                _searchKey = value;
+                RaisePropertyChanged(() => SearchKey);
+            }
         }
-    
+
 
         public ObservableCollection<ToolKitStruct> CVToolKitData
         {
             get { return _cVToolKitData; }
-            set { _cVToolKitData = value; RaisePropertyChanged(() => CVToolKitData); }
+            set
+            {
+                _cVToolKitData = value;
+                RaisePropertyChanged(() => CVToolKitData);
+            }
         }
 
 

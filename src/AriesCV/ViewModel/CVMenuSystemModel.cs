@@ -1,17 +1,16 @@
 ﻿using System;
+using System.IO;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Win32;
 
 namespace AriesCV.ViewModel
 {
     public class CVMenuSystemModel : ViewModelBase
     {
 
-        public CVMenuSystemModel()
-        { 
 
-        }
 
         #region  File Syetem 命令
 
@@ -41,7 +40,16 @@ namespace AriesCV.ViewModel
 
         private void OpenGraphCVFile()
         {
+            var openFileDialog = new OpenFileDialog
+            {
+                Filter = @"aries(*.ar)|*.ar",
+            };
+            openFileDialog.ShowDialog();
+            if (!File.Exists(openFileDialog.FileName))
+                return;
 
+
+            Messenger.Default.Send(openFileDialog.FileName, "OpenCVWorkerItemToken");
         }
 
         private void NewGraphCVFile()
@@ -51,28 +59,27 @@ namespace AriesCV.ViewModel
 
         private void CloseGraphCVFile()
         {
-            //var workerModel = ViewModelLocator.Instance.CVWorkerModel;
-            //workerModel.GraphCVWorkItems.Remove(workerModel.GraphCVSelected);
+            Messenger.Default.Send("Default", "CloseCVWorkerItemToken");
         }
 
         private void CloseAllGraphCVFile()
         {
-            //ViewModelLocator.Instance.CVWorkerModel.GraphCVWorkItems.Clear();
+            Messenger.Default.Send("Default", "CloseAllCVWorkerItemToken");
         }
 
         private void SaveGraphCVFile()
         {
-           
+            Messenger.Default.Send(true, "SaveCVWorkerItemToken");
         }
 
         private void SaveAsGraphCVFile()
         {
-
+            Messenger.Default.Send(true, "SaveCVWorkerItemAs");
         }
 
         private void SaveAsGraphCVPNG()
         {
-
+            Messenger.Default.Send(true, "SaveCVWorkerItemAsPng");
         }
 
         #endregion

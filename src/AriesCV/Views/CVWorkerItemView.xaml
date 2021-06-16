@@ -15,9 +15,12 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <graphx:ZoomControl Name="ZoomControl" 
-                        Background="Transparent">
-        <controls:GraphCVArea x:Name="GraphCVArea"/>
-    </graphx:ZoomControl>
+    <Border Background="{DynamicResource CloudGroundBrush}">
+        <graphx:ZoomControl Name="ZoomControl" 
+                            Background="Transparent">
+            <controls:GraphCVArea x:Name="GraphCVArea"/>
+        </graphx:ZoomControl>
+    </Border>
+   
 
 </UserControl>

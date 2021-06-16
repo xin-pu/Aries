@@ -23,7 +23,7 @@
                 <hc:TabControl ShowCloseButton="True"
                                ShowOverflowButton="True"
                                IsAnimationEnabled="True"
-                               Name="GraphCVTabs" >
+                               Name="GraphCVTabs" SelectionChanged="GraphCVTabs_SelectionChanged" >
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="SelectionChanged">
                             <hc:InvokeCommandAction Command="{Binding SelectWorkUnitCommand}"/>
