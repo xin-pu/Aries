@@ -1,9 +1,8 @@
-﻿using System.Linq;
-using System.Windows.Controls;
-using Aries.OpenCV.GraphModel;
+﻿using Aries.OpenCV.GraphModel;
 using AriesCV.Controls;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
-using GraphX.Controls;
+using HandyControl.Controls;
 
 namespace AriesCV.Views
 {
@@ -15,22 +14,59 @@ namespace AriesCV.Views
         public CVWorkerView()
         {
             InitializeComponent();
+            DataContext = this;
+            Messenger.Default.Register<string>(this, "AddCVWorkerItemToken", AddCVWorkerItemToken);
             Messenger.Default.Register<BlockVertex>(this, "AddBlockToken", AddBlockVertex);
         }
 
-        private void AddBlockVertex(BlockVertex blockVertex)
+        private void AddBlockVertex(BlockVertex obj)
         {
-            GraphCvArea?.AddBlock(blockVertex);
+            GraphCvAreaAtWorkSpace?.AddBlock(obj);
         }
 
-        private GraphCVArea GraphCvArea
+        private void AddCVWorkerItemToken(string graphName)
         {
-            get
+            var panel = new CVWorkerItemView
             {
-                var tabItem = GraphCVTabs.ItemContainerGenerator.ContainerFromItem(GraphCVTabs.SelectedItem) as TabItem;
-                return tabItem.FindLogicalChildren<GraphCVArea>().FirstOrDefault();
-            }
+                GraphCVArea =
+                {
+                    Name = graphName
+                }
+            };
+            var tabItem = new TabItem
+            {
+                Header = panel.GraphCVArea.Name,
+                Content = panel,
+            };
+            GraphCVTabs.Items.Add(tabItem);
+            GraphCVTabs.SelectedItem = tabItem;
         }
+
+        public GraphCVArea GraphCvAreaAtWorkSpace { set; get; }
+
+        public CVWorkerItemView CvWorkerItem { set; get; }
+
+
+        #region Command
+
+        public RelayCommand SelectWorkUnitCommand
+        {
+            get { return new RelayCommand(SelectWorkUnitCommand_Execute, SelectWorkUnitCommand_CanExecute); }
+        }
+
+        private bool SelectWorkUnitCommand_CanExecute()
+        {
+            return GraphCVTabs.SelectedContent != null;
+        }
+
+        private void SelectWorkUnitCommand_Execute()
+        {
+            CvWorkerItem = (CVWorkerItemView) GraphCVTabs.SelectedContent;
+            GraphCvAreaAtWorkSpace = CvWorkerItem.GraphCVArea;
+        }
+
+
+        #endregion
 
     }
 }

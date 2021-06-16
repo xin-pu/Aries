@@ -18,15 +18,12 @@ namespace AriesCV.ViewModel
             SimpleIoc.Default.Register(() => new AriesMainModel());
             SimpleIoc.Default.Register(() => new CVMenuSystemModel());
             SimpleIoc.Default.Register(() => new CVToolKitModel());
-            SimpleIoc.Default.Register(() => new CVWorkerModel());
         }
 
 
         public AriesMainModel AriesMain => SimpleIoc.Default.GetInstance<AriesMainModel>();
-
         public CVMenuSystemModel CVMenuSystem => SimpleIoc.Default.GetInstance<CVMenuSystemModel>();
         public CVToolKitModel CVToolKit => SimpleIoc.Default.GetInstance<CVToolKitModel>();
-        public CVWorkerModel CVWorkerModel => SimpleIoc.Default.GetInstance<CVWorkerModel>();
 
 
     }

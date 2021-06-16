@@ -86,6 +86,10 @@
     <Compile Include="ViewModel\AriesMainModel.cs" />
     <Compile Include="Controls\GraphCVAreaView.cs" />
     <Compile Include="Controls\GraphCVLogicCore.cs" />
+    <Page Include="Resource\Graph\CVGraphXTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resource\Style\ButtonStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +97,10 @@
     <Page Include="Resource\Style\TextBlockStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CVWorkerItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="Views\CVWorkerView.xaml">
       <SubType>Designer</SubType>
@@ -110,10 +118,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CVWorkerItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\AriesMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -123,8 +127,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ViewModel\CVToolKit\ToolKitStruct.cs" />
-    <Compile Include="ViewModel\CVWorkerModel.cs" />
+    <Compile Include="ViewModel\GraphCV\EdgeBlueprint.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVEditManager.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphLayoutManager.cs" />
+    <Compile Include="ViewModel\GraphCV\LogicCoreCV.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Views\CVWorkerItemView.xaml.cs">
+      <DependentUpon>CVWorkerItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CVWorkerView.xaml.cs">
       <DependentUpon>CVWorkerView.xaml</DependentUpon>
     </Compile>
@@ -138,9 +148,6 @@
       <DependentUpon>CVToolKitView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\CVWorkItemModel.cs" />
-    <Compile Include="Views\CVWorkerItemView.xaml.cs">
-      <DependentUpon>CVWorkerItemView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\AriesMain.xaml.cs">
       <DependentUpon>AriesMain.xaml</DependentUpon>
       <SubType>Code</SubType>

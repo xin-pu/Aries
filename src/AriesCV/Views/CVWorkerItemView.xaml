@@ -8,9 +8,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resource/Graph/CVGraphXTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <graphx:ZoomControl Name="ZoomControl" 
                         Background="Transparent">
-        <controls:GraphCVArea x:Name="GraphArea"/>
+        <controls:GraphCVArea x:Name="GraphCVArea"/>
     </graphx:ZoomControl>
 
 </UserControl>

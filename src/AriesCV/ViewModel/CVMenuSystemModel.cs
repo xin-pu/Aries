@@ -1,11 +1,17 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace AriesCV.ViewModel
 {
     public class CVMenuSystemModel : ViewModelBase
     {
+
+        public CVMenuSystemModel()
+        { 
+
+        }
 
         #region  File Syetem 命令
 
@@ -40,24 +46,18 @@ namespace AriesCV.ViewModel
 
         private void NewGraphCVFile()
         {
-            var workerModel = ViewModelLocator.Instance.CVWorkerModel;
-            var newWorkItem = new CVWorkItemModel
-            {
-                Name="Default_1",
-            };
-            workerModel.GraphCVWorkItems.Add(newWorkItem);
-            workerModel.GraphCVSelected = newWorkItem;
+            Messenger.Default.Send("Default", "AddCVWorkerItemToken");
         }
 
         private void CloseGraphCVFile()
         {
-            var workerModel = ViewModelLocator.Instance.CVWorkerModel;
-            workerModel.GraphCVWorkItems.Remove(workerModel.GraphCVSelected);
+            //var workerModel = ViewModelLocator.Instance.CVWorkerModel;
+            //workerModel.GraphCVWorkItems.Remove(workerModel.GraphCVSelected);
         }
 
         private void CloseAllGraphCVFile()
         {
-            ViewModelLocator.Instance.CVWorkerModel.GraphCVWorkItems.Clear();
+            //ViewModelLocator.Instance.CVWorkerModel.GraphCVWorkItems.Clear();
         }
 
         private void SaveGraphCVFile()
