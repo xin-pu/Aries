@@ -1,6 +1,6 @@
 ﻿using GraphX.Controls;
 
-namespace AriesCV.Controls
+namespace AriesCV.ViewModel
 {
     public class VertexConnectionPointIn : StaticVertexConnectionPoint
     {

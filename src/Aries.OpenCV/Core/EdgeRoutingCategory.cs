@@ -1,49 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
-using GraphX.Common.Enums;
 
 namespace Aries.OpenCV.Core
 {
     public class EdgeRoutingCategory
     {
-        public EdgeRoutingAlgorithmTypeEnum EdgeRoutingAlgorithmType { set; get; }
+        public EdgeRoutingType EdgeRoutingType { set; get; }
         public string Header { set; get; }
         public string Icon { set; get; }
 
-        private static readonly Dictionary<EdgeRoutingAlgorithmTypeEnum, string> DictIcon =
-            new Dictionary<EdgeRoutingAlgorithmTypeEnum, string>()
+        private static readonly Dictionary<EdgeRoutingType, string> DictIcon =
+            new Dictionary<EdgeRoutingType, string>()
             {
-                [EdgeRoutingAlgorithmTypeEnum.None] = "\ued74",
-                [EdgeRoutingAlgorithmTypeEnum.SimpleER] = "\ued74",
-                [EdgeRoutingAlgorithmTypeEnum.Bundling] = "\ued67",
-                [EdgeRoutingAlgorithmTypeEnum.PathFinder] = "\uef8c",
+                [EdgeRoutingType.SimpleER] = "\ued74",
+                [EdgeRoutingType.Bundling] = "\ued67",
+                [EdgeRoutingType.PathFinder] = "\uef8c",
             };
 
-        private static readonly Dictionary<EdgeRoutingAlgorithmTypeEnum, string> DictHeader =
-            new Dictionary<EdgeRoutingAlgorithmTypeEnum, string>()
+        private static readonly Dictionary<EdgeRoutingType, string> DictHeader =
+            new Dictionary<EdgeRoutingType, string>()
             {
-                [EdgeRoutingAlgorithmTypeEnum.None] = "NONE",
-                [EdgeRoutingAlgorithmTypeEnum.SimpleER] = "Simple ER",
-                [EdgeRoutingAlgorithmTypeEnum.Bundling] = "Bundling",
-                [EdgeRoutingAlgorithmTypeEnum.PathFinder] = "Path Finder",
+                [EdgeRoutingType.SimpleER] = "Simple ER",
+                [EdgeRoutingType.Bundling] = "Bundling",
+                [EdgeRoutingType.PathFinder] = "Path Finder",
             };
 
         public static List<EdgeRoutingCategory> InitialEdgeRoutingCategories()
         {
             var categtories = new List<EdgeRoutingCategory>();
-            foreach (var value in Enum.GetValues(typeof(EdgeRoutingAlgorithmTypeEnum)))
+            foreach (var value in Enum.GetValues(typeof(EdgeRoutingType)))
             {
-                var type = (EdgeRoutingAlgorithmTypeEnum) value;
+                var type = (EdgeRoutingType) value;
                 categtories.Add(new EdgeRoutingCategory
                 {
                     Header = DictHeader[type],
                     Icon = DictIcon[type],
-                    EdgeRoutingAlgorithmType = type
+                    EdgeRoutingType = type
                 });
             }
 
             return categtories;
         }
 
+    }
+
+    public enum EdgeRoutingType
+    {
+        SimpleER,
+        Bundling,
+        PathFinder
     }
 }

@@ -6,12 +6,14 @@ using GraphX.Common.Models;
 using GraphX.Controls;
 using YAXLib;
 
-namespace AriesCV.ViewModel.GraphCV
+namespace AriesCV.ViewModel
 {
     public class GraphCVFileStruct : ViewModelBase
     {
 
         public List<GraphSerializationData> GraphSerializationDatas { set; get; }
+
+        public GraphCVConfig GraphCVConfig { set; get; }
 
 
         #region Serialize DeSerialize
@@ -67,7 +69,7 @@ namespace AriesCV.ViewModel.GraphCV
         {
             var deserializer = new YAXSerializer(typeof(GraphCVFileStruct));
             using var textReader = new StreamReader(stream);
-            return (GraphCVFileStruct)deserializer.Deserialize(textReader);
+            return (GraphCVFileStruct) deserializer.Deserialize(textReader);
         }
 
         #endregion

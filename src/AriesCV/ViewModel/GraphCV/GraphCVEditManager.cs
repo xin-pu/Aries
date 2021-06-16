@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
-using AriesCV.Controls;
 using GraphX.Controls;
 
 namespace AriesCV.ViewModel

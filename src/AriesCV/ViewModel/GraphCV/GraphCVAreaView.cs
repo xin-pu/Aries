@@ -7,13 +7,14 @@ using System.Windows;
 using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
+using AriesCV.Controls;
 using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Models;
 using GraphX.Controls;
 using QuickGraph;
 
-namespace AriesCV.Controls
+namespace AriesCV.ViewModel
 {
     public class GraphCVArea :
         GraphArea<BlockVertex, BlockEdge, BidirectionalGraph<BlockVertex, BlockEdge>>, INotifyPropertyChanged
@@ -269,7 +270,18 @@ namespace AriesCV.Controls
 
         #endregion
 
-
+        public GraphCVFileStruct GetCvFileStruct()
+        {
+            return new GraphCVFileStruct
+            {
+                GraphSerializationDatas = ExtractSerializationData(),
+                GraphCVConfig = new GraphCVConfig
+                {
+                    LayoutAlgorithm =((LogicCoreCV) LogicCore).LayoutType,
+                    EdgeRoutingAlgorithm = ((LogicCoreCV)LogicCore).EdgeRoutingType
+                }
+            };
+        }
 
         #region
 

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using AriesCV.Controls;
-using AriesCV.ViewModel.GraphCV;
 using AriesCV.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -61,7 +59,7 @@ namespace AriesCV.ViewModel
                 {
                     var graphCVFile = GraphCVFileStruct.DeserializeGraphDataFromFile(openFileDialog.FileName);
                     var fileInfo = new FileInfo(openFileDialog.FileName);
-                    var panel = new CVWorkerItemView
+                    var panel = new CVWorkerItemView(graphCVFile.GraphCVConfig)
                     {
                         FileInfo = fileInfo,
                         WorkDirectory = fileInfo.DirectoryName
@@ -90,7 +88,7 @@ namespace AriesCV.ViewModel
 
         private void AddCVWorkerItem()
         {
-            var panel = new CVWorkerItemView
+            var panel = new CVWorkerItemView(new GraphCVConfig())
             {
                 GraphCVArea =
                 {
@@ -125,12 +123,23 @@ namespace AriesCV.ViewModel
             GraphCvAreaAtWorkSpace.ReloadBlocks();
 
             GraphCVFileStruct.SerializeGraphDataToFile(CvWorkerItem.FileInfo.FullName,
-                new GraphCVFileStruct
-                {
-                    GraphSerializationDatas = GraphCvAreaAtWorkSpace.ExtractSerializationData(),
-                });
+                GraphCvAreaAtWorkSpace.GetCvFileStruct());
         }
 
+        private void SaveCVWorkerItemAs()
+        {
+            var saveDialog = new SaveFileDialog
+            {
+                Filter = @"aries(*.ar)|*.ar",
+            };
+            var res = saveDialog.ShowDialog();
+            if (res != true || saveDialog.FileName == "") return;
+
+            GraphCvAreaAtWorkSpace.ReloadBlocks();
+
+            GraphCVFileStruct.SerializeGraphDataToFile(saveDialog.FileName,
+                GraphCvAreaAtWorkSpace.GetCvFileStruct());
+        }
 
         private void SaveCVWorkerItemAsPng()
         {
@@ -146,30 +155,9 @@ namespace AriesCV.ViewModel
             GraphCvAreaAtWorkSpace.ExportAsImage(saveDialog.FileName, ImageType.JPEG);
         }
 
-        private void SaveCVWorkerItemAs()
-        {
-            var saveDialog = new SaveFileDialog
-            {
-                Filter = @"aries(*.ar)|*.ar",
-            };
-            var res = saveDialog.ShowDialog();
-            if (res != true || saveDialog.FileName == "") return;
-
-            GraphCvAreaAtWorkSpace.ReloadBlocks();
-
-            GraphCVFileStruct.SerializeGraphDataToFile(saveDialog.FileName,
-                new GraphCVFileStruct
-                {
-                    GraphSerializationDatas = GraphCvAreaAtWorkSpace.ExtractSerializationData(),
-                });
-        }
-
-
-
-
         #endregion
 
-
+    
 
 
     }

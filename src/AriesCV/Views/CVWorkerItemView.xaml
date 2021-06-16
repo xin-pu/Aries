@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:graphx="http://schemas.panthernet.ru/graphx/"
              xmlns:controls="clr-namespace:AriesCV.Controls"
+             xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="White">
@@ -18,7 +19,7 @@
     <Border Background="{DynamicResource CloudGroundBrush}">
         <graphx:ZoomControl Name="ZoomControl" 
                             Background="Transparent">
-            <controls:GraphCVArea x:Name="GraphCVArea"/>
+            <viewModel:GraphCVArea x:Name="GraphCVArea"/>
         </graphx:ZoomControl>
     </Border>
    

@@ -1,5 +1,4 @@
-﻿using AriesCV.Controls;
-using AriesCV.Views;
+﻿using AriesCV.Views;
 using GalaSoft.MvvmLight;
 
 namespace AriesCV.ViewModel

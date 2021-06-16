@@ -8,7 +8,6 @@ namespace Aries.OpenCV.Core
     public class LayoutCategory
     {
         public LayoutType LayoutType { set; get; }
-        public EdgeRoutingAlgorithmTypeEnum EdgeRoutingType { set; get; }
         public string Icon { set; get; }
         public string Header { set; get; }
 
@@ -58,6 +57,7 @@ namespace Aries.OpenCV.Core
         Circular,
         Custom,
     }
+
 
 
  

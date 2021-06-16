@@ -20,10 +20,12 @@ namespace AriesCV.Views
     /// </summary>
     public partial class CVWorkerItemView
     {
-        public CVWorkerItemView()
+ 
+
+        public CVWorkerItemView(GraphCVConfig graphCvConfig)
         {
             InitializeComponent();
-            InitialForNew();
+            InitialForNew(graphCvConfig);
         }
 
         public FileInfo FileInfo { set; get; }
@@ -32,12 +34,19 @@ namespace AriesCV.Views
 
         public GraphCVEditManager EditorManager { set; get; }
 
-        public LogicCoreCV LogicCoreCv { set; get; } = new LogicCoreCV();
+        public LogicCoreCV LogicCoreCv { set; get; } 
 
-        private void InitialForNew()
+        private void InitialForNew(GraphCVConfig graphCvConfig)
         {
-
             EditorManager = new GraphCVEditManager(GraphCVArea, ZoomControl);
+
+            LogicCoreCv=new LogicCoreCV();
+            LogicCoreCv.SetEdgeRouting(graphCvConfig.EdgeRoutingAlgorithm);
+            LogicCoreCv.SetLayout(graphCvConfig.LayoutAlgorithm);
+
+
+            GraphCVArea.LogicCore = LogicCoreCv;
+
             InitialGraphArea();
             InitialZoomControl();
             //GraphLayoutControl = new GraphLayoutControl(GraphArea);
@@ -51,7 +60,6 @@ namespace AriesCV.Views
             Unloaded += DynamicGraph_Unloaded;
 
         }
-
 
 
         private void InitialGraphArea()

@@ -89,13 +89,13 @@
     </ApplicationDefinition>
     <Compile Include="Controls\Basic\TopTabButton.cs" />
     <Compile Include="Service\DataService.cs" />
-    <Compile Include="Controls\VertexConnectionPointIn.cs" />
-    <Compile Include="Controls\VertexConnectionPointOut.cs" />
+    <Compile Include="ViewModel\GraphCV\VertexConnectionPointIn.cs" />
+    <Compile Include="ViewModel\GraphCV\VertexConnectionPointOut.cs" />
     <Compile Include="ViewModel\CVMenuSystemModel.cs" />
     <Compile Include="ViewModel\CVToolKitModel.cs" />
     <Compile Include="ViewModel\AriesMainModel.cs" />
-    <Compile Include="Controls\GraphCVAreaView.cs" />
-    <Compile Include="Controls\GraphCVLogicCore.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVAreaView.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
     <Page Include="Resource\Graph\CVGraphXTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -139,10 +139,10 @@
     <Compile Include="ViewModel\CVToolKit\ToolKitStruct.cs" />
     <Compile Include="ViewModel\CVWorkerModel.cs" />
     <Compile Include="ViewModel\GraphCV\EdgeBlueprint.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVConfig.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVEditManager.cs" />
-    <Compile Include="ViewModel\GraphCV\GraphCV\GraphCVFileStruct.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVFileStruct.cs" />
     <Compile Include="ViewModel\GraphCV\GraphLayoutManager.cs" />
-    <Compile Include="ViewModel\GraphCV\LogicCoreCV.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Compile Include="Views\CVWorkerItemView.xaml.cs">
       <DependentUpon>CVWorkerItemView.xaml</DependentUpon>
