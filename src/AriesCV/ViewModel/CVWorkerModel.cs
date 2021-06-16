@@ -6,17 +6,17 @@ namespace AriesCV.ViewModel
 {
     public class CVWorkerModel : ViewModelBase
     {
-        public GraphCVArea _graphCvAreaAtWorkSpace;
+        public GraphCVArea _graphCvAreaWorking;
         public CVWorkerItemView _cvWorkerItem;
 
 
-        public GraphCVArea GraphCvAreaAtWorkSpace
+        public GraphCVArea GraphCvAreaWorking
         {
-            get { return _graphCvAreaAtWorkSpace; }
+            get { return _graphCvAreaWorking; }
             set
             {
-                _graphCvAreaAtWorkSpace = value;
-                RaisePropertyChanged(() => GraphCvAreaAtWorkSpace);
+                _graphCvAreaWorking = value;
+                RaisePropertyChanged(() => GraphCvAreaWorking);
             }
         }
 
@@ -29,6 +29,8 @@ namespace AriesCV.ViewModel
                 RaisePropertyChanged(() => CvWorkerItem);
             }
         }
+
+
 
 
 

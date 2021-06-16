@@ -112,7 +112,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
-    <Page Include="Views\CVWorkerView.xaml">
+    <Page Include="Views\CVWorkerContainerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,8 +147,8 @@
     <Compile Include="Views\CVWorkerItemView.xaml.cs">
       <DependentUpon>CVWorkerItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CVWorkerView.xaml.cs">
-      <DependentUpon>CVWorkerView.xaml</DependentUpon>
+    <Compile Include="Views\CVWorkerContainerView.xaml.cs">
+      <DependentUpon>CVWorkerContainerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CVMenuSystemView.xaml.cs">
       <DependentUpon>CVMenuSystemView.xaml</DependentUpon>

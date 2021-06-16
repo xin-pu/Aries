@@ -22,7 +22,7 @@
             </StackPanel>
         </Grid>
     </hc:Window.NonClientAreaContent>
-    <views:CVWorkerView/>
+    <views:CVWorkerContainerView/>
 
  
 </hc:Window>

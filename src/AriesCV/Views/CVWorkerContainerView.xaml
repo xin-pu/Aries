@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AriesCV.Views.CVWorkerView"
+﻿<UserControl x:Class="AriesCV.Views.CVWorkerContainerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,8 @@
              xmlns:views="clr-namespace:AriesCV.Views"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
-             d:DesignHeight="766" d:DesignWidth="1360">
+             d:DesignHeight="766" d:DesignWidth="1360"
+             DataContext="{Binding CVWorkerModel,Source={StaticResource Locator}}">
     <DockPanel>
         <views:CVMenuSystemView DockPanel.Dock="Top"/>
 
@@ -23,12 +24,7 @@
                 <hc:TabControl ShowCloseButton="True"
                                ShowOverflowButton="True"
                                IsAnimationEnabled="True"
-                               Name="GraphCVTabs" SelectionChanged="GraphCVTabs_SelectionChanged" >
-                    <hc:Interaction.Triggers>
-                        <hc:EventTrigger EventName="SelectionChanged">
-                            <hc:InvokeCommandAction Command="{Binding SelectWorkUnitCommand}"/>
-                        </hc:EventTrigger>
-                    </hc:Interaction.Triggers>
+                               Name="GraphCVTabs" SelectionChanged="GraphCVTabs_SelectionChanged">
                 </hc:TabControl>
             </Border>
 
