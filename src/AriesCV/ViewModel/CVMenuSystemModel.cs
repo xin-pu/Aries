@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Windows.Controls;
 using AriesCV.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -7,6 +8,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GraphX.Common.Enums;
 using HandyControl.Controls;
 using Microsoft.Win32;
+using TabItem = HandyControl.Controls.TabItem;
 
 namespace AriesCV.ViewModel
 {
@@ -100,6 +102,8 @@ namespace AriesCV.ViewModel
                 Header = panel.GraphCVArea.Name,
                 Content = panel,
             };
+            
+            
             Messenger.Default.Send(tabItem, "AddNewTabToken");
         }
 

@@ -6,7 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Aries.OpenCV.Blocks;
 using Aries.OpenCV.GraphModel;
-using AriesCV.Controls;
 using AriesCV.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using GraphX.Controls;
@@ -20,7 +19,6 @@ namespace AriesCV.Views
     /// </summary>
     public partial class CVWorkerItemView
     {
- 
 
         public CVWorkerItemView(GraphCVConfig graphCvConfig)
         {
@@ -34,14 +32,14 @@ namespace AriesCV.Views
 
         public GraphCVEditManager EditorManager { set; get; }
 
-        public LogicCoreCV LogicCoreCv { set; get; } 
+        public LogicCoreCV LogicCoreCv { set; get; }
 
         private void InitialForNew(GraphCVConfig graphCvConfig)
         {
             EditorManager = new GraphCVEditManager(GraphCVArea, ZoomControl);
 
-            LogicCoreCv=new LogicCoreCV();
-            LogicCoreCv.SetEdgeRouting(graphCvConfig.EdgeRoutingAlgorithm);
+            LogicCoreCv = new LogicCoreCV();
+            LogicCoreCv.SetEdgeRouting(graphCvConfig.EdgeRoutingType);
             LogicCoreCv.SetLayout(graphCvConfig.LayoutAlgorithm);
 
 

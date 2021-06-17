@@ -278,7 +278,7 @@ namespace AriesCV.ViewModel
                 GraphCVConfig = new GraphCVConfig
                 {
                     LayoutAlgorithm =((LogicCoreCV) LogicCore).LayoutType,
-                    EdgeRoutingAlgorithm = ((LogicCoreCV)LogicCore).EdgeRoutingType
+                    EdgeRoutingType = ((LogicCoreCV)LogicCore).EdgeRoutingType
                 }
             };
         }
