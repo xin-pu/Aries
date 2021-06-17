@@ -26,9 +26,6 @@ namespace AriesCV.Views
             InitialForNew(graphCvConfig);
         }
 
-        public FileInfo FileInfo { set; get; }
-
-        public string WorkDirectory { set; get; }
 
         public GraphCVEditManager EditorManager { set; get; }
 

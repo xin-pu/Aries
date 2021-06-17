@@ -4,14 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:AriesCV.Views"
-             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:graphx="http://schemas.panthernet.ru/graphx/" xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="766" d:DesignWidth="1360"
-             DataContext="{Binding CVWorkerModel,Source={StaticResource Locator}}">
+             DataContext="{Binding CvWorkerContainerModel,Source={StaticResource Locator}}">
+    
     <DockPanel>
         <views:CVMenuSystemView DockPanel.Dock="Top"/>
 
-        <views:CVStatusBarView DockPanel.Dock="Bottom"></views:CVStatusBarView>
+        <views:CVStatusBarView DockPanel.Dock="Bottom">
+          
+        </views:CVStatusBarView>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -21,10 +24,38 @@
 
 
             <Border Grid.Column="0">
+                <Border.Resources>
+                    <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                            <ResourceDictionary Source="/Resource/Graph/CVGraphXTemplate.xaml"/>
+                        </ResourceDictionary.MergedDictionaries>
+                    </ResourceDictionary>
+                </Border.Resources>
                 <hc:TabControl ShowCloseButton="True"
                                ShowOverflowButton="True"
                                IsAnimationEnabled="True"
-                               Name="GraphCVTabs" SelectionChanged="GraphCVTabs_SelectionChanged">
+                               Name="GraphCVTabs"
+                               ItemsSource="{Binding CVWorkerItems}"
+                               SelectedItem="{Binding CVWorkerItem}"
+                               SelectionChanged="GraphCVTabs_SelectionChanged"  >
+                   
+                    <hc:TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"/>
+                        </DataTemplate>
+                    </hc:TabControl.ItemTemplate>
+                    <hc:TabControl.ContentTemplate>
+                        <DataTemplate>
+                            <Border Background="{DynamicResource CloudGroundBrush}" >
+                                <graphx:ZoomControl Name="ZoomControl" 
+                                    Background="Transparent"
+                                                IsAnimationEnabled="False">
+                                    <viewModel:GraphCVArea x:Name="GraphCVArea"
+                                                           Tag="{Binding Name}"/>
+                                </graphx:ZoomControl>
+                            </Border>
+                        </DataTemplate>
+                    </hc:TabControl.ContentTemplate>
                 </hc:TabControl>
             </Border>
 

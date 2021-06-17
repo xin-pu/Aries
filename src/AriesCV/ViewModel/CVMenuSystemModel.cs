@@ -1,14 +1,7 @@
 ﻿using System;
-using System.IO;
-using System.Windows.Controls;
-using AriesCV.Views;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
-using GraphX.Common.Enums;
-using HandyControl.Controls;
-using Microsoft.Win32;
-using TabItem = HandyControl.Controls.TabItem;
 
 namespace AriesCV.ViewModel
 {
@@ -42,127 +35,60 @@ namespace AriesCV.ViewModel
         public RelayCommand SaveAsGraphCVPNGCommand =>
             new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItemAsPng)).Value;
 
+        public CVWorkerContainerModel CvWorkerContainerModel => ViewModelLocator.Instance.CvWorkerContainerModel;
 
-        public GraphCVArea GraphCvAreaAtWorkSpace => ViewModelLocator.Instance.CVWorkerModel.GraphCvAreaWorking;
-
-        public CVWorkerItemView CvWorkerItem => ViewModelLocator.Instance.CVWorkerModel.CvWorkerItem;
+        public GraphCVArea GraphCvAreaWorker => CvWorkerContainerModel.GraphCvAreaWorking;
 
         private void OpenCVWorkerItem()
         {
-            var openFileDialog = new OpenFileDialog
-            {
-                Filter = @"aries(*.ar)|*.ar",
-            };
-            openFileDialog.ShowDialog();
 
-            if (File.Exists(openFileDialog.FileName))
-            {
-                try
-                {
-                    var graphCVFile = GraphCVFileStruct.DeserializeGraphDataFromFile(openFileDialog.FileName);
-                    var fileInfo = new FileInfo(openFileDialog.FileName);
-                    var panel = new CVWorkerItemView(graphCVFile.GraphCVConfig)
-                    {
-                        FileInfo = fileInfo,
-                        WorkDirectory = fileInfo.DirectoryName
-                    };
-
-                    var grapArea = panel.GraphCVArea;
-                    grapArea.RebuildFromSerializationData(graphCVFile.GraphSerializationDatas);
-                    grapArea.SetVerticesDrag(true, true);
-                    grapArea.UpdateAllEdges();
-
-                    panel.ZoomControl.ZoomToFill();
-
-                    var tabItem = new TabItem
-                    {
-                        Header = fileInfo.Name,
-                        Content = panel,
-                    };
-                    Messenger.Default.Send(tabItem, "AddNewTabToken");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
         }
-
+        int id = 0;
         private void AddCVWorkerItem()
         {
-            var panel = new CVWorkerItemView(new GraphCVConfig())
-            {
-                GraphCVArea =
-                {
-                    Name = "Default"
-                }
-            };
-            var tabItem = new TabItem
-            {
-                Header = panel.GraphCVArea.Name,
-                Content = panel,
-            };
-            
-            
-            Messenger.Default.Send(tabItem, "AddNewTabToken");
+            var workModel = new CVWorkerItemModel($"CVWork{id}");
+            CvWorkerContainerModel.CVWorkerItems.Add(workModel);
+            CvWorkerContainerModel.CVWorkerItem = workModel;
+            id++;
         }
 
         private void CloseAllGraphCVFile()
         {
-            Messenger.Default.Send(string.Empty, "ClearTabToken");
+            CvWorkerContainerModel.CVWorkerItems.Clear();
         }
 
         private void CloseCVWorkerItem()
         {
-            Messenger.Default.Send(string.Empty, "RemoveTabToken");
+            CvWorkerContainerModel.CVWorkerItems.Remove(CvWorkerContainerModel.CVWorkerItem);
         }
 
         private bool CanSaveCVWorkerItem()
         {
-            return CvWorkerItem?.FileInfo != null;
+            return true;
         }
 
         private void SaveCVWorkerItem()
         {
-            GraphCvAreaAtWorkSpace.ReloadBlocks();
 
-            GraphCVFileStruct.SerializeGraphDataToFile(CvWorkerItem.FileInfo.FullName,
-                GraphCvAreaAtWorkSpace.GetCvFileStruct());
         }
 
         private void SaveCVWorkerItemAs()
         {
-            var saveDialog = new SaveFileDialog
-            {
-                Filter = @"aries(*.ar)|*.ar",
-            };
-            var res = saveDialog.ShowDialog();
-            if (res != true || saveDialog.FileName == "") return;
 
-            GraphCvAreaAtWorkSpace.ReloadBlocks();
-
-            GraphCVFileStruct.SerializeGraphDataToFile(saveDialog.FileName,
-                GraphCvAreaAtWorkSpace.GetCvFileStruct());
         }
 
         private void SaveCVWorkerItemAsPng()
         {
-            var saveDialog = new SaveFileDialog
-            {
-                Filter = @"png(*.png)|*.png",
-            };
-            var res = saveDialog.ShowDialog();
-            if (res != true || saveDialog.FileName == "") return;
 
-            GraphCvAreaAtWorkSpace.ReloadBlocks();
-
-            GraphCvAreaAtWorkSpace.ExportAsImage(saveDialog.FileName, ImageType.JPEG);
         }
 
         #endregion
 
-    
 
+
+        #region Graph CV 命令
+
+        #endregion
 
     }
 }
