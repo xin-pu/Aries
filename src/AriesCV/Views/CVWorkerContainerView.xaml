@@ -44,10 +44,10 @@
                             </hc:EventTrigger>
                         </hc:Interaction.Triggers>
                     </hc:TabControl>
-                    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left">
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalAlignment="Right"
+                                  Margin="0,50,10,10">
                         <StackPanel hc:Growl.GrowlParent="True" 
-                                    VerticalAlignment="Bottom" 
-                                    Margin="0,10,10,10"/>
+                                    VerticalAlignment="Bottom"/>
                     </ScrollViewer>
                 </Grid>
 

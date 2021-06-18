@@ -14,6 +14,7 @@ namespace AriesCV.ViewModel
     {
 
         private ZoomControl _zoomControl;
+        public CVWorkerItemView _cvWorkerItemView;
 
         public CVWorkerContainerModel()
         {
@@ -34,7 +35,15 @@ namespace AriesCV.ViewModel
             }
         }
 
-        public CVWorkerItemView CvWorkerItemView { set; get; }
+        public CVWorkerItemView CvWorkerItemView
+        {
+            get { return _cvWorkerItemView; }
+            set
+            {
+                _cvWorkerItemView = value;
+                RaisePropertyChanged(() => CvWorkerItemView);
+            }
+        }
 
         public Dictionary<string, CVWorkerItemView> CvWorkerItemViewDict =
             new Dictionary<string, CVWorkerItemView>();
@@ -55,6 +64,8 @@ namespace AriesCV.ViewModel
             GraphCvAreaAtWorkSpace = CvWorkerItemView.GraphCVArea;
             ZoomControl = CvWorkerItemView.ZoomControl;
         }
+
+
 
         public void AddCVWorkerModel(CVWorkerItemView cvWorkerItemView)
         {

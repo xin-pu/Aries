@@ -1,6 +1,8 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -18,6 +20,9 @@ namespace AriesCV.Views
     /// </summary>
     public partial class CVWorkerItemView : IDisposable
     {
+        private FileInfo _fileInfo;
+        private string __fileName;
+
         public CVWorkerItemView(string name)
         {
             InitializeComponent();
@@ -30,6 +35,8 @@ namespace AriesCV.Views
         public CVWorkerItemView(GraphCVFileStruct graphCvFileStruct)
         {
             InitializeComponent();
+            Name = graphCvFileStruct.Name;
+            GraphCVArea.Name = graphCvFileStruct.Name;
             GraphCvConfig = graphCvFileStruct.GraphCVConfig;
             InitialForNew();
             GraphCVArea.RebuildFromSerializationData(graphCvFileStruct.GraphSerializationDatas);
@@ -38,7 +45,17 @@ namespace AriesCV.Views
         }
 
 
-        public FileInfo FileInfo { set; get; }
+        public FileInfo FileInfo
+        {
+            set { UpdateProperty(ref _fileInfo, value); }
+            get { return _fileInfo; }
+        }
+
+        public string FileName
+        {
+            set { UpdateProperty(ref __fileName, value); }
+            get { return __fileName; }
+        }
 
         public GraphCVConfig GraphCvConfig { set; get; }
 
@@ -376,5 +393,30 @@ namespace AriesCV.Views
         {
 
         }
+
+
+        #region
+
+        internal void UpdateProperty<T>(ref T properValue, T newValue, [CallerMemberName] string propertyName = "")
+        {
+            if (Equals(properValue, newValue))
+            {
+                return;
+            }
+
+            properValue = newValue;
+
+            OnPropertyChanged(propertyName);
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
     }
 }

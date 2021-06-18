@@ -11,6 +11,8 @@ namespace AriesCV.ViewModel
     public class GraphCVFileStruct : ViewModelBase
     {
 
+        public string Name { set; get; }
+
         public List<GraphSerializationData> GraphSerializationDatas { set; get; }
 
         public GraphCVConfig GraphCVConfig { set; get; }

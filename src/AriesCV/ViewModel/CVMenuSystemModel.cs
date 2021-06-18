@@ -29,7 +29,7 @@ namespace AriesCV.ViewModel
 
 
         public RelayCommand SaveGraphCVFileCommand =>
-            new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItem, CanSaveCVWorkerItem)).Value;
+            new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItem)).Value;
         
 
         public RelayCommand SaveAsGraphCVFileCommand =>
@@ -40,11 +40,17 @@ namespace AriesCV.ViewModel
 
         public CVWorkerContainerModel CvWorkerContainerModel => ViewModelLocator.Instance.CvWorkerContainerModel;
 
-        
+
 
         private void OpenCVWorkerItem()
         {
             var workModel = CVWorkerItemView.OpenFromAriesFile();
+            if (workModel == null)
+            {
+                Growl.Error($"Fail to Open Graph CV");
+                return;
+            }
+
             if (CvWorkerContainerModel.CurrentKeys.Contains(workModel.Name))
             {
                 Growl.Error($"Has opened{workModel.Name} Graph CV");
@@ -74,32 +80,28 @@ namespace AriesCV.ViewModel
         private void CloseAllGraphCVFile()
         {
             Messenger.Default.Send(string.Empty, "RemoveAllCVWorkerToken");
+            ID = 1;
         }
 
         private void CloseCVWorkerItem()
         {
-            Messenger.Default.Send(CvWorkerContainerModel.CvWorkerItemView.Name, "RemoveCVWorkerToken"); ;
-        }
-
-        private bool CanSaveCVWorkerItem()
-        {
-            var fileinfo = CvWorkerContainerModel.CvWorkerItemView?.FileInfo;
-            return fileinfo != null;
+            Messenger.Default.Send(CvWorkerContainerModel?.CvWorkerItemView?.Name, "RemoveCVWorkerToken"); 
         }
 
         private void SaveCVWorkerItem()
         {
-            CvWorkerContainerModel.CvWorkerItemView.SaveToSelf();
+            CvWorkerContainerModel?.CvWorkerItemView?.SaveToSelf();
         }
 
         private void SaveCVWorkerItemAs()
         {
-            CvWorkerContainerModel.CvWorkerItemView.SaveToAriesFile();
+            CvWorkerContainerModel?.CvWorkerItemView?.SaveToAriesFile();
+
         }
 
         private void SaveCVWorkerItemAsPng()
         {
-            CvWorkerContainerModel.CvWorkerItemView.SaveToPicture();
+            CvWorkerContainerModel?.CvWorkerItemView?.SaveToPicture();
         }
 
         #endregion

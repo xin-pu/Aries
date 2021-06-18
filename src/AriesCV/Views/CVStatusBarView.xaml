@@ -5,25 +5,34 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="800" Background="White"
+             d:DesignHeight="50" d:DesignWidth="1000" Background="White"
              Height="45"
              BorderThickness="1"
              BorderBrush="{DynamicResource BorderBrush}"
-             DataContext="{Binding CvWorkerContainerModel.ZoomControl,Source={StaticResource Locator}}">
-   
+             DataContext="{Binding CvWorkerContainerModel,Source={StaticResource Locator}}">
+
+    <StatusBarItem HorizontalAlignment="Left">
+
+
+
+    </StatusBarItem>
+
 
     <StatusBarItem HorizontalAlignment="Right">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                    DataContext="{Binding ZoomControl}">
             <Button Command="{Binding ZoomToFillCommand}" 
                     Style="{DynamicResource ButtonDashedPrimary}"
                     ToolTip="Zoom to Fill"
                     Margin="2,0"
-                    hc:IconElement.Geometry="{StaticResource WindowMaxGeometry}"/>
+                    hc:IconElement.Geometry="{StaticResource FullScreenGeometry}"/>
             <Button Command="{Binding ZoomToOriginalCommand}"
                     Style="{DynamicResource ButtonDashedPrimary}"
                     ToolTip="Zoom to Original"
                     Margin="2,0"
-                    hc:IconElement.Geometry="{StaticResource WindowRestoreGeometry}"/>
+                    hc:IconElement.Geometry="{StaticResource FullScreenReturnGeometry}"/>
             <Button Command="{Binding CenterContentCommand}"
                     Style="{DynamicResource ButtonDashedPrimary}"
                     ToolTip="Zoom to Center"
@@ -33,7 +42,7 @@
                     Width="200" 
                     Value="{Binding Zoom}"
                     ToolTip="{Binding Zoom}"
-                    Maximum="4"
+                    Maximum="5"
                     Minimum="0.25"
                     Style="{DynamicResource SliderBaseStyle}"/>
             <TextBlock Text="{Binding Zoom,StringFormat='{}{0:P2}'}"

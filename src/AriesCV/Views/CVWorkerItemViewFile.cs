@@ -1,6 +1,8 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using AriesCV.ViewModel;
 using GraphX.Common.Enums;
+using HandyControl.Controls;
 using Microsoft.Win32;
 using YAXLib;
 
@@ -13,6 +15,7 @@ namespace AriesCV.Views
         {
             return new GraphCVFileStruct
             {
+                Name = Name,
                 GraphSerializationDatas = GraphCVArea.ExtractSerializationData(),
                 GraphCVConfig = GraphCvConfig
             };
@@ -35,6 +38,10 @@ namespace AriesCV.Views
 
         public void SaveToSelf()
         {
+            if (FileInfo == null)
+            {
+                SaveToAriesFile();
+            }
             SerializeGraphDataToFile(FileInfo.FullName, GetCvFileStruct());
         }
 
@@ -46,7 +53,15 @@ namespace AriesCV.Views
             };
             var res = saveDialog.ShowDialog();
             if (res != true || saveDialog.FileName == "") return;
-
+            try
+            {
+                Name = Path.GetFileNameWithoutExtension(saveDialog.FileName);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
             SerializeGraphDataToFile(saveDialog.FileName, GetCvFileStruct());
             FileInfo = new FileInfo(saveDialog.FileName);
         }

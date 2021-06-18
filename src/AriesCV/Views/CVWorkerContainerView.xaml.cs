@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Aries.OpenCV.GraphModel;
+﻿using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel;
 using GalaSoft.MvvmLight.Messaging;
 using HandyControl.Controls;
@@ -65,61 +64,6 @@ namespace AriesCV.Views
 
             Messenger.Default.Send(string.Empty, "RemoveAllCVWorkerModelToken");
         }
-
-
-
-        //private childItem FindVisualChild<childItem>(DependencyObject obj)
-        //    where childItem : DependencyObject
-        //{
-
-
-        //    for (var i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-        //    {
-        //        var child = VisualTreeHelper.GetChild(obj, i);
-
-        //        if (child is childItem item)
-        //        {
-        //            return item;
-        //        }
-        //        else
-        //        {
-        //            var childOfChild = FindVisualChild<childItem>(child);
-        //            if (childOfChild != null)
-        //            {
-        //                return childOfChild;
-        //            }
-        //        }
-        //    }
-
-        //    return null;
-        //}
-
-        //private List<childItem> FindVisualChilds<childItem>(DependencyObject obj)
-        //    where childItem : DependencyObject
-        //{
-
-        //    var res = new List<childItem>();
-        //    for (var i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-        //    {
-        //        var child = VisualTreeHelper.GetChild(obj, i);
-
-        //        if (child is childItem item)
-        //        {
-        //            res.Add(item);
-        //        }
-        //        else
-        //        {
-        //            var childOfChild = FindVisualChilds<childItem>(child);
-        //            if (childOfChild != null)
-        //            {
-        //                res.AddRange(childOfChild);
-        //            }
-        //        }
-        //    }
-
-        //    return res;
-        //}
-
 
     }
 }
