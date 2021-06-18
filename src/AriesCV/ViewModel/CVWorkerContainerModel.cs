@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Aries.OpenCV.GraphModel;
 using AriesCV.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -18,6 +19,7 @@ namespace AriesCV.ViewModel
 
         public CVWorkerContainerModel()
         {
+            Messenger.Default.Register<BlockVertex>(this, "AddBlockToken", AddBlockVertex);
             Messenger.Default.Register<CVWorkerItemView>(this, "AddCVWorkerModelToken", AddCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveCVWorkerModelToken", RemoveCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveAllCVWorkerModelToken", RemoveAllCVWorkerModel);
@@ -55,6 +57,10 @@ namespace AriesCV.ViewModel
             get { return new RelayCommand<object>(SelectWorkUnitCommand_Execute); }
         }
 
+        private void AddBlockVertex(BlockVertex obj)
+        {
+            GraphCvAreaAtWorkSpace?.AddBlock(obj);
+        }
 
         private void SelectWorkUnitCommand_Execute(object obj)
         {

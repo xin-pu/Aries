@@ -1,6 +1,4 @@
-﻿using Aries.OpenCV.GraphModel;
-using AriesCV.ViewModel;
-using GalaSoft.MvvmLight.Messaging;
+﻿using GalaSoft.MvvmLight.Messaging;
 using HandyControl.Controls;
 
 namespace AriesCV.Views
@@ -16,21 +14,13 @@ namespace AriesCV.Views
             RegisterMessenger();
         }
 
-
-        public GraphCVArea GraphCVArea { set; get; }
-
         private void RegisterMessenger()
         {
-            Messenger.Default.Register<BlockVertex>(this, "AddBlockToken", AddBlockVertex);
             Messenger.Default.Register<CVWorkerItemView>(this, "AddCVWorkerToken", AddCVWorker);
             Messenger.Default.Register<string>(this, "RemoveCVWorkerToken", RemoveCVWorker);
             Messenger.Default.Register<string>(this, "RemoveAllCVWorkerToken", RemoveAllCVWorker);
         }
 
-        private void AddBlockVertex(BlockVertex obj)
-        {
-            GraphCVArea?.AddBlock(obj);
-        }
 
         public void AddCVWorker(CVWorkerItemView workerItem)
         {
@@ -42,9 +32,9 @@ namespace AriesCV.Views
             };
             GraphCVTabs.Items.Add(tabItem);
             GraphCVTabs.SelectedItem = tabItem;
-            GraphCVArea = workerItem.GraphCVArea;
             Messenger.Default.Send(workerItem, "AddCVWorkerModelToken");
         }
+
 
         public void RemoveCVWorker(string workerName)
         {

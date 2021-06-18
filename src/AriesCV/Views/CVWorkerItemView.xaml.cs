@@ -61,28 +61,14 @@ namespace AriesCV.Views
 
         public GraphCVEditManager EditorManager { set; get; }
 
-        public LogicCoreCV LogicCoreCv { set; get; }
+        public LogicCoreCV LogicCoreCv { set; get; } = new LogicCoreCV();
 
         private void InitialForNew()
         {
             EditorManager = new GraphCVEditManager(GraphCVArea, ZoomControl);
-
-            LogicCoreCv = new LogicCoreCV();
-            LogicCoreCv.SetEdgeRouting(GraphCvConfig.EdgeRoutingType);
-            LogicCoreCv.SetLayout(GraphCvConfig.LayoutAlgorithm);
-
-
-            GraphCVArea.LogicCore = LogicCoreCv;
-
             InitialGraphArea();
             InitialZoomControl();
-            //GraphLayoutControl = new GraphLayoutControl(GraphArea);
-            //GraphCvRunManager = new GraphCVRunManager(GraphArea)
-            //{
-            //    AppendMatRecordAction = MatRecordManager.AppendMatRecords,
-            //    ClearMatRecordsAction = MatRecordManager.ClearRecords
-            //};
-
+            
             Loaded += DynamicGraph_Loaded;
             Unloaded += DynamicGraph_Unloaded;
 

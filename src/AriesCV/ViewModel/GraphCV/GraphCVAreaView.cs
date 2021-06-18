@@ -148,7 +148,7 @@ namespace AriesCV.ViewModel
             var vertex = new VertexControl(blockVertex);
             AddVertexAndData(blockVertex, vertex);
             vertex.SetConnectionPointsVisibility(true);
-
+            
             //we have to check if there is only one vertex and set coordinates manually 
             //because layout algorithms skip all logic if there are less than two vertices
             if (VertexList.Count == 1)
