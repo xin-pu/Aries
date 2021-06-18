@@ -39,7 +39,8 @@
                                    Name="GraphCVTabs" >
                         <hc:Interaction.Triggers>
                             <hc:EventTrigger EventName="SelectionChanged">
-                                <hc:InvokeCommandAction Command="{Binding SelectWorkUnitCommand}"/>
+                                <hc:InvokeCommandAction Command="{Binding SelectWorkUnitCommand}"
+                                                        CommandParameter="{Binding ElementName=GraphCVTabs,Path=SelectedContent}"/>
                             </hc:EventTrigger>
                         </hc:Interaction.Triggers>
                     </hc:TabControl>

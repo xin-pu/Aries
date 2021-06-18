@@ -19,7 +19,7 @@ namespace AriesCV.Views
         }
 
 
-        public static CVWorkerItemModel OpenFromAriesFile()
+        public static CVWorkerItemView OpenFromAriesFile()
         {
             var openFileDialog = new OpenFileDialog
             {
@@ -30,7 +30,7 @@ namespace AriesCV.Views
                 return null;
 
             var graphCVFile = DeserializeGraphDataFromFile(openFileDialog.FileName);
-            return new CVWorkerItemModel(graphCVFile);
+            return new CVWorkerItemView(graphCVFile);
         }
 
         public void SaveToSelf()

@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using AriesCV.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using HandyControl.Controls;
 
 namespace AriesCV.ViewModel
@@ -28,7 +28,9 @@ namespace AriesCV.ViewModel
             new Lazy<RelayCommand>(() => new RelayCommand(CloseAllGraphCVFile)).Value;
 
 
-        public RelayCommand SaveGraphCVFileCommand => new RelayCommand(SaveCVWorkerItem, CanSaveCVWorkerItem);
+        public RelayCommand SaveGraphCVFileCommand =>
+            new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItem, CanSaveCVWorkerItem)).Value;
+        
 
         public RelayCommand SaveAsGraphCVFileCommand =>
             new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItemAs)).Value;
@@ -38,71 +40,66 @@ namespace AriesCV.ViewModel
 
         public CVWorkerContainerModel CvWorkerContainerModel => ViewModelLocator.Instance.CvWorkerContainerModel;
 
-        public GraphCVArea GraphCvAreaWorker => CvWorkerContainerModel.GraphCvAreaWorking;
+        
 
         private void OpenCVWorkerItem()
         {
             var workModel = CVWorkerItemView.OpenFromAriesFile();
-            if (CvWorkerContainerModel.CVWorkerItems.Count(a => a.Name == workModel.Name) >= 1)
+            if (CvWorkerContainerModel.CurrentKeys.Contains(workModel.Name))
             {
                 Growl.Error($"Has opened{workModel.Name} Graph CV");
                 return;
             }
 
-            CvWorkerContainerModel.CVWorkerItems.Add(workModel);
-            CvWorkerContainerModel.CVWorkerItem = workModel;
+            Messenger.Default.Send(workModel, "AddCVWorkerToken");
             Growl.Success($"Open {workModel.Name} Graph CV");
         }
 
 
         private void AddCVWorkerItem()
         {
-            var workModel = new CVWorkerItemModel($"CVWork_{ID}");
-            if (CvWorkerContainerModel.CVWorkerItems.Count(a => a.Name == workModel.Name) >= 1)
+            var workModel = new CVWorkerItemView($"CVWork_{ID}");
+
+            if (CvWorkerContainerModel.CurrentKeys.Contains(workModel.Name))
             {
                 Growl.Error($"Has opened{workModel.Name} Graph CV");
                 return;
             }
 
             ID++;
-            CvWorkerContainerModel.CVWorkerItems.Add(workModel);
-            CvWorkerContainerModel.CVWorkerItem = workModel;
+            Messenger.Default.Send(workModel, "AddCVWorkerToken");
             Growl.Success($"Open {workModel.Name} Graph CV");
         }
 
         private void CloseAllGraphCVFile()
         {
-            CvWorkerContainerModel.CVWorkerItems.Clear();
-            Growl.Success($"Close All Graph CV");
+            Messenger.Default.Send(string.Empty, "RemoveAllCVWorkerToken");
         }
 
         private void CloseCVWorkerItem()
         {
-            var currentItem = CvWorkerContainerModel.CVWorkerItem;
-            var name = currentItem.Name;
-            CvWorkerContainerModel.CVWorkerItems.Remove(currentItem);
-            Growl.Success($"Close {name} Graph CV");
+            Messenger.Default.Send(CvWorkerContainerModel.CvWorkerItemView.Name, "RemoveCVWorkerToken"); ;
         }
 
         private bool CanSaveCVWorkerItem()
         {
-            var fileinfo = CvWorkerContainerModel.CVWorkerItem?.FileInfo;
+            var fileinfo = CvWorkerContainerModel.CvWorkerItemView?.FileInfo;
             return fileinfo != null;
         }
 
         private void SaveCVWorkerItem()
         {
-            //CvWorkerContainerModel.CVWorkerItem.SaveToSelf();
+            CvWorkerContainerModel.CvWorkerItemView.SaveToSelf();
         }
 
         private void SaveCVWorkerItemAs()
         {
-            //CvWorkerContainerModel.CVWorkerItem.SaveToAriesFile();
+            CvWorkerContainerModel.CvWorkerItemView.SaveToAriesFile();
         }
 
         private void SaveCVWorkerItemAsPng()
         {
-            //CvWorkerContainerModel.CVWorkerItem.SaveToPicture();
+            CvWorkerContainerModel.CvWorkerItemView.SaveToPicture();
         }
 
         #endregion

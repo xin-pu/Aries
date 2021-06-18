@@ -1,46 +1,66 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Linq;
+using AriesCV.Views;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace AriesCV.ViewModel
 {
+
+
     public class CVWorkerContainerModel : ViewModelBase
     {
-        public GraphCVArea _graphCvAreaWorking;
-        public CVWorkerItemModel _cvWorkerItem;
-        public ObservableCollection<CVWorkerItemModel> _CvWorkerItems 
-            = new ObservableCollection<CVWorkerItemModel>();
 
-        public GraphCVArea GraphCvAreaWorking
+        public CVWorkerContainerModel()
         {
-            get { return _graphCvAreaWorking; }
-            set
-            {
-                _graphCvAreaWorking = value;
-                RaisePropertyChanged(() => GraphCvAreaWorking);
-            }
+            Messenger.Default.Register<CVWorkerItemView>(this, "AddCVWorkerModelToken", AddCVWorkerModel);
+            Messenger.Default.Register<string>(this, "RemoveCVWorkerModelToken", RemoveCVWorkerModel);
+            Messenger.Default.Register<string>(this, "RemoveAllCVWorkerModelToken", RemoveAllCVWorkerModel);
         }
 
-        public CVWorkerItemModel CVWorkerItem
-        {
-            get { return _cvWorkerItem; }
-            set
-            {
-                _cvWorkerItem = value;
-                RaisePropertyChanged(() => CVWorkerItem);
-            }
-        }
+        public GraphCVArea GraphCvAreaAtWorkSpace { set; get; }
 
-        public ObservableCollection<CVWorkerItemModel> CVWorkerItems
+        public CVWorkerItemView CvWorkerItemView { set; get; }
+
+        public Dictionary<string, CVWorkerItemView> CvWorkerItemViewDict =
+            new Dictionary<string, CVWorkerItemView>();
+
+        public List<string> CurrentKeys => CvWorkerItemViewDict.Keys.ToList();
+
+        public RelayCommand<object> SelectWorkUnitCommand
         {
-            get { return _CvWorkerItems; }
-            set
-            {
-                _CvWorkerItems = value;
-                RaisePropertyChanged(() => CVWorkerItems);
-            }
+            get { return new RelayCommand<object>(SelectWorkUnitCommand_Execute); }
         }
 
 
+        private void SelectWorkUnitCommand_Execute(object obj)
+        {
+            if (obj == null)
+                return;
+            CvWorkerItemView = (CVWorkerItemView) obj;
+            GraphCvAreaAtWorkSpace = CvWorkerItemView.GraphCVArea;
+        }
+
+        public void AddCVWorkerModel(CVWorkerItemView cvWorkerItemView)
+        {
+            CvWorkerItemViewDict[cvWorkerItemView.Name] = cvWorkerItemView;
+        }
+
+        public void RemoveCVWorkerModel(string name)
+        {
+            CvWorkerItemViewDict[name].Dispose();
+            CvWorkerItemViewDict.Remove(name);
+        }
+
+        public void RemoveAllCVWorkerModel(string message)
+        {
+            foreach (var cvWorkerItemView in CvWorkerItemViewDict.Values)
+            {
+                cvWorkerItemView.Dispose();
+            }
+            CvWorkerItemViewDict.Clear();
+        }
 
 
     }

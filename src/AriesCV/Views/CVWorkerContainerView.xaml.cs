@@ -1,13 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel;
 using GalaSoft.MvvmLight.Messaging;
-using GraphX.Controls;
 using HandyControl.Controls;
 
 namespace AriesCV.Views
@@ -23,18 +17,15 @@ namespace AriesCV.Views
             RegisterMessenger();
         }
 
-       
 
         public GraphCVArea GraphCVArea { set; get; }
-
-        public ZoomControl ZoomControl { set; get; }
-
-
-
 
         private void RegisterMessenger()
         {
             Messenger.Default.Register<BlockVertex>(this, "AddBlockToken", AddBlockVertex);
+            Messenger.Default.Register<CVWorkerItemView>(this, "AddCVWorkerToken", AddCVWorker);
+            Messenger.Default.Register<string>(this, "RemoveCVWorkerToken", RemoveCVWorker);
+            Messenger.Default.Register<string>(this, "RemoveAllCVWorkerToken", RemoveAllCVWorker);
         }
 
         private void AddBlockVertex(BlockVertex obj)
@@ -42,79 +33,93 @@ namespace AriesCV.Views
             GraphCVArea?.AddBlock(obj);
         }
 
-
-
-        #region Command
-
-        private async void GraphCVTabs_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void AddCVWorker(CVWorkerItemView workerItem)
         {
-            var con = GraphCVTabs.SelectedValue as CVWorkerItemModel;
-            if (con == null)
-                return;
-            await Task.Delay(500);
-            var borders = FindVisualChilds<SimplePanel>(this);
-            var workPanel = borders.FirstOrDefault(a => a.Name == "WorkPanel");
-            if (workPanel == null)
-                return;
-            workPanel.Children.Clear();
-            workPanel.Children.Add(con.ZoomControl);
-            GraphCVArea = con.GraphCVArea;
-        }
-
-
-        #endregion
-
-        private childItem FindVisualChild<childItem>(DependencyObject obj)
-            where childItem : DependencyObject
-        {
-
-
-            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            var tabItem = new TabItem
             {
-                var child = VisualTreeHelper.GetChild(obj, i);
+                Name = workerItem.Name,
+                Header = workerItem.Name,
+                Content = workerItem
+            };
+            GraphCVTabs.Items.Add(tabItem);
+            GraphCVTabs.SelectedItem = tabItem;
+            GraphCVArea = workerItem.GraphCVArea;
 
-                if (child is childItem item)
-                {
-                    return item;
-                }
-                else
-                {
-                    var childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                    {
-                        return childOfChild;
-                    }
-                }
-            }
-
-            return null;
+            Messenger.Default.Send(workerItem, "AddCVWorkerModelToken");
         }
 
-        private List<childItem> FindVisualChilds<childItem>(DependencyObject obj)
-             where childItem : DependencyObject
+        public void RemoveCVWorker(string workerName)
         {
+            var selectItem = (TabItem) GraphCVTabs.SelectedItem;
+            if(selectItem.Name!=workerName)
+                return;
 
-            var res = new List<childItem>();
-            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                var child = VisualTreeHelper.GetChild(obj, i);
+            GraphCVTabs.Items.Remove(selectItem);
 
-                if (child is childItem item)
-                {
-                    res.Add(item);
-                }
-                else
-                {
-                    var childOfChild = FindVisualChilds<childItem>(child);
-                    if (childOfChild != null)
-                    {
-                        res.AddRange(childOfChild);
-                    }
-                }
-            }
-
-            return res;
+            Messenger.Default.Send(workerName, "RemoveCVWorkerModelToken");
         }
+
+        public void RemoveAllCVWorker(string message)
+        {
+        
+            GraphCVTabs.Items.Clear();
+
+            Messenger.Default.Send(string.Empty, "RemoveAllCVWorkerModelToken");
+        }
+
+
+
+        //private childItem FindVisualChild<childItem>(DependencyObject obj)
+        //    where childItem : DependencyObject
+        //{
+
+
+        //    for (var i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+        //    {
+        //        var child = VisualTreeHelper.GetChild(obj, i);
+
+        //        if (child is childItem item)
+        //        {
+        //            return item;
+        //        }
+        //        else
+        //        {
+        //            var childOfChild = FindVisualChild<childItem>(child);
+        //            if (childOfChild != null)
+        //            {
+        //                return childOfChild;
+        //            }
+        //        }
+        //    }
+
+        //    return null;
+        //}
+
+        //private List<childItem> FindVisualChilds<childItem>(DependencyObject obj)
+        //    where childItem : DependencyObject
+        //{
+
+        //    var res = new List<childItem>();
+        //    for (var i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+        //    {
+        //        var child = VisualTreeHelper.GetChild(obj, i);
+
+        //        if (child is childItem item)
+        //        {
+        //            res.Add(item);
+        //        }
+        //        else
+        //        {
+        //            var childOfChild = FindVisualChilds<childItem>(child);
+        //            if (childOfChild != null)
+        //            {
+        //                res.AddRange(childOfChild);
+        //            }
+        //        }
+        //    }
+
+        //    return res;
+        //}
 
 
     }
