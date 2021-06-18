@@ -2,26 +2,23 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:graphx="http://schemas.panthernet.ru/graphx/"
              xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="White">
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resource/Graph/CVGraphXTemplate.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </UserControl.Resources>
-    <Border Background="{DynamicResource CloudGroundBrush}">
+             Background="{DynamicResource CloudGroundBrush}">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="/Resource/Graph/CVGraphXTemplate.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
         <graphx:ZoomControl Name="ZoomControl" 
                             Background="Transparent">
-            <viewModel:GraphCVArea x:Name="GraphCVArea"
-                                   Background="Transparent"/>
+            <viewModel:GraphCVArea x:Name="GraphCVArea"/>
         </graphx:ZoomControl>
-    </Border>
-   
-
+    </Grid>
 </UserControl>

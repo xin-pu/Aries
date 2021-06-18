@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="http://schemas.panthernet.ru/graphx/"
                     xmlns:hc="https://handyorg.github.io/handycontrol"
-                    xmlns:controls1="clr-namespace:AriesCV.Controls"
                     xmlns:viewModel="clr-namespace:AriesCV.ViewModel">
 
 
@@ -179,8 +178,6 @@
 
     </Style>
 
-
-
     <Style TargetType="{x:Type controls:EdgeControl}">
         <Setter Property="Template">
             <Setter.Value>
@@ -224,4 +221,6 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+
 </ResourceDictionary>

@@ -7,7 +7,8 @@ namespace AriesCV.ViewModel
     {
         public GraphCVArea _graphCvAreaWorking;
         public CVWorkerItemModel _cvWorkerItem;
-        public ObservableCollection<CVWorkerItemModel> _CvWorkerItems=new ObservableCollection<CVWorkerItemModel>();
+        public ObservableCollection<CVWorkerItemModel> _CvWorkerItems 
+            = new ObservableCollection<CVWorkerItemModel>();
 
         public GraphCVArea GraphCvAreaWorking
         {

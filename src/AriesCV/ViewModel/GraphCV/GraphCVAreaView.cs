@@ -7,7 +7,6 @@ using System.Windows;
 using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
-using AriesCV.Controls;
 using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Models;
@@ -270,18 +269,7 @@ namespace AriesCV.ViewModel
 
         #endregion
 
-        public GraphCVFileStruct GetCvFileStruct()
-        {
-            return new GraphCVFileStruct
-            {
-                GraphSerializationDatas = ExtractSerializationData(),
-                GraphCVConfig = new GraphCVConfig
-                {
-                    LayoutAlgorithm =((LogicCoreCV) LogicCore).LayoutType,
-                    EdgeRoutingType = ((LogicCoreCV)LogicCore).EdgeRoutingType
-                }
-            };
-        }
+
 
         #region
 

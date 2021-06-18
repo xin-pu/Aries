@@ -4,7 +4,6 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Aries.OpenCV.Blocks;
 using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel;
 using GalaSoft.MvvmLight.Command;
@@ -15,29 +14,44 @@ using GraphX.Controls.Models;
 namespace AriesCV.Views
 {
     /// <summary>
-    /// Interaction logic for CVWorkSpaceView.xaml
+    /// Interaction logic for CVWorkerItemView.xaml
     /// </summary>
     public partial class CVWorkerItemView
     {
-
-        public CVWorkerItemView(GraphCVConfig graphCvConfig)
+        public CVWorkerItemView(string name)
         {
             InitializeComponent();
-            InitialForNew(graphCvConfig);
+            Name = name;
+            GraphCvConfig = new GraphCVConfig();
+            InitialForNew();
         }
 
+        public CVWorkerItemView(GraphCVFileStruct graphCvFileStruct)
+        {
+            InitializeComponent();
+            GraphCvConfig = graphCvFileStruct.GraphCVConfig;
+            InitialForNew();
+            GraphCVArea.RebuildFromSerializationData(graphCvFileStruct.GraphSerializationDatas);
+            GraphCVArea.SetVerticesDrag(true, true);
+            GraphCVArea.UpdateAllEdges();
+        }
+
+
+        public FileInfo FileInfo { set; get; }
+
+        public GraphCVConfig GraphCvConfig { set; get; }
 
         public GraphCVEditManager EditorManager { set; get; }
 
         public LogicCoreCV LogicCoreCv { set; get; }
 
-        private void InitialForNew(GraphCVConfig graphCvConfig)
+        private void InitialForNew()
         {
             EditorManager = new GraphCVEditManager(GraphCVArea, ZoomControl);
 
             LogicCoreCv = new LogicCoreCV();
-            LogicCoreCv.SetEdgeRouting(graphCvConfig.EdgeRoutingType);
-            LogicCoreCv.SetLayout(graphCvConfig.LayoutAlgorithm);
+            LogicCoreCv.SetEdgeRouting(GraphCvConfig.EdgeRoutingType);
+            LogicCoreCv.SetLayout(GraphCvConfig.LayoutAlgorithm);
 
 
             GraphCVArea.LogicCore = LogicCoreCv;
@@ -128,13 +142,13 @@ namespace AriesCV.Views
             {
                 vertexControl.ContextMenu = new ContextMenu();
                 var menuItem1 = new MenuItem
-                    {Header = "Remove Select", Command = RemoveSelectCommand, CommandParameter = vertexControl};
+                { Header = "Remove Select", Command = RemoveSelectCommand, CommandParameter = vertexControl };
                 vertexControl.ContextMenu.Items.Add(menuItem1);
                 var menuItem2 = new MenuItem
-                    {Header = "Remove All Tagged", Command = RemoveAllTaggedCommand};
+                { Header = "Remove All Tagged", Command = RemoveAllTaggedCommand };
                 vertexControl.ContextMenu.Items.Add(menuItem2);
                 var menuItem3 = new MenuItem
-                    {Header = "Remove All", Command = RemoveAllCommand};
+                { Header = "Remove All", Command = RemoveAllCommand };
                 vertexControl.ContextMenu.Items.Add(menuItem3);
             }
 
@@ -191,7 +205,7 @@ namespace AriesCV.Views
 
         private void RemoveSelectCommand_Execute(object obj)
         {
-            var vc = (VertexControl) obj;
+            var vc = (VertexControl)obj;
             if (vc != null) SafeRemoveVertex(vc);
             ZoomControl.ZoomToFill();
         }
@@ -231,10 +245,10 @@ namespace AriesCV.Views
         {
             var r = args.Rectangle;
             foreach (var item in from item in GraphCVArea.VertexList
-                let offset = item.Value.GetPosition()
-                let irect = new Rect(offset.X, offset.Y, item.Value.ActualWidth, item.Value.ActualHeight)
-                where irect.IntersectsWith(r)
-                select item)
+                                 let offset = item.Value.GetPosition()
+                                 let irect = new Rect(offset.X, offset.Y, item.Value.ActualWidth, item.Value.ActualHeight)
+                                 where irect.IntersectsWith(r)
+                                 select item)
             {
                 SelectVertexIsTagged(item.Value);
             }
@@ -268,8 +282,8 @@ namespace AriesCV.Views
 
             if (_vertexTemp == vc) return;
 
-            var source = (BlockVertex) _vertexTemp.Vertex;
-            var target = (BlockVertex) vc.Vertex;
+            var source = (BlockVertex)_vertexTemp.Vertex;
+            var target = (BlockVertex)vc.Vertex;
 
             var data = new BlockEdge(source, target)
             {
@@ -309,11 +323,11 @@ namespace AriesCV.Views
         {
             if (!e.Data.GetDataPresent(typeof(object))) return;
 
-            var pos = ZoomControl.TranslatePoint(e.GetPosition(ZoomControl), GraphCVArea);
-            var data = new Blur();
-            var vc = new VertexControl(data);
-            vc.SetPosition(pos);
-            GraphCVArea.AddVertexAndData(data, vc);
+            //var pos = ZoomControl.TranslatePoint(e.GetPosition(ZoomControl), GraphCVArea);
+            //var data = new Blur();
+            //var vc = new VertexControl(data);
+            //vc.SetPosition(pos);
+            //GraphCVArea.AddVertexAndData(data, vc);
         }
 
         #endregion

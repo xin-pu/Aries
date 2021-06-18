@@ -5,6 +5,7 @@ using GraphX.Controls;
 using GraphX.Controls.Animations;
 using GraphX.Controls.Models;
 using System;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,31 +14,55 @@ using System.Windows.Media;
 
 namespace AriesCV.ViewModel
 {
-    public class CVWorkerItemModel : ViewModelBase
+    public partial class CVWorkerItemModel : ViewModelBase
     {
+        private FileInfo _fileInfo;
 
-        
+
+
         public CVWorkerItemModel(string name)
         {
             Name = name;
-            Initial();
+            CreateGraphControl();
+            GraphCvConfig = new GraphCVConfig();
+            InitialForNew();
         }
 
-
-        private void Initial()
+        public CVWorkerItemModel(GraphCVFileStruct graphCvFileStruct)
         {
-            ZoomControl = new ZoomControl()
+            CreateGraphControl();
+            GraphCvConfig = graphCvFileStruct.GraphCVConfig;
+            InitialForNew();
+            GraphCVArea.RebuildFromSerializationData(graphCvFileStruct.GraphSerializationDatas);
+            GraphCVArea.SetVerticesDrag(true, true);
+            GraphCVArea.UpdateAllEdges();
+        }
+
+        private void CreateGraphControl()
+        {
+            ZoomControl = new ZoomControl
             {
                 Background = Brushes.Transparent
             };
             GraphCVArea = new GraphCVArea();
             ZoomControl.Content = GraphCVArea;
-            InitialForNew(GraphCvConfig);
         }
 
-        public string Name { set; get; }
 
-        public GraphCVConfig GraphCvConfig { set; get; } = new GraphCVConfig();
+
+        public string Name {protected set; get; }
+
+        public FileInfo FileInfo
+        {
+            get { return _fileInfo; }
+            set
+            {
+                _fileInfo = value;
+                RaisePropertyChanged(() => FileInfo);
+            }
+        }
+
+        public GraphCVConfig GraphCvConfig { set; get; }
 
         public ZoomControl ZoomControl { set; get; }
 
@@ -48,13 +73,13 @@ namespace AriesCV.ViewModel
 
         public LogicCoreCV LogicCoreCv { set; get; }
 
-        private void InitialForNew(GraphCVConfig graphCvConfig)
+        private void InitialForNew()
         {
             EditorManager = new GraphCVEditManager(GraphCVArea, ZoomControl);
 
             LogicCoreCv = new LogicCoreCV();
-            LogicCoreCv.SetEdgeRouting(graphCvConfig.EdgeRoutingType);
-            LogicCoreCv.SetLayout(graphCvConfig.LayoutAlgorithm);
+            LogicCoreCv.SetEdgeRouting(GraphCvConfig.EdgeRoutingType);
+            LogicCoreCv.SetLayout(GraphCvConfig.LayoutAlgorithm);
 
 
             GraphCVArea.LogicCore = LogicCoreCv;
@@ -373,6 +398,9 @@ namespace AriesCV.ViewModel
         }
 
         #endregion
+
+
+
 
 
 

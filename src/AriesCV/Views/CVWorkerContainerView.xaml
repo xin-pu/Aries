@@ -4,16 +4,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:AriesCV.Views"
-             xmlns:hc="https://handyorg.github.io/handycontrol" xmlns:graphx="http://schemas.panthernet.ru/graphx/" xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="766" d:DesignWidth="1360"
              DataContext="{Binding CvWorkerContainerModel,Source={StaticResource Locator}}">
-    
+
     <DockPanel>
         <views:CVMenuSystemView DockPanel.Dock="Top"/>
 
         <views:CVStatusBarView DockPanel.Dock="Bottom">
-          
+
         </views:CVStatusBarView>
 
         <Grid>
@@ -31,27 +31,25 @@
                         </ResourceDictionary.MergedDictionaries>
                     </ResourceDictionary>
                 </Border.Resources>
-                <hc:TabControl ShowCloseButton="True"
-                               ShowOverflowButton="True"
-                               IsAnimationEnabled="True"
-                               Name="GraphCVTabs"
-                               ItemsSource="{Binding CVWorkerItems}"
-                               SelectedItem="{Binding CVWorkerItem}"
-                               SelectionChanged="GraphCVTabs_SelectionChanged"  >
-                   
-                    <hc:TabControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </hc:TabControl.ItemTemplate>
-                    <hc:TabControl.ContentTemplate>
-                        <DataTemplate>
-                            <hc:SimplePanel  Background="{DynamicResource CloudGroundBrush}"
-                                    Name="WorkPanel">
-                            </hc:SimplePanel>
-                        </DataTemplate>
-                    </hc:TabControl.ContentTemplate>
-                </hc:TabControl>
+                <Grid>
+                    <hc:TabControl ShowCloseButton="True"
+                                   ShowOverflowButton="True"
+                                   IsAnimationEnabled="True"
+                                   IsTabFillEnabled="False"
+                                   Name="GraphCVTabs" >
+                        <hc:Interaction.Triggers>
+                            <hc:EventTrigger EventName="SelectionChanged">
+                                <hc:InvokeCommandAction Command="{Binding SelectWorkUnitCommand}"/>
+                            </hc:EventTrigger>
+                        </hc:Interaction.Triggers>
+                    </hc:TabControl>
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" HorizontalAlignment="Left">
+                        <StackPanel hc:Growl.GrowlParent="True" 
+                                    VerticalAlignment="Bottom" 
+                                    Margin="0,10,10,10"/>
+                    </ScrollViewer>
+                </Grid>
+
             </Border>
 
             <Border Width="Auto" 

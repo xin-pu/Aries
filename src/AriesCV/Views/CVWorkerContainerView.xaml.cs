@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Media;
 using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GraphX.Controls;
-using GraphX.Controls.Animations;
-using GraphX.Controls.Models;
 using HandyControl.Controls;
 
 namespace AriesCV.Views
