@@ -18,7 +18,8 @@
     <Border Background="{DynamicResource CloudGroundBrush}">
         <graphx:ZoomControl Name="ZoomControl" 
                             Background="Transparent">
-            <viewModel:GraphCVArea x:Name="GraphCVArea"/>
+            <viewModel:GraphCVArea x:Name="GraphCVArea"
+                                   Background="Transparent"/>
         </graphx:ZoomControl>
     </Border>
    

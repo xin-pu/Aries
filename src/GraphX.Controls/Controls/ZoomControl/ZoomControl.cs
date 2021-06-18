@@ -150,7 +150,7 @@ namespace GraphX.Controls
 
         public static readonly DependencyProperty ViewFinderVisibilityProperty =
           DependencyProperty.RegisterAttached("ViewFinderVisibility", typeof(Visibility), typeof(ZoomControl),
-            new FrameworkPropertyMetadata(Visibility.Visible));
+            new FrameworkPropertyMetadata(Visibility.Hidden));
 
         public static Visibility GetViewFinderVisibility(DependencyObject d)
         {

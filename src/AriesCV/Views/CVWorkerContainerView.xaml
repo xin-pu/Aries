@@ -46,14 +46,9 @@
                     </hc:TabControl.ItemTemplate>
                     <hc:TabControl.ContentTemplate>
                         <DataTemplate>
-                            <Border Background="{DynamicResource CloudGroundBrush}" >
-                                <graphx:ZoomControl Name="ZoomControl" 
-                                    Background="Transparent"
-                                                IsAnimationEnabled="False">
-                                    <viewModel:GraphCVArea x:Name="GraphCVArea"
-                                                           Tag="{Binding Name}"/>
-                                </graphx:ZoomControl>
-                            </Border>
+                            <hc:SimplePanel  Background="{DynamicResource CloudGroundBrush}"
+                                    Name="WorkPanel">
+                            </hc:SimplePanel>
                         </DataTemplate>
                     </hc:TabControl.ContentTemplate>
                 </hc:TabControl>
