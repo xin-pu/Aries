@@ -4,6 +4,7 @@ using AriesCV.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
+using GraphX.Controls;
 
 namespace AriesCV.ViewModel
 {
@@ -11,6 +12,8 @@ namespace AriesCV.ViewModel
 
     public class CVWorkerContainerModel : ViewModelBase
     {
+
+        private ZoomControl _zoomControl;
 
         public CVWorkerContainerModel()
         {
@@ -20,6 +23,16 @@ namespace AriesCV.ViewModel
         }
 
         public GraphCVArea GraphCvAreaAtWorkSpace { set; get; }
+
+        public ZoomControl ZoomControl
+        {
+            get { return _zoomControl; }
+            set
+            {
+                _zoomControl = value;
+                RaisePropertyChanged(() => ZoomControl);
+            }
+        }
 
         public CVWorkerItemView CvWorkerItemView { set; get; }
 
@@ -40,6 +53,7 @@ namespace AriesCV.ViewModel
                 return;
             CvWorkerItemView = (CVWorkerItemView) obj;
             GraphCvAreaAtWorkSpace = CvWorkerItemView.GraphCVArea;
+            ZoomControl = CvWorkerItemView.ZoomControl;
         }
 
         public void AddCVWorkerModel(CVWorkerItemView cvWorkerItemView)

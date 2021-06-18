@@ -44,7 +44,6 @@ namespace AriesCV.Views
             GraphCVTabs.Items.Add(tabItem);
             GraphCVTabs.SelectedItem = tabItem;
             GraphCVArea = workerItem.GraphCVArea;
-
             Messenger.Default.Send(workerItem, "AddCVWorkerModelToken");
         }
 
