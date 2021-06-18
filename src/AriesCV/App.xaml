@@ -2,7 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" StartupUri="Views/AriesMain.xaml" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:viewModel="clr-namespace:AriesCV.ViewModel">
+             xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:core="clr-namespace:Aries.OpenCV.Core;assembly=Aries.OpenCV">
     <Application.Resources>
         <ResourceDictionary>
           
@@ -33,7 +35,21 @@
 
             <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
 
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type sys:Enum}"
+                                x:Key="LayoutTypeProvide">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:LayoutType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
 
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type sys:Enum}"
+                                x:Key="EdgeRoutingTypeProvider">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="core:EdgeRoutingType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
 
         </ResourceDictionary>
 

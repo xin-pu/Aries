@@ -16,14 +16,16 @@ namespace AriesCV.ViewModel
             /// 否则 design time 模式下，会重复注册Instance.
             SimpleIoc.Default.Reset();
             SimpleIoc.Default.Register(() => new AriesMainModel());
-            SimpleIoc.Default.Register(() => new CVMenuSystemModel());
+            SimpleIoc.Default.Register(() => new MenuFileModel());
+            SimpleIoc.Default.Register(() => new MenuLayoutModel());
             SimpleIoc.Default.Register(() => new CVToolKitModel());
             SimpleIoc.Default.Register(() => new CVWorkerContainerModel());
         }
 
 
         public AriesMainModel AriesMain => SimpleIoc.Default.GetInstance<AriesMainModel>();
-        public CVMenuSystemModel CVMenuSystem => SimpleIoc.Default.GetInstance<CVMenuSystemModel>();
+        public MenuFileModel MenuFile => SimpleIoc.Default.GetInstance<MenuFileModel>();
+        public MenuLayoutModel MenuLayout => SimpleIoc.Default.GetInstance<MenuLayoutModel>();
         public CVToolKitModel CVToolKit => SimpleIoc.Default.GetInstance<CVToolKitModel>();
         public CVWorkerContainerModel CvWorkerContainerModel => SimpleIoc.Default.GetInstance<CVWorkerContainerModel>();
     }

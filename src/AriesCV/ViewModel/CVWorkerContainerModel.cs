@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
 using AriesCV.Views;
 using GalaSoft.MvvmLight;
@@ -23,7 +24,14 @@ namespace AriesCV.ViewModel
             Messenger.Default.Register<CVWorkerItemView>(this, "AddCVWorkerModelToken", AddCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveCVWorkerModelToken", RemoveCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveAllCVWorkerModelToken", RemoveAllCVWorkerModel);
+
+            Messenger.Default.Register<LayoutType>(this, "ReSetLayoutCategoryToken", ReSetLayoutCategory);
+            Messenger.Default.Register<EdgeRoutingType>(this, "ResetEdgeRoutingCategoryToken", ResetEdgeRoutingCategory);
+            Messenger.Default.Register<bool>(this, "ResetShowEdgeLabelToken", ResetShowEdgeLabel);
+            Messenger.Default.Register<bool>(this, "ResetAlignEdgeLabel", ResetAlignEdgeLabel);
         }
+
+
 
         public GraphCVArea GraphCvAreaAtWorkSpace { set; get; }
 
@@ -73,6 +81,10 @@ namespace AriesCV.ViewModel
 
 
 
+
+
+        #region
+
         public void AddCVWorkerModel(CVWorkerItemView cvWorkerItemView)
         {
             CvWorkerItemViewDict[cvWorkerItemView.Name] = cvWorkerItemView;
@@ -90,9 +102,37 @@ namespace AriesCV.ViewModel
             {
                 cvWorkerItemView.Dispose();
             }
+
             CvWorkerItemViewDict.Clear();
         }
 
+        #endregion
+
+
+
+        #region Layout
+
+        private void ReSetLayoutCategory(LayoutType layoutType)
+        {
+            CvWorkerItemView.ReSetLayoutCategory(layoutType);
+        }
+
+        private void ResetEdgeRoutingCategory(EdgeRoutingType edgeRoutingType)
+        {
+            CvWorkerItemView.ResetEdgeRoutingCategory(edgeRoutingType);
+        }
+
+        private void ResetShowEdgeLabel(bool obj)
+        {
+            CvWorkerItemView.ResetShowEdgeLabel(obj);
+        }
+
+        private void ResetAlignEdgeLabel(bool obj)
+        {
+            CvWorkerItemView.ResetAlignEdgeLabel(obj);
+        }
+
+        #endregion
 
     }
 }

@@ -17,7 +17,7 @@ namespace AriesCV.Views
             {
                 Name = Name,
                 GraphSerializationDatas = GraphCVArea.ExtractSerializationData(),
-                GraphCVConfig = GraphCvConfig
+                GraphCvLayoutConfig = GraphCvLayoutConfig
             };
         }
 

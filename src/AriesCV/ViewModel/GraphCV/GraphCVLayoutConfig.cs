@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 
 namespace AriesCV.ViewModel
 {
-    public class GraphCVConfig : ViewModelBase
+    public class GraphCVLayoutConfig : ViewModelBase
     {
         private bool _isShowEdgeLabels;
         private bool _isAlignEdgeLabels;

@@ -28,7 +28,7 @@ namespace AriesCV.Views
             InitializeComponent();
             Name = name;
             GraphCVArea.Name = name;
-            GraphCvConfig = new GraphCVConfig();
+            GraphCvLayoutConfig = new GraphCVLayoutConfig();
             InitialForNew();
         }
 
@@ -37,7 +37,7 @@ namespace AriesCV.Views
             InitializeComponent();
             Name = graphCvFileStruct.Name;
             GraphCVArea.Name = graphCvFileStruct.Name;
-            GraphCvConfig = graphCvFileStruct.GraphCVConfig;
+            GraphCvLayoutConfig = graphCvFileStruct.GraphCvLayoutConfig;
             InitialForNew();
             GraphCVArea.RebuildFromSerializationData(graphCvFileStruct.GraphSerializationDatas);
             GraphCVArea.SetVerticesDrag(true, true);
@@ -57,22 +57,38 @@ namespace AriesCV.Views
             get { return __fileName; }
         }
 
-        public GraphCVConfig GraphCvConfig { set; get; }
+        public GraphCVLayoutConfig GraphCvLayoutConfig { set; get; }
 
         public GraphCVEditManager EditorManager { set; get; }
 
-        public LogicCoreCV LogicCoreCv { set; get; } = new LogicCoreCV();
+        public LogicCoreCV LogicCoreCv { set; get; } 
 
         private void InitialForNew()
         {
+
             EditorManager = new GraphCVEditManager(GraphCVArea, ZoomControl);
+
+            LogicCoreCv = new LogicCoreCV();
+            LogicCoreCv.SetEdgeRouting(GraphCvLayoutConfig.EdgeRoutingType);
+            LogicCoreCv.SetLayout(GraphCvLayoutConfig.LayoutAlgorithm);
+
+
+            GraphCVArea.LogicCore = LogicCoreCv;
+
             InitialGraphArea();
             InitialZoomControl();
-            
+            //GraphLayoutControl = new GraphLayoutControl(GraphArea);
+            //GraphCvRunManager = new GraphCVRunManager(GraphArea)
+            //{
+            //    AppendMatRecordAction = MatRecordManager.AppendMatRecords,
+            //    ClearMatRecordsAction = MatRecordManager.ClearRecords
+            //};
+
             Loaded += DynamicGraph_Loaded;
             Unloaded += DynamicGraph_Unloaded;
 
         }
+
 
 
         private void InitialGraphArea()

@@ -15,7 +15,7 @@ namespace AriesCV.ViewModel
 
         public List<GraphSerializationData> GraphSerializationDatas { set; get; }
 
-        public GraphCVConfig GraphCVConfig { set; get; }
+        public GraphCVLayoutConfig GraphCvLayoutConfig { set; get; }
 
 
         #region Serialize DeSerialize

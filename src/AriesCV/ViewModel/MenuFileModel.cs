@@ -7,12 +7,11 @@ using HandyControl.Controls;
 
 namespace AriesCV.ViewModel
 {
-    public class CVMenuSystemModel : ViewModelBase
+    public class MenuFileModel : ViewModelBase
     {
 
         private int ID { set; get; } = 1;
 
-        #region  File Syetem 命令
 
         public RelayCommand OpenGraphCVFileCommand =>
             new Lazy<RelayCommand>(() => new RelayCommand(OpenCVWorkerItem)).Value;
@@ -104,13 +103,7 @@ namespace AriesCV.ViewModel
             CvWorkerContainerModel?.CvWorkerItemView?.SaveToPicture();
         }
 
-        #endregion
-
-
-
-        #region Graph CV 命令
-
-        #endregion
+ 
 
     }
 }
