@@ -1,7 +1,6 @@
-﻿using System.Windows.Input;
+﻿using System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace AriesCV.ViewModel
@@ -24,34 +23,37 @@ namespace AriesCV.ViewModel
 
         #region Command
 
-        public RelayCommand ShowEdgeLabelCommand
+        public RelayCommand ShowEdgeLabelCommand =>
+            new Lazy<RelayCommand>(() =>
+                new RelayCommand(ShowEdgeLabelCommand_Execute, CanSetLayout)).Value;
+   
+
+        public RelayCommand AlignEdgeLabelsCommand=>
+            new Lazy<RelayCommand>(() =>
+                new RelayCommand(AlignEdgeLabelsCommand_Execute, CanSetLayout)).Value;
+
+
+
+        public RelayCommand LayoutCategorySelectedChangeCommand =>
+            new Lazy<RelayCommand>(() =>
+                new RelayCommand(LayoutCategorySelectedChangeCommand_Execute, CanSetLayout)).Value;
+
+
+        public RelayCommand EdgeRoutingCategorySelectedChangeCommand  =>
+            new Lazy<RelayCommand>(() =>
+                new RelayCommand(EdgeRoutingCategorySelectedChangeCommand_Execute, CanSetLayout)).Value;
+
+
+
+        public RelayCommand RelayoutGraphCommand =>
+            new Lazy<RelayCommand>(() =>
+                new RelayCommand(RelayoutGraphCommand_Execute, CanSetLayout)).Value;
+      
+
+        private bool CanSetLayout()
         {
-            get { return new RelayCommand(ShowEdgeLabelCommand_Execute); }
+            return GraphCvLayoutConfig != null;
         }
-
-        public RelayCommand AlignEdgeLabelsCommand
-        {
-            get { return new RelayCommand(AlignEdgeLabelsCommand_Execute); }
-        }
-
-
-        public RelayCommand LayoutCategorySelectedChangeCommand
-        {
-            get { return new RelayCommand(LayoutCategorySelectedChangeCommand_Execute); }
-        }
-
-        public RelayCommand EdgeRoutingCategorySelectedChangeCommand
-        {
-            get { return new RelayCommand(EdgeRoutingCategorySelectedChangeCommand_Execute); }
-        }
-
-
-        public RelayCommand RelayoutGraphCommand
-        {
-            get { return new RelayCommand(RelayoutGraphCommand_Execute); }
-        }
-
-
         
         private void LayoutCategorySelectedChangeCommand_Execute()
         {
@@ -79,8 +81,6 @@ namespace AriesCV.ViewModel
         {
          
         }
-
-
 
         #endregion
 

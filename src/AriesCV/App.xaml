@@ -35,21 +35,15 @@
 
             <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
 
-            <ObjectDataProvider MethodName="GetValues"
-                                ObjectType="{x:Type sys:Enum}"
-                                x:Key="LayoutTypeProvide">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="core:LayoutType" />
-                </ObjectDataProvider.MethodParameters>
+            <ObjectDataProvider MethodName="InitiaLayOutCategories"
+                                ObjectType="{x:Type core:LayoutCategory}"
+                                x:Key="LayOutCategoryProvider">
             </ObjectDataProvider>
-
-            <ObjectDataProvider MethodName="GetValues"
-                                ObjectType="{x:Type sys:Enum}"
-                                x:Key="EdgeRoutingTypeProvider">
-                <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="core:EdgeRoutingType" />
-                </ObjectDataProvider.MethodParameters>
+            <ObjectDataProvider MethodName="InitialEdgeRoutingCategories"
+                                ObjectType="{x:Type core:EdgeRoutingCategory}"
+                                x:Key="EdgeRoutingCategoryProvider">
             </ObjectDataProvider>
+           
 
         </ResourceDictionary>
 

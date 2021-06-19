@@ -77,6 +77,7 @@ namespace AriesCV.ViewModel
             CvWorkerItemView = (CVWorkerItemView) obj;
             GraphCvAreaAtWorkSpace = CvWorkerItemView.GraphCVArea;
             ZoomControl = CvWorkerItemView.ZoomControl;
+            ViewModelLocator.Instance.MenuLayout.GraphCvLayoutConfig = CvWorkerItemView.GraphCvLayoutConfig;
         }
 
 

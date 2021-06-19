@@ -19,9 +19,12 @@
                                 BorderBrush="{DynamicResource PrimaryBrush}"
                                 Height="50"
                                 Width="50"
-                                Margin="1">
+                                Margin="1"
+                                DataContext="{Binding}">
                             <TextBlock x:Name="Image" 
-                                       Style="{DynamicResource FIconStyle}" 
+                                       Style="{DynamicResource IConFontTextBlock}" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
                                        FontSize="24"
                                        FontWeight="{TemplateBinding FontWeight}"
                                        Text="{Binding Icon}"
@@ -35,13 +38,13 @@
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource SuccessBrush}" />
-                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource SuccessBrush}" />
-                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource BackgroundBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource LightSuccessBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
                                 <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
-                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource DangerBrush}" />
-                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource BackgroundBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource LightDangerBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource DangerBrush}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -56,7 +59,7 @@
             <StackPanel Orientation="Vertical" Margin="2"
                         VerticalAlignment="Top">
                 <CheckBox Content="Show Label"
-                         IsChecked="{Binding IsShowEdgeLabels}"
+                         IsChecked="{Binding GraphCvLayoutConfig.IsShowEdgeLabels}"
                          Margin="0,2">
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="Checked">
@@ -68,7 +71,7 @@
                     </hc:Interaction.Triggers>
                 </CheckBox>
                 <CheckBox Content="Align Label"
-                          IsChecked="{Binding IsAlignEdgeLabels}"
+                          IsChecked="{Binding GraphCvLayoutConfig.IsAlignEdgeLabels}"
                           Margin="0,2">
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="Checked">
@@ -87,8 +90,8 @@
         <StackPanel Orientation="Horizontal">
             <Border  BorderThickness="1"
                      BorderBrush="{DynamicResource PrimaryBrush}">
-                <ListView  ItemsSource="{Binding Source={StaticResource LayoutTypeProvide}}"
-                           SelectedValue="{Binding LayoutCategorySelect}"
+                <ListView  ItemsSource="{Binding Source={StaticResource LayOutCategoryProvider}}"
+                           SelectedValue="{Binding GraphCvLayoutConfig.LayoutAlgorithm}"
                            ItemContainerStyle="{StaticResource LayoutCategtory}"
                            Focusable="True" 
                            SelectionMode="Single"
@@ -119,8 +122,8 @@
 
             <Border  BorderThickness="1"
                              BorderBrush="{DynamicResource PrimaryBrush}">
-                <ListView  ItemsSource="{Binding Source={StaticResource EdgeRoutingTypeProvider}}"
-                                   SelectedValue="{Binding EdgeRoutingCategorySelect}"
+                <ListView  ItemsSource="{Binding Source={StaticResource EdgeRoutingCategoryProvider}}"
+                                   SelectedValue="{Binding GraphCvLayoutConfig.EdgeRoutingType}"
                                    ItemContainerStyle="{StaticResource LayoutCategtory}"
                                    Focusable="True" 
                                    SelectionMode="Single"
