@@ -55,7 +55,8 @@
     </StatusBar.Resources>
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
-            <controls:TopTabButton Content="Fresh" Icon="&#xef8c;" Command="{Binding RelayoutGraphCommand}"/>
+            <controls:TopTabButton Content="Fresh" Icon="&#xef8c;" 
+                                   Command="{Binding RelayoutGraphCommand}"/>
             <StackPanel Orientation="Vertical" Margin="2"
                         VerticalAlignment="Top">
                 <CheckBox Content="Show Label"
@@ -91,7 +92,7 @@
             <Border  BorderThickness="1"
                      BorderBrush="{DynamicResource PrimaryBrush}">
                 <ListView  ItemsSource="{Binding Source={StaticResource LayOutCategoryProvider}}"
-                           SelectedValue="{Binding GraphCvLayoutConfig.LayoutAlgorithm}"
+                           SelectedValue="{Binding GraphCvLayoutConfig.LayoutAlgorithm,Converter={StaticResource LayoutConvert}}"
                            ItemContainerStyle="{StaticResource LayoutCategtory}"
                            Focusable="True" 
                            SelectionMode="Single"
@@ -123,7 +124,7 @@
             <Border  BorderThickness="1"
                              BorderBrush="{DynamicResource PrimaryBrush}">
                 <ListView  ItemsSource="{Binding Source={StaticResource EdgeRoutingCategoryProvider}}"
-                                   SelectedValue="{Binding GraphCvLayoutConfig.EdgeRoutingType}"
+                                   SelectedValue="{Binding GraphCvLayoutConfig.EdgeRoutingType,Converter={StaticResource EdgeRoutingConvert}}"
                                    ItemContainerStyle="{StaticResource LayoutCategtory}"
                                    Focusable="True" 
                                    SelectionMode="Single"

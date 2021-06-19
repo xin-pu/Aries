@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
+using AriesCV.ViewModel.GraphLayout;
 using AriesCV.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -28,7 +28,8 @@ namespace AriesCV.ViewModel
             Messenger.Default.Register<LayoutType>(this, "ReSetLayoutCategoryToken", ReSetLayoutCategory);
             Messenger.Default.Register<EdgeRoutingType>(this, "ResetEdgeRoutingCategoryToken", ResetEdgeRoutingCategory);
             Messenger.Default.Register<bool>(this, "ResetShowEdgeLabelToken", ResetShowEdgeLabel);
-            Messenger.Default.Register<bool>(this, "ResetAlignEdgeLabel", ResetAlignEdgeLabel);
+            Messenger.Default.Register<bool>(this, "ResetAlignEdgeLabelToken", ResetAlignEdgeLabel);
+            Messenger.Default.Register<string>(this, "RelayoutGraphToken", RelayoutGraph);
         }
 
 
@@ -131,6 +132,11 @@ namespace AriesCV.ViewModel
         private void ResetAlignEdgeLabel(bool obj)
         {
             CvWorkerItemView.ResetAlignEdgeLabel(obj);
+        }
+
+        private void RelayoutGraph(string obj)
+        {
+            CvWorkerItemView.RelayoutGraph();
         }
 
         #endregion

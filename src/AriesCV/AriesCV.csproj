@@ -89,9 +89,14 @@
     </ApplicationDefinition>
     <Compile Include="Controls\Basic\TopTabButton.cs" />
     <Compile Include="Service\DataService.cs" />
-    <Compile Include="ViewModel\GraphCV\GraphCVLayoutManager.cs" />
+    <Compile Include="ViewModel\GraphLayout\EdgeRoutingCategory.cs" />
+    <Compile Include="ViewModel\GraphLayout\EdgeRoutingConvert.cs" />
+    <Compile Include="ViewModel\GraphLayout\EdgeRoutingType.cs" />
+    <Compile Include="ViewModel\GraphLayout\LayoutCategory.cs" />
     <Compile Include="ViewModel\GraphCV\VertexConnectionPointIn.cs" />
     <Compile Include="ViewModel\GraphCV\VertexConnectionPointOut.cs" />
+    <Compile Include="ViewModel\GraphLayout\LayoutConvert.cs" />
+    <Compile Include="ViewModel\GraphLayout\LayoutType.cs" />
     <Compile Include="ViewModel\MenuFileModel.cs" />
     <Compile Include="ViewModel\CVToolKitModel.cs" />
     <Compile Include="ViewModel\AriesMainModel.cs" />

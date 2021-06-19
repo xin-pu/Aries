@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using GraphX.Common.Enums;
 
-namespace Aries.OpenCV.Core
+namespace AriesCV.ViewModel.GraphLayout
 {
-    
+
     public class LayoutCategory
     {
         public LayoutType LayoutType { set; get; }
@@ -35,7 +34,7 @@ namespace Aries.OpenCV.Core
             var categtories = new List<LayoutCategory>();
             foreach (var value in Enum.GetValues(typeof(LayoutType)))
             {
-                var type = (LayoutType)value;
+                var type = (LayoutType) value;
                 categtories.Add(new LayoutCategory
                 {
                     Header = DictHeader[type],
@@ -46,19 +45,17 @@ namespace Aries.OpenCV.Core
 
             return categtories;
         }
+
+        public static LayoutCategory GetLayoutCategory(LayoutType layoutType)
+        {
+            return new LayoutCategory
+            {
+                Header = DictHeader[layoutType],
+                Icon = DictIcon[layoutType],
+                LayoutType = layoutType
+            };
+        }
+
+
     }
-
-
-    public enum LayoutType
-    {
-        TreeLeftToRight,
-        TreeTopTpBottom,
-        TreeRightToLeft,
-        Circular,
-        Custom,
-    }
-
-
-
- 
 }

@@ -1,6 +1,6 @@
 ﻿using System;
-using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
+using AriesCV.ViewModel.GraphLayout;
 using GraphX.Common.Enums;
 using GraphX.Logic.Algorithms.LayoutAlgorithms;
 using GraphX.Logic.Algorithms.OverlapRemoval;

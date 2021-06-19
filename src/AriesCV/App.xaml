@@ -3,8 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:core="clr-namespace:Aries.OpenCV.Core;assembly=Aries.OpenCV">
+             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout">
     <Application.Resources>
         <ResourceDictionary>
           
@@ -36,14 +35,15 @@
             <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
 
             <ObjectDataProvider MethodName="InitiaLayOutCategories"
-                                ObjectType="{x:Type core:LayoutCategory}"
+                                ObjectType="graphLayout:LayoutCategory"
                                 x:Key="LayOutCategoryProvider">
             </ObjectDataProvider>
             <ObjectDataProvider MethodName="InitialEdgeRoutingCategories"
-                                ObjectType="{x:Type core:EdgeRoutingCategory}"
+                                ObjectType="graphLayout:EdgeRoutingCategory"
                                 x:Key="EdgeRoutingCategoryProvider">
             </ObjectDataProvider>
-           
+            <graphLayout:LayoutConvert x:Key="LayoutConvert"/>
+            <graphLayout:EdgeRoutingConvert x:Key="EdgeRoutingConvert"/>
 
         </ResourceDictionary>
 

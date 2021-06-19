@@ -1,7 +1,8 @@
-﻿using Aries.OpenCV.Core;
-using GraphX.Common.Enums;
+﻿using GraphX.Common.Enums;
 using GraphX.Logic.Algorithms.EdgeRouting;
 using GraphX.Logic.Algorithms.LayoutAlgorithms;
+using EdgeRoutingType = AriesCV.ViewModel.GraphLayout.EdgeRoutingType;
+using LayoutType = AriesCV.ViewModel.GraphLayout.LayoutType;
 
 namespace AriesCV.Views
 {
@@ -33,9 +34,6 @@ namespace AriesCV.Views
                         Seed = 1,
                         Ratio = 2
                     };
-                    break;
-                case LayoutType.Custom:
-                    LogicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
                     break;
                 default:
                     LogicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
@@ -96,6 +94,11 @@ namespace AriesCV.Views
         public void ResetAlignEdgeLabel(bool isAlignEdgeLabels)
         {
             GraphCVArea.AlignAllEdgesLabels(isAlignEdgeLabels);
+        }
+
+        public void RelayoutGraph()
+        {
+            GraphCVArea.RelayoutGraph();
         }
 
     }

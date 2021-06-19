@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Aries.OpenCV.Core
+namespace AriesCV.ViewModel.GraphLayout
 {
     public class EdgeRoutingCategory
     {
@@ -42,12 +42,15 @@ namespace Aries.OpenCV.Core
             return categtories;
         }
 
-    }
+        public static EdgeRoutingCategory GetEdgeRoutingCategory(EdgeRoutingType edgeRoutingType)
+        {
+            return new EdgeRoutingCategory
+            {
+                Header = DictHeader[edgeRoutingType],
+                Icon = DictIcon[edgeRoutingType],
+                EdgeRoutingType = edgeRoutingType
+            };
+        }
 
-    public enum EdgeRoutingType
-    {
-        SimpleER,
-        Bundling,
-        PathFinder
     }
 }

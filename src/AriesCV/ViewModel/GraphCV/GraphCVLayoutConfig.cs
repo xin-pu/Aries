@@ -1,4 +1,5 @@
 ﻿using Aries.OpenCV.Core;
+using AriesCV.ViewModel.GraphLayout;
 using GalaSoft.MvvmLight;
 
 namespace AriesCV.ViewModel
