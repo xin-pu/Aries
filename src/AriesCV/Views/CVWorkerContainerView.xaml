@@ -86,6 +86,12 @@
                                 Background="Transparent"
                                 Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
                         </TabItem>
+                        <TabItem Header="&#xf06c;"
+                                 ToolTip="Block Property">
+                            <views:CVPropertyGridView 
+                                Background="Transparent"
+                                Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                        </TabItem>
                     </TabControl>
                 </DockPanel>
             </Border>

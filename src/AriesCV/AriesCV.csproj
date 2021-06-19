@@ -87,7 +87,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Basic\PointEditor.cs" />
     <Compile Include="Controls\Basic\TopTabButton.cs" />
+    <Compile Include="Controls\PropertyGrid\Editors\ColorEditer.cs" />
+    <Compile Include="Controls\PropertyGrid\Editors\PointEditor.cs" />
+    <Compile Include="Controls\PropertyGrid\PropertyGridCV.cs" />
+    <Compile Include="Controls\PropertyGrid\PropertyResolverCV.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingCategory.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingConvert.cs" />
@@ -103,6 +108,10 @@
     <Compile Include="ViewModel\GraphCV\GraphCVArea.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
     <Compile Include="ViewModel\MenuLayoutModel.cs" />
+    <Compile Include="ViewModel\TestModel.cs" />
+    <Compile Include="Views\CVPropertyGridView.xaml.cs">
+      <DependentUpon>CVPropertyGridView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CVWorkerItemView.xaml.cs">
       <DependentUpon>CVWorkerItemView.xaml</DependentUpon>
     </Compile>
@@ -122,7 +131,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resource\Style\PointEditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resource\Style\PropertyGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resource\Style\TextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CVPropertyGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -241,6 +262,10 @@
     <ProjectReference Include="..\GraphX.Standard.Logic\GraphX.Standard.Logic.csproj">
       <Project>{51282e4b-dcd1-4502-bd1e-bac96a9ce956}</Project>
       <Name>GraphX.Standard.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenCvSharp\OpenCvSharp.csproj">
+      <Project>{c58fe5b3-a578-4003-a8ae-e094b494efe7}</Project>
+      <Name>OpenCvSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
