@@ -13,30 +13,30 @@ namespace AriesCV.Views
             switch (layoutType)
             {
                 case LayoutType.TreeLeftToRight:
-                    LogicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
-                    LogicCoreCv.DefaultLayoutAlgorithmParams =
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithmParams =
                         getSimpleTreeLayoutParameters(LayoutDirection.LeftToRight);
                     break;
                 case LayoutType.TreeTopTpBottom:
-                    LogicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
-                    LogicCoreCv.DefaultLayoutAlgorithmParams =
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithmParams =
                         getSimpleTreeLayoutParameters(LayoutDirection.TopToBottom);
                     break;
                 case LayoutType.TreeRightToLeft:
-                    LogicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
-                    LogicCoreCv.DefaultLayoutAlgorithmParams =
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Tree;
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithmParams =
                         getSimpleTreeLayoutParameters(LayoutDirection.RightToLeft);
                     break;
                 case LayoutType.Circular:
-                    LogicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Circular;
-                    LogicCoreCv.DefaultLayoutAlgorithmParams = new CircularLayoutParameters
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Circular;
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithmParams = new CircularLayoutParameters
                     {
                         Seed = 1,
                         Ratio = 2
                     };
                     break;
                 default:
-                    LogicCoreCv.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
+                    GraphCVArea.LogicCore.DefaultLayoutAlgorithm = LayoutAlgorithmTypeEnum.Custom;
                     break;
             }
 
@@ -49,20 +49,20 @@ namespace AriesCV.Views
             switch (edgeRoutingType)
             {
                 case EdgeRoutingType.PathFinder:
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.PathFinder;
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithmParams = new EdgeRoutingParameters();
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.PathFinder;
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithmParams = new EdgeRoutingParameters();
                     break;
                 case EdgeRoutingType.SimpleER:
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.SimpleER;
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithmParams = new SimpleERParameters();
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.SimpleER;
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithmParams = new SimpleERParameters();
                     break;
                 case EdgeRoutingType.Bundling:
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.Bundling;
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithmParams = new BundleEdgeRoutingParameters();
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.Bundling;
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithmParams = new BundleEdgeRoutingParameters();
                     break;
                 default:
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.None;
-                    LogicCoreCv.DefaultEdgeRoutingAlgorithmParams = new EdgeRoutingParameters();
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithm = EdgeRoutingAlgorithmTypeEnum.None;
+                    GraphCVArea.LogicCore.DefaultEdgeRoutingAlgorithmParams = new EdgeRoutingParameters();
                     break;
             }
 

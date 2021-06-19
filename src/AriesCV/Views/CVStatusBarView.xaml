@@ -9,7 +9,7 @@
              Height="45"
              BorderThickness="1"
              BorderBrush="{DynamicResource BorderBrush}"
-             DataContext="{Binding CvWorkerContainerModel,Source={StaticResource Locator}}">
+             DataContext="{Binding CvWorkerContainer,Source={StaticResource Locator}}">
 
     <StatusBarItem HorizontalAlignment="Left">
 

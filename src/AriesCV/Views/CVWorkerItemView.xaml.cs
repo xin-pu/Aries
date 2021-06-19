@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel;
 using GalaSoft.MvvmLight.Command;
+using GraphX.Common;
 using GraphX.Controls;
 using GraphX.Controls.Animations;
 using GraphX.Controls.Models;
@@ -61,23 +62,20 @@ namespace AriesCV.Views
 
         public GraphCVEditManager EditorManager { set; get; }
 
-        public LogicCoreCV LogicCoreCv { set; get; } 
+        private LogicCoreCV logicCoreCv { set; get; }
 
         private void InitialForNew()
         {
 
             EditorManager = new GraphCVEditManager(GraphCVArea, ZoomControl);
 
-            LogicCoreCv = new LogicCoreCV();
-            LogicCoreCv.SetEdgeRouting(GraphCvLayoutConfig.EdgeRoutingType);
-            LogicCoreCv.SetLayout(GraphCvLayoutConfig.LayoutAlgorithm);
+            GraphCVArea.LogicCore = logicCoreCv = new LogicCoreCV();
+            logicCoreCv.SetEdgeRouting(GraphCvLayoutConfig.EdgeRoutingType);
+            logicCoreCv.SetLayout(GraphCvLayoutConfig.LayoutType);
 
-
-            GraphCVArea.LogicCore = LogicCoreCv;
 
             InitialGraphArea();
             InitialZoomControl();
-            //GraphLayoutControl = new GraphLayoutControl(GraphArea);
             //GraphCvRunManager = new GraphCVRunManager(GraphArea)
             //{
             //    AppendMatRecordAction = MatRecordManager.AppendMatRecords,
@@ -97,7 +95,6 @@ namespace AriesCV.Views
             GraphCVArea.SetVerticesDrag(true, true);
             GraphCVArea.SetEdgesDrag(true);
 
-            GraphCVArea.LogicCore = LogicCoreCv;
 
             GraphCVArea.MoveAnimation =
                 AnimationFactory.CreateMoveAnimation(MoveAnimation.Move, TimeSpan.FromSeconds(0.5));
@@ -307,10 +304,18 @@ namespace AriesCV.Views
 
             var data = new BlockEdge(source, target)
             {
-                Header = $"{source.BlockType} --> {target.BlockType}",
+                Header = $"{source.Name} - {target.Name}"
             };
             var ec = new EdgeControl(_vertexTemp, vc, data);
+            
             GraphCVArea.InsertEdgeAndData(data, ec, 0, true);
+            ec.GetLabelControls().ForEach(a =>
+            {
+                //((FrameworkElement)a).SetCurrentValue(EdgeLabelControl.ShowLabelProperty,
+                //    GraphCvLayoutConfig.IsShowEdgeLabels);
+                a.ShowLabel = GraphCvLayoutConfig.IsShowEdgeLabels;
+                a.AlignToEdge = GraphCvLayoutConfig.IsAlignEdgeLabels;
+            });
 
             HighlightBehaviour.SetHighlighted(_vertexTemp, false);
             _vertexTemp = null;

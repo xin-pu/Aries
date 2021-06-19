@@ -1,24 +1,23 @@
-﻿using Aries.OpenCV.Core;
-using AriesCV.ViewModel.GraphLayout;
+﻿using AriesCV.ViewModel.GraphLayout;
 using GalaSoft.MvvmLight;
 
 namespace AriesCV.ViewModel
 {
     public class GraphCVLayoutConfig : ViewModelBase
     {
-        private bool _isShowEdgeLabels;
-        private bool _isAlignEdgeLabels;
-        public LayoutType _layoutAlgorithm = LayoutType.TreeTopTpBottom;
+        private bool _isShowEdgeLabels = true;
+        private bool _isAlignEdgeLabels = true;
+        public LayoutType layoutType = LayoutType.TreeTopTpBottom;
         public EdgeRoutingType _edgeRoutingType = EdgeRoutingType.SimpleER;
 
 
-        public LayoutType LayoutAlgorithm
+        public LayoutType LayoutType
         {
-            get { return _layoutAlgorithm; }
+            get { return layoutType; }
             set
             {
-                _layoutAlgorithm = value;
-                RaisePropertyChanged(() => LayoutAlgorithm);
+                layoutType = value;
+                RaisePropertyChanged(() => LayoutType);
             }
         }
 

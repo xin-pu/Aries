@@ -100,7 +100,7 @@
     <Compile Include="ViewModel\MenuFileModel.cs" />
     <Compile Include="ViewModel\CVToolKitModel.cs" />
     <Compile Include="ViewModel\AriesMainModel.cs" />
-    <Compile Include="ViewModel\GraphCV\GraphCVAreaView.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVArea.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
     <Compile Include="ViewModel\MenuLayoutModel.cs" />
     <Compile Include="Views\CVWorkerItemView.xaml.cs">

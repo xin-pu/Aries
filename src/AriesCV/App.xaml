@@ -3,7 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
-             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout">
+             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib">
     <Application.Resources>
         <ResourceDictionary>
           
@@ -42,6 +43,23 @@
                                 ObjectType="graphLayout:EdgeRoutingCategory"
                                 x:Key="EdgeRoutingCategoryProvider">
             </ObjectDataProvider>
+
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type sys:Enum}"
+                                x:Key="LayoutTypeProvider">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="graphLayout:LayoutType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
+            <ObjectDataProvider MethodName="GetValues"
+                                ObjectType="{x:Type sys:Enum}"
+                                x:Key="EdgeRoutingTypeProvider">
+                <ObjectDataProvider.MethodParameters>
+                    <x:Type TypeName="graphLayout:EdgeRoutingType" />
+                </ObjectDataProvider.MethodParameters>
+            </ObjectDataProvider>
+
             <graphLayout:LayoutConvert x:Key="LayoutConvert"/>
             <graphLayout:EdgeRoutingConvert x:Key="EdgeRoutingConvert"/>
 

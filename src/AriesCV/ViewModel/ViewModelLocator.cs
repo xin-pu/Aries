@@ -27,6 +27,6 @@ namespace AriesCV.ViewModel
         public MenuFileModel MenuFile => SimpleIoc.Default.GetInstance<MenuFileModel>();
         public MenuLayoutModel MenuLayout => SimpleIoc.Default.GetInstance<MenuLayoutModel>();
         public CVToolKitModel CVToolKit => SimpleIoc.Default.GetInstance<CVToolKitModel>();
-        public CVWorkerContainerModel CvWorkerContainerModel => SimpleIoc.Default.GetInstance<CVWorkerContainerModel>();
+        public CVWorkerContainerModel CvWorkerContainer => SimpleIoc.Default.GetInstance<CVWorkerContainerModel>();
     }
 }

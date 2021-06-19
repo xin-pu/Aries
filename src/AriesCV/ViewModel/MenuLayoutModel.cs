@@ -1,4 +1,5 @@
 ﻿using System;
+using AriesCV.ViewModel.GraphLayout;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -8,10 +9,7 @@ namespace AriesCV.ViewModel
     public class MenuLayoutModel : ViewModelBase
     {
 
-        //private bool _isShowEdgeLabels;
-        //private bool _isAlignEdgeLabels;
-        //public LayoutCategory _layoutCategory;
-        //public EdgeRoutingCategory _edgeRoutingCategory;
+
 
         private GraphCVLayoutConfig _graphCvLayoutConfig;
 
@@ -25,43 +23,7 @@ namespace AriesCV.ViewModel
             }
         }
 
-        //public LayoutCategory LayoutCategory
-        //{
-        //    get { return _layoutCategory; }
-        //    set
-        //    {
-        //        _layoutCategory = value;
-        //        RaisePropertyChanged(() => IsShowEdgeLabels);
-        //    }
-        //}
-        //public EdgeRoutingCategory EdgeRoutingCategory
-        //{
-        //    get { return _edgeRoutingCategory; }
-        //    set
-        //    {
-        //        _edgeRoutingCategory = value;
-        //        RaisePropertyChanged(() => IsShowEdgeLabels);
-        //    }
-        //}
-        //public bool IsShowEdgeLabels
-        //{
-        //    get { return _isShowEdgeLabels; }
-        //    set
-        //    {
-        //        _isShowEdgeLabels = value;
-        //        RaisePropertyChanged(() => IsShowEdgeLabels);
-        //    }
-        //}
-
-        //public bool IsAlignEdgeLabels
-        //{
-        //    get { return _isAlignEdgeLabels; }
-        //    set
-        //    {
-        //        _isAlignEdgeLabels = value;
-        //        RaisePropertyChanged(() => IsAlignEdgeLabels);
-        //    }
-        //}
+       
 
         #region Command
 
@@ -99,7 +61,7 @@ namespace AriesCV.ViewModel
 
         private void LayoutCategorySelectedChangeCommand_Execute()
         {
-            Messenger.Default.Send(GraphCvLayoutConfig.LayoutAlgorithm, "ReSetLayoutCategoryToken");
+            Messenger.Default.Send(GraphCvLayoutConfig.LayoutType, "ReSetLayoutCategoryToken");
         }
 
 
@@ -121,7 +83,7 @@ namespace AriesCV.ViewModel
 
         private void RelayoutGraphCommand_Execute()
         {
-            Messenger.Default.Send(GraphCvLayoutConfig.IsAlignEdgeLabels, "RelayoutGraphToken");
+            Messenger.Default.Send(string.Empty, "RelayoutGraphToken");
         }
 
         #endregion

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using Aries.OpenCV.GraphModel;
+using GraphX.Common;
 using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Models;

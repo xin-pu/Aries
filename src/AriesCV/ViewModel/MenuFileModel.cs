@@ -37,7 +37,7 @@ namespace AriesCV.ViewModel
         public RelayCommand SaveAsGraphCVPNGCommand =>
             new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItemAsPng)).Value;
 
-        public CVWorkerContainerModel CvWorkerContainerModel => ViewModelLocator.Instance.CvWorkerContainerModel;
+        public CVWorkerContainerModel CvWorkerContainerModel => ViewModelLocator.Instance.CvWorkerContainer;
 
 
 
