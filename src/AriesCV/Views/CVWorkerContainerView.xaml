@@ -18,7 +18,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"
+                                  MaxWidth="450"
+                                  MinWidth="350"/>
             </Grid.ColumnDefinitions>
 
 
@@ -51,29 +53,18 @@
                 </Grid>
 
             </Border>
-
+            <GridSplitter Grid.Column="0" 
+                          Width="3" 
+                          Background="{DynamicResource PrimaryBrush}"
+                          Margin="2"/>
             <Border Width="Auto" 
                     Grid.Column="1"
-                    Margin="1"
-                    BorderThickness="0" 
+                    Margin="2"
+                    BorderThickness="1" 
+                    BorderBrush="{DynamicResource PrimaryBrush}"
                     Background="White"
                     Effect="{DynamicResource EffectShadow1}">
                 <DockPanel>
-                    <StackPanel DockPanel.Dock="Top" 
-                                Orientation="Horizontal"
-                                Height="40">
-
-                        <Label FontSize="15"
-                               Content="Hello"
-                               BorderThickness="0"
-                               Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
-
-                        <ToggleButton Style="{DynamicResource ToggleButtonSwitch}"
-                                      Name="TabItemShow"
-                                      IsChecked="True"/>
-
-                    </StackPanel>
-
 
                     <TabControl TabStripPlacement="Left" Name="LeftTabControl"
                                 FontFamily="/Resource/#iconfont"
@@ -82,15 +73,13 @@
                                  ToolTip="CV Tool Kit"
                                  FontSize="24">
                             <views:CVToolKitView 
-                                Background="Transparent"
-                                Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                                Background="Transparent"/>
                         </TabItem>
                         <TabItem Header="&#xef73;"
                                  ToolTip="Block Property"
                                  FontSize="24">
                             <views:CVPropertyGridView 
-                                Background="Transparent"
-                                Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                                Background="Transparent"/>
                         </TabItem>
                         
                     </TabControl>

@@ -6,7 +6,8 @@
              xmlns:controls="clr-namespace:AriesCV.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="350"
-             Width="350"
+             MinWidth="300"
+             MaxWidth="450"
              DataContext="{Binding CvWorkerContainer.GraphCvAreaAtWorkSpace.SelectBlockVertex,
                             Source={StaticResource Locator}}">
     <controls:CvPropertyGrid x:Name="PropertyGrid" 

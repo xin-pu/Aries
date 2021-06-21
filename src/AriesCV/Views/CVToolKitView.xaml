@@ -6,8 +6,9 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:cvToolKit="clr-namespace:AriesCV.ViewModel.CVToolKit"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="350"
-             Width="350"
+             d:DesignHeight="700" d:DesignWidth="300"
+             MinWidth="300"
+             MaxWidth="450"
              Background="{DynamicResource RegionBrush}"
              DataContext="{Binding CVToolKit,Source={StaticResource Locator}}">
    <UserControl.Resources>
@@ -28,8 +29,6 @@
                                Visibility="{Binding IsVisiable,Converter={StaticResource Boolean2VisibilityConverter}}"
                                ToolTip="{Binding ClassType}"
                                Style="{DynamicResource ButtonDashedPrimary}"
-                               Width="{TemplateBinding Width}"
-                               MinWidth="330"
                                HorizontalContentAlignment="Left"
                                BorderThickness="0"
                                Command="{Binding CreateCvBlockCommand}">
@@ -59,21 +58,20 @@
        </Style>
     </UserControl.Resources>
 
-    <DockPanel Margin="0,10"
-               Width="Auto">
+    <DockPanel Margin="0,10">
+        <StackPanel DockPanel.Dock="Top">
+            <hc:SearchBar ShowClearButton="True" IsRealTime="True" 
+                          Style="{StaticResource SearchBarPlus}" 
+                          hc:InfoElement.Placeholder="Filter..."
+                          Margin="4"
+                          Text="{Binding SearchKey,UpdateSourceTrigger=PropertyChanged}"
+                          Command="{Binding OnSearchCommand}"
+                          CommandParameter="{Binding Text,RelativeSource={RelativeSource Self}}"
+                          FontSize="11">
+            </hc:SearchBar>
+        </StackPanel>
 
-     
-            <StackPanel DockPanel.Dock="Top">
-                <hc:SearchBar ShowClearButton="True" IsRealTime="True" 
-                                      Style="{StaticResource SearchBarPlus}" 
-                                      hc:InfoElement.Placeholder="Filter..."
-                                      Margin="4"
-                                      Text="{Binding SearchKey,UpdateSourceTrigger=PropertyChanged}"
-                                      Command="{Binding OnSearchCommand}"
-                                      CommandParameter="{Binding Text,RelativeSource={RelativeSource Self}}">
-                </hc:SearchBar>
-            </StackPanel>
-            <ListView  ItemsSource="{Binding CVToolKitData}"
+        <ListView  ItemsSource="{Binding CVToolKitData}"
                                BorderThickness="0"
                                Name="GraphListView"
                                VerticalContentAlignment="Top"
@@ -90,7 +88,7 @@
                 </ListView.Template>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"
+                        <StackPanel IsItemsHost="True" Orientation="Vertical"
                                                HorizontalAlignment="Stretch"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
