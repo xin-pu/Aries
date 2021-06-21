@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:AriesCV.Views"
              xmlns:hc="https://handyorg.github.io/handycontrol"
-             xmlns:controls="clr-namespace:AriesCV.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="766" d:DesignWidth="1360"
              DataContext="{Binding CvWorkerContainer,Source={StaticResource Locator}}">
@@ -78,22 +77,17 @@
 
                     <TabControl TabStripPlacement="Left" Name="LeftTabControl"
                                 FontFamily="/Resource/#iconfont"
-                                FontSize="15"
                                 FontWeight="DemiBold">
-                        <TabItem Header="&#xf06c;"
-                                 ToolTip="UI Test">
-                            <StackPanel DataContext="{Binding TestModel}" Width="350">
-                                <controls:CvPointEditor Point="{Binding Point}" />
-                            </StackPanel>
-                        </TabItem>
-                        <TabItem Header="&#xf06c;"
-                                 ToolTip="CV Tool Kit">
+                        <TabItem Header="&#xef53;"
+                                 ToolTip="CV Tool Kit"
+                                 FontSize="24">
                             <views:CVToolKitView 
                                 Background="Transparent"
                                 Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
                         </TabItem>
-                        <TabItem Header="&#xf06c;"
-                                 ToolTip="Block Property">
+                        <TabItem Header="&#xef73;"
+                                 ToolTip="Block Property"
+                                 FontSize="24">
                             <views:CVPropertyGridView 
                                 Background="Transparent"
                                 Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>

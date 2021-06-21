@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="350"
              Width="350"
-             DataContext="{Binding Testmodel,Source={StaticResource Locator}}">
+             DataContext="{Binding CvWorkerContainer.GraphCvAreaAtWorkSpace.SelectBlockVertex,
+                            Source={StaticResource Locator}}">
     <controls:CvPropertyGrid x:Name="PropertyGrid" 
                               SelectedObject="{Binding}"
                               FontSize="11"/>

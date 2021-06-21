@@ -17,6 +17,7 @@ namespace AriesCV.ViewModel
 
         private ZoomControl _zoomControl;
         public CVWorkerItemView _cvWorkerItemView;
+        public GraphCVArea _graphCvAreaAtWorkSpace;
 
         public CVWorkerContainerModel()
         {
@@ -34,7 +35,15 @@ namespace AriesCV.ViewModel
 
         public TestModel TestModel { set; get; } = new TestModel();
 
-        public GraphCVArea GraphCvAreaAtWorkSpace { set; get; }
+        public GraphCVArea GraphCvAreaAtWorkSpace
+        {
+            get { return _graphCvAreaAtWorkSpace; }
+            set
+            {
+                _graphCvAreaAtWorkSpace = value;
+                RaisePropertyChanged(() => GraphCvAreaAtWorkSpace);
+            }
+        }
 
         public ZoomControl ZoomControl
         {
