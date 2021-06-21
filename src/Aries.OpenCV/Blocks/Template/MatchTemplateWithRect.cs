@@ -8,9 +8,9 @@ namespace Aries.OpenCV.Blocks.Template
     [Category("Template")]
     public class MatchTemplateWithRect : ProcessingBlock<Mat, Rect>
     {
-        [Category("INPUT")] public Mat Template { set; get; }
+        [Category("DATAIN")] public Mat Template { set; get; }
 
-        [Category("INPUT")] public Mat Mask { set; get; }
+        [Category("DATAIN")] public Mat Mask { set; get; }
 
         /// <summary>
         /// The number of channels in the destination image;

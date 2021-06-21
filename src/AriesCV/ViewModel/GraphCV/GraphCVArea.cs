@@ -178,12 +178,12 @@ namespace AriesCV.ViewModel
                 .OfType<PropertyDescriptor>()
                 .ToList();
 
-            properties.Where(a => a.Category == "INPUT")
+            properties.Where(a => a.Category == "DATAIN")
                 .ToList()
                 .ForEach(
                     p => { AddInputConnectionPoint(parentControl, p); });
 
-            properties.Where(a => a.Category == "OUTPUT")
+            properties.Where(a => a.Category == "DATAOUT")
                 .ToList()
                 .ForEach(p => { AddOutputConnectionPoint(parentControl, p); });
         }

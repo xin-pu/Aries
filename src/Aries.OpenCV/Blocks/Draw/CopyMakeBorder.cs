@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks
     [Category("Draw")]
     public class CopyMakeBorder : MatProcessingBlock
     {
-        [Category("INPUT")] public Scalar Scalar { set; get; }
+        [Category("DATAIN")] public Scalar Scalar { set; get; }
 
         [Category("ARGUMENT")] public int Top { set; get; } = 0;
         [Category("ARGUMENT")] public int Bottom { set; get; } = 0;

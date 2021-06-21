@@ -8,11 +8,11 @@ namespace Aries.OpenCV.Blocks
     [Category("Channel")]
     public class Merge : GeneralBlock
     {
-        [Category("INPUT")] public Mat RMat { set; get; }
-        [Category("INPUT")] public Mat GMat { set; get; }
-        [Category("INPUT")] public Mat BMat { set; get; }
+        [Category("DATAIN")] public Mat RMat { set; get; }
+        [Category("DATAIN")] public Mat GMat { set; get; }
+        [Category("DATAIN")] public Mat BMat { set; get; }
 
-        [Category("OUTPUT")] public Mat MergeMat { set; get; }
+        [Category("DATAOUT")] public Mat MergeMat { set; get; }
 
 
         public override void Reload()

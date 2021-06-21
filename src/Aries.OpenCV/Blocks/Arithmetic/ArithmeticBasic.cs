@@ -9,15 +9,15 @@ namespace Aries.OpenCV.Blocks
     {
 
         #region INPUT
-        [Category("INPUT")] public Mat InPut1 { set; get; }
-        [Category("INPUT")] public Mat InPut2 { set; get; }
-        [Category("INPUT")] public Mat Mask { set; get; }
+        [Category("DATAIN")] public Mat InPut1 { set; get; }
+        [Category("DATAIN")] public Mat InPut2 { set; get; }
+        [Category("DATAIN")] public Mat Mask { set; get; }
 
         #endregion
 
 
         #region OUTPUT
-        [Category("OUTPUT")] public Mat Output { set; get; }
+        [Category("DATAOUT")] public Mat Output { set; get; }
         #endregion
 
 

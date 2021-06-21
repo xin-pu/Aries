@@ -6,7 +6,7 @@ namespace Aries.OpenCV.Blocks
 {
     public class CornerSubPix : ProcessingBlock<Mat, Point2f[]>
     {
-        [Category("INPUT")] public Point2f[] Corners { set; get; }
+        [Category("DATAIN")] public Point2f[] Corners { set; get; }
 
         [Category("ARGUMENT")] public int WinSize_Width { set; get; } = 5;
 

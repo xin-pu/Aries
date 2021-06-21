@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     [Category("Convert")]
     public class Normalize : MatProcessingBlock
     {
-        [Category("INPUT")] public Mat Mask { set; get; }
+        [Category("DATAIN")] public Mat Mask { set; get; }
 
         [Category("ARGUMENT")] public double Alpha { set; get; } = 255;
 

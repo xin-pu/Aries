@@ -8,7 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="1000"
              Background="{DynamicResource LightPrimaryBrush}"
-             DataContext="{Binding MenuLayout,Source={StaticResource Locator}}">
+             DataContext="{Binding MenuLayout,Source={StaticResource Locator}}"
+             Height="80">
     <StatusBar.Resources>
         <Style x:Key="LayoutCategtory" TargetType="ListViewItem">
             <Setter Property="Template">

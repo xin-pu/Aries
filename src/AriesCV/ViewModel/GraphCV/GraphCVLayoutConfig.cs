@@ -5,7 +5,7 @@ namespace AriesCV.ViewModel
 {
     public class GraphCVLayoutConfig : ViewModelBase
     {
-        private bool _isShowEdgeLabels = true;
+        private bool _isShowEdgeLabels = false;
         private bool _isAlignEdgeLabels = true;
         public LayoutType layoutType = LayoutType.TreeTopTpBottom;
         public EdgeRoutingType _edgeRoutingType = EdgeRoutingType.SimpleER;

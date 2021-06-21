@@ -7,10 +7,10 @@ namespace Aries.OpenCV.Blocks
     [Category("Arithmetic")]
     public class BitwiseNot : GeneralBlock
     {
-        [Category("INPUT")] public Mat InPut { set; get; } 
-        [Category("INPUT")] public Mat Mask { set; get; }
+        [Category("DATAIN")] public Mat InPut { set; get; } 
+        [Category("DATAIN")] public Mat Mask { set; get; }
 
-        [Category("OUTPUT")] public Mat Output { set; get; }
+        [Category("DATAOUT")] public Mat Output { set; get; }
 
         [Category("ARGUMENT")] public bool EnableMask { set; get; }
 

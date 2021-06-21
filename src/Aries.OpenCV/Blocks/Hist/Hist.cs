@@ -10,7 +10,7 @@ namespace Aries.OpenCV.Blocks
    
 
 
-        [Category("INPUT")] public InputArray Mask { set; get; } = null;
+        [Category("DATAIN")] public InputArray Mask { set; get; } = null;
 
       
 

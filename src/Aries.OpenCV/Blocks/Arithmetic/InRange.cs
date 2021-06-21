@@ -9,9 +9,9 @@ namespace Aries.OpenCV.Blocks
     {
 
 
-        [Category("INPUT")] public Scalar Lowerb { set; get; }
+        [Category("DATAIN")] public Scalar Lowerb { set; get; }
 
-        [Category("INPUT")] public Scalar Upperb { set; get; }
+        [Category("DATAIN")] public Scalar Upperb { set; get; }
 
 
         public override bool CanExecute()

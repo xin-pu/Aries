@@ -9,7 +9,7 @@ namespace Aries.OpenCV.Blocks
     public class Circle : MatProcessingBlock
     {
 
-        [Category("INPUT")] public CircleSegment[] Circles { set; get; }
+        [Category("DATAIN")] public CircleSegment[] Circles { set; get; }
 
         [Category("ARGUMENT")] public double Color { set; get; } = 255;
 

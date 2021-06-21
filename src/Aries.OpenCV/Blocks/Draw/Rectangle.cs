@@ -9,7 +9,7 @@ namespace Aries.OpenCV.Blocks
     public class Rectangle : MatProcessingBlock
     {
 
-        [Category("INPUT")] public Rect[] Rects { set; get; }
+        [Category("DATAIN")] public Rect[] Rects { set; get; }
 
         [Category("ARGUMENT")] public double Color { set; get; } = 255;
 

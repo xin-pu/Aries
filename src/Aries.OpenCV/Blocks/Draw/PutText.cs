@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     [Category("Draw")]
     public class PutText : MatProcessingBlock
     {
-        [Category("INPUT")] public TextSegment[] Texts { set; get; }
+        [Category("DATAIN")] public TextSegment[] Texts { set; get; }
         [Category("ARGUMENT")] public double Color { set; get; } = 255;
 
         [Category("ARGUMENT")] public int Thickness { set; get; } = 1;

@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks
     [Category("Blur")]
     public class Filter2D : MatProcessingBlock
     {
-        [Category("INPUT")] public InputArray Element { set; get; }
+        [Category("DATAIN")] public InputArray Element { set; get; }
 
         [Category("ARGUMENT")] public MatType MatType { set; get; } = MatType.CV_32F;
 

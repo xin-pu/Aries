@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     public class Resize : MatProcessingBlock
     {
 
-        [Category("INPUT")] public Size Size { set; get; }
+        [Category("DATAIN")] public Size Size { set; get; }
         [Category("ARGUMENT")] public double Fx { set; get; } = 0;
         [Category("ARGUMENT")] public double Fy { set; get; } = 0;
 

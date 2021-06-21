@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks
     [Category("Morphology")]
     public class MorphologyEx : MatProcessingBlock
     {
-        [Category("INPUT")]
+        [Category("DATAIN")]
         public InputArray Shape { set; get; }
 
         [Category("ARGUMENT")]

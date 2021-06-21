@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     public class FindContours : ProcessingBlock<Mat, Mat[]>
     {
 
-        [Category("OUTPUT")] public Mat Hierarchy { set; get; }
+        [Category("DATAOUT")] public Mat Hierarchy { set; get; }
 
         [Category("ARGUMENT")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;
 

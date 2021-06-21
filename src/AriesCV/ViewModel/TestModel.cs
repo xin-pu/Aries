@@ -1,6 +1,4 @@
-﻿using System.Windows.Media;
-using GalaSoft.MvvmLight;
-using OpenCvSharp;
+﻿using GalaSoft.MvvmLight;
 
 namespace AriesCV.ViewModel
 {

@@ -9,7 +9,7 @@ namespace Aries.OpenCV.Blocks
     public class Line : MatProcessingBlock
     {
 
-        [Category("INPUT")] public LineSegmentPoint[] Lines { set; get; }
+        [Category("DATAIN")] public LineSegmentPoint[] Lines { set; get; }
 
         [Category("ARGUMENT")] public double Color { set; get; } = 255;
 

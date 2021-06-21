@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     public class PyrDown : MatProcessingBlock
     {
 
-        [Category("INPUT")] public Size Size { set; get; }
+        [Category("DATAIN")] public Size Size { set; get; }
 
         [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 

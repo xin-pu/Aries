@@ -11,9 +11,9 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Export;
         }
 
-        [Category("INPUT")] public Mat InPutMat { set; get; }
+        [Category("DATAIN")] public Mat InPutMat { set; get; }
 
-        [Category("OUTPUT")] public T ExportResult { set; get; }
+        [Category("DATAOUT")] public T ExportResult { set; get; }
 
         public override void Reload()
         {

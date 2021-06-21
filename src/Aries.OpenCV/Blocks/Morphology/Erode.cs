@@ -8,7 +8,7 @@ namespace Aries.OpenCV.Blocks
     public class Erode : MatProcessingBlock
     {
 
-        [Category("INPUT")] public InputArray Element { set; get; }
+        [Category("DATAIN")] public InputArray Element { set; get; }
 
         public override bool CanExecute()
         {

@@ -6,8 +6,8 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:cvToolKit="clr-namespace:AriesCV.ViewModel.CVToolKit"
              mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="300"
-             Width="400"
+             d:DesignHeight="700" d:DesignWidth="350"
+             Width="350"
              Background="{DynamicResource RegionBrush}"
              DataContext="{Binding CVToolKit,Source={StaticResource Locator}}">
    <UserControl.Resources>
@@ -23,13 +23,13 @@
                        <Button x:Name="BD_Collector" 
                                VerticalAlignment="Center"
                                HorizontalAlignment="Stretch"
-                               Margin="2"
+                               Margin="1"
                                Height="30"
                                Visibility="{Binding IsVisiable,Converter={StaticResource Boolean2VisibilityConverter}}"
                                ToolTip="{Binding ClassType}"
                                Style="{DynamicResource ButtonDashedPrimary}"
                                Width="{TemplateBinding Width}"
-                               MinWidth="270"
+                               MinWidth="330"
                                HorizontalContentAlignment="Left"
                                BorderThickness="0"
                                Command="{Binding CreateCvBlockCommand}">
@@ -79,12 +79,11 @@
                                VerticalContentAlignment="Top"
                                VerticalAlignment="Top"
                                ItemContainerStyle="{DynamicResource ToolKitView}"
-                               Background="Transparent"
-                               Width="300">
+                               Background="Transparent">
                 <ListView.Template>
                     <ControlTemplate>
                         <ScrollViewer VerticalScrollBarVisibility="Visible" 
-                                                  HorizontalScrollBarVisibility="Disabled">
+                                      HorizontalScrollBarVisibility="Disabled">
                             <ItemsPresenter />
                         </ScrollViewer>
                     </ControlTemplate>
@@ -92,10 +91,10 @@
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel IsItemsHost="True" Orientation="Horizontal"
-                                               HorizontalAlignment="Left"/>
+                                               HorizontalAlignment="Stretch"/>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
-                <!--<ListView.GroupStyle>
+                <ListView.GroupStyle>
                     <GroupStyle>
                         <GroupStyle.ContainerStyle>
                             <Style TargetType="{x:Type GroupItem}">
@@ -117,7 +116,7 @@
                             </Style>
                         </GroupStyle.ContainerStyle>
                     </GroupStyle>
-                </ListView.GroupStyle>-->
+                </ListView.GroupStyle>
             </ListView>
         </DockPanel>
    

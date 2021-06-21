@@ -7,9 +7,9 @@ namespace Aries.OpenCV.Blocks
     [Category("Contour")]
     public class DrawContours : ProcessingBlock<Mat, Mat>
     {
-        [Category("INPUT")] public Mat[] Contours { set; get; }
+        [Category("DATAIN")] public Mat[] Contours { set; get; }
 
-        [Category("INPUT")] public Scalar Scalar { set; get; }
+        [Category("DATAIN")] public Scalar Scalar { set; get; }
 
         [Category("ARGUMENT")] public int ContourIndex { set; get; } = -1;
 

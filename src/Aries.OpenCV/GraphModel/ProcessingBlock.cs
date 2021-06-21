@@ -10,9 +10,9 @@ namespace Aries.OpenCV.GraphModel
             BlockType = BlockType.Processing;
         }
 
-        [Category("INPUT")] public T1 InPutMat { set; get; }
+        [Category("DATAIN")] public T1 InPutMat { set; get; }
 
-        [Category("OUTPUT")] public T2 OutPutMat { set; get; }
+        [Category("DATAOUT")] public T2 OutPutMat { set; get; }
 
 
 

@@ -63,4 +63,5 @@
 
 
     <Style BasedOn="{StaticResource PropertyGridBaseStyle}" TargetType="cvControl:CvPropertyGrid"/>
+
 </ResourceDictionary>
