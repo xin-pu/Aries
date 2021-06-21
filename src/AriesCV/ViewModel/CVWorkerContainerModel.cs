@@ -32,8 +32,6 @@ namespace AriesCV.ViewModel
             Messenger.Default.Register<string>(this, "RelayoutGraphToken", RelayoutGraph);
         }
 
-
-
         public GraphCVArea GraphCvAreaAtWorkSpace { set; get; }
 
         public ZoomControl ZoomControl

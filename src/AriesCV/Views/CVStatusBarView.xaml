@@ -12,7 +12,9 @@
              DataContext="{Binding CvWorkerContainer,Source={StaticResource Locator}}">
 
     <StatusBarItem HorizontalAlignment="Left">
-
+        <StackPanel>
+          
+        </StackPanel>
 
 
     </StatusBarItem>

@@ -1,8 +1,0 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:propertyGrid="clr-namespace:AriesCV.Controls.PropertyGrid">
-    
-
-    <Style BasedOn="{StaticResource PropertyGridBaseStyle}" TargetType="propertyGrid:PropertyGridCV"/>
-
-
-</ResourceDictionary>

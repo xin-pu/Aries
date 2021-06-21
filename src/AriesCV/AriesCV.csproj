@@ -87,12 +87,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\Basic\PointEditor.cs" />
-    <Compile Include="Controls\Basic\TopTabButton.cs" />
-    <Compile Include="Controls\PropertyGrid\Editors\ColorEditer.cs" />
-    <Compile Include="Controls\PropertyGrid\Editors\PointEditor.cs" />
-    <Compile Include="Controls\PropertyGrid\PropertyGridCV.cs" />
-    <Compile Include="Controls\PropertyGrid\PropertyResolverCV.cs" />
     <Compile Include="Service\DataService.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingCategory.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingConvert.cs" />
@@ -124,18 +118,6 @@
       <DependentUpon>MenuLayout.xaml</DependentUpon>
     </Compile>
     <Page Include="Resource\Graph\CVGraphXTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resource\Style\ButtonStyle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resource\Style\PointEditor.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resource\Style\PropertyGrid.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -245,8 +227,14 @@
   <ItemGroup>
     <Resource Include="Resource\Image\cloud.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Folder Include="Themes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Aries.Control\Aries.Control.csproj">
+      <Project>{958a300f-16d4-4269-96e2-8781bb5ff7eb}</Project>
+      <Name>Aries.Control</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Aries.OpenCV\Aries.OpenCV.csproj">
       <Project>{2e7767e8-c9ee-4a13-9f9c-4e76ddbcc935}</Project>
       <Name>Aries.OpenCV</Name>

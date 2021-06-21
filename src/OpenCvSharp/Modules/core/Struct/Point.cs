@@ -15,12 +15,12 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public int X;
+        public int X { set; get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int Y;
+        public int Y { set; get; }
 
         /// <summary>
         /// 
@@ -49,12 +49,12 @@ namespace OpenCvSharp
 #pragma warning disable 1591
 
         // ReSharper disable once InconsistentNaming
-        public readonly Vec2i ToVec2i() => new(X, Y);
+        public readonly Vec2i ToVec2i() => new Point(X, Y);
 
         public static implicit operator Vec2i(Point point) => point.ToVec2i();
 
         // ReSharper disable once InconsistentNaming
-        public static Point FromVec2i(Vec2i vec) => new(vec.Item0, vec.Item1);
+        public static Point FromVec2i(Vec2i vec) => new Point(vec.Item0, vec.Item1);
 
         public static implicit operator Point(Vec2i vec) => FromVec2i(vec);
 
@@ -109,7 +109,7 @@ namespace OpenCvSharp
         /// Unary minus operator
         /// </summary>
         /// <returns></returns>
-        public readonly Point Negate() => new(-X, -Y);
+        public readonly Point Negate() => new Point(-X, -Y);
 
         /// <summary>
         /// Unary minus operator
@@ -123,7 +123,7 @@ namespace OpenCvSharp
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public readonly Point Add(Point p) => new(X + p.X, Y + p.Y);
+        public readonly Point Add(Point p) => new Point(X + p.X, Y + p.Y);
 
         /// <summary>
         /// Shifts point by a certain offset
@@ -138,7 +138,7 @@ namespace OpenCvSharp
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        public readonly Point Subtract(Point p) => new(X - p.X, Y - p.Y);
+        public readonly Point Subtract(Point p) => new Point(X - p.X, Y - p.Y);
 
         /// <summary>
         /// Shifts point by a certain offset
@@ -153,7 +153,7 @@ namespace OpenCvSharp
         /// </summary>
         /// <param name="scale"></param>
         /// <returns></returns>
-        public readonly Point Multiply(double scale) => new(X * scale, Y * scale);
+        public readonly Point Multiply(double scale) => new Point(X * scale, Y * scale);
 
         /// <summary>
         /// Shifts point by a certain offset

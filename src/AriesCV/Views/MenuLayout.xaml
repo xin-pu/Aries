@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:controls="clr-namespace:AriesCV.Controls"
              xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:basic="clr-namespace:Aries.Control.Basic;assembly=Aries.Control"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="1000"
              Background="{DynamicResource LightPrimaryBrush}"
@@ -96,7 +96,7 @@
     </StatusBar.Resources>
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
-            <controls:TopTabButton Content="Fresh" Icon="&#xef8c;" 
+            <basic:TopTabButton Content="Fresh" Icon="&#xef8c;" 
                                    Command="{Binding RelayoutGraphCommand}"/>
             <StackPanel Orientation="Vertical" Margin="2"
                         VerticalAlignment="Top">

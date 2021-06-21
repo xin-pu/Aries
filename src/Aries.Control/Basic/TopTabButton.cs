@@ -1,9 +1,8 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace AriesCV.Controls
+namespace Aries.Control.Basic
 {
-
     public class TopTabButton : Button
     {
         static TopTabButton()
@@ -14,7 +13,7 @@ namespace AriesCV.Controls
 
         public string Icon
         {
-            get { return (string) GetValue(IconProperty); }
+            get { return (string)GetValue(IconProperty); }
             set { SetValue(IconProperty, value); }
         }
 

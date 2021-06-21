@@ -1,6 +1,13 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:AriesCV.Controls">
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cvControl="clr-namespace:Aries.Control.CvControl"
+    xmlns:controls="clr-namespace:Aries.Control.Basic">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/skindefault.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/theme.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
     <Style TargetType="{x:Type controls:TopTabButton}">
         <Setter Property="Foreground" Value="{DynamicResource PrimaryBrush}"/>
@@ -52,4 +59,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+
+    <Style BasedOn="{StaticResource PropertyGridBaseStyle}" TargetType="cvControl:CvPropertyGrid"/>
 </ResourceDictionary>

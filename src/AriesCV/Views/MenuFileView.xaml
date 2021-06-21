@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:controls="clr-namespace:AriesCV.Controls"
+             xmlns:basic="clr-namespace:Aries.Control.Basic;assembly=Aries.Control"
              mc:Ignorable="d" 
              d:DesignHeight="80" d:DesignWidth="1000"
              Background="{DynamicResource LightPrimaryBrush}"
              DataContext="{Binding MenuFile,Source={StaticResource Locator}}">
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
-            <controls:TopTabButton Content="New" Icon="&#xef47;"
+            <basic:TopTabButton Content="New" Icon="&#xef47;"
                                    Command="{Binding NewGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Open" Icon="&#xef4c;"
+            <basic:TopTabButton Content="Open" Icon="&#xef4c;"
                                    Command="{Binding OpenGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Close" Icon="&#xef4d;"
+            <basic:TopTabButton Content="Close" Icon="&#xef4d;"
                                    Command="{Binding CloseGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Close All" Icon="&#xef4d;" 
+            <basic:TopTabButton Content="Close All" Icon="&#xef4d;" 
                                    Command="{Binding CloseAllGraphCVFileCommand}"/>
 
         </StackPanel>
@@ -24,11 +24,11 @@
     <Separator></Separator>
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
-            <controls:TopTabButton Content="Save" Icon="&#xf0a6;"
+            <basic:TopTabButton Content="Save" Icon="&#xf0a6;"
                                    Command="{Binding SaveGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Save As" Icon="&#xf0a6;"
+            <basic:TopTabButton Content="Save As" Icon="&#xf0a6;"
                                    Command="{Binding SaveAsGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Picture" Icon="&#xed8d;"
+            <basic:TopTabButton Content="Picture" Icon="&#xed8d;"
                                    Command="{Binding SaveAsGraphCVPNGCommand}"/>
         </StackPanel>
 

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
-using AriesCV.Controls.PropertyGrid.Editors;
+using Aries.Control.CvControl.Editor;
 using HandyControl.Controls;
-using Point = OpenCvSharp.Point;
+using OpenCvSharp;
 
-namespace AriesCV.Controls.PropertyGrid
+namespace Aries.Control.CvControl
 {
     public class PropertyResolverCV : PropertyResolver
     {
@@ -26,8 +26,6 @@ namespace AriesCV.Controls.PropertyGrid
             {
                 case CVEditorType.Brush:
                     return new ColorPropertyEditor();
-                case CVEditorType.Point:
-                    return new ReadOnlyTextPropertyEditor();
                 default:
                     return new PlainTextPropertyEditor();
             }

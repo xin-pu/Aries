@@ -13,9 +13,8 @@
         <views:CVMenuSystemView DockPanel.Dock="Top"/>
 
         <views:CVStatusBarView DockPanel.Dock="Bottom">
-
+           
         </views:CVStatusBarView>
-
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

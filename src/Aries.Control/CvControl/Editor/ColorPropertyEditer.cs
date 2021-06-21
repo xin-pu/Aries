@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using HandyControl.Controls;
 
-namespace AriesCV.Controls.PropertyGrid.Editors
+namespace Aries.Control.CvControl.Editor
 {
     public class ColorPropertyEditor : PropertyEditorBase
     {
@@ -11,5 +11,6 @@ namespace AriesCV.Controls.PropertyGrid.Editors
         }
 
         public override DependencyProperty GetDependencyProperty() => ColorPicker.SelectedBrushProperty;
+
     }
 }
