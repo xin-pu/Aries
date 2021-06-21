@@ -18,22 +18,22 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public double Val0;
+        public double Val0 { set; get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public double Val1;
+        public double Val1 { set; get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public double Val2;
+        public double Val2 { set; get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public double Val3;
+        public double Val3 { set; get; }
 
         /// <summary>
         /// 

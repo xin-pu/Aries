@@ -1,0 +1,122 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:hc="https://handyorg.github.io/handycontrol"
+                    xmlns:controls="clr-namespace:AriesCV.Controls">
+
+    <Style BasedOn="{StaticResource PropertyGridBaseStyle}" TargetType="controls:CvPropertyGrid"/>
+
+    <Style TargetType="controls:CvPointEditor">
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextIconBrush}"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="3"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:CvPointEditor">
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" CornerRadius="5">
+                        <Grid Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <hc:NumericUpDown Grid.Row="0"
+                                              Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=X}"
+                                              VerticalAlignment="Center" Margin="4,0"
+                                              Style="{DynamicResource NumericUpDownPlus}"
+                                              hc:InfoElement.Title="X:"
+                                              hc:InfoElement.TitlePlacement="Left"/>
+                            <hc:NumericUpDown Grid.Row="1"
+                                              Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Y}"
+                                              VerticalAlignment="Center" Margin="4,0"
+                                              Style="{DynamicResource NumericUpDownExtend}"
+                                              hc:InfoElement.Title="Y:"
+                                              hc:InfoElement.TitlePlacement="Left"/>
+                        </Grid>
+                    </Border>
+                  
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style TargetType="controls:CvScalarEditor">
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextIconBrush}"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="3"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:CvScalarEditor">
+                    <Border BorderThickness="1" 
+                            Background="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Brush}"
+                            CornerRadius="5">
+                        <Grid Margin="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Label Content="Val0(G)" Style="{DynamicResource LabelInfo}"
+                                   Grid.Column="0" Grid.Row="0"/>
+                            <Label Content="Val1(B)" Style="{DynamicResource LabelSuccess}"
+                                   Grid.Column="0" Grid.Row="1"/>
+                            <Label Content="Val2(R)" Style="{DynamicResource LabelDanger}"
+                                   Grid.Column="0" Grid.Row="2"/>
+                            <Label Content="Val3(A)" Style="{DynamicResource LabelWarning}"
+                                   Grid.Column="0" Grid.Row="3"/>
+
+                            <Slider  Grid.Column="1" Grid.Row="0"
+                                      Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val0}"
+                                      ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val0}"
+                                      VerticalAlignment="Center" Margin="4"
+                                      hc:InfoElement.Title="Val0:"
+                                      hc:InfoElement.TitlePlacement="Top"
+                                      Minimum="0"
+                                      Maximum="255"
+                                      Interval="1"
+                                      IsSnapToTickEnabled="True"/>
+                            <Slider  Grid.Column="1" Grid.Row="1"
+                                      Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val1}"
+                                      ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val1}"
+                                      VerticalAlignment="Center" Margin="4"
+                                      hc:InfoElement.Title="Val1:"
+                                      hc:InfoElement.TitlePlacement="Top"
+                                      Minimum="0"
+                                      Maximum="255"
+                                      Interval="1"
+                                      IsSnapToTickEnabled="True"/>
+                            <Slider Grid.Column="1" Grid.Row="2"
+                                      Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val2}"
+                                      ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val2}"
+                                      VerticalAlignment="Center" Margin="4"
+                                      hc:InfoElement.Title="Val2:"
+                                      hc:InfoElement.TitlePlacement="Top"
+                                      Minimum="0"
+                                      Maximum="255"
+                                      Interval="1"
+                                      IsSnapToTickEnabled="True"/>
+                            <Slider Grid.Column="1" Grid.Row="3"
+                                      Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val3}"
+                                      ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Val3}"
+                                      VerticalAlignment="Center" Margin="4"
+                                      hc:InfoElement.Title="Val3:"
+                                      hc:InfoElement.TitlePlacement="Top"
+                                      Minimum="0"
+                                      Maximum="255"
+                                      Interval="1"
+                                      IsSnapToTickEnabled="True"/>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

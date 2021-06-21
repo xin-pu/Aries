@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
-using Aries.Control.CvControl.Editor;
 using HandyControl.Controls;
 using OpenCvSharp;
 
-namespace Aries.Control.CvControl
+namespace AriesCV.Controls
 {
-    public class PropertyResolverCV : PropertyResolver
+    public class CVPropertyResolver : PropertyResolver
     {
 
         public override PropertyEditorBase CreateDefaultEditor(Type type)
@@ -26,6 +25,10 @@ namespace Aries.Control.CvControl
             {
                 case CVEditorType.Brush:
                     return new ColorPropertyEditor();
+                case CVEditorType.Point:
+                    return new PointPropertyEditor();
+                case CVEditorType.Scalar:
+                    return new ScalarPropertyEditor();
                 default:
                     return new PlainTextPropertyEditor();
             }
@@ -36,13 +39,15 @@ namespace Aries.Control.CvControl
             new Dictionary<Type, CVEditorType>
             {
                 [typeof(Brush)] = CVEditorType.Brush,
-                [typeof(Point)] = CVEditorType.Point
+                [typeof(Point)] = CVEditorType.Point,
+                [typeof(Scalar)] = CVEditorType.Scalar
             };
 
         public enum CVEditorType
         {
             Brush,
-            Point
+            Point,
+            Scalar
         }
 
     }

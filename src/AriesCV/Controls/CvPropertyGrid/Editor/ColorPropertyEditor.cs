@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using HandyControl.Controls;
 
-namespace Aries.Control.CvControl.Editor
+namespace AriesCV.Controls
 {
     public class ColorPropertyEditor : PropertyEditorBase
     {

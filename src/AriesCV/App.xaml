@@ -24,9 +24,12 @@
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
 
-
-                <ResourceDictionary Source="Resource/Style/TextBlockStyle.xaml"/>
                 <ResourceDictionary Source="Resource/BrushResource.xaml"/>
+                <ResourceDictionary Source="Resource/Style/TextBlockStyle.xaml"/>
+                <ResourceDictionary Source="Resource/Style/CVPropertyGrid.xaml"/>
+                <ResourceDictionary Source="Resource/Style/ButtonStyle.xaml"/>
+              
+            
 
 
             </ResourceDictionary.MergedDictionaries>

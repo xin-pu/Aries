@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace Aries.Control.Basic
+namespace AriesCV.Controls
 {
     public class TopTabButton : Button
     {

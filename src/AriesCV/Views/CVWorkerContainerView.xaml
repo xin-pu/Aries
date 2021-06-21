@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:AriesCV.Views"
              xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:controls="clr-namespace:AriesCV.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="766" d:DesignWidth="1360"
              DataContext="{Binding CvWorkerContainer,Source={StaticResource Locator}}">
@@ -80,6 +81,12 @@
                                 FontSize="15"
                                 FontWeight="DemiBold">
                         <TabItem Header="&#xf06c;"
+                                 ToolTip="UI Test">
+                            <StackPanel DataContext="{Binding TestModel}" Width="350">
+                                <controls:CvPointEditor Point="{Binding Point}" />
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="&#xf06c;"
                                  ToolTip="CV Tool Kit">
                             <views:CVToolKitView 
                                 Background="Transparent"
@@ -91,6 +98,7 @@
                                 Background="Transparent"
                                 Visibility="{Binding ElementName=TabItemShow,Path=IsChecked,Converter={StaticResource Boolean2VisibilityConverter}}"/>
                         </TabItem>
+                        
                     </TabControl>
                 </DockPanel>
             </Border>
