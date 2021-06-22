@@ -7,7 +7,7 @@ using OpenCvSharp;
 
 namespace AriesCV.Controls
 {
-    public class CVPropertyResolver : PropertyResolver
+    public partial class CVPropertyResolver : PropertyResolver
     {
 
         public override PropertyEditorBase CreateDefaultEditor(Type type)
@@ -46,18 +46,9 @@ namespace AriesCV.Controls
                 [typeof(Brush)] = CVEditorType.Brush,
                 [typeof(Point)] = CVEditorType.Point,
                 [typeof(Size)] = CVEditorType.Size,
+                [typeof(Rect)] = CVEditorType.Rect,
                 [typeof(Scalar)] = CVEditorType.Scalar,
                 [typeof(RelayCommand)] = CVEditorType.Command
             };
-
-        public enum CVEditorType
-        {
-            Brush,
-            Point,
-            Size,
-            Scalar,
-            Command
-        }
-
     }
 }

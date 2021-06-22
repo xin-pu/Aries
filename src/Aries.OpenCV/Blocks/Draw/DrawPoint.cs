@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Aries.OpenCV.GraphModel;
 
 namespace Aries.OpenCV.Blocks
 {
-    public class DrawPoint
+    public class DrawPoint: MatProcess
     {
+        public override bool CanExecute()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void Execute()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

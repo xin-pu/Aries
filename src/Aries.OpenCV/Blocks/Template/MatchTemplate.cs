@@ -6,7 +6,7 @@ namespace Aries.OpenCV.Blocks.Template
 {
 
     [Category("Template")]
-    public class MatchTemplate : MatProcessingBlock
+    public class MatchTemplate : MatProcess
     {
         [Category("DATAIN")] public Mat Template { set; get; }
 

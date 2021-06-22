@@ -6,31 +6,31 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks.Fetch
 {
     [Category("Fetch")]
-    public class FetchPoints : ProcessingBlock<Mat, Point[]>
+    public class FetchPoints : MatExport<Point[]>
     {
 
         [Category("ARGUMENT")] public double Threshold { set; get; } = 0;
 
         public override void Reload()
         {
-            InPutMat = null;
-            OutPutMat = null;
+            MatIn = null;
+            Result = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
             var points = new List<Point>();
-            for (int i = 0; i < InPutMat.Height; i++)
+            for (int i = 0; i < MatIn.Height; i++)
             {
-                for (int j = 0; j < InPutMat.Width; j++)
+                for (int j = 0; j < MatIn.Width; j++)
                 {
-                    if (InPutMat.Get<byte>(i, j) > Threshold)
+                    if (MatIn.Get<byte>(i, j) > Threshold)
                     {
                         points.Add(new Point(i, j));
                     }
@@ -38,7 +38,7 @@ namespace Aries.OpenCV.Blocks.Fetch
                 }
             }
 
-            OutPutMat = points.ToArray();
+            Result = points.ToArray();
         }
     }
 }

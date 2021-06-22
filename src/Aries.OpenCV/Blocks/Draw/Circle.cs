@@ -6,12 +6,12 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class Circle : MatProcessingBlock
+    public class Circle : MatProcess
     {
 
         [Category("DATAIN")] public CircleSegment[] Circles { set; get; }
 
-        [Category("ARGUMENT")] public double Color { set; get; } = 255;
+        [Category("ARGUMENT")] public Scalar Color { set; get; } = 255;
 
         [Category("ARGUMENT")] public int Thickness { set; get; } = 1;
 
@@ -27,19 +27,19 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return MatIn != null && 
+            return MatIn != null &&
                    Circles != null &&
                    Circles.Length > 0;
         }
 
         public override void Execute()
         {
-            MatOut=new Mat();
+            MatOut = new Mat();
             MatIn.CopyTo(MatOut);
             Circles.ForEach(circle =>
             {
                 Cv2.Circle(MatOut, (int) circle.Center.X, (int) circle.Center.Y, (int) circle.Radius,
-                    new Scalar(Color), Thickness, LineType, Shift);
+                    Color, Thickness, LineType, Shift);
             });
 
         }

@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Blur")]
-    public class Filter2D : MatProcessingBlock
+    public class Filter2D : MatProcess
     {
         [Category("DATAIN")] public InputArray Element { set; get; }
 

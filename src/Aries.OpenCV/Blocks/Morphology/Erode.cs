@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Morphology")]
-    public class Erode : MatProcessingBlock
+    public class Erode : MatProcess
     {
 
         [Category("DATAIN")] public InputArray Element { set; get; }

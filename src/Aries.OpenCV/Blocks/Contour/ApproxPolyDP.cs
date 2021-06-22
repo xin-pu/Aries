@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Contour")]
-    public class ApproxPolyDP : MatProcessingBlock
+    public class ApproxPolyDP : MatProcess
     {
 
         [Category("ARGUMENT")] public double Epsilon { set; get; }

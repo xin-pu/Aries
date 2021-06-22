@@ -6,17 +6,19 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class PutText : MatProcessingBlock
+    public class PutText : MatProcess
     {
         [Category("DATAIN")] public TextSegment[] Texts { set; get; }
-        [Category("ARGUMENT")] public double Color { set; get; } = 255;
+
+        [Category("ARGUMENT")] public Scalar Color { set; get; } = 255;
 
         [Category("ARGUMENT")] public int Thickness { set; get; } = 1;
 
         [Category("ARGUMENT")] public LineTypes LineType { set; get; } = LineTypes.Link8;
 
         [Category("ARGUMENT")] public HersheyFonts HersheyFont { set; get; } = HersheyFonts.HersheySimplex;
-        [Category("ARGUMENT")] public double FontScale { set; get; } = 11;
+       
+        [Category("ARGUMENT")] public double FontScale { set; get; } = 1;
 
         [Category("ARGUMENT")] public bool BottomLeftOrign { set; get; } = false;
 
@@ -31,7 +33,7 @@ namespace Aries.OpenCV.Blocks
             MatIn.CopyTo(MatOut);
             Texts.ToList().ForEach(text =>
             {
-                Cv2.PutText(MatOut, text.Text, text.Point, HersheyFont, FontScale, new Scalar(Color), Thickness,
+                Cv2.PutText(MatOut, text.Text, text.Point, HersheyFont, FontScale, Color, Thickness,
                     LineType, BottomLeftOrign);
             });
         }

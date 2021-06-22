@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
 
-    public class Integral : MatProcessingBlock
+    public class Integral : MatProcess
     {
 
         [Category("ARGUMENT")]

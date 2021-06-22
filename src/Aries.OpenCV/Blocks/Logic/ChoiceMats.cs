@@ -5,24 +5,29 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Logic")]
-    public class CombineToRects : ProcessingBlock<Rect, Rect[]>
+    public class ChoiceMats : ProcessBlock<Mat[], Mat>
     {
+
+        [Category("Enter")] public uint Index { set; get; } = 0;
 
         public override void Reload()
         {
-            InPutMat = new Rect(0, 0, 0, 0);
-            OutPutMat = null;
+            TIn = null;
+            TOut = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != new Rect(0, 0, 0, 0);
+            return TIn != null && TIn.Length > 0;
         }
 
         public override void Execute()
         {
-            OutPutMat = new[] { InPutMat };
+            TOut = new Mat();
+            TOut = TIn[Index].Clone();
         }
+
     }
+
 }

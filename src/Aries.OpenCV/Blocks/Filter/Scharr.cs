@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Filter")]
-    public class Scharr : MatProcessingBlock
+    public class Scharr : MatProcess
     {
         [Category("ARGUMENT")] public MatType MatType { set; get; }
 

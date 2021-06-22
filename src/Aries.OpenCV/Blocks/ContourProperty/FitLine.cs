@@ -1,11 +1,12 @@
 ﻿using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Contour")]
-    public class FitLine : MatProcessingBlock
+    [Category("ContourProperty")]
+    public class FitLine : ContoursExport<Mat[]>
     {
 
         /// <summary>
@@ -32,13 +33,19 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return MatIn != null;
+            return CosIn != null;
         }
 
         public override void Execute()
         {
-            MatOut = new Mat();
-            Cv2.FitLine(MatIn, MatOut, DistType, Param, Reps, Aeps);
+
+            Result = CosIn.Select(a =>
+            {
+                Mat res = new Mat();
+                Cv2.FitLine(a, res, DistType, Param, Reps, Aeps);
+                return res;
+            }).ToArray();
+
         }
 
 

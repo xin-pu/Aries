@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Contour")]
-    public class DrawContours : ProcessingBlock<Mat, Mat>
+    public class DrawContours : MatProcess
     {
         [Category("DATAIN")] public Mat[] Contours { set; get; }
 
@@ -19,22 +19,22 @@ namespace Aries.OpenCV.Blocks
 
         public override void Reload()
         {
-            InPutMat = null;
-            OutPutMat = null;
+            MatIn = null;
+            MatOut = null;
             Contours = null;
-            Status = BlockStatus.ToRun;
+            base.Reload();
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null && Contours != null && Contours.Length > 0;
+            return MatIn != null && Contours != null && Contours.Length > 0;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.CopyTo(InPutMat, OutPutMat);
-            Cv2.DrawContours(OutPutMat, Contours, ContourIndex, Scalar, Thickness, LineType);
+            MatOut = new Mat();
+            Cv2.CopyTo(MatIn, MatOut);
+            Cv2.DrawContours(MatOut, Contours, ContourIndex, Scalar, Thickness, LineType);
         }
     }
 }

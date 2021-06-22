@@ -6,12 +6,12 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class Rectangle : MatProcessingBlock
+    public class Rectangle : MatProcess
     {
 
         [Category("DATAIN")] public Rect[] Rects { set; get; }
 
-        [Category("ARGUMENT")] public double Color { set; get; } = 255;
+        [Category("ARGUMENT")] public Scalar Color { set; get; } = 255;
 
         [Category("ARGUMENT")] public int Thickness { set; get; } = 1;
 
@@ -29,10 +29,7 @@ namespace Aries.OpenCV.Blocks
         {
             MatOut = new Mat();
             MatIn.CopyTo(MatOut);
-            Rects.ForEach(rect =>
-            {
-                Cv2.Rectangle(MatOut, rect, new Scalar(Color), Thickness, LineType, Shift);
-            });
+            Rects.ForEach(rect => { Cv2.Rectangle(MatOut, rect, Color, Thickness, LineType, Shift); });
         }
     }
 }

@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Transform")]
-    public class PyrUp : MatProcessingBlock
+    public class PyrUp : MatProcess
     {
 
         [Category("DATAIN")] public Size Size { set; get; }

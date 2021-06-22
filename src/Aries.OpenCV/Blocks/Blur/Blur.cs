@@ -6,7 +6,7 @@ namespace Aries.OpenCV.Blocks
 {
 
     [Category("Blur")]
-    public class Blur : MatProcessingBlock
+    public class Blur : MatProcess
     {
         [Category("ARGUMENT")] public Size KSize { set; get; } = new Size(3, 3);
 

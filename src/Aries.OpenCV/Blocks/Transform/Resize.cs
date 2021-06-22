@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Transform")]
-    public class Resize : MatProcessingBlock
+    public class Resize : MatProcess
     {
 
         [Category("DATAIN")] public Size Size { set; get; }

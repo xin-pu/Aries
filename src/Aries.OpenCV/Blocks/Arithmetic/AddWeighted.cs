@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Arithmetic")]
-    public class AddWeighted : ArithmeticBasic
+    public class AddWeighted : MatArithmetic
     {
 
         [Category("ARGUMENT")] public double Alpha { set; get; } = 0.5;

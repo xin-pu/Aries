@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Morphology")]
-    public class MorphologyEx : MatProcessingBlock
+    public class MorphologyEx : MatProcess
     {
         [Category("DATAIN")] public InputArray Element { set; get; }
 

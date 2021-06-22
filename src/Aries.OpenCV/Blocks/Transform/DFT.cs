@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Transform")]
-    public class DFT : MatProcessingBlock
+    public class DFT : MatProcess
     {
 
         /// <summary>

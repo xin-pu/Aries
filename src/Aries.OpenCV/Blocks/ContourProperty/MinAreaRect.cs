@@ -8,8 +8,8 @@ namespace Aries.OpenCV.Blocks
     /// <summary>
     /// Output is Contour
     /// </summary>
-    [Category("Contour")]
-    public class MinAreaRect : MatProcessingBlock
+    [Category("ContourProperty")]
+    public class MinAreaRect : MatProcess
     {
 
         public override bool CanExecute()

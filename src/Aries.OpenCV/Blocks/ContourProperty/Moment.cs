@@ -1,23 +1,24 @@
 ﻿using System.ComponentModel;
+using System.Linq;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Contour")]
-    public class Moment : ExportBlock<Moments>
+    [Category("ContourProperty")]
+    public class Moment : ContoursExport<Moments[]>
     {
         [Category("ARGUMENT")] public bool BinaryImage { set; get; } = false;
 
         public override bool CanExecute()
         {
-            return MatIn != null;
+            return CosIn != null;
         }
 
         public override void Execute()
         {
-            Result = new Moments();
-            Result = Cv2.Moments(MatIn, BinaryImage);
+            Result = new Moments[0];
+            Result = CosIn.Select(c => Cv2.Moments(c, BinaryImage)).ToArray();
         }
     }
 }

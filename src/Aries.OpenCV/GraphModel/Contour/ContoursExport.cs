@@ -4,17 +4,18 @@ using OpenCvSharp;
 namespace Aries.OpenCV.GraphModel
 {
 
-    public abstract class ExportBlock<T> : BlockVertex
-    {
-   
 
-        [Category("DATAIN")] public Mat MatIn { set; get; }
+    public abstract class ContoursExport<T> : BlockVertex
+    {
+        [Category("DATAIN")] public Mat[] CosIn { set; get; }
 
         [Category("DATAOUT")] public T Result { set; get; }
 
+
         public override void Reload()
         {
-            MatIn = null;
+            CosIn = null;
+            Result = default;
             Status = BlockStatus.ToRun;
         }
 

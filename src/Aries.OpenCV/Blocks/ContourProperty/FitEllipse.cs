@@ -1,32 +1,28 @@
 ﻿using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Aries.OpenCV.Blocks
 {
-
-
-    [Category("Contour")]
-    public class MinEnclosingCircle : ProcessingBlock<Mat, CircleSegment>
+    [Category("ContourProperty")]
+    public class FitEllipse : ContoursExport<RotatedRect[]>
     {
+
         public override void Reload()
         {
-            InPutMat = null;
+            CosIn = null;
             Status = BlockStatus.ToRun;
         }
 
-
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return CosIn != null;
         }
 
         public override void Execute()
         {
-            Point2f point;
-            float radius;
-            Cv2.MinEnclosingCircle(InPutMat, out point, out radius);
-            OutPutMat = new CircleSegment(point, radius);
+            Result = CosIn.Select(a => Cv2.FitEllipse(a)).ToArray();
         }
 
 

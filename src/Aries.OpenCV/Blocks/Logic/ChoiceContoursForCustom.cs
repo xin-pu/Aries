@@ -5,26 +5,26 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Logic")]
-    public class CombineToMats : ProcessingBlock<Mat, Mat[]>
+    public abstract class ChoiceContoursForCustom : ContoursProcess
     {
-
-        public Mat InPutMat2 { set; get; }
+        public abstract Mat[] Filter();
 
         public override void Reload()
         {
-            InPutMat = null;
-            OutPutMat = null;
+            ConsIn = null;
+            ConsOut = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return ConsIn != null && ConsIn.Length > 0;
         }
 
         public override void Execute()
-        {   
-            OutPutMat = new[] {InPutMat};
+        {
+            ConsOut = new Mat[0];
+            ConsOut = Filter();
         }
     }
 }

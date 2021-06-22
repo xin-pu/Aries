@@ -7,10 +7,10 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Initial")]
+    [Category("Virtual")]
     public class CreateTexts : ImportBlock<TextSegment[]>
     {
-        [Category("ARGUMENT")] public string List_Texts { set; get; }
+        [Category("ARGUMENT")] public string List_Texts { set; get; } = "Hello,0,0;Hi,0,0";
 
         private List<string[]> textArray { set; get; }
 

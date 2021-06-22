@@ -6,7 +6,7 @@ namespace Aries.OpenCV.Blocks
 {
 
     [Category("Transform")]
-    public class Transmit : MatProcessingBlock
+    public class Transmit : MatProcess
     {
 
         public override bool CanExecute()

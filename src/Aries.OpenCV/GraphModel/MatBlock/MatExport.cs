@@ -3,17 +3,17 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class MatProcessingBlock : ProcessingBlock<Mat, Mat>
+
+    public abstract class MatExport<T> : BlockVertex
     {
+        
         [Category("DATAIN")] public Mat MatIn { set; get; }
 
-        [Category("DATAOUT")] public Mat MatOut { set; get; }
-
+        [Category("DATAOUT")] public T Result { set; get; }
 
         public override void Reload()
         {
             MatIn = null;
-            MatOut = null;
             Status = BlockStatus.ToRun;
         }
 

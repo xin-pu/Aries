@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Filter")]
-    public class Canny : MatProcessingBlock
+    public class Canny : MatProcess
     {
         [Category("ARGUMENT")] public double ThresholdLow { set; get; } = 1;
 

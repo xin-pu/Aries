@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Contour")]
-    public class HoughLine : ExportBlock<LineSegmentPolar[]>
+    public class HoughLine : MatExport<LineSegmentPolar[]>
     {
 
         /// <summary>

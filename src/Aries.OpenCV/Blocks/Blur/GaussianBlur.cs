@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Blur")]
-    public class GaussianBlur : MatProcessingBlock
+    public class GaussianBlur : MatProcess
     {
 
         /// <summary>

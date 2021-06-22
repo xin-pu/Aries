@@ -7,7 +7,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Initial")]
+    [Category("Virtual")]
     public class CreateCircles : ImportBlock<CircleSegment[]>
     {
 

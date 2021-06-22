@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Contour")]
-    public class FindContours : ProcessingBlock<Mat, Mat[]>
+    public class FindContours : MatExport<Mat[]>
     {
 
         [Category("DATAOUT")] public Mat Hierarchy { set; get; }
@@ -19,28 +19,29 @@ namespace Aries.OpenCV.Blocks
         /// CHAIN_APPROX_TC89_KCOS - apply one of the flavors of Teh-Chin chain approximation algorithm. 
         /// </summary>
         [Category("ARGUMENT")]
-        public ContourApproximationModes ContourApproximationMode { set; get; } = ContourApproximationModes.ApproxSimple;
+        public ContourApproximationModes ContourApproximationMode { set; get; } =
+            ContourApproximationModes.ApproxSimple;
 
         [Category("ARGUMENT")] public Point Offset { set; get; }
 
         public override void Reload()
         {
-            InPutMat = null;
-            OutPutMat = null;
+            MatIn = null;
+            Result = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
             Hierarchy = new Mat();
             Mat[] outMats;
-            Cv2.FindContours(InPutMat, out outMats, Hierarchy, RetrievalMode, ContourApproximationMode, Offset);
-            OutPutMat = outMats;
+            Cv2.FindContours(MatIn, out outMats, Hierarchy, RetrievalMode, ContourApproximationMode, Offset);
+            Result = outMats;
         }
     }
 }

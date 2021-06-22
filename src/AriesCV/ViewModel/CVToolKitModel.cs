@@ -80,7 +80,8 @@ namespace AriesCV.ViewModel
             {
                 CVToolKitData.ToList().ForEach(item =>
                 {
-                    item.IsVisiable = item.Name.ToUpper().Contains(SearchKey.ToUpper());
+                    item.IsVisiable = item.Name.ToUpper().Contains(SearchKey.ToUpper()) ||
+                                      item.Category.ToUpper().Contains(SearchKey.ToUpper());
                 });
             }
         }

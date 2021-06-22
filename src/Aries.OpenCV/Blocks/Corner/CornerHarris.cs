@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Corner")]
-    public class CornerHarris : MatProcessingBlock
+    public class CornerHarris : MatProcess
     {
 
         [Category("ARGUMENT")] public int BlockSize { set; get; } = 2;

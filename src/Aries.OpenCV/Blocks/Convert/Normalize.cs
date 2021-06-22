@@ -6,7 +6,7 @@ namespace Aries.OpenCV.Blocks
 {
 
     [Category("Convert")]
-    public class Normalize : MatProcessingBlock
+    public class Normalize : MatProcess
     {
         [Category("DATAIN")] public Mat Mask { set; get; }
 

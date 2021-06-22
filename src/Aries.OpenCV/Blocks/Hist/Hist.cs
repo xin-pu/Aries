@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Hist")]
-    public class Hist : MatProcessingBlock
+    public class Hist : MatProcess
     {
    
 

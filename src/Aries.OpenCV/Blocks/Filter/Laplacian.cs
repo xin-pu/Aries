@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Filter")]
-    public class Laplacian : MatProcessingBlock
+    public class Laplacian : MatProcess
     {
         [Category("ARGUMENT")] public MatType MatType { set; get; }
 

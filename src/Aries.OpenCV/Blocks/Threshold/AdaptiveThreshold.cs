@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Threshold")]
-    public class AdaptiveThreshold : MatProcessingBlock
+    public class AdaptiveThreshold : MatProcess
     {
 
         [Category("ARGUMENT")] public double MaxValue { set; get; } = 255;

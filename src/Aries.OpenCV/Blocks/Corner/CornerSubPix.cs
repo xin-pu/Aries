@@ -4,7 +4,8 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
 {
-    public class CornerSubPix : ProcessingBlock<Mat, Point2f[]>
+    [Category("Corner")]
+    public class CornerSubPix : MatExport<Point2f[]>
     {
         [Category("DATAIN")] public Point2f[] Corners { set; get; }
 
@@ -23,12 +24,12 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = Cv2.CornerSubPix(InPutMat, Corners, WinSize, ZeroZone, TermCriteria);
+            Result = Cv2.CornerSubPix(MatIn, Corners, WinSize, ZeroZone, TermCriteria);
         }
     }
 }

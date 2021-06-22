@@ -87,14 +87,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Basic\CvRectEditor.cs" />
     <Compile Include="Controls\Basic\CvScalarEditor.cs" />
     <Compile Include="Controls\Basic\CvSizeEditor.cs" />
     <Compile Include="Controls\Basic\TopTabButton.cs" />
     <Compile Include="Controls\Basic\CvPointEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\CvPropertyGrid.cs" />
     <Compile Include="Controls\CvPropertyGrid\CvPropertyResolver.cs" />
+    <Compile Include="Controls\CvPropertyGrid\CVEditorType.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ColorPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\CommandPropertyEditor.cs" />
+    <Compile Include="Controls\CvPropertyGrid\Editor\RectPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\SizePropertyEditor .cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\PointPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ScalarPropertyEditor.cs" />

@@ -101,11 +101,11 @@
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
                                             <hc:SimpleStackPanel DataContext="{Binding}">
                                                 <hc:Divider Content="{Binding Name}" 
-                                                                        Margin="0,2"
-                                                                        LineStroke="{DynamicResource PrimaryBrush}"
-                                                                        LineStrokeThickness="2"
-                                                                        FontSize="15"
-                                                                        FontWeight="DemiBold"/>
+                                                            Margin="0,2"
+                                                            LineStroke="{DynamicResource PrimaryBrush}"
+                                                            LineStrokeThickness="2"
+                                                            FontSize="15"
+                                                            FontWeight="DemiBold"/>
                                                 <ItemsPresenter/>
                                             </hc:SimpleStackPanel>
                                         </ControlTemplate>

@@ -1,30 +1,38 @@
 ﻿using OpenCvSharp;
 using Aries.OpenCV.GraphModel;
 using System.ComponentModel;
+using System.Linq;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Contour")]
-    public class ContourConvexHull : MatProcessingBlock
+    [Category("ContourProperty")]
+    public class ContourConvexHull : ContoursProcess
     {
 
         [Category("ARGUMENT")] public bool Clockwise { set; get; } = false;
-        
+
         /// <summary>
         /// Return Point or Return Contour Index of Point
         /// </summary>
-        [Category("ARGUMENT")] 
+        [Category("ARGUMENT")]
         public bool ReturnPoints { set; get; } = true;
+
 
         public override bool CanExecute()
         {
-            return MatIn != null;
+            return ConsIn != null && ConsIn.Length > 0;
         }
 
         public override void Execute()
         {
-            MatOut = new Mat();
-            Cv2.ConvexHull(MatIn, MatOut, Clockwise, ReturnPoints);
+            ConsOut = new Mat[0];
+            ConsOut = ConsIn.Select(c =>
+            {
+                var a = new Mat();
+                Cv2.ConvexHull(c, a, Clockwise, ReturnPoints);
+                return a;
+            }).ToArray();
+
         }
     }
 }

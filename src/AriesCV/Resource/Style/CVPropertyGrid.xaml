@@ -87,6 +87,61 @@
     </Style>
 
 
+    <Style TargetType="controls:CvRectEditor">
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextIconBrush}"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="3"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:CvRectEditor">
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" CornerRadius="5">
+                        <Grid Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Label Content="Left" Style="{DynamicResource LabelPrimary}"
+                                   Grid.Column="0" Grid.Row="0"/>
+                            <Label Content="Top" Style="{DynamicResource LabelPrimary}"
+                                   Grid.Column="0" Grid.Row="1"/>
+                            <Label Content="Width" Style="{DynamicResource LabelPrimary}"
+                                   Grid.Column="0" Grid.Row="2"/>
+                            <Label Content="Height" Style="{DynamicResource LabelPrimary}"
+                                   Grid.Column="0" Grid.Row="3"/>
+
+
+                            <hc:NumericUpDown Grid.Row="0" Grid.Column="1"
+                                              Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Left}"
+                                              VerticalAlignment="Center" Margin="4,0"
+                                              Style="{DynamicResource NumericUpDownBaseStyle}"/>
+                            <hc:NumericUpDown Grid.Row="1" Grid.Column="1"
+                                              Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Top}"
+                                              VerticalAlignment="Center" Margin="4,0"
+                                              Style="{DynamicResource NumericUpDownBaseStyle}"/>
+                            <hc:NumericUpDown Grid.Row="2" Grid.Column="1"
+                                              Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=RectWidth}"
+                                              VerticalAlignment="Center" Margin="4,0"
+                                              Style="{DynamicResource NumericUpDownBaseStyle}"/>
+                            <hc:NumericUpDown Grid.Row="3" Grid.Column="1"
+                                              Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=RectHeight}"
+                                              VerticalAlignment="Center" Margin="4,0"
+                                              Style="{DynamicResource NumericUpDownBaseStyle}"/>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style TargetType="controls:CvScalarEditor">
         <Setter Property="Height" Value="Auto"/>
         <Setter Property="Foreground" Value="{DynamicResource TextIconBrush}"/>

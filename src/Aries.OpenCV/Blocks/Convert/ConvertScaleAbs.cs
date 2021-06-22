@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Convert")]
-    public class ConvertScaleAbs : MatProcessingBlock
+    public class ConvertScaleAbs : MatProcess
     {
 
         [Category("ARGUMENT")] public double Alpha { set; get; } = 1D;

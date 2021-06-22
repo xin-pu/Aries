@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Size = OpenCvSharp.Size;
 
@@ -18,7 +17,7 @@ namespace AriesCV.Controls
 
 
         public static readonly DependencyProperty SizeProperty = DependencyProperty.Register(
-            "Size", typeof(Size), typeof(CvPointEditor),
+            "Size", typeof(Size), typeof(CvSizeEditor),
             new FrameworkPropertyMetadata(default(Size), OnSizeChanged));
 
         private static void OnSizeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

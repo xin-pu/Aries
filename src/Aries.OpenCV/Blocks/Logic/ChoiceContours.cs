@@ -5,28 +5,26 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Logic")]
-    public class ChoiceFromMats : ProcessingBlock<Mat[], Mat>
+    public class ChoiceContours : ContoursExport<Mat>
     {
-
         [Category("Enter")] public uint Index { set; get; } = 0;
 
         public override void Reload()
         {
-            InPutMat = null;
-            OutPutMat = null;
+            CosIn = null;
+            Result = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null && InPutMat.Length > 0;
+            return CosIn != null && CosIn.Length > 0;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            OutPutMat = InPutMat[Index];
+            Result = new Mat();
+            Result = CosIn[Index].Clone();
         }
     }
-
 }

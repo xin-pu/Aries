@@ -6,12 +6,12 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class Line : MatProcessingBlock
+    public class Line : MatProcess
     {
 
         [Category("DATAIN")] public LineSegmentPoint[] Lines { set; get; }
 
-        [Category("ARGUMENT")] public double Color { set; get; } = 255;
+        [Category("ARGUMENT")] public Scalar Color { set; get; } = 255;
 
         [Category("ARGUMENT")] public int Thickness { set; get; } = 1;
 
@@ -31,7 +31,7 @@ namespace Aries.OpenCV.Blocks
             MatIn.CopyTo(MatOut);
             Lines.ForEach(pointpair =>
             {
-                Cv2.Line(MatOut, pointpair.P1, pointpair.P2, new Scalar(Color), Thickness, LineType, Shift);
+                Cv2.Line(MatOut, pointpair.P1, pointpair.P2, Color, Thickness, LineType, Shift);
             });
         }
     }

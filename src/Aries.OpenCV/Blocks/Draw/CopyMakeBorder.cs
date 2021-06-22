@@ -5,16 +5,16 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Draw")]
-    public class CopyMakeBorder : MatProcessingBlock
+    public class CopyMakeBorder : MatProcess
     {
-        [Category("DATAIN")] public Scalar Scalar { set; get; }
+
 
         [Category("ARGUMENT")] public int Top { set; get; } = 0;
         [Category("ARGUMENT")] public int Bottom { set; get; } = 0;
         [Category("ARGUMENT")] public int Left { set; get; } = 0;
         [Category("ARGUMENT")] public int Right { set; get; } = 0;
         [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
-  
+        [Category("ARGUMENT")] public Scalar Scalar { set; get; }
 
         public override bool CanExecute()
         {

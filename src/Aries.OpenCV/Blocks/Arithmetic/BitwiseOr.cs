@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Arithmetic")]
-    public class BitwiseOr : ArithmeticBasic
+    public class BitwiseOr : MatArithmetic
     {
         public override void Execute()
         {

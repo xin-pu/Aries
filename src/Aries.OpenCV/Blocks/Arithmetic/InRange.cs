@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Arithmetic")]
-    public class InRange : MatProcessingBlock
+    public class InRange : MatProcess
     {
 
         [Category("DATAIN")] public Scalar Lowerb { set; get; }

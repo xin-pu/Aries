@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Arithmetic")]
-    public class Subtract : ArithmeticBasic
+    public class Subtract : MatArithmetic
     {
         public override void Execute()
         {

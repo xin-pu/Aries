@@ -6,7 +6,7 @@ namespace Aries.OpenCV.Blocks.Template
 {
 
     [Category("Template")]
-    public class MatchTemplateWithRect : ProcessingBlock<Mat, Rect>
+    public class MatchTemplateWithRect : MatExport<Rect>
     {
         [Category("DATAIN")] public Mat Template { set; get; }
 
@@ -24,20 +24,20 @@ namespace Aries.OpenCV.Blocks.Template
 
         public override void Reload()
         {
-            InPutMat = null;
+            MatIn = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null &&
+            return MatIn != null &&
                    (!EnableMask || Mask != null);
         }
 
         public override void Execute()
         {
             var outMat = new Mat();
-            Cv2.MatchTemplate(InPutMat, Template, outMat, TemplateMatchMode, Mask);
+            Cv2.MatchTemplate(MatIn, Template, outMat, TemplateMatchMode, Mask);
             Point pointMin, pointMax;
             Cv2.MinMaxLoc(outMat, out pointMin, out pointMax);
 
@@ -48,7 +48,7 @@ namespace Aries.OpenCV.Blocks.Template
                     ? pointMin
                     : pointMax;
 
-            OutPutMat = new Rect(topLeft, shape);
+            Result = new Rect(topLeft, shape);
         }
     }
 }
