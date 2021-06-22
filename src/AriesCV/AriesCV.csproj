@@ -88,11 +88,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\Basic\CvScalarEditor.cs" />
+    <Compile Include="Controls\Basic\CvSizeEditor.cs" />
     <Compile Include="Controls\Basic\TopTabButton.cs" />
     <Compile Include="Controls\Basic\CvPointEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\CvPropertyGrid.cs" />
     <Compile Include="Controls\CvPropertyGrid\CvPropertyResolver.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ColorPropertyEditor.cs" />
+    <Compile Include="Controls\CvPropertyGrid\Editor\CommandPropertyEditor.cs" />
+    <Compile Include="Controls\CvPropertyGrid\Editor\SizePropertyEditor .cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\PointPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ScalarPropertyEditor.cs" />
     <Compile Include="Service\DataService.cs" />
@@ -140,6 +143,10 @@
     <Page Include="Resource\Style\TextBlockStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CVPropertyGridView.xaml">
       <SubType>Designer</SubType>

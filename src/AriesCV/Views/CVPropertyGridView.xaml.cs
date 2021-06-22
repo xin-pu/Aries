@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+﻿
 
 namespace AriesCV.Views
 {
@@ -11,5 +11,6 @@ namespace AriesCV.Views
         {
             InitializeComponent();
         }
+
     }
 }

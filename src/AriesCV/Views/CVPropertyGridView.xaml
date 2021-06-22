@@ -12,5 +12,6 @@
                             Source={StaticResource Locator}}">
     <controls:CvPropertyGrid x:Name="PropertyGrid" 
                               SelectedObject="{Binding}"
-                              FontSize="11"/>
+                              FontSize="11"
+                              MaxWidth="400"/>
 </UserControl>

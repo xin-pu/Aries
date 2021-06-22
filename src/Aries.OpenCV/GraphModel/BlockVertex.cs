@@ -37,6 +37,9 @@ namespace Aries.OpenCV.GraphModel
             get { return _status; }
         }
 
+        [Category("CHOICE")]
+        public virtual bool EnableSaveBlock { get; set; } = true;
+
 
         protected BlockVertex()
         {
@@ -50,6 +53,7 @@ namespace Aries.OpenCV.GraphModel
             Icon = BlockHelper.GetBlockICon(CVCategory);
         }
 
+        [Category("COMMAND")]
         public RelayCommand RunBlockCommand
         {
             get { return new RelayCommand(ExecuteCommand_Execute, ExecuteCommand_CanExecute); }
@@ -89,16 +93,15 @@ namespace Aries.OpenCV.GraphModel
 
         public virtual async Task<bool> CanExecuteAsync()
         {
-            return await Task.Run(() => CanExecute());
+            return await Task.Run(CanExecute);
         }
 
         public virtual async void ExecuteAsync()
         {
-            await Task.Run(() => Execute());
+            await Task.Run(Execute);
         }
 
-        [Category("CHOICE")] 
-        public virtual bool EnableSaveBlock { get; set; } = true;
+
 
         public virtual List<MatRecord> SaveBlock(string workDirectory)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Media;
+using GalaSoft.MvvmLight.Command;
 using HandyControl.Controls;
 using OpenCvSharp;
 
@@ -27,8 +28,12 @@ namespace AriesCV.Controls
                     return new ColorPropertyEditor();
                 case CVEditorType.Point:
                     return new PointPropertyEditor();
+                case CVEditorType.Size:
+                    return new SizePropertyEditor();
                 case CVEditorType.Scalar:
                     return new ScalarPropertyEditor();
+                case CVEditorType.Command:
+                    return new CommandPropertyEditor();
                 default:
                     return new PlainTextPropertyEditor();
             }
@@ -40,14 +45,18 @@ namespace AriesCV.Controls
             {
                 [typeof(Brush)] = CVEditorType.Brush,
                 [typeof(Point)] = CVEditorType.Point,
-                [typeof(Scalar)] = CVEditorType.Scalar
+                [typeof(Size)] = CVEditorType.Size,
+                [typeof(Scalar)] = CVEditorType.Scalar,
+                [typeof(RelayCommand)] = CVEditorType.Command
             };
 
         public enum CVEditorType
         {
             Brush,
             Point,
-            Scalar
+            Size,
+            Scalar,
+            Command
         }
 
     }
