@@ -5,36 +5,36 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Channel")]
-    public class Split : GeneralBlock
+    public class Split : BlockVertex
     {
 
-        [Category("DATAIN")] public Mat InPutMat { set; get; }
+        [Category("DATAIN")] public Mat MatIn { set; get; }
 
-        [Category("DATAOUT")] public Mat RMat { set; get; }
-        [Category("DATAOUT")] public Mat GMat { set; get; }
-        [Category("DATAOUT")] public Mat BMat { set; get; }
+        [Category("DATAOUT")] public Mat MatR { set; get; }
+        [Category("DATAOUT")] public Mat MatG { set; get; }
+        [Category("DATAOUT")] public Mat MatB { set; get; }
 
 
         public override void Reload()
         {
-            InPutMat = null;
-            RMat = null;
-            GMat = null;
-            BMat = null;
+            MatIn = null;
+            MatR = null;
+            MatG = null;
+            MatB = null;
             base.Reload();
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null && InPutMat.Channels() >= 3;
+            return MatIn != null && MatIn.Channels() >= 3;
         }
 
         public override void Execute()
         {
-            var res = InPutMat.Split();
-            BMat = res[0];
-            GMat = res[1];
-            RMat = res[2];
+            var res = MatIn.Split();
+            MatB = res[0];
+            MatG = res[1];
+            MatR = res[2];
         }
     }
 }

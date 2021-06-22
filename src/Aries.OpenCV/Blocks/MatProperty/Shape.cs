@@ -9,12 +9,12 @@ namespace Aries.OpenCV.Blocks
     {
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            ExportResult = InPutMat.Size();
+            Result = MatIn.Size();
         }
 
     }

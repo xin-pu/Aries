@@ -32,13 +32,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.FitLine(InPutMat, OutPutMat, DistType, Param, Reps, Aeps);
+            MatOut = new Mat();
+            Cv2.FitLine(MatIn, MatOut, DistType, Param, Reps, Aeps);
         }
 
 

@@ -7,21 +7,27 @@ namespace Aries.OpenCV.Blocks
     [Category("Morphology")]
     public class MorphologyEx : MatProcessingBlock
     {
-        [Category("DATAIN")]
-        public InputArray Shape { set; get; }
+        [Category("DATAIN")] public InputArray Element { set; get; }
 
-        [Category("ARGUMENT")]
-        public MorphTypes MorphType { set; get; } = MorphTypes.Open;
+        [Category("ARGUMENT")] public Point Anchor { set; get; }
+
+        [Category("ARGUMENT")] public int Iterations { set; get; } = 1;
+
+        [Category("ARGUMENT")] public MorphTypes MorphType { set; get; } = MorphTypes.Open;
+
+        [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Constant;
+
+        [Category("ARGUMENT")] public Scalar BorderValue { set; get; }
 
         public override bool CanExecute()
         {
-            return InPutMat != null && Shape != null;
+            return MatIn != null && Element != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.MorphologyEx(InPutMat, OutPutMat, MorphType, Shape, new Point?(), 1, BorderTypes.Constant, new Scalar?());
+            MatOut = new Mat();
+            Cv2.MorphologyEx(MatIn, MatOut, MorphType, Element, Anchor, Iterations, BorderType, BorderValue);
         }
     }
 }

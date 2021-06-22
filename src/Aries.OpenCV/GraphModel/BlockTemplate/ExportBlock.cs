@@ -8,13 +8,13 @@ namespace Aries.OpenCV.GraphModel
     {
    
 
-        [Category("DATAIN")] public Mat InPutMat { set; get; }
+        [Category("DATAIN")] public Mat MatIn { set; get; }
 
-        [Category("DATAOUT")] public T ExportResult { set; get; }
+        [Category("DATAOUT")] public T Result { set; get; }
 
         public override void Reload()
         {
-            InPutMat = null;
+            MatIn = null;
             Status = BlockStatus.ToRun;
         }
 

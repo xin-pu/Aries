@@ -22,16 +22,16 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null && Rects != null && Rects.Length > 0;
+            return MatIn != null && Rects != null && Rects.Length > 0;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            InPutMat.CopyTo(OutPutMat);
+            MatOut = new Mat();
+            MatIn.CopyTo(MatOut);
             Rects.ForEach(rect =>
             {
-                Cv2.Rectangle(OutPutMat, rect, new Scalar(Color), Thickness, LineType, Shift);
+                Cv2.Rectangle(MatOut, rect, new Scalar(Color), Thickness, LineType, Shift);
             });
         }
     }

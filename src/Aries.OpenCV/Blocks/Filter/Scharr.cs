@@ -25,13 +25,13 @@ namespace Aries.OpenCV.Blocks
         {
             var resCheck = XOrder <= 2 && XOrder >= 0;
             resCheck = resCheck && YOrder <= 2 && YOrder >= 0;
-            return resCheck && InPutMat != null;
+            return resCheck && MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.Scharr(InPutMat, OutPutMat, MatType, XOrder, YOrder, Scale, Delta, BorderType);
+            MatOut = new Mat();
+            Cv2.Scharr(MatIn, MatOut, MatType, XOrder, YOrder, Scale, Delta, BorderType);
         }
     }
 }

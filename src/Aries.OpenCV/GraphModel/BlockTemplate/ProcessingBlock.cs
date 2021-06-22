@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
@@ -10,20 +9,4 @@ namespace Aries.OpenCV.GraphModel
         [Category("DATAOUT")] public T2 OutPutMat { set; get; }
 
     }
-
-    public abstract class MatProcessingBlock : ProcessingBlock<Mat, Mat>
-    {
-
-        public override void Reload()
-        {
-            InPutMat = null;
-            OutPutMat = null;
-            Status = BlockStatus.ToRun;
-        }
-
-    }
-
-
-
-
 }

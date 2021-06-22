@@ -16,14 +16,14 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return KSize % 2 == 1 && InPutMat != null;
+            return KSize % 2 == 1 && MatIn != null;
         }
 
         public override void Execute()
         {
 
-            OutPutMat = new Mat();
-            Cv2.MedianBlur(InPutMat, OutPutMat, KSize);
+            MatOut = new Mat();
+            Cv2.MedianBlur(MatIn, MatOut, KSize);
         }
     }
 }

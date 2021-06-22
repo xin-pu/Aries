@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
@@ -8,8 +9,8 @@ namespace Aries.OpenCV.Blocks
     {
         public override void Execute()
         {
-            Output = new Mat();
-            Cv2.Subtract(InPut1, InPut2, Output, Mask);
+            MatOut = new Mat();
+            Cv2.Subtract(MatIn1, MatIn2, MatOut, Mask);
         }
     }
 }

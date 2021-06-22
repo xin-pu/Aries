@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 
 namespace Aries.OpenCV.GraphModel

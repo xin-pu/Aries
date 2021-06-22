@@ -11,30 +11,23 @@ namespace Aries.OpenCV.Blocks
 
         [Category("ARGUMENT")] public MatType MatType { set; get; } = MatType.CV_32F;
 
-        [Category("ARGUMENT")] public int AnchorPoint_X { set; get; } = -1;
-
-
-        [Category("ARGUMENT")] public int AnchorPoint_Y { set; get; } = -1;
+        [Category("ARGUMENT")] public Point AnchorPoint { set; get; } = new Point(-1, -1);
 
         [Category("ARGUMENT")] public double Delta { set; get; } = 0;
 
-
         [Category("ARGUMENT")] public BorderTypes BorderTypes { set; get; } = BorderTypes.Default;
 
-        /// <summary>
-        /// The anchor point. The default value Point(-1,-1) means that the anchor is at the kernel center
-        /// </summary>
-        private Point AnchorPoint => new Point(AnchorPoint_X, AnchorPoint_Y);
+
 
         public override bool CanExecute()
         {
-            return InPutMat != null && Element != null;
+            return MatIn != null && Element != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.Filter2D(InPutMat, OutPutMat, MatType, Element, AnchorPoint, Delta, BorderTypes);
+            MatOut = new Mat();
+            Cv2.Filter2D(MatIn, MatOut, MatType, Element, AnchorPoint, Delta, BorderTypes);
         }
     }
 }

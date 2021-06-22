@@ -13,13 +13,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.Integral(InPutMat, OutPutMat, Sdepth);
+            MatOut = new Mat();
+            Cv2.Integral(MatIn, MatOut, Sdepth);
         }
     }
 }

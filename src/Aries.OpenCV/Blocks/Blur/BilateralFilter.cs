@@ -22,13 +22,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.BilateralFilter(InPutMat, OutPutMat, D, SigmaColor, SigmaSpace, BorderType);
+            MatOut = new Mat();
+            Cv2.BilateralFilter(MatIn, MatOut, D, SigmaColor, SigmaSpace, BorderType);
         }
     }
 }

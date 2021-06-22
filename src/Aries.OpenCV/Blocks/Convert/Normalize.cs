@@ -23,8 +23,8 @@ namespace Aries.OpenCV.Blocks
 
         public override void Reload()
         {
-            InPutMat = null;
-            OutPutMat = null;
+            MatIn = null;
+            MatOut = null;
             Mask = null;
             base.Reload();
 
@@ -32,14 +32,14 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null &&
+            return MatIn != null &&
                    (!EnableMask || Mask != null);
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.Normalize(InPutMat, OutPutMat, Alpha, Beta, NormType, DType, Mask);
+            MatOut = new Mat();
+            Cv2.Normalize(MatIn, MatOut, Alpha, Beta, NormType, DType, Mask);
         }
     }
 }

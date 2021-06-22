@@ -12,15 +12,21 @@ namespace Aries.OpenCV.Blocks
 
         [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 
+        public override void Reload()
+        {
+            Size = new Size(0, 0);
+            base.Reload();
+        }
+
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null && Size != new Size(0, 0);
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.PyrUp(InPutMat, OutPutMat, Size, BorderType);
+            MatOut = new Mat();
+            Cv2.PyrUp(MatIn, MatOut, Size, BorderType);
         }
     }
 }

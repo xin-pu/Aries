@@ -46,13 +46,13 @@ namespace Aries.OpenCV.Blocks
 
         public override void Reload()
         {
-            ExportResult = null;
+            Result = null;
             base.Reload();
         }
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         /// <summary>
@@ -60,8 +60,8 @@ namespace Aries.OpenCV.Blocks
         /// </summary>
         public override void Execute()
         {
-            ExportResult = new LineSegmentPolar[0];
-            ExportResult = Cv2.HoughLines(InPutMat, Rho, Theta, Threshold, Srn, Stn);
+            Result = new LineSegmentPolar[0];
+            Result = Cv2.HoughLines(MatIn, Rho, Theta, Threshold, Srn, Stn);
         }
     }
 }

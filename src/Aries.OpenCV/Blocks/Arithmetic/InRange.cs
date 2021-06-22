@@ -8,7 +8,6 @@ namespace Aries.OpenCV.Blocks
     public class InRange : MatProcessingBlock
     {
 
-
         [Category("DATAIN")] public Scalar Lowerb { set; get; }
 
         [Category("DATAIN")] public Scalar Upperb { set; get; }
@@ -16,13 +15,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.InRange(InPutMat, Lowerb, Upperb, OutPutMat);
+            MatOut = new Mat();
+            Cv2.InRange(MatIn, Lowerb, Upperb, MatOut);
         }
     }
 }

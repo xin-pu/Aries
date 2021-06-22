@@ -26,13 +26,13 @@ namespace Aries.OpenCV.Blocks
         {
             var resCheck = XOrder <= 2 && XOrder >= 0;
             resCheck = resCheck && YOrder <= 2 && YOrder >= 0;
-            return resCheck && InPutMat != null;
+            return resCheck && MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.Sobel(InPutMat, OutPutMat, MatType, XOrder, YOrder, KSize, Scale, Delta, BorderType);
+            MatOut = new Mat();
+            Cv2.Sobel(MatIn, MatOut, MatType, XOrder, YOrder, KSize, Scale, Delta, BorderType);
         }
     }
 }

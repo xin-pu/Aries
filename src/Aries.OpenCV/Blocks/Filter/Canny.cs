@@ -19,13 +19,13 @@ namespace Aries.OpenCV.Blocks
         public override bool CanExecute()
         {
             var check = ThresholdHigh / ThresholdLow > 1 && ThresholdHigh / ThresholdLow < 5;
-            return check && InPutMat != null;
+            return check && MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.Canny(InPutMat, OutPutMat, ThresholdLow, ThresholdHigh, ApertureSize, L2gradient);
+            MatOut = new Mat();
+            Cv2.Canny(MatIn, MatOut, ThresholdLow, ThresholdHigh, ApertureSize, L2gradient);
         }
     }
 }

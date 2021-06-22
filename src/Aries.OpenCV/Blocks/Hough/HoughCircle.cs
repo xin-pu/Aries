@@ -48,19 +48,19 @@ namespace Aries.OpenCV.Blocks
 
         public override void Reload()
         {
-            ExportResult = null;
+            Result = null;
             base.Reload();
         }
 
         public override bool CanExecute()
         {
-            return DP >= 1 && InPutMat != null;
+            return DP >= 1 && MatIn != null;
         }
 
         public override void Execute()
         {
-            ExportResult = new CircleSegment[0];
-            ExportResult = Cv2.HoughCircles(InPutMat, HoughMode, DP, MinDIst,
+            Result = new CircleSegment[0];
+            Result = Cv2.HoughCircles(MatIn, HoughMode, DP, MinDIst,
                 Param1, Param2, MinRadius, MaxRadius);
         }
     }

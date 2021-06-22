@@ -5,33 +5,33 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Arithmetic")]
-    public class BitwiseNot : GeneralBlock
+    public class BitwiseNot : BlockVertex
     {
-        [Category("DATAIN")] public Mat InPut { set; get; } 
+        [Category("DATAIN")] public Mat MatIn { set; get; }
         [Category("DATAIN")] public Mat Mask { set; get; }
 
-        [Category("DATAOUT")] public Mat Output { set; get; }
+        [Category("DATAOUT")] public Mat MatOut { set; get; }
 
         [Category("CHOICE")] public bool EnableMask { set; get; }
 
         public override void Reload()
         {
-            InPut = null;
+            MatIn = null;
             Mask = null;
-            Output = null;
+            MatOut = null;
             base.Reload();
         }
 
         public override bool CanExecute()
         {
-            return InPut != null &&
+            return MatIn != null &&
                    (!EnableMask || Mask != null);
         }
 
         public override void Execute()
         {
-            Output = new Mat();
-            Cv2.BitwiseNot(InPut, Output, Mask);
+            MatOut = new Mat();
+            Cv2.BitwiseNot(MatIn, MatOut, Mask);
         }
     }
 

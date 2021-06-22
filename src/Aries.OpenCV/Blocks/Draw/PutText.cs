@@ -22,16 +22,16 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null && Texts != null && Texts.Length > 0;
+            return MatIn != null && Texts != null && Texts.Length > 0;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            InPutMat.CopyTo(OutPutMat);
+            MatOut = new Mat();
+            MatIn.CopyTo(MatOut);
             Texts.ToList().ForEach(text =>
             {
-                Cv2.PutText(OutPutMat, text.Text, text.Point, HersheyFont, FontScale, new Scalar(Color), Thickness,
+                Cv2.PutText(MatOut, text.Text, text.Point, HersheyFont, FontScale, new Scalar(Color), Thickness,
                     LineType, BottomLeftOrign);
             });
         }

@@ -11,13 +11,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            ExportResult = new Moments();
-            ExportResult = Cv2.Moments(InPutMat, BinaryImage);
+            Result = new Moments();
+            Result = Cv2.Moments(MatIn, BinaryImage);
         }
     }
 }

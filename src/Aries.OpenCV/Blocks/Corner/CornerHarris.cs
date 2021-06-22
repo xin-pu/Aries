@@ -16,15 +16,15 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
 
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.CornerHarris(InPutMat, OutPutMat, BlockSize, KSize, K, BorderType);
+            MatOut = new Mat();
+            Cv2.CornerHarris(MatIn, MatOut, BlockSize, KSize, K, BorderType);
         }
 
 

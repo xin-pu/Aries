@@ -27,18 +27,18 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null && 
+            return MatIn != null && 
                    Circles != null &&
                    Circles.Length > 0;
         }
 
         public override void Execute()
         {
-            OutPutMat=new Mat();
-            InPutMat.CopyTo(OutPutMat);
+            MatOut=new Mat();
+            MatIn.CopyTo(MatOut);
             Circles.ForEach(circle =>
             {
-                Cv2.Circle(OutPutMat, (int) circle.Center.X, (int) circle.Center.Y, (int) circle.Radius,
+                Cv2.Circle(MatOut, (int) circle.Center.X, (int) circle.Center.Y, (int) circle.Radius,
                     new Scalar(Color), Thickness, LineType, Shift);
             });
 

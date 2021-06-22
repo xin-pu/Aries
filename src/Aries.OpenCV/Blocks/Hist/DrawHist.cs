@@ -21,15 +21,15 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            if (InPutMat == null)
+            if (MatIn == null)
                 return false;
 
-            if (InPutMat.Type().IsInteger)
+            if (MatIn.Type().IsInteger)
                 return false;
 
             /// 归一化
             var outin = new Mat();
-            Cv2.Normalize(InPutMat, outin);
+            Cv2.Normalize(MatIn, outin);
 
             outin.GetRectangularArray(out float[,] data);
             Data = data;
@@ -47,7 +47,7 @@ namespace Aries.OpenCV.Blocks
         public override void Execute()
         {
 
-            OutPutMat = Mat.Zeros(new Size(HistWidth, HistHeight), MatType.CV_8UC3)
+            MatOut = Mat.Zeros(new Size(HistWidth, HistHeight), MatType.CV_8UC3)
                 .Add(new Scalar(255, 255, 255));
 
             var binWidth = Math.Round(HistWidth / Column);
@@ -57,7 +57,7 @@ namespace Aries.OpenCV.Blocks
             for (int i = 1; i < Column; i++)
             {
                 //var color = RandomExt.GetRandomNumber(0, 255);
-                Cv2.Rectangle(OutPutMat,
+                Cv2.Rectangle(MatOut,
                     new Point(binWidth * i, HistHeight),
                     new Point(binWidth * (i - 1) - 1, histHeight[i - 1]),
                     new Scalar(0,0,0),

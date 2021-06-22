@@ -2,7 +2,7 @@
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks.Logic
+namespace Aries.OpenCV.Blocks
 {
     [Category("Logic")]
     public class ChoiceFromMats : ProcessingBlock<Mat[], Mat>

@@ -11,12 +11,12 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            ExportResult = Cv2.ArcLength(InPutMat, Closed);
+            Result = Cv2.ArcLength(MatIn, Closed);
         }
     }
 }

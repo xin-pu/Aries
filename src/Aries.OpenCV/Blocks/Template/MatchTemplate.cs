@@ -24,14 +24,14 @@ namespace Aries.OpenCV.Blocks.Template
 
         public override bool CanExecute()
         {
-            return InPutMat != null &&
+            return MatIn != null &&
                    (!EnableMask || Mask != null);
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.MatchTemplate(InPutMat, Template, OutPutMat, TemplateMatchMode, Mask);
+            MatOut = new Mat();
+            Cv2.MatchTemplate(MatIn, Template, MatOut, TemplateMatchMode, Mask);
         }
     }
 }

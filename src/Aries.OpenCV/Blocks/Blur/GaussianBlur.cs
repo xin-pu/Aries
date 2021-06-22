@@ -7,10 +7,12 @@ namespace Aries.OpenCV.Blocks
     [Category("Blur")]
     public class GaussianBlur : MatProcessingBlock
     {
-        [Category("ARGUMENT")] public int KSize_Width { set; get; } = 3;
 
-
-        [Category("ARGUMENT")] public int KSize_Height { set; get; } = 3;
+        /// <summary>
+        /// Gaussian kernel size. ksize.width and ksize.height can differ but they both must be positive and odd.
+        /// Or, they can be zero’s and then they are computed from sigma* .
+        /// </summary>
+        [Category("ARGUMENT")] public Size KSize { set; get; } = new Size(3, 3);
 
 
         /// <summary>
@@ -28,25 +30,18 @@ namespace Aries.OpenCV.Blocks
         [Category("ARGUMENT")]
         public double SigmaY { set; get; } = 0D;
 
-        /// <summary>
-        /// Gaussian kernel size. ksize.width and ksize.height can differ but they both must be positive and odd.
-        /// Or, they can be zero’s and then they are computed from sigma* .
-        /// </summary>
-        private Size KSize
-        {
-            get { return new Size(KSize_Width, KSize_Height); }
-        }
 
+        
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.GaussianBlur(InPutMat, OutPutMat, KSize, SigmaX, SigmaY);
+            MatOut = new Mat();
+            Cv2.GaussianBlur(MatIn, MatOut, KSize, SigmaX, SigmaY);
         }
     }
 }

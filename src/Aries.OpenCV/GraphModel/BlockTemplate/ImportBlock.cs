@@ -1,15 +1,11 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Aries.OpenCV.GraphModel
 {
     public abstract class ImportBlock<T> : BlockVertex
     {
-        
-        
-        [Category("DATAOUT")] public T OutPut { set; get; }
 
-        public Type OutPutType => typeof(T);
+        [Category("DATAOUT")] public T OutPut { set; get; }
 
         public override void Reload()
         {

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
 namespace Aries.OpenCV.Blocks
@@ -18,8 +19,8 @@ namespace Aries.OpenCV.Blocks
         /// </summary>
         public override void Execute()
         {
-            Output = new Mat();
-            Cv2.AddWeighted(InPut1, Alpha, InPut2, Beta, Gamma, Output);
+            MatOut = new Mat();
+            Cv2.AddWeighted(MatIn1, Alpha, MatIn2, Beta, Gamma, MatOut);
         }
     }
 }

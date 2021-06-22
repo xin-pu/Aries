@@ -6,27 +6,27 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Channel")]
-    public class Merge : GeneralBlock
+    public class Merge : BlockVertex
     {
-        [Category("DATAIN")] public Mat RMat { set; get; }
-        [Category("DATAIN")] public Mat GMat { set; get; }
-        [Category("DATAIN")] public Mat BMat { set; get; }
+        [Category("DATAIN")] public Mat MatR { set; get; }
+        [Category("DATAIN")] public Mat MatG { set; get; }
+        [Category("DATAIN")] public Mat MatB { set; get; }
 
-        [Category("DATAOUT")] public Mat MergeMat { set; get; }
+        [Category("DATAOUT")] public Mat MatOut { set; get; }
 
 
         public override void Reload()
         {
-            MergeMat = null;
-            RMat = null;
-            GMat = null;
-            BMat = null;
+            MatOut = null;
+            MatR = null;
+            MatG = null;
+            MatB = null;
             base.Reload();
         }
 
         public override bool CanExecute()
         {
-            var mats = new[] {RMat, GMat, BMat};
+            var mats = new[] {MatR, MatG, MatB};
             var matsNotNull = mats.Where(a => a != null).ToList();
             if (matsNotNull.Count == 0)
                 return false;
@@ -38,10 +38,10 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            MergeMat = new Mat();
-            var mats = new[] {BMat, GMat, RMat};
+            MatOut = new Mat();
+            var mats = new[] {MatB, MatG, MatR};
             var matsNotNull = mats.Where(a => a != null).ToArray();
-            Cv2.Merge(matsNotNull, MergeMat);
+            Cv2.Merge(matsNotNull, MatOut);
         }
     }
 }

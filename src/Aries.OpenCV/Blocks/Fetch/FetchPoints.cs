@@ -25,14 +25,14 @@ namespace Aries.OpenCV.Blocks.Fetch
 
         public override void Execute()
         {
-            var points=new List<Point>();
+            var points = new List<Point>();
             for (int i = 0; i < InPutMat.Height; i++)
             {
                 for (int j = 0; j < InPutMat.Width; j++)
                 {
                     if (InPutMat.Get<byte>(i, j) > Threshold)
                     {
-                        points.Add(new Point(i,j));
+                        points.Add(new Point(i, j));
                     }
 
                 }

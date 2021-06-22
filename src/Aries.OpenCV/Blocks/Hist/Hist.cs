@@ -36,16 +36,16 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.CalcHist(new[] {InPutMat}, Channels,
+            MatOut = new Mat();
+            Cv2.CalcHist(new[] {MatIn}, Channels,
                 Mask,
-                OutPutMat,
+                MatOut,
                 Dims,
                 new[] {HistSize},
                 new[] {Ranges},

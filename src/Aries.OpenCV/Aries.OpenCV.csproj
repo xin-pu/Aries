@@ -88,7 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Blocks\Arithmetic\AddWeighted.cs" />
-    <Compile Include="Blocks\Arithmetic\ArithmeticBasic.cs" />
+    <Compile Include="GraphModel\MatBlock\ArithmeticBasic.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseNot.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseXor.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseOr.cs" />
@@ -164,18 +164,18 @@
     <Compile Include="Blocks\MatProperty\Shape.cs" />
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
-    <Compile Include="GraphModel\BlockType.cs" />
-    <Compile Include="GraphModel\GeneralBlock.cs" />
+    <Compile Include="GraphModel\BlockTemplate\GeneralBlock.cs" />
+    <Compile Include="GraphModel\MatBlock\MatProcessingBlock.cs" />
     <Compile Include="GraphModel\MatRecord.cs" />
-    <Compile Include="GraphModel\ImportBlock.cs" />
+    <Compile Include="GraphModel\BlockTemplate\ImportBlock.cs" />
     <Compile Include="Blocks\Import\CreateImage.cs" />
     <Compile Include="GraphModel\BlockEdge.cs" />
     <Compile Include="GraphModel\BlockVertex.cs" />
     <Compile Include="Interface\ISaveBlock.cs" />
-    <Compile Include="GraphModel\ExportBlock.cs" />
+    <Compile Include="GraphModel\BlockTemplate\ExportBlock.cs" />
     <Compile Include="Blocks\Blur\Blur.cs" />
     <Compile Include="Blocks\Blur\GaussianBlur.cs" />
-    <Compile Include="GraphModel\ProcessingBlock.cs" />
+    <Compile Include="GraphModel\BlockTemplate\ProcessingBlock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

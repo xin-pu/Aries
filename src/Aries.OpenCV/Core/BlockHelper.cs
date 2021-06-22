@@ -42,24 +42,6 @@ namespace Aries.OpenCV.Core
         }
 
 
-        public static BlockType GetBlockType(Type blockTypeClass)
-        {
-            var baseType = blockTypeClass.BaseType;
-            if (baseType == null)
-                throw new ArgumentOutOfRangeException();
-            if (baseType.Name.Contains("ExportBlock"))
-                return BlockType.Export;
-            if (baseType.Name.Contains("ImportBlock"))
-                return BlockType.Import;
-            if (baseType.Name.Contains("ProcessingBlock"))
-                return BlockType.Processing;
-            if (baseType.Name.Contains("MatProcessingBlock"))
-                return BlockType.Processing;
-            if (baseType.Name.Contains("GeneralBlock"))
-                return BlockType.General;
-            return GetBlockType(baseType);
-        }
-
 
         public static Dictionary<Type, string> GetAllCVCategory()
         {

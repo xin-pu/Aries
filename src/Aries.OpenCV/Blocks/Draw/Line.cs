@@ -22,16 +22,16 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null && Lines != null && Lines.Length > 0;
+            return MatIn != null && Lines != null && Lines.Length > 0;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            InPutMat.CopyTo(OutPutMat);
+            MatOut = new Mat();
+            MatIn.CopyTo(MatOut);
             Lines.ForEach(pointpair =>
             {
-                Cv2.Line(OutPutMat, pointpair.P1, pointpair.P2, new Scalar(Color), Thickness, LineType, Shift);
+                Cv2.Line(MatOut, pointpair.P1, pointpair.P2, new Scalar(Color), Thickness, LineType, Shift);
             });
         }
     }

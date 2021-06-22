@@ -25,13 +25,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return InPutMat != null;
+            return MatIn != null;
         }
 
         public override void Execute()
         {
-            OutPutMat = new Mat();
-            Cv2.Dft(InPutMat, OutPutMat, DftFlag, NonzeroRows);
+            MatOut = new Mat();
+            Cv2.Dft(MatIn, MatOut, DftFlag, NonzeroRows);
         }
     }
 }

@@ -86,7 +86,13 @@ namespace Aries.OpenCV.GraphModel
             }
         }
 
-        public abstract void Reload();
+        public virtual void Reload()
+        {
+            StartTime = null;
+            StopTime = null;
+            TimeCost = null;
+            Status = BlockStatus.ToRun;
+        }
         public abstract bool CanExecute();
         public abstract void Execute();
 
