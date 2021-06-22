@@ -167,6 +167,7 @@
     <Compile Include="Core\BlockHelper.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\Contour\ContoursExport.cs" />
+    <Compile Include="GraphModel\MatBlock\MatImport.cs" />
     <Compile Include="GraphModel\MatBlock\MatProcess.cs" />
     <Compile Include="GraphModel\MatRecord.cs" />
     <Compile Include="GraphModel\BlockTemplate\ImportBlock.cs" />

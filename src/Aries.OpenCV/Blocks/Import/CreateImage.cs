@@ -7,7 +7,7 @@ namespace Aries.OpenCV.Blocks
 {
 
     [Category("Initial")]
-    public class CreateImage : ImportBlock<Mat>
+    public class CreateImage : MatImport
     {
 
         [Category("ARGUMENT")] public string FileName { protected set; get; }
@@ -29,7 +29,7 @@ namespace Aries.OpenCV.Blocks
             };
             openFileDailog.ShowDialog();
             FileName = openFileDailog.FileName;
-            OutPut = Cv2.ImRead(FileName, ImreadModes);
+            MatOut = Cv2.ImRead(FileName, ImreadModes);
         }
     }
 }

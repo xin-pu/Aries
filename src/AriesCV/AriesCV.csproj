@@ -102,6 +102,7 @@
     <Compile Include="Controls\CvPropertyGrid\Editor\PointPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ScalarPropertyEditor.cs" />
     <Compile Include="Service\DataService.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVRunner.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingCategory.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingConvert.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingType.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="ViewModel\GraphCV\GraphCVArea.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
     <Compile Include="ViewModel\MenuLayoutModel.cs" />
+    <Compile Include="ViewModel\MenuRunner.cs" />
     <Compile Include="ViewModel\TestModel.cs" />
     <Compile Include="Views\CVPropertyGridView.xaml.cs">
       <DependentUpon>CVPropertyGridView.xaml</DependentUpon>
@@ -130,6 +132,9 @@
     </Compile>
     <Compile Include="Views\MenuLayout.xaml.cs">
       <DependentUpon>MenuLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuRunner.xaml.cs">
+      <DependentUpon>MenuRunner.xaml</DependentUpon>
     </Compile>
     <Page Include="Resource\Graph\CVGraphXTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -215,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MenuLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MenuRunner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

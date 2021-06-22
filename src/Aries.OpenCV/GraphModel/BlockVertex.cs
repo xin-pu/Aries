@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -15,21 +14,35 @@ namespace Aries.OpenCV.GraphModel
     [Serializable]
     public abstract class BlockVertex : VertexBase, INotifyPropertyChanged
     {
-        public BlockStatus _status;
+        private BlockStatus _status = BlockStatus.ToRun;
+        private bool _enableSaveBlock = true;
+        private string _outImage = string.Empty;
+        private string _workDire = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
         public string CVCategory { set; get; }
         public string Icon { set; get; }
 
+        [Category("INFO")] public string Name { set; get; }
+
+
+        [Category("INFO")] public TimeSpan? TimeCost { set; get; }
+
+        [Category("INFO")] public string ErrorMessage { set; get; }
+
         [Category("INFO")]
-        public string Name { set; get; }
+        public string OutImage
+        {
+            set { UpdateProperty(ref _outImage, value); }
+            get { return _outImage; }
+        }
+
         [Category("INFO")]
-        public DateTime? StartTime { set; get; }
-        [Category("INFO")]
-        public DateTime? StopTime { set; get; }
-        [Category("INFO")]
-        public TimeSpan? TimeCost { set; get; }
-        [Category("INFO")]
-        public string ErrorMessage { set; get; }
+        private string WorkDire
+        {
+            set { UpdateProperty(ref _workDire, value); }
+            get { return _workDire; }
+        }
+
         [Category("INFO")]
         public BlockStatus Status
         {
@@ -38,7 +51,12 @@ namespace Aries.OpenCV.GraphModel
         }
 
         [Category("CHOICE")]
-        public virtual bool EnableSaveBlock { get; set; } = true;
+        public bool EnableSaveBlock
+        {
+            set { UpdateProperty(ref _enableSaveBlock, value); }
+            get { return _enableSaveBlock; }
+        }
+
 
 
         protected BlockVertex()
@@ -67,9 +85,10 @@ namespace Aries.OpenCV.GraphModel
 
         public virtual void ExecuteCommand_Execute()
         {
+            var startTime = DateTime.Now;
             try
             {
-                StartTime = DateTime.Now;
+
                 Status = BlockStatus.Run;
                 Execute();
                 Status = BlockStatus.Complete;
@@ -81,18 +100,20 @@ namespace Aries.OpenCV.GraphModel
             }
             finally
             {
-                StopTime = DateTime.Now;
-                TimeCost = StopTime - StartTime;
+                var stopTime = DateTime.Now;
+                TimeCost = stopTime - startTime;
             }
+
+            if (EnableSaveBlock)
+                SaveMatOut();
         }
 
         public virtual void Reload()
         {
-            StartTime = null;
-            StopTime = null;
             TimeCost = null;
             Status = BlockStatus.ToRun;
         }
+
         public abstract bool CanExecute();
         public abstract void Execute();
 
@@ -109,40 +130,29 @@ namespace Aries.OpenCV.GraphModel
 
 
 
-        public virtual List<MatRecord> SaveBlock(string workDirectory)
+        public virtual void SaveMatOut()
         {
-            if (Status != BlockStatus.Complete || !EnableSaveBlock)
-                return new List<MatRecord>(0);
+            try
+            {
+                if (Status != BlockStatus.Complete || !EnableSaveBlock)
+                    return;
 
-            if (workDirectory == string.Empty || !Directory.Exists(workDirectory))
-                return new List<MatRecord>(0);
+                if (WorkDire == string.Empty || !Directory.Exists(WorkDire))
+                    return;
 
-            var outMatDict = TypeDescriptor.GetProperties(GetType())
-                .OfType<PropertyDescriptor>()
-                .Where(a => a.Category == "OUTPUT")
-                .Select(a => new KeyValuePair<string, Mat>(a.Name, GetPropertyAsMat(a.Name) as Mat))
-                .Where(a => a.Value != null);
+                var outMatDict = TypeDescriptor.GetProperties(GetType())
+                    .OfType<PropertyDescriptor>()
+                    .FirstOrDefault(a => a.Category == "DATAOUT" && a.Name == "MatOut");
 
-            return outMatDict
-                .Select(mat => MatRecord(workDirectory, mat.Key, mat.Value))
-                .Where(a => a != null)
-                .ToList();
-        }
+                var mat = GetPropertyAsMat(outMatDict?.Name) as Mat;
 
-        private MatRecord MatRecord(string workDirectory,string propertyName, Mat mat)
-        {
-            var fileName = Path.Combine(workDirectory, $"{Name}_{propertyName}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg");
-            var res = mat.ImWrite(fileName);
-            return res
-                ? new MatRecord
-                {
-                    FileName = fileName,
-                    ParentId = ID,
-                    ParentName = Name,
-                    PropertyName = propertyName,
-                    UpDateTime = DateTime.Now
-                }
-                : null;
+                OutImage = Path.Combine(WorkDire, $"{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg");
+                mat?.ImWrite(OutImage);
+            }
+            catch (Exception ex)
+            {
+                // ignored
+            }
         }
 
 
@@ -180,12 +190,13 @@ namespace Aries.OpenCV.GraphModel
             {
                 return (valueObj as OutputArray)?.GetMat();
             }
+
             return null;
         }
 
         public void SetPropertyAsMat(string proName, object value)
         {
-            
+
             var mat = value as Mat;
             if (mat == null)
                 return;

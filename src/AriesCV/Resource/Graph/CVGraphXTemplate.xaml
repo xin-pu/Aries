@@ -71,7 +71,7 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
 
-                    <Grid>
+                    <Grid Background="White">
                         <Border x:Name="BackgroundNorm" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 CornerRadius="2" 
@@ -105,19 +105,40 @@
                             <Border Grid.Row="0">
                                 <StackPanel Name="Block_InPut" 
                                             Orientation="Horizontal"
-                                            HorizontalAlignment="Left"/>
+                                            HorizontalAlignment="Left"
+                                            Height="30"/>
                             </Border>
-                            <Border Grid.Row="1" BorderThickness="0,2" BorderBrush="{DynamicResource PrimaryBrush}">
-                                <StackPanel Orientation="Horizontal" Name="Status">
-                                    <TextBlock Text="{Binding ID,StringFormat='{}{0}.'}" VerticalAlignment="Center" TextAlignment="Center" 
-                                               HorizontalAlignment="Center" FontWeight="Bold" 
-                                               Foreground="White"  Margin="10,0" 
-                                               FontSize="20"/>
-                                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextAlignment="Center" 
-                                               HorizontalAlignment="Center" FontWeight="Bold" 
-                                               Foreground="White"  Margin="3" MinWidth="120"
-                                               FontSize="20"/>
-                                </StackPanel>
+                            <Border Grid.Row="1" BorderThickness="0,2" 
+                                    BorderBrush="{DynamicResource PrimaryBrush}"
+                                    MinWidth="200"
+                                    MinHeight="100">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal" 
+                                                Name="Status"
+                                                DockPanel.Dock="Top">
+                                        <TextBlock Text="{Binding ID,StringFormat='{}{0}.'}" 
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center" 
+                                                   HorizontalAlignment="Center" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="White"  Margin="10,0" 
+                                                   FontSize="20"/>
+                                        <TextBlock Text="{Binding Name}" 
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center" 
+                                                   HorizontalAlignment="Center" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="White" 
+                                                   MinWidth="120"
+                                                   FontSize="20"/>
+                                    </StackPanel>
+                                    <hc:ImageViewer ImageSource="{Binding OutImage}" 
+                                                    Name="ImageViewer"
+                                                    Width="200" 
+                                                    Height="140"
+                                                    Visibility="Collapsed"/>
+                                </DockPanel>
+                             
                             
                             </Border>
                           
@@ -125,7 +146,8 @@
                                 <StackPanel Name="Block_OutPut"
                                             Orientation="Horizontal"
                                             VerticalAlignment="Bottom"
-                                            HorizontalAlignment="Right"/>
+                                            HorizontalAlignment="Right"
+                                            Height="30"/>
                             </Border>
                           
                         </Grid>
@@ -142,6 +164,12 @@
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Exception">
                             <Setter TargetName="Status" Property="Background" Value="#BFFF4500"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding EnableSaveBlock}" Value="True">
+                            <Setter TargetName="ImageViewer" Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding EnableSaveBlock}" Value="False">
+                            <Setter TargetName="ImageViewer" Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
 
                         <Trigger Property="IsMouseOver" Value="true">
