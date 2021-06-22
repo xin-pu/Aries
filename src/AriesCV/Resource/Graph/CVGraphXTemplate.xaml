@@ -22,7 +22,7 @@
                         <hc:Shield Subject="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Icon}"
                                    Status="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                    Color="Green"
-                                   FontFamily="/Resources/#iconfont"/>
+                                   FontFamily="/Resource/#iconfont"/>
                     </StackPanel>
 
                 </ControlTemplate>
@@ -41,7 +41,7 @@
                         <hc:Shield Subject="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Icon}"
                                    Status="{Binding RelativeSource={RelativeSource TemplatedParent},Path=Header}"
                                    Color="OrangeRed"
-                                   FontFamily="/Resources/#iconfont"/>
+                                   FontFamily="/Resource/#iconfont"/>
                     </StackPanel>
                 </ControlTemplate>
             </Setter.Value>

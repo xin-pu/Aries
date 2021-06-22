@@ -12,7 +12,7 @@ namespace Aries.OpenCV.Blocks
 
         [Category("DATAOUT")] public Mat Output { set; get; }
 
-        [Category("ARGUMENT")] public bool EnableMask { set; get; }
+        [Category("CHOICE")] public bool EnableMask { set; get; }
 
         public override void Reload()
         {

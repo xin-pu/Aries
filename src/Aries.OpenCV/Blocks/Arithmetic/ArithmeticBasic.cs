@@ -22,7 +22,7 @@ namespace Aries.OpenCV.Blocks
 
 
         #region Enter Paramter
-        [Category("ARGUMENT")] public bool EnableMask { set; get; }
+        [Category("CHOICE")] public bool EnableMask { set; get; }
         #endregion
 
 

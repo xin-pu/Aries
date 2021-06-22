@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows.Input;
 using Aries.OpenCV.Core;
 using GalaSoft.MvvmLight.Command;
 using GraphX.Common.Models;
@@ -18,7 +17,6 @@ namespace Aries.OpenCV.GraphModel
     {
         public BlockStatus _status;
 
-        public BlockType BlockType { set; get; }
         public string CVCategory { set; get; }
         public string Icon { set; get; }
 
@@ -99,7 +97,7 @@ namespace Aries.OpenCV.GraphModel
             await Task.Run(() => Execute());
         }
 
-
+        [Category("CHOICE")] 
         public virtual bool EnableSaveBlock { get; set; } = true;
 
         public virtual List<MatRecord> SaveBlock(string workDirectory)

@@ -6,10 +6,7 @@ namespace Aries.OpenCV.GraphModel
 
     public abstract class ExportBlock<T> : BlockVertex
     {
-        protected ExportBlock()
-        {
-            BlockType = BlockType.Export;
-        }
+   
 
         [Category("DATAIN")] public Mat InPutMat { set; get; }
 

@@ -4,12 +4,6 @@
     {
 
 
-        protected GeneralBlock()
-        {
-            BlockType = BlockType.General;
-        }
-
-
         public override void Reload()
         {
             Status = BlockStatus.ToRun;

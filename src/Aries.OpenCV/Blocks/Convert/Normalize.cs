@@ -18,7 +18,7 @@ namespace Aries.OpenCV.Blocks
         [Category("ARGUMENT")] public int DType { set; get; } = -1;
 
 
-        [Category("ARGUMENT")] public bool EnableMask { set; get; }
+        [Category("CHOICE")] public bool EnableMask { set; get; }
 
 
         public override void Reload()

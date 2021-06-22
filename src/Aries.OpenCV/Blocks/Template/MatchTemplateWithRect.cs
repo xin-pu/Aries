@@ -20,7 +20,7 @@ namespace Aries.OpenCV.Blocks.Template
         [Category("ARGUMENT")]
         public TemplateMatchModes TemplateMatchMode { set; get; } = TemplateMatchModes.CCoeff;
 
-        [Category("ARGUMENT")] public bool EnableMask { set; get; } = false;
+        [Category("CHOICE")] public bool EnableMask { set; get; } = false;
 
         public override void Reload()
         {
