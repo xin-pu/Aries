@@ -1,8 +1,5 @@
-﻿#if WPF
-using System.Windows;
-#elif METRO
-using Windows.UI.Xaml;
-#endif
+﻿using System.Windows;
+
 
 namespace GraphX.Controls.Models
 {
@@ -16,9 +13,13 @@ namespace GraphX.Controls.Models
             FactoryRootArea = graphArea;
         }
 
-        public virtual EdgeControl CreateEdgeControl(VertexControl source, VertexControl target, object edge, bool showArrows = true, Visibility visibility = Visibility.Visible)
+        public virtual EdgeControl CreateEdgeControl(VertexControl source, VertexControl target, object edge,
+            bool showArrows = true, Visibility visibility = Visibility.Visible)
         {
-            var edgectrl = new EdgeControl(source, target, edge, showArrows) { RootArea = FactoryRootArea};
+            var edgectrl = new EdgeControl(source, target, edge, showArrows)
+            {
+                RootArea = FactoryRootArea
+            };
             edgectrl.SetCurrentValue(UIElement.VisibilityProperty, visibility);
             return edgectrl;
 
@@ -26,7 +27,10 @@ namespace GraphX.Controls.Models
 
         public virtual VertexControl CreateVertexControl(object vertexData)
         {
-            return new VertexControl(vertexData) {RootArea = FactoryRootArea};
+            return new VertexControl(vertexData)
+            {
+                RootArea = FactoryRootArea
+            };
         }
 
 

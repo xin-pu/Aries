@@ -78,8 +78,6 @@ namespace GraphX.Controls
                 case LogicCoreChangedAction.RelayoutGraphWithEdges:
                     graph.RelayoutGraph(true);
                     break;
-                default:
-                    break;
             }
         }
 
@@ -523,7 +521,7 @@ namespace GraphX.Controls
         public void InsertEdgeAndData(TEdge edgeData, EdgeControl edgeControl, int num = 0, bool generateLabel = false)
         {
             if (LogicCore?.Graph == null)
-                throw new GX_InvalidDataException("LogicCore or its graph hasn't been assigned. Can't add data edge!");
+            { throw new GX_InvalidDataException("LogicCore or its graph hasn't been assigned. Can't add data edge!");}
             LogicCore.Graph.AddEdge(edgeData);
             InsertEdge(edgeData, edgeControl, num, generateLabel);
         }
@@ -531,7 +529,8 @@ namespace GraphX.Controls
         protected void InternalInsertEdge(TEdge edgeData, EdgeControl edgeControl, int num = 0)
         {
             if (edgeControl == null || edgeData == null) return;
-            if (_edgeslist.ContainsKey(edgeData)) throw new GX_InvalidDataException("AddEdge() -> An edge with the same data has already been added!");
+            if (_edgeslist.ContainsKey(edgeData))
+            {    throw new GX_InvalidDataException("AddEdge() -> An edge with the same data has already been added!");}
             edgeControl.RootArea = this;
             _edgeslist.Add(edgeData, edgeControl);
             try

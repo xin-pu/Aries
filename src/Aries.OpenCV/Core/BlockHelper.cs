@@ -36,8 +36,7 @@ namespace Aries.OpenCV.Core
         {
             var executingAssembly = Assembly.GetExecutingAssembly();
             var allTypes = executingAssembly.GetTypes().Where(a=>!a.IsAbstract);
-            var blockType = allTypes.Where(a => a.BaseType?.BaseType == typeof(BlockVertex) ||
-                                                a.BaseType?.BaseType?.BaseType == typeof(BlockVertex));
+            var blockType = allTypes.Where(a =>a.IsSubclassOf(typeof(BlockVertex)));
             return blockType.ToList();
         }
 

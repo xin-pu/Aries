@@ -306,8 +306,9 @@ namespace AriesCV.Views
             {
                 Header = $"{source.Name} - {target.Name}"
             };
+            UpdateEdgeToConnectionPoint(_vertexTemp, vc, data);
             var ec = new EdgeControl(_vertexTemp, vc, data);
-            
+
             GraphCVArea.InsertEdgeAndData(data, ec, 0, true);
             ec.GetLabelControls().ForEach(a =>
             {
@@ -322,7 +323,38 @@ namespace AriesCV.Views
             EditorManager.DestroyVirtualEdge();
         }
 
+        private void UpdateEdgeToConnectionPoint(VertexControl source, VertexControl target, BlockEdge blockEdge)
+        {
+            var sourceOutPoint = findConnectionPointOut(source);
+            if (sourceOutPoint != null)
+            {
+                blockEdge.SourceConnectionPointId = sourceOutPoint?.Id;
+            }
 
+            var targetInPoint = findConnectionPointIn(target);
+            if (targetInPoint != null)
+            {
+                blockEdge.TargetConnectionPointId = targetInPoint?.Id;
+            }
+        }
+
+
+        private VertexConnectionPointOut findConnectionPointOut(VertexControl vertexControl)
+        {
+       
+            var outPointWait =
+                vertexControl.VertexConnectionPointsList.FirstOrDefault(a => a.ConnectType == ConnectType.OUTPUT);
+            var res = outPointWait is VertexConnectionPointOut;
+            return res ? (VertexConnectionPointOut) outPointWait : null;
+        }
+
+        private VertexConnectionPointIn findConnectionPointIn(VertexControl vertexControl)
+        {
+            var inPointWait =
+                vertexControl.VertexConnectionPointsList.FirstOrDefault(a => a.ConnectType == ConnectType.INPUT);
+            var res = inPointWait is VertexConnectionPointIn;
+            return res ? (VertexConnectionPointIn) inPointWait : null;
+        }
 
         #endregion
 
