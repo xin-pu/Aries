@@ -1,5 +1,4 @@
 ﻿using System;
-using AriesCV.ViewModel.GraphLayout;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;

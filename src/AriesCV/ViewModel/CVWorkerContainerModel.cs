@@ -22,15 +22,24 @@ namespace AriesCV.ViewModel
         public CVWorkerContainerModel()
         {
             Messenger.Default.Register<BlockVertex>(this, "AddBlockToken", AddBlockVertex);
+
+
             Messenger.Default.Register<CVWorkerItemView>(this, "AddCVWorkerModelToken", AddCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveCVWorkerModelToken", RemoveCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveAllCVWorkerModelToken", RemoveAllCVWorkerModel);
 
             Messenger.Default.Register<LayoutType>(this, "ReSetLayoutCategoryToken", ReSetLayoutCategory);
-            Messenger.Default.Register<EdgeRoutingType>(this, "ResetEdgeRoutingCategoryToken", ResetEdgeRoutingCategory);
+            Messenger.Default.Register<EdgeRoutingType>(this, "ResetEdgeRoutingCategoryToken",
+                ResetEdgeRoutingCategory);
             Messenger.Default.Register<bool>(this, "ResetShowEdgeLabelToken", ResetShowEdgeLabel);
             Messenger.Default.Register<bool>(this, "ResetAlignEdgeLabelToken", ResetAlignEdgeLabel);
             Messenger.Default.Register<string>(this, "RelayoutGraphToken", RelayoutGraph);
+
+
+            Messenger.Default.Register<string>(this, "RunGraphByDatasToken", RunGraphByDatas);
+            Messenger.Default.Register<string>(this, "ReloadGraphToken", ReloadGraph);
+            Messenger.Default.Register<bool>(this, "SetEnableSaveImageToken", SetEnableSaveImage);
+
         }
 
         public TestModel TestModel { set; get; } = new TestModel();
@@ -88,13 +97,14 @@ namespace AriesCV.ViewModel
             GraphCvAreaAtWorkSpace = CvWorkerItemView.GraphCVArea;
             ZoomControl = CvWorkerItemView.ZoomControl;
             ViewModelLocator.Instance.MenuLayout.GraphCvLayoutConfig = CvWorkerItemView.GraphCvLayoutConfig;
+            ViewModelLocator.Instance.MenuRunner.GraphCVRunConfig = CvWorkerItemView.GraphCvRunConfig;
         }
 
 
 
 
 
-        #region
+        #region File
 
         public void AddCVWorkerModel(CVWorkerItemView cvWorkerItemView)
         {
@@ -118,6 +128,26 @@ namespace AriesCV.ViewModel
         }
 
         #endregion
+
+        #region Runner
+
+        private async void RunGraphByDatas(string obj)
+        {
+            await CvWorkerItemView.RunGraphByDatas();
+        }
+
+        private async void ReloadGraph(string obj)
+        {
+            await CvWorkerItemView.ReloadAllBlock();
+        }
+
+        public async void SetEnableSaveImage(bool isEnable)
+        {
+            await CvWorkerItemView.SetEnableSaveImage(isEnable);
+        }
+
+        #endregion
+
 
 
 

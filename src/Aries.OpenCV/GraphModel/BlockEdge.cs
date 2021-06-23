@@ -11,18 +11,16 @@ namespace Aries.OpenCV.GraphModel
         public BlockEdge(BlockVertex source, BlockVertex target, double weight = 1)
             : base(source, target, weight)
         {
-            Angle = 90;
+
         }
 
         public BlockEdge()
             : base(null, null)
         {
-            Angle = 90;
+
         }
 
         private string _header;
-        private double _angle;
-        private bool _arrowTarget;
 
         public string Header
         {
@@ -30,19 +28,8 @@ namespace Aries.OpenCV.GraphModel
             get { return _header; }
         }
 
-        public double Angle
-        {
-            set { UpdateProperty(ref _angle, value); }
-            get { return _angle; }
-        }
 
-        public bool ArrowTarget
-        {
-            set { UpdateProperty(ref _arrowTarget, value); }
-            get { return _arrowTarget; }
-        }
 
-        
         public override string ToString()
         {
             return $"{Header}";

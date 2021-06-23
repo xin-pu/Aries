@@ -8,11 +8,15 @@
              d:DesignHeight="80" d:DesignWidth="1000"
              MinHeight="100">
     <TabControl Background="White"
-                Style="{DynamicResource TabControlBaseStyle}">
-        <TabItem Header="Start">
+                Style="{DynamicResource TabControlBaseStyle}"
+                FontFamily="/Resource/#iconfont">
+        <TabItem Header="&#xef4d; Start">
             <views:MenuFileView/>
         </TabItem>
-        <TabItem Header="Layout">
+        <TabItem Header="&#xf07e; Runner">
+            <views:MenuRunner/>
+        </TabItem>
+        <TabItem Header="&#xe61b; Layout">
             <views:MenuLayout/>
         </TabItem>
     </TabControl>

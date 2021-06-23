@@ -4,13 +4,37 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:controls="clr-namespace:AriesCV.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="100" d:DesignWidth="1000"
+             d:DesignHeight="80" d:DesignWidth="1000"
              Background="{DynamicResource LightPrimaryBrush}"
-             DataContext="{Binding MenuLayout,Source={StaticResource Locator}}"
-             Height="3000">
+             DataContext="{Binding MenuRunner,Source={StaticResource Locator}}"
+             Height="80">
 
     <StatusBarItem>
-        
+        <StackPanel Orientation="Horizontal">
+            <controls:TopTabButton Content="Run" Icon="&#xf07e;" 
+                                   Command="{Binding RunByGraphCommand}"/>
+
+            <controls:TopTabButton Content="Reload" Icon="&#xf0ae;" 
+                                   Command="{Binding ReloadGraphCommand}"/>
+
+            <StackPanel Orientation="Vertical" Margin="2"
+                        VerticalAlignment="Top">
+                <CheckBox Content="Auto Save Image"
+                          IsChecked="{Binding GraphCVRunConfig.AutoSaveOutMat}"
+                          Margin="0,2">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding AutoSaveOutMatCommand}"/>
+                        </hc:EventTrigger>
+                        <hc:EventTrigger EventName="Unchecked">
+                            <hc:InvokeCommandAction Command="{Binding AutoSaveOutMatCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </CheckBox>
+         
+            </StackPanel>
+        </StackPanel>
     </StatusBarItem>
 </StatusBar>

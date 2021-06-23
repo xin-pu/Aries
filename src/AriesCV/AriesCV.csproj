@@ -102,7 +102,7 @@
     <Compile Include="Controls\CvPropertyGrid\Editor\PointPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ScalarPropertyEditor.cs" />
     <Compile Include="Service\DataService.cs" />
-    <Compile Include="ViewModel\GraphCV\GraphCVRunner.cs" />
+    <Compile Include="ViewModel\GraphCV\GraphCVRunConfig.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingCategory.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingConvert.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingType.cs" />
@@ -127,6 +127,7 @@
     </Compile>
     <Compile Include="Views\CVWorkerItemViewLayout.cs" />
     <Compile Include="Views\CVWorkerItemViewFile.cs" />
+    <Compile Include="Views\CVWorkerItemViewRunner.cs" />
     <Compile Include="Views\MenuFileView.xaml.cs">
       <DependentUpon>MenuFileView.xaml</DependentUpon>
     </Compile>

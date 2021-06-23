@@ -1,4 +1,5 @@
-﻿using GraphX.Measure;
+﻿using GalaSoft.MvvmLight;
+using GraphX.Measure;
 using GraphX.Common.Enums;
 using GraphX.Common.Interfaces;
 
@@ -8,7 +9,7 @@ namespace GraphX.Common.Models
     /// Base class for graph edge
     /// </summary>
     /// <typeparam name="TVertex">Vertex class</typeparam>
-    public abstract class EdgeBase<TVertex> : IGraphXEdge<TVertex>
+    public abstract class EdgeBase<TVertex> :ViewModelBase, IGraphXEdge<TVertex>
     {
         /// <summary>
         /// Skip edge in algo calc and visualization

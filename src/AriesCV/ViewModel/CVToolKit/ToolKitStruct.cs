@@ -46,6 +46,7 @@ namespace AriesCV.ViewModel.CVToolKit
         private void AddBlock(BlockVertex blockVertex)
         {
             Messenger.Default.Send(blockVertex, "AddBlockToken");
+            Messenger.Default.Send(string.Empty, "ClearSearchKeyToken");
         }
     }
 }

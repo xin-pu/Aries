@@ -30,6 +30,7 @@ namespace AriesCV.Views
             Name = name;
             GraphCVArea.Name = name;
             GraphCvLayoutConfig = new GraphCVLayoutConfig();
+            GraphCvRunConfig = new GraphCVRunConfig();
             InitialForNew();
         }
 
@@ -39,6 +40,7 @@ namespace AriesCV.Views
             Name = graphCvFileStruct.Name;
             GraphCVArea.Name = graphCvFileStruct.Name;
             GraphCvLayoutConfig = graphCvFileStruct.GraphCvLayoutConfig;
+            GraphCvRunConfig = new GraphCVRunConfig();
             InitialForNew();
             GraphCVArea.RebuildFromSerializationData(graphCvFileStruct.GraphSerializationDatas);
             GraphCVArea.SetVerticesDrag(true, true);
@@ -60,6 +62,8 @@ namespace AriesCV.Views
 
         public GraphCVLayoutConfig GraphCvLayoutConfig { set; get; }
 
+        public GraphCVRunConfig GraphCvRunConfig { set; get; }
+
         public GraphCVEditManager EditorManager { set; get; }
 
         private LogicCoreCV logicCoreCv { set; get; }
@@ -76,11 +80,7 @@ namespace AriesCV.Views
 
             InitialGraphArea();
             InitialZoomControl();
-            //GraphCvRunManager = new GraphCVRunManager(GraphArea)
-            //{
-            //    AppendMatRecordAction = MatRecordManager.AppendMatRecords,
-            //    ClearMatRecordsAction = MatRecordManager.ClearRecords
-            //};
+            
 
             Loaded += DynamicGraph_Loaded;
             Unloaded += DynamicGraph_Unloaded;
@@ -328,13 +328,13 @@ namespace AriesCV.Views
             var sourceOutPoint = findConnectionPointOut(source);
             if (sourceOutPoint != null)
             {
-                blockEdge.SourceConnectionPointId = sourceOutPoint?.Id;
+                blockEdge.SourceConnectionPointId = sourceOutPoint.Id;
             }
 
             var targetInPoint = findConnectionPointIn(target);
             if (targetInPoint != null)
             {
-                blockEdge.TargetConnectionPointId = targetInPoint?.Id;
+                blockEdge.TargetConnectionPointId = targetInPoint.Id;
             }
         }
 

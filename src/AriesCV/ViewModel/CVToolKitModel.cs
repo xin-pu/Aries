@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Aries.OpenCV.Core;
+using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel.CVToolKit;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace AriesCV.ViewModel
 {
@@ -17,6 +19,7 @@ namespace AriesCV.ViewModel
         public CVToolKitModel()
         {
             GenerateCVToolKitData();
+            Messenger.Default.Register<string>(this, "ClearSearchKeyToken", ClearSearchkey);
         }
 
         
@@ -86,7 +89,11 @@ namespace AriesCV.ViewModel
             }
         }
 
-        public List<ToolKitStruct> CVToolKitFilter { set; get; }
+
+        private void ClearSearchkey(string searchKey)
+        {
+            SearchKey = string.Empty;
+        }
     }
 
 

@@ -96,8 +96,7 @@
                                 Opacity="0" 
                                 BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
 
-                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2"
-                              Background="{DynamicResource LightSuccessBrush}">
+                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -107,7 +106,7 @@
                                 <StackPanel Name="Block_InPut" 
                                             Orientation="Horizontal"
                                             HorizontalAlignment="Left"
-                                            Height="30"/>
+                                            MinHeight="25"/>
                             </Border>
                             <Border Grid.Row="1" BorderThickness="0,2" 
                                     BorderBrush="{DynamicResource PrimaryBrush}"
@@ -151,7 +150,7 @@
                                             Orientation="Horizontal"
                                             VerticalAlignment="Bottom"
                                             HorizontalAlignment="Right"
-                                            Height="30"/>
+                                            MinHeight="25"/>
                             </Border>
                           
                         </Grid>

@@ -37,6 +37,6 @@ namespace AriesCV.Views
             }
         }
 
-       
+        
     }
 }
