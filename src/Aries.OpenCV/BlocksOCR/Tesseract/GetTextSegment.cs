@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Aries.OpenCV.Blocks;
 using Aries.OpenCV.GraphModel;
 using GraphX.Common;
 using OpenCvSharp;
@@ -10,7 +11,7 @@ namespace Aries.OpenCV.BlocksOCR.Tesseract
 {
 
     [Category("Tesseract")]
-    public class GetText : MatExport<string[]>
+    public class GetTextSegment : MatExport<TextSegment[]>
     {
 
         [Category("DATAIN")] public Rect[] Rects { set; get; }
@@ -28,7 +29,7 @@ namespace Aries.OpenCV.BlocksOCR.Tesseract
 
         public override void Execute()
         {
-            var resString = new List<string>();
+            var resString = new List<TextSegment>();
             var engine = new TesseractEngine("tessdata", "eng", EngineMode.Default);
             Rects.ForEach(rect =>
             {
@@ -39,7 +40,8 @@ namespace Aries.OpenCV.BlocksOCR.Tesseract
                 using (var img = Pix.LoadFromMemory(mat.ToBytes()))
                 using (var page = engine.Process(img))
                 {
-                    resString.Add(page.GetText().Replace("\n", ""));
+                    var text = page.GetText().Replace("\n", "");
+                    resString.Add(new TextSegment(text,rect.Left,rect.Top));
                 }
             });
 

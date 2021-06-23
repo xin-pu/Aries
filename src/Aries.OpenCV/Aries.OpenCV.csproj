@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlocksCunstom\FilterContours.cs" />
+    <Compile Include="BlocksOCR\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlocksOCR\Tesseract\GetText.cs" />
     <Compile Include="Blocks\Arithmetic\AddWeighted.cs" />
     <Compile Include="Blocks\Logic\ChoiceContoursForCustom.cs" />

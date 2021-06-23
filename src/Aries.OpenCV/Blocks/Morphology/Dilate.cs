@@ -13,8 +13,6 @@ namespace Aries.OpenCV.Blocks
 
         [Category("ARGUMENT")] public int Iterations { set; get; } = 1;
 
-        [Category("ARGUMENT")] public MorphTypes MorphType { set; get; } = MorphTypes.Open;
-
         [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Constant;
 
         [Category("ARGUMENT")] public Scalar BorderValue { set; get; }

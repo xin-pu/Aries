@@ -62,6 +62,8 @@ namespace AriesCV.ViewModel
                     ICon = BlockHelper.GetBlockICon(a.Value),
                     IsVisiable = true
                 })
+                .OrderBy(a=>a.Category)
+                .ThenBy(a=>a.Name)
                 .ToList();
             CVToolKitData = new ObservableCollection<ToolKitStruct>(toolkit);
         }

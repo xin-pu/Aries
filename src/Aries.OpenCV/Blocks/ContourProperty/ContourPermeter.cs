@@ -12,7 +12,7 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return ConsIn != null && ConsIn.Length > 1;
+            return ConsIn != null && ConsIn.Length > 0;
         }
 
         public override void Execute()

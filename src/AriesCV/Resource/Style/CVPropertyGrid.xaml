@@ -30,14 +30,10 @@
                             <hc:NumericUpDown Grid.Row="0" Grid.Column="1"
                                               Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=X}"
                                               VerticalAlignment="Center" Margin="4,0"
-                                              Style="{DynamicResource NumericUpDownPlus}"
-                                              hc:InfoElement.Title="X:"
                                               hc:InfoElement.TitlePlacement="Left"/>
                             <hc:NumericUpDown Grid.Row="1" Grid.Column="1"
                                               Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Y}"
                                               VerticalAlignment="Center" Margin="4,0"
-                                              Style="{DynamicResource NumericUpDownExtend}"
-                                              hc:InfoElement.Title="Y:"
                                               hc:InfoElement.TitlePlacement="Left"/>
                         </Grid>
                     </Border>

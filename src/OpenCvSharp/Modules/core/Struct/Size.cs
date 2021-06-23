@@ -15,12 +15,12 @@ namespace OpenCvSharp
         /// <summary>
         /// 
         /// </summary>
-        public int Width;
+        public int Width { set; get; }
 
         /// <summary>
         /// 
         /// </summary>
-        public int Height;
+        public int Height { set; get; }
 
         /// <summary>
         /// Constructor

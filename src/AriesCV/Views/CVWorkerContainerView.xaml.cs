@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using HandyControl.Controls;
+using System.Windows;
 
 namespace AriesCV.Views
 {
@@ -38,8 +39,8 @@ namespace AriesCV.Views
 
         public void RemoveCVWorker(string workerName)
         {
-            var selectItem = (TabItem) GraphCVTabs.SelectedItem;
-            if(selectItem.Name!=workerName)
+            var selectItem = (TabItem)GraphCVTabs.SelectedItem;
+            if (selectItem?.Name != workerName)
                 return;
 
             GraphCVTabs.Items.Remove(selectItem);
@@ -49,11 +50,16 @@ namespace AriesCV.Views
 
         public void RemoveAllCVWorker(string message)
         {
-        
-            GraphCVTabs.Items.Clear();
 
+            GraphCVTabs.Items.Clear();
             Messenger.Default.Send(string.Empty, "RemoveAllCVWorkerModelToken");
         }
 
+
+        private void TabItemClosed(object sender, System.EventArgs e)
+        {
+            var itemCurrent = (TabItem)((RoutedEventArgs)e).Source;
+            Messenger.Default.Send(itemCurrent.Name, "RemoveCVWorkerModelToken");
+        }
     }
 }

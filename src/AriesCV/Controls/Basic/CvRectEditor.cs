@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿
+using System.Windows;
 using System.Windows.Controls.Primitives;
+using Rect = OpenCvSharp.Rect;
 
 namespace AriesCV.Controls
 {
@@ -46,21 +48,21 @@ namespace AriesCV.Controls
         #region Top
 
         public static readonly DependencyProperty TopProperty = DependencyProperty.Register(
-            "Top", typeof(double), typeof(CvRectEditor),
+            "Top", typeof(int), typeof(CvRectEditor),
             new FrameworkPropertyMetadata(default(double), OnTopChanged));
 
         private static void OnTopChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var cvRectEditor = (CvRectEditor) d;
-            if (e.NewValue is double top)
+            if (e.NewValue is int top)
             {
-                cvRectEditor.Rect = new Rect(cvRectEditor.Left, top, cvRectEditor.Width, cvRectEditor.RectHeight);
+                cvRectEditor.Rect = new Rect(cvRectEditor.Left, top, cvRectEditor.RectWidth, cvRectEditor.RectHeight);
             }
         }
 
-        public double Top
+        public int Top
         {
-            get => (double) GetValue(TopProperty);
+            get => (int) GetValue(TopProperty);
             set => SetValue(TopProperty, value);
         }
 
@@ -70,22 +72,22 @@ namespace AriesCV.Controls
         #region Left
 
         public static readonly DependencyProperty LeftProperty = DependencyProperty.Register(
-            "Left", typeof(double), typeof(CvRectEditor),
-            new FrameworkPropertyMetadata(default(double), OnLeftChanged));
+            "Left", typeof(int), typeof(CvRectEditor),
+            new FrameworkPropertyMetadata(default(int), OnLeftChanged));
 
         private static void OnLeftChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var cvRectEditor = (CvRectEditor)d;
-            if (e.NewValue is double left)
+            if (e.NewValue is int left)
             {
-                cvRectEditor.Rect = new Rect(left, cvRectEditor.Top, cvRectEditor.Width, cvRectEditor.RectHeight);
+                cvRectEditor.Rect = new Rect(left, cvRectEditor.Top, cvRectEditor.RectWidth, cvRectEditor.RectHeight);
             }
 
         }
 
-        public double Left
+        public int Left
         {
-            get => (double) GetValue(LeftProperty);
+            get => (int) GetValue(LeftProperty);
             set => SetValue(LeftProperty, value);
         }
 
@@ -95,22 +97,22 @@ namespace AriesCV.Controls
         #region Width
 
         public static readonly DependencyProperty RectWidthProperty = DependencyProperty.Register(
-            "RectWidth", typeof(double), typeof(CvRectEditor),
-            new FrameworkPropertyMetadata(default(double), OnRectWidthChanged));
+            "RectWidth", typeof(int), typeof(CvRectEditor),
+            new FrameworkPropertyMetadata(default(int), OnRectWidthChanged));
 
         private static void OnRectWidthChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var cvRectEditor = (CvRectEditor) d;
-            if (e.NewValue is double rectWidth)
+            if (e.NewValue is int rectWidth)
             {
                 cvRectEditor.Rect = new Rect(cvRectEditor.Left, cvRectEditor.Top, rectWidth, cvRectEditor.RectHeight);
             }
 
         }
 
-        public double RectWidth
+        public int RectWidth
         {
-            get => (double) GetValue(RectWidthProperty);
+            get => (int) GetValue(RectWidthProperty);
             set => SetValue(RectWidthProperty, value);
         }
 
@@ -120,21 +122,21 @@ namespace AriesCV.Controls
         #region Height
 
         public static readonly DependencyProperty RectHeightProperty = DependencyProperty.Register(
-            "RectHeight", typeof(double), typeof(CvRectEditor),
-            new FrameworkPropertyMetadata(default(double), OnRectHeightChanged));
+            "RectHeight", typeof(int), typeof(CvRectEditor),
+            new FrameworkPropertyMetadata(default(int), OnRectHeightChanged));
 
         private static void OnRectHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             var cvRectEditor = (CvRectEditor)d;
-            if (e.NewValue is double rectHeight)
+            if (e.NewValue is int rectHeight)
             {
                 cvRectEditor.Rect = new Rect(cvRectEditor.Left, cvRectEditor.Top, cvRectEditor.RectWidth, rectHeight);
             }
         }
 
-        public double RectHeight
+        public int RectHeight
         {
-            get => (double) GetValue(RectHeightProperty);
+            get => (int) GetValue(RectHeightProperty);
             set => SetValue(RectHeightProperty, value);
         }
 

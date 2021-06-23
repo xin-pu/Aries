@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Aries.OpenCV.GraphModel;
@@ -16,14 +15,13 @@ namespace Aries.OpenCV.BlocksCunstom
         [Category("ARGUMENT")] public Size MinSize { set; get; } = new Size(1, 1);
         [Category("ARGUMENT")] public Size MaxSize { set; get; } = new Size(1, 1);
 
-        [Category("ARGUMENT")] public int MaxHeight { set; get; } = 1;
         [Category("ARGUMENT")] public int LengthWidthRatio { set; get; } = 1;
 
 
 
         public override bool CanExecute()
         {
-            return ConsIn != null && ConsIn.Length > 1;
+            return ConsIn != null && ConsIn.Length > 0;
         }
 
         public override void Execute()
@@ -46,10 +44,7 @@ namespace Aries.OpenCV.BlocksCunstom
                 }
 
             });
-            if (mats.Count != 1)
-            {
-                throw new Exception();
-            }
+   
 
             Rects = boxes.ToArray();
             ConsOut = mats.ToArray();
