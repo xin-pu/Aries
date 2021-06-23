@@ -87,6 +87,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\Basic\CvMatEditor.cs" />
     <Compile Include="Controls\Basic\CvRectEditor.cs" />
     <Compile Include="Controls\Basic\CvScalarEditor.cs" />
     <Compile Include="Controls\Basic\CvSizeEditor.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Controls\CvPropertyGrid\Editor\ColorPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\CommandPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\RectPropertyEditor.cs" />
+    <Compile Include="Controls\CvPropertyGrid\Editor\MatPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\SizePropertyEditor .cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\PointPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ScalarPropertyEditor.cs" />

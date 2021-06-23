@@ -7,6 +7,7 @@
         Size,
         Scalar,
         Rect,
+        Mat,
         Command
     }
 }

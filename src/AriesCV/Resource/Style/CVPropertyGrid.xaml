@@ -221,4 +221,24 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+
+    <Style TargetType="controls:CvMatEditor">
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Foreground" Value="{DynamicResource TextIconBrush}"/>
+        <Setter Property="hc:BorderElement.CornerRadius" Value="3"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}"/> 
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls:CvMatEditor">
+                    <Border BorderThickness="1" BorderBrush="{DynamicResource BorderBrush}" CornerRadius="5">
+                       
+                      
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>
