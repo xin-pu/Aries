@@ -33,6 +33,7 @@ namespace AriesCV.ViewModel
                 ResetEdgeRoutingCategory);
             Messenger.Default.Register<bool>(this, "ResetShowEdgeLabelToken", ResetShowEdgeLabel);
             Messenger.Default.Register<bool>(this, "ResetAlignEdgeLabelToken", ResetAlignEdgeLabel);
+            Messenger.Default.Register<bool>(this, "ReSetShowImageViewToken", ResetShowImageView); 
             Messenger.Default.Register<string>(this, "RelayoutGraphToken", RelayoutGraph);
 
 
@@ -41,6 +42,8 @@ namespace AriesCV.ViewModel
             Messenger.Default.Register<bool>(this, "SetEnableSaveImageToken", SetEnableSaveImage);
 
         }
+
+    
 
         public TestModel TestModel { set; get; } = new TestModel();
 
@@ -171,6 +174,11 @@ namespace AriesCV.ViewModel
         private void ResetAlignEdgeLabel(bool obj)
         {
             CvWorkerItemView.ResetAlignEdgeLabel(obj);
+        }
+
+        private void ResetShowImageView(bool obj)
+        {
+            CvWorkerItemView.ResetShowImageView(obj);
         }
 
         private void RelayoutGraph(string obj)

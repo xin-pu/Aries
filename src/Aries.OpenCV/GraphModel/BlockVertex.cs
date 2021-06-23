@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using GalaSoft.MvvmLight.Command;
 using GraphX.Common.Models;
@@ -14,7 +15,8 @@ namespace Aries.OpenCV.GraphModel
     public abstract class BlockVertex : VertexBase
     {
         private BlockStatus _status = BlockStatus.ToRun;
-        private bool _enableSaveBlock = true;
+        private bool _enableSaveMat = true;
+        private bool _showImage = true;
         private string _imageSource = @"\Resource\Image\Aries.jpg";
         private string _workDire = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
@@ -62,13 +64,24 @@ namespace Aries.OpenCV.GraphModel
         }
 
         [Category("CHOICE")]
-        public bool EnableSaveBlock
+        public bool EnableSaveMat
         {
-            get { return _enableSaveBlock; }
+            get { return _enableSaveMat; }
             set
             {
-                _enableSaveBlock = value;
-                RaisePropertyChanged(() => EnableSaveBlock);
+                _enableSaveMat = value;
+                RaisePropertyChanged(() => EnableSaveMat);
+            }
+        }
+
+        [Category("CHOICE")]
+        public bool ShowImage
+        {
+            get { return _showImage; }
+            set
+            {
+                _showImage = value;
+                RaisePropertyChanged(() => ShowImage);
             }
         }
 
@@ -119,7 +132,7 @@ namespace Aries.OpenCV.GraphModel
                 TimeCost = stopTime - startTime;
             }
 
-            if (EnableSaveBlock)
+            if (EnableSaveMat)
                 SaveMatOut();
         }
 
@@ -149,7 +162,7 @@ namespace Aries.OpenCV.GraphModel
         {
             try
             {
-                if (Status != BlockStatus.Complete || !EnableSaveBlock)
+                if (Status != BlockStatus.Complete || !EnableSaveMat)
                     return;
 
                 if (WorkDire == string.Empty || !Directory.Exists(WorkDire))
@@ -169,7 +182,7 @@ namespace Aries.OpenCV.GraphModel
             }
             catch (Exception ex)
             {
-                // ignored
+                
             }
         }
 

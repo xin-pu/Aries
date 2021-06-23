@@ -108,10 +108,9 @@
                                             HorizontalAlignment="Left"
                                             MinHeight="25"/>
                             </Border>
-                            <Border Grid.Row="1" BorderThickness="0,2" 
+                            <Border Grid.Row="1" BorderThickness="0" 
                                     BorderBrush="{DynamicResource PrimaryBrush}"
-                                    MaxHeight="200"
-                                    MaxWidth="200"
+                                    MaxWidth="250"
                                     Background="White">
                                 <DockPanel>
                                     <StackPanel Orientation="Horizontal" 
@@ -139,7 +138,8 @@
                                         NotifyOnSourceUpdated=True,
                                         UpdateSourceTrigger=PropertyChanged}" 
                                                     Name="ImageViewer"
-                                                    Visibility="Collapsed"/>
+                                                    Visibility="Collapsed"
+                                                    />
                                 </DockPanel>
                              
                             
@@ -168,10 +168,10 @@
                         <DataTrigger Binding="{Binding Status}" Value="Exception">
                             <Setter TargetName="Status" Property="Background" Value="#DB3340"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding EnableSaveBlock}" Value="True">
+                        <DataTrigger Binding="{Binding ShowImage}" Value="True">
                             <Setter TargetName="ImageViewer" Property="Visibility" Value="Visible"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding EnableSaveBlock}" Value="False">
+                        <DataTrigger Binding="{Binding ShowImage}" Value="False">
                             <Setter TargetName="ImageViewer" Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
 

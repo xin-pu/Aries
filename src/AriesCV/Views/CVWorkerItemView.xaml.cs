@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -65,6 +66,14 @@ namespace AriesCV.Views
         public GraphCVRunConfig GraphCvRunConfig { set; get; }
 
         public GraphCVEditManager EditorManager { set; get; }
+
+  
+
+        public Dictionary<BlockVertex, VertexControl> VertexControls =>
+            (Dictionary<BlockVertex, VertexControl>)GraphCVArea.VertexList;
+
+        public Dictionary<BlockEdge, EdgeControl> EdgeControls =>
+            (Dictionary<BlockEdge, EdgeControl>)GraphCVArea.EdgesList;
 
         private LogicCoreCV logicCoreCv { set; get; }
 

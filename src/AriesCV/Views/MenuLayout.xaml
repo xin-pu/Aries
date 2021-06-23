@@ -100,10 +100,12 @@
             <controls:TopTabButton Content="Fresh" Icon="&#xef8c;" 
                                    Command="{Binding RelayoutGraphCommand}"/>
             <StackPanel Orientation="Vertical" Margin="2"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left">
                 <CheckBox Content="Show Label"
                          IsChecked="{Binding GraphCvLayoutConfig.IsShowEdgeLabels}"
-                         Margin="0,2">
+                         Margin="0,2"
+                         HorizontalAlignment="Left">
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="Checked">
                             <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
@@ -115,13 +117,27 @@
                 </CheckBox>
                 <CheckBox Content="Align Label"
                           IsChecked="{Binding GraphCvLayoutConfig.IsAlignEdgeLabels}"
-                          Margin="0,2">
+                          Margin="0,2"
+                          HorizontalAlignment="Left">
                     <hc:Interaction.Triggers>
                         <hc:EventTrigger EventName="Checked">
                             <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
                         </hc:EventTrigger>
                         <hc:EventTrigger EventName="Unchecked">
                             <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox Content="Show Image View"
+                          IsChecked="{Binding GraphCvLayoutConfig.IsShowImageView}"
+                          Margin="0,2"
+                          HorizontalAlignment="Left">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding ShowImageViewCommand}"/>
+                        </hc:EventTrigger>
+                        <hc:EventTrigger EventName="Unchecked">
+                            <hc:InvokeCommandAction Command="{Binding ShowImageViewCommand}"/>
                         </hc:EventTrigger>
                     </hc:Interaction.Triggers>
                 </CheckBox>

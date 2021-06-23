@@ -1,4 +1,5 @@
-﻿using GraphX.Common.Enums;
+﻿using GraphX.Common;
+using GraphX.Common.Enums;
 using GraphX.Logic.Algorithms.EdgeRouting;
 using GraphX.Logic.Algorithms.LayoutAlgorithms;
 using EdgeRoutingType = AriesCV.ViewModel.GraphLayout.EdgeRoutingType;
@@ -94,6 +95,11 @@ namespace AriesCV.Views
         public void ResetAlignEdgeLabel(bool isAlignEdgeLabels)
         {
             GraphCVArea.AlignAllEdgesLabels(isAlignEdgeLabels);
+        }
+
+        public void ResetShowImageView(bool isAutoSave)
+        {
+            VertexControls.Keys.ForEach(vc => { vc.ShowImage = isAutoSave; });
         }
 
         public void RelayoutGraph()

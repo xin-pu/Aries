@@ -35,6 +35,9 @@ namespace AriesCV.ViewModel
             new Lazy<RelayCommand>(() =>
                 new RelayCommand(AlignEdgeLabelsCommand_Execute, CanSetLayout)).Value;
 
+        public RelayCommand ShowImageViewCommand =>
+            new Lazy<RelayCommand>(() =>
+                new RelayCommand(ShowImageViewCommand_Execute, CanSetLayout)).Value;
 
 
         public RelayCommand LayoutCategorySelectedChangeCommand =>
@@ -58,6 +61,7 @@ namespace AriesCV.ViewModel
             return GraphCvLayoutConfig != null;
         }
 
+
         private void LayoutCategorySelectedChangeCommand_Execute()
         {
             Messenger.Default.Send(GraphCvLayoutConfig.LayoutType, "ReSetLayoutCategoryToken");
@@ -67,6 +71,11 @@ namespace AriesCV.ViewModel
         private void EdgeRoutingCategorySelectedChangeCommand_Execute()
         {
             Messenger.Default.Send(GraphCvLayoutConfig.EdgeRoutingType, "ResetEdgeRoutingCategoryToken");
+        }
+
+        private void ShowImageViewCommand_Execute()
+        {
+            Messenger.Default.Send(GraphCvLayoutConfig.IsShowImageView, "ReSetShowImageViewToken");
         }
 
         private void ShowEdgeLabelCommand_Execute()

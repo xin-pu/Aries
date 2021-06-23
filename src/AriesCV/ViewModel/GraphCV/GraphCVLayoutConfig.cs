@@ -5,6 +5,7 @@ namespace AriesCV.ViewModel
 {
     public class GraphCVLayoutConfig : ViewModelBase
     {
+        private bool _isShowImageView = false;
         private bool _isShowEdgeLabels = false;
         private bool _isAlignEdgeLabels = true;
         public LayoutType layoutType = LayoutType.TreeTopTpBottom;
@@ -49,6 +50,16 @@ namespace AriesCV.ViewModel
             {
                 _isAlignEdgeLabels = value;
                 RaisePropertyChanged(() => IsAlignEdgeLabels);
+            }
+        }
+
+        public bool IsShowImageView
+        {
+            get { return _isShowImageView; }
+            set
+            {
+                _isShowImageView = value;
+                RaisePropertyChanged(() => IsShowImageView);
             }
         }
     }

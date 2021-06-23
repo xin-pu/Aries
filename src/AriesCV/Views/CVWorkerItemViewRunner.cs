@@ -11,11 +11,7 @@ namespace AriesCV.Views
     public partial class CVWorkerItemView
     {
 
-        public Dictionary<BlockVertex, VertexControl> VertexControls =>
-            (Dictionary<BlockVertex, VertexControl>) GraphCVArea.VertexList;
-
-        public Dictionary<BlockEdge, EdgeControl> EdgeControls =>
-            (Dictionary<BlockEdge, EdgeControl>) GraphCVArea.EdgesList;
+  
 
 
 
@@ -27,7 +23,7 @@ namespace AriesCV.Views
 
         public async Task SetEnableSaveImage(bool isAutoSave)
         {
-            var tasks = VertexControls.Keys.Select(vc => { return Task.Run(() => vc.EnableSaveBlock = isAutoSave); });
+            var tasks = VertexControls.Keys.Select(vc => { return Task.Run(() => vc.EnableSaveMat = isAutoSave); });
             await Task.WhenAll(tasks);
         }
 
