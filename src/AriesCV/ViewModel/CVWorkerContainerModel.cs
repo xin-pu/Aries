@@ -117,6 +117,8 @@ namespace AriesCV.ViewModel
 
         private void AddBlockVertex(BlockVertex obj)
         {
+            if (CvWorkerItemView == null)
+                return;
             var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
             obj.WorkDirectory = workDirectory;
             GraphCvAreaAtWorkSpace?.AddBlock(obj);
