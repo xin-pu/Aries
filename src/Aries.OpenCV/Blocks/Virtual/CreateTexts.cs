@@ -24,7 +24,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            OutPut = textArray
+            TOut = textArray
                 .Select(a => new TextSegment(a[0], double.Parse(a[1]), double.Parse(a[1])))
                 .ToArray();
         }

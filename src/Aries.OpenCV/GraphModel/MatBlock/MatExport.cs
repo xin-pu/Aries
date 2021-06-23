@@ -6,10 +6,30 @@ namespace Aries.OpenCV.GraphModel
 
     public abstract class MatExport<T> : BlockVertex
     {
-        
-        [Category("DATAIN")] public Mat MatIn { set; get; }
+        private Mat _matIn;
+        public T _result;
 
-        [Category("DATAOUT")] public T Result { set; get; }
+        [Category("DATAIN")]
+        public Mat MatIn
+        {
+            get { return _matIn; }
+            set
+            {
+                _matIn = value;
+                RaisePropertyChanged(() => MatIn);
+            }
+        }
+
+        [Category("DATAOUT")]
+        public T Result
+        {
+            get { return _result; }
+            set
+            {
+                _result = value;
+                RaisePropertyChanged(() => Result);
+            }
+        }
 
         public override void Reload()
         {

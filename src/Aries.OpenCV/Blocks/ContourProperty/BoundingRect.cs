@@ -15,12 +15,12 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return CosIn != null && CosIn.Length != 0;
+            return ConsIn != null && ConsIn.Length != 0;
         }
 
         public override void Execute()
         {
-            Result = CosIn.Select(a => Cv2.BoundingRect(a)).ToArray();
+            Result = ConsIn.Select(a => Cv2.BoundingRect(a)).ToArray();
         }
 
     }

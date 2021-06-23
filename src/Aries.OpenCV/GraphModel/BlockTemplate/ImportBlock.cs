@@ -4,12 +4,22 @@ namespace Aries.OpenCV.GraphModel
 {
     public abstract class ImportBlock<T> : BlockVertex
     {
+        public T _tout;
 
-        [Category("DATAOUT")] public T OutPut { set; get; }
+        [Category("DATAOUT")]
+        public T TOut
+        {
+            get { return _tout; }
+            set
+            {
+                _tout = value;
+                RaisePropertyChanged(() => TOut);
+            }
+        }
 
         public override void Reload()
         {
-            OutPut = default;
+            TOut = default;
             Status = BlockStatus.ToRun;
         }
     }

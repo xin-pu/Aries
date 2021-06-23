@@ -5,9 +5,30 @@ namespace Aries.OpenCV.GraphModel
 {
     public abstract class ContoursProcess : BlockVertex
     {
-        [Category("DATAIN")] public Mat[] ConsIn { set; get; }
+        private Mat[] _consIn;
+        private Mat[] _consOut;
 
-        [Category("DATAOUT")] public Mat[] ConsOut { set; get; }
+        [Category("DATAIN")]
+        public Mat[] ConsIn
+        {
+            get { return _consIn; }
+            set
+            {
+                _consIn = value;
+                RaisePropertyChanged(() => ConsIn);
+            }
+        }
+
+        [Category("DATAOUT")]
+        public Mat[] ConsOut
+        {
+            get { return _consOut; }
+            set
+            {
+                _consOut = value;
+                RaisePropertyChanged(() => ConsOut);
+            }
+        }
 
 
         public override void Reload()

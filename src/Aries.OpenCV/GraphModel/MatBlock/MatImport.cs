@@ -5,7 +5,18 @@ namespace Aries.OpenCV.GraphModel
 {
     public abstract class MatImport : BlockVertex
     {
-        [Category("DATAOUT")] public Mat MatOut { set; get; }
+        private Mat _matOut;
+
+        [Category("DATAOUT")]
+        public Mat MatOut
+        {
+            get { return _matOut; }
+            set
+            {
+                _matOut = value;
+                RaisePropertyChanged(() => MatOut);
+            }
+        }
 
 
         public override void Reload()

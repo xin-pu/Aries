@@ -11,20 +11,20 @@ namespace Aries.OpenCV.Blocks
 
         public override void Reload()
         {
-            CosIn = null;
+            ConsIn = null;
             Result = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return CosIn != null && CosIn.Length > 0;
+            return ConsIn != null && ConsIn.Length > 0;
         }
 
         public override void Execute()
         {
             Result = new Mat();
-            Result = CosIn[Index].Clone();
+            Result = ConsIn[Index].Clone();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            OutPut = Cv2.GetStructuringElement(MorphShapes,
+            TOut = Cv2.GetStructuringElement(MorphShapes,
                 new Size(ElementWidth, ElementHeight),
                 new Point(AnchorPoint_X, AnchorPoint_Y));
         }

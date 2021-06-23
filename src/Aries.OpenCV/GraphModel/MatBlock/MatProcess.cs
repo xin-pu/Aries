@@ -5,9 +5,30 @@ namespace Aries.OpenCV.GraphModel
 {
     public abstract class MatProcess : BlockVertex
     {
-        [Category("DATAIN")] public Mat MatIn { set; get; }
+        private Mat _matIn;
+        private Mat _matOut;
 
-        [Category("DATAOUT")] public Mat MatOut { set; get; }
+        [Category("DATAIN")]
+        public Mat MatIn
+        {
+            get { return _matIn; }
+            set
+            {
+                _matIn = value;
+                RaisePropertyChanged(() => MatIn);
+            }
+        }
+
+        [Category("DATAOUT")]
+        public Mat MatOut
+        {
+            get { return _matOut; }
+            set
+            {
+                _matOut = value;
+                RaisePropertyChanged(() => MatOut);
+            }
+        }
 
 
         public override void Reload()

@@ -12,13 +12,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return CosIn != null;
+            return ConsIn != null;
         }
 
         public override void Execute()
         {
             Result = new Moments[0];
-            Result = CosIn.Select(c => Cv2.Moments(c, BinaryImage)).ToArray();
+            Result = ConsIn.Select(c => Cv2.Moments(c, BinaryImage)).ToArray();
         }
     }
 }

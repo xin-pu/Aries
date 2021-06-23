@@ -40,7 +40,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            OutPut = new Scalar(Val0, Val1, Val2, Val3);
+            TOut = new Scalar(Val0, Val1, Val2, Val3);
         }
     }
 }

@@ -12,18 +12,18 @@ namespace Aries.OpenCV.Blocks
     {
         public override void Reload()
         {
-            CosIn = null;
+            ConsIn = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return CosIn != null && CosIn.Length > 0;
+            return ConsIn != null && ConsIn.Length > 0;
         }
 
         public override void Execute()
         {
-            var cirs = CosIn.Select(con =>
+            var cirs = ConsIn.Select(con =>
             {
                 Point2f point;
                 float radius;

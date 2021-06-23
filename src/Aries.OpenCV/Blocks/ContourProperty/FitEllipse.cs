@@ -11,18 +11,18 @@ namespace Aries.OpenCV.Blocks
 
         public override void Reload()
         {
-            CosIn = null;
+            ConsIn = null;
             Status = BlockStatus.ToRun;
         }
 
         public override bool CanExecute()
         {
-            return CosIn != null;
+            return ConsIn != null;
         }
 
         public override void Execute()
         {
-            Result = CosIn.Select(a => Cv2.FitEllipse(a)).ToArray();
+            Result = ConsIn.Select(a => Cv2.FitEllipse(a)).ToArray();
         }
 
 

@@ -29,7 +29,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            OutPut = circleArray
+            TOut = circleArray
                 .Select(a => new CircleSegment(new Point(a[0], a[1]), (int) a[2]))
                 .ToArray();
         }

@@ -33,7 +33,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            OutPut = pointArray
+            TOut = pointArray
                 .Select(a => new LineSegmentPoint(new Point(a[0], a[1]), new Point(a[2], a[3])))
                 .ToArray();
         }

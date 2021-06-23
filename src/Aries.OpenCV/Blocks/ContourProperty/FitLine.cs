@@ -33,13 +33,13 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
-            return CosIn != null;
+            return ConsIn != null;
         }
 
         public override void Execute()
         {
 
-            Result = CosIn.Select(a =>
+            Result = ConsIn.Select(a =>
             {
                 Mat res = new Mat();
                 Cv2.FitLine(a, res, DistType, Param, Reps, Aeps);
