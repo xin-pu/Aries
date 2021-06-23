@@ -2,7 +2,6 @@
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Aries.OpenCV.Core;
 using GalaSoft.MvvmLight.Command;
@@ -12,11 +11,11 @@ using OpenCvSharp;
 namespace Aries.OpenCV.GraphModel
 {
     [Serializable]
-    public abstract class BlockVertex : VertexBase, INotifyPropertyChanged
+    public abstract class BlockVertex : VertexBase
     {
         private BlockStatus _status = BlockStatus.ToRun;
         private bool _enableSaveBlock = true;
-        private string _outImage = string.Empty;
+        private string _imageSource = @"\Resource\Image\Aries.jpg";
         private string _workDire = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
         public string CVCategory { set; get; }
@@ -32,29 +31,45 @@ namespace Aries.OpenCV.GraphModel
         [Category("INFO")]
         public string OutImage
         {
-            set { UpdateProperty(ref _outImage, value); }
-            get { return _outImage; }
+            get { return _imageSource; }
+            set
+            {
+                _imageSource = value;
+                RaisePropertyChanged(() => OutImage);
+            }
         }
 
         [Category("INFO")]
         private string WorkDire
         {
-            set { UpdateProperty(ref _workDire, value); }
             get { return _workDire; }
+            set
+            {
+                _workDire = value;
+                RaisePropertyChanged(() => WorkDire);
+            }
         }
 
         [Category("INFO")]
         public BlockStatus Status
         {
-            set { UpdateProperty(ref _status, value); }
             get { return _status; }
+            set
+            {
+                _status = value;
+                RaisePropertyChanged(() => Status);
+            }
         }
 
         [Category("CHOICE")]
         public bool EnableSaveBlock
         {
-            set { UpdateProperty(ref _enableSaveBlock, value); }
             get { return _enableSaveBlock; }
+            set
+            {
+                _enableSaveBlock = value;
+                RaisePropertyChanged(() => EnableSaveBlock);
+            }
         }
 
 
@@ -145,9 +160,12 @@ namespace Aries.OpenCV.GraphModel
                     .FirstOrDefault(a => a.Category == "DATAOUT" && a.Name == "MatOut");
 
                 var mat = GetPropertyAsMat(outMatDict?.Name) as Mat;
-
-                OutImage = Path.Combine(WorkDire, $"{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg");
-                mat?.ImWrite(OutImage);
+                var imagesource = $@"{WorkDire}\{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg";
+                var saveRes = mat?.ImWrite(imagesource);
+                if (saveRes == true)
+                {
+                    OutImage = imagesource;
+                }
             }
             catch (Exception ex)
             {
@@ -222,28 +240,5 @@ namespace Aries.OpenCV.GraphModel
         }
 
 
-        #region
-
-        internal void UpdateProperty<T>(ref T properValue, T newValue, [CallerMemberName] string propertyName = "")
-        {
-            if (Equals(properValue, newValue))
-            {
-                return;
-            }
-
-            properValue = newValue;
-
-            OnPropertyChanged(propertyName);
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        #endregion
     }
 }

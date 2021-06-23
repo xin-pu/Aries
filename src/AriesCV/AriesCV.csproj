@@ -262,7 +262,9 @@
   <ItemGroup>
     <Resource Include="Resource\Image\cloud.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\Image\Aries.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aries.OpenCV\Aries.OpenCV.csproj">
       <Project>{2e7767e8-c9ee-4a13-9f9c-4e76ddbcc935}</Project>

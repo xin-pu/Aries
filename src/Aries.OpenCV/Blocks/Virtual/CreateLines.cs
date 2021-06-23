@@ -19,6 +19,8 @@ namespace Aries.OpenCV.Blocks
 
         public override bool CanExecute()
         {
+            if (List_Points == null)
+                return false;
             var point = List_Points
                 .Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
 

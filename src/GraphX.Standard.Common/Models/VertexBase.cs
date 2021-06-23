@@ -1,9 +1,10 @@
-﻿using GraphX.Common.Enums;
+﻿using GalaSoft.MvvmLight;
+using GraphX.Common.Enums;
 using GraphX.Common.Interfaces;
 
 namespace GraphX.Common.Models
 {
-    public abstract class VertexBase: IGraphXVertex
+    public abstract class VertexBase: ViewModelBase, IGraphXVertex
     {
         /// <summary>
         /// Gets or sets custom angle associated with the vertex

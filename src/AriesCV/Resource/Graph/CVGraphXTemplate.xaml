@@ -71,7 +71,7 @@
                         </Storyboard>
                     </ControlTemplate.Resources>
 
-                    <Grid Background="White">
+                    <Grid>
                         <Border x:Name="BackgroundNorm" 
                                 BorderThickness="{TemplateBinding BorderThickness}" 
                                 CornerRadius="2" 
@@ -96,7 +96,8 @@
                                 Opacity="0" 
                                 BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
 
-                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2">
+                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2"
+                              Background="{DynamicResource LightSuccessBrush}">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
@@ -110,32 +111,35 @@
                             </Border>
                             <Border Grid.Row="1" BorderThickness="0,2" 
                                     BorderBrush="{DynamicResource PrimaryBrush}"
-                                    MinWidth="200"
-                                    MinHeight="100">
+                                    MaxHeight="200"
+                                    MaxWidth="200"
+                                    Background="White">
                                 <DockPanel>
                                     <StackPanel Orientation="Horizontal" 
                                                 Name="Status"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center"
+                                                MinWidth="120"
                                                 DockPanel.Dock="Top">
                                         <TextBlock Text="{Binding ID,StringFormat='{}{0}.'}" 
                                                    VerticalAlignment="Center" 
                                                    TextAlignment="Center" 
                                                    HorizontalAlignment="Center" 
                                                    FontWeight="Bold" 
-                                                   Foreground="White"  Margin="10,0" 
-                                                   FontSize="20"/>
+                                                   Foreground="White"  Margin="5" 
+                                                   FontSize="13"/>
                                         <TextBlock Text="{Binding Name}" 
                                                    VerticalAlignment="Center" 
                                                    TextAlignment="Center" 
                                                    HorizontalAlignment="Center" 
                                                    FontWeight="Bold" 
-                                                   Foreground="White" 
-                                                   MinWidth="120"
-                                                   FontSize="20"/>
+                                                   Foreground="White" Margin="5,0" 
+                                                   FontSize="13"/>
                                     </StackPanel>
-                                    <hc:ImageViewer ImageSource="{Binding OutImage}" 
+                                    <Image Source="{Binding OutImage,Mode=TwoWay,
+                                        NotifyOnSourceUpdated=True,
+                                        UpdateSourceTrigger=PropertyChanged}" 
                                                     Name="ImageViewer"
-                                                    Width="200" 
-                                                    Height="140"
                                                     Visibility="Collapsed"/>
                                 </DockPanel>
                              
@@ -154,16 +158,16 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding Status}" Value="ToRun">
-                            <Setter TargetName="Status" Property="Background" Value="#BFFFA07A"/>
+                            <Setter TargetName="Status" Property="Background" Value="#E9AF20"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Run">
-                            <Setter TargetName="Status" Property="Background" Value="#BFDB7093"/>
+                            <Setter TargetName="Status" Property="Background" Value="#00BCD4"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Complete">
-                            <Setter TargetName="Status" Property="Background" Value="#BF008000"/>
+                            <Setter TargetName="Status" Property="Background" Value="#44BE60"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Status}" Value="Exception">
-                            <Setter TargetName="Status" Property="Background" Value="#BFFF4500"/>
+                            <Setter TargetName="Status" Property="Background" Value="#DB3340"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding EnableSaveBlock}" Value="True">
                             <Setter TargetName="ImageViewer" Property="Visibility" Value="Visible"/>

@@ -289,8 +289,15 @@ namespace AriesCV.ViewModel
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            try
+            {
+                PropertyChangedEventHandler handler = PropertyChanged;
+                handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+            catch (Exception)
+            {
+                ;
+            }
         }
 
         #endregion
