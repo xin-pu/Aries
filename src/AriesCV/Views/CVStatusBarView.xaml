@@ -9,50 +9,76 @@
              Height="45"
              BorderThickness="1"
              BorderBrush="{DynamicResource BorderBrush}"
-             DataContext="{Binding CvWorkerContainer,Source={StaticResource Locator}}">
+             FontFamily="/Resource/#iconfont">
 
+
+    
     <StatusBarItem HorizontalAlignment="Left">
-        <StackPanel>
-          
+        <StackPanel Orientation="Horizontal" 
+                    DataContext="{Binding MenuRunner,Source={StaticResource Locator}}">
+            <TextBlock Text="{Binding GraphCVRunConfig.WorkDirectory,StringFormat='{} &#xef48; {0}'}"
+                       ToolTip="Work Directory"
+                       Style="{DynamicResource TextBlockDefaultPrimary}"
+                       FontWeight="DemiBold"/>
         </StackPanel>
-
-
     </StatusBarItem>
-
 
     <StatusBarItem HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal">
 
+            <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right"
+                         DataContext="{Binding MenuLayout,Source={StaticResource Locator}}">
+                <ToggleButton IsChecked="{Binding GraphCvLayoutConfig.IsShowImageView}"
+                        Style="{DynamicResource ToggleButtonInfo}"
+                        ToolTip="ShowImage"
+                        Margin="2,0"
+                        Content="&#xed8d;"/>
+                <Button Command="{Binding RelayoutGraphCommand}"
+                      Style="{DynamicResource ButtonDashedInfo}"
+                      ToolTip="Relayout Graph"
+                      Margin="2,0"
+                      Content="&#xef8c;"
+                      FontSize="16"/>
+            </StackPanel>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
-                    DataContext="{Binding ZoomControl}">
-            <Button Command="{Binding ZoomToFillCommand}" 
-                    Style="{DynamicResource ButtonDashedPrimary}"
-                    ToolTip="Zoom to Fill"
-                    Margin="2,0"
-                    hc:IconElement.Geometry="{StaticResource FullScreenGeometry}"/>
-            <Button Command="{Binding ZoomToOriginalCommand}"
-                    Style="{DynamicResource ButtonDashedPrimary}"
-                    ToolTip="Zoom to Original"
-                    Margin="2,0"
-                    hc:IconElement.Geometry="{StaticResource FullScreenReturnGeometry}"/>
-            <Button Command="{Binding CenterContentCommand}"
-                    Style="{DynamicResource ButtonDashedPrimary}"
-                    ToolTip="Zoom to Center"
-                    Margin="2,0"
-                    hc:IconElement.Geometry="{StaticResource StarGeometry}"/>
-            <Slider VerticalAlignment="Center"
-                    Width="200" 
-                    Value="{Binding Zoom}"
-                    ToolTip="{Binding Zoom}"
-                    Maximum="5"
-                    Minimum="0.25"
-                    Style="{DynamicResource SliderBaseStyle}"/>
-            <TextBlock Text="{Binding Zoom,StringFormat='{}{0:P2}'}"
-                       VerticalAlignment="Center"
-                       FontSize="13"
-                       FontWeight="DemiBold"
-                       Width="50"/>
+            <hc:Divider LineStrokeThickness="2" LineStroke="{DynamicResource DarkDefaultBrush}"
+                        Orientation="Vertical" MaxHeight="16"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right"
+                        DataContext="{Binding CvWorkerContainer.ZoomControl,Source={StaticResource Locator}}">
+                <Button Command="{Binding ZoomToFillCommand}" 
+                        Style="{DynamicResource ButtonDashedPrimary}"
+                        ToolTip="Zoom to Fill"
+                        Margin="2,0"
+                        hc:IconElement.Geometry="{StaticResource FullScreenGeometry}"/>
+                <Button Command="{Binding ZoomToOriginalCommand}"
+                        Style="{DynamicResource ButtonDashedPrimary}"
+                        ToolTip="Zoom to Original"
+                        Margin="2,0"
+                        hc:IconElement.Geometry="{StaticResource FullScreenReturnGeometry}"/>
+                <Button Command="{Binding CenterContentCommand}"
+                        Style="{DynamicResource ButtonDashedPrimary}"
+                        ToolTip="Zoom to Center"
+                        Margin="2,0"
+                        hc:IconElement.Geometry="{StaticResource StarGeometry}"/>
+                <Slider VerticalAlignment="Center"
+                        Width="200" 
+                        Value="{Binding Zoom}"
+                        ToolTip="{Binding Zoom}"
+                        Maximum="5"
+                        Minimum="0.25"
+                        Style="{DynamicResource SliderBaseStyle}"/>
+                <TextBlock Text="{Binding Zoom,StringFormat='{}{0:P2}'}"
+                           VerticalAlignment="Center"
+                           FontSize="13"
+                           FontWeight="DemiBold"
+                           Width="50"/>
+            </StackPanel>
+
         </StackPanel>
-      
+
+     
     </StatusBarItem>
+
+
 </StatusBar>

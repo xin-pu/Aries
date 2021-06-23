@@ -3,7 +3,6 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using Aries.OpenCV.Core;
 using GalaSoft.MvvmLight.Command;
 using GraphX.Common.Models;
@@ -18,7 +17,7 @@ namespace Aries.OpenCV.GraphModel
         private bool _enableSaveMat = true;
         private bool _showImage = true;
         private string _imageSource = @"\Resource\Image\Aries.jpg";
-        private string _workDire = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+        private string _workDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
         public string CVCategory { set; get; }
         public string Icon { set; get; }
@@ -42,13 +41,13 @@ namespace Aries.OpenCV.GraphModel
         }
 
         [Category("INFO")]
-        private string WorkDire
+        public string WorkDirectory
         {
-            get { return _workDire; }
+            get { return _workDirectory; }
             set
             {
-                _workDire = value;
-                RaisePropertyChanged(() => WorkDire);
+                _workDirectory = value;
+                RaisePropertyChanged(() => WorkDirectory);
             }
         }
 
@@ -157,7 +156,6 @@ namespace Aries.OpenCV.GraphModel
         }
 
 
-
         public virtual void SaveMatOut()
         {
             try
@@ -165,7 +163,7 @@ namespace Aries.OpenCV.GraphModel
                 if (Status != BlockStatus.Complete || !EnableSaveMat)
                     return;
 
-                if (WorkDire == string.Empty || !Directory.Exists(WorkDire))
+                if (WorkDirectory == string.Empty || !Directory.Exists(WorkDirectory))
                     return;
 
                 var outMatDict = TypeDescriptor.GetProperties(GetType())
@@ -173,16 +171,16 @@ namespace Aries.OpenCV.GraphModel
                     .FirstOrDefault(a => a.Category == "DATAOUT" && a.Name == "MatOut");
 
                 var mat = GetPropertyAsMat(outMatDict?.Name) as Mat;
-                var imagesource = $@"{WorkDire}\{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg";
+                var imagesource = $@"{WorkDirectory}\{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg";
                 var saveRes = mat?.ImWrite(imagesource);
                 if (saveRes == true)
                 {
                     OutImage = imagesource;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                
+                // ignored
             }
         }
 

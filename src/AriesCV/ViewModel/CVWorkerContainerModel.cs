@@ -21,31 +21,59 @@ namespace AriesCV.ViewModel
 
         public CVWorkerContainerModel()
         {
+            RegisterForToolKit();
+            RegisterForFile();
+            RegisterForLayout();
+            RegisterForRunner();
+
+        }
+
+
+        private void RegisterForToolKit()
+        {
             Messenger.Default.Register<BlockVertex>(this, "AddBlockToken", AddBlockVertex);
+        }
 
-
+        private void RegisterForFile()
+        {
             Messenger.Default.Register<CVWorkerItemView>(this, "AddCVWorkerModelToken", AddCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveCVWorkerModelToken", RemoveCVWorkerModel);
             Messenger.Default.Register<string>(this, "RemoveAllCVWorkerModelToken", RemoveAllCVWorkerModel);
+        }
 
+
+
+        /// <summary>
+        /// Works for Item Select
+        /// </summary>
+        private void RegisterForLayout()
+        {
             Messenger.Default.Register<LayoutType>(this, "ReSetLayoutCategoryToken", ReSetLayoutCategory);
             Messenger.Default.Register<EdgeRoutingType>(this, "ResetEdgeRoutingCategoryToken",
                 ResetEdgeRoutingCategory);
             Messenger.Default.Register<bool>(this, "ResetShowEdgeLabelToken", ResetShowEdgeLabel);
             Messenger.Default.Register<bool>(this, "ResetAlignEdgeLabelToken", ResetAlignEdgeLabel);
-            Messenger.Default.Register<bool>(this, "ReSetShowImageViewToken", ResetShowImageView); 
+            Messenger.Default.Register<bool>(this, "ReSetShowImageViewToken", ResetShowImageView);
             Messenger.Default.Register<string>(this, "RelayoutGraphToken", RelayoutGraph);
+        }
 
-
-            Messenger.Default.Register<string>(this, "RunGraphByDatasToken", RunGraphByDatas);
+        /// <summary>
+        /// Works for Item Select
+        /// </summary>
+        private void RegisterForRunner()
+        {
+            Messenger.Default.Register<string>(this, "RunGraphByDataToken", RunGraphByData);
             Messenger.Default.Register<string>(this, "ReloadGraphToken", ReloadGraph);
             Messenger.Default.Register<bool>(this, "SetEnableSaveImageToken", SetEnableSaveImage);
 
+            Messenger.Default.Register<string>(this, "OpenWorkDirectoryToken", OpenWorkDirectory);
+            Messenger.Default.Register<string>(this, "ChangeWorkDirectoryToken", ChangeWorkDirectory);
         }
 
-    
 
-        public TestModel TestModel { set; get; } = new TestModel();
+
+
+
 
         public GraphCVArea GraphCvAreaAtWorkSpace
         {
@@ -89,6 +117,8 @@ namespace AriesCV.ViewModel
 
         private void AddBlockVertex(BlockVertex obj)
         {
+            var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
+            obj.WorkDirectory = workDirectory;
             GraphCvAreaAtWorkSpace?.AddBlock(obj);
         }
 
@@ -102,9 +132,6 @@ namespace AriesCV.ViewModel
             ViewModelLocator.Instance.MenuLayout.GraphCvLayoutConfig = CvWorkerItemView.GraphCvLayoutConfig;
             ViewModelLocator.Instance.MenuRunner.GraphCVRunConfig = CvWorkerItemView.GraphCvRunConfig;
         }
-
-
-
 
 
         #region File
@@ -132,26 +159,37 @@ namespace AriesCV.ViewModel
 
         #endregion
 
+
+
+
         #region Runner
 
-        private async void RunGraphByDatas(string obj)
+        public async void RunGraphByData(string obj)
         {
-            await CvWorkerItemView.RunGraphByDatas();
+            await CvWorkerItemView.RunGraphByDataAsync();
         }
 
-        private async void ReloadGraph(string obj)
+        public async void ReloadGraph(string obj)
         {
-            await CvWorkerItemView.ReloadAllBlock();
+            await CvWorkerItemView.ReloadAllBlockAsync();
         }
 
         public async void SetEnableSaveImage(bool isEnable)
         {
-            await CvWorkerItemView.SetEnableSaveImage(isEnable);
+            await CvWorkerItemView.SetEnableSaveImageAsync(isEnable);
+        }
+
+        public  void OpenWorkDirectory(string obj)
+        {
+            CvWorkerItemView.OpenWorkDirectory();
+        }
+
+        public  void ChangeWorkDirectory(string obj)
+        {
+            CvWorkerItemView.ChangeWorkDirectory();
         }
 
         #endregion
-
-
 
 
         #region Layout
@@ -187,6 +225,7 @@ namespace AriesCV.ViewModel
         }
 
         #endregion
+
 
     }
 }

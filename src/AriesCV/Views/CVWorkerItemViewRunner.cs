@@ -1,33 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Aries.OpenCV.GraphModel;
-using GraphX.Controls;
-using HandyControl.Controls;
+using System.Windows.Forms;
+using GraphX.Common;
+using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace AriesCV.Views
 {
     public partial class CVWorkerItemView
     {
 
-  
-
-
-
-        public async Task ReloadAllBlock()
+        public async Task ReloadAllBlockAsync()
         {
             var tasks = VertexControls.Keys.Select(vc => Task.Run(vc.Reload));
             await Task.WhenAll(tasks);
         }
 
-        public async Task SetEnableSaveImage(bool isAutoSave)
+        public async Task SetEnableSaveImageAsync(bool isAutoSave)
         {
             var tasks = VertexControls.Keys.Select(vc => { return Task.Run(() => vc.EnableSaveMat = isAutoSave); });
             await Task.WhenAll(tasks);
         }
 
-        public async Task RunGraphByDatas()
+        public async Task RunGraphByDataAsync()
         {
             try
             {
@@ -100,6 +97,24 @@ namespace AriesCV.Views
         }
 
 
+        public void OpenWorkDirectory()
+        {
+            Process.Start("explorer.exe", GraphCvRunConfig.WorkDirectory);
+        }
+
+        public void ChangeWorkDirectory()
+        {
+            var openFileDialog = new FolderBrowserDialog
+            {
+                SelectedPath = GraphCvRunConfig.WorkDirectory
+            };
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var dire = openFileDialog.SelectedPath;
+                GraphCvRunConfig.WorkDirectory = dire;
+                VertexControls.ForEach(a => a.Key.WorkDirectory = dire);
+            }
+        }
 
 
     }

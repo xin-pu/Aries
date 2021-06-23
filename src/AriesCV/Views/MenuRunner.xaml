@@ -37,4 +37,20 @@
             </StackPanel>
         </StackPanel>
     </StatusBarItem>
+
+    <hc:Divider LineStrokeThickness="1" 
+                LineStroke="{DynamicResource DarkPrimaryBrush}" 
+                Orientation="Vertical"/>
+
+    <StatusBarItem>
+        <StackPanel Orientation="Horizontal">
+            <controls:TopTabButton Content="Open" Icon="&#xef48;" 
+                                   ToolTip="Open Work Directory"
+                                   Command="{Binding OpenWorkDirectoryCommand}"/>
+
+            <controls:TopTabButton Content="Change" Icon="&#xef47;" 
+                                   ToolTip="Change Work Directory"
+                                   Command="{Binding ChangeWorkDirectoryCommand}"/>
+        </StackPanel>
+    </StatusBarItem>
 </StatusBar>

@@ -63,6 +63,7 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -120,7 +121,6 @@
     <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
     <Compile Include="ViewModel\MenuLayoutModel.cs" />
     <Compile Include="ViewModel\MenuRunner.cs" />
-    <Compile Include="ViewModel\TestModel.cs" />
     <Compile Include="Views\CVPropertyGridView.xaml.cs">
       <DependentUpon>CVPropertyGridView.xaml</DependentUpon>
     </Compile>

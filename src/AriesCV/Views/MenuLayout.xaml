@@ -144,7 +144,9 @@
             </StackPanel>
         </StackPanel>
     </StatusBarItem>
-    <Separator></Separator>
+    <hc:Divider LineStrokeThickness="1" 
+                LineStroke="{DynamicResource DarkPrimaryBrush}" 
+                Orientation="Vertical"/>
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
             <Border  BorderThickness="1"
