@@ -19,7 +19,7 @@
            <Setter Property="BorderThickness" Value="0"></Setter>
            <Setter Property="ContentTemplate">
                <Setter.Value>
-                    <DataTemplate DataType="cvToolKit:MatToolKit">
+                    <DataTemplate DataType="cvToolKit:ToolKitStruct">
                         <Button   VerticalAlignment="Center"
                                        HorizontalAlignment="Stretch"
                                        Margin="1"

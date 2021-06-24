@@ -2,17 +2,17 @@
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.BlocksContour
 {
     [Category("Logic")]
-    public abstract class ChoiceContoursForCustom : ContoursProcess
+    public class ChoiceContours : ContoursExport<Mat>
     {
-        public abstract Mat[] Filter();
+        [Category("Enter")] public uint Index { set; get; } = 0;
 
         public override void Reload()
         {
             ConsIn = null;
-            ConsOut = null;
+            Result = null;
             Status = BlockStatus.ToRun;
         }
 
@@ -23,8 +23,8 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            ConsOut = new Mat[0];
-            ConsOut = Filter();
+            Result = new Mat();
+            Result = ConsIn[Index].Clone();
         }
     }
 }

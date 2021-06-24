@@ -70,23 +70,23 @@
                     <TabControl TabStripPlacement="Left" Name="LeftTabControl"
                                 FontFamily="/Resource/#iconfont"
                                 FontWeight="DemiBold">
-                        <TabItem Header="&#xef53;"
+                        <TabItem Header="&#xef4a;"
                                  ToolTip="Mat"
-                                 FontSize="24">
+                                 FontSize="20">
                             <views:ToolKitMatView 
                                 Background="Transparent"
                                 DataContext="{Binding ToolKitMat,Source={StaticResource Locator}}" />
                         </TabItem>
-                        <TabItem Header="&#xef53;"
+                        <TabItem Header="&#xed71;"
                                  ToolTip="Contour"
-                                 FontSize="24">
+                                 FontSize="20">
                             <views:ToolKitMatView 
                                 Background="Transparent"
                                 DataContext="{Binding ToolKitContour,Source={StaticResource Locator}}"/>
                         </TabItem>
-                        <TabItem Header="&#xef73;"
+                        <TabItem Header="&#xf03a;"
                                  ToolTip="Block Property"
-                                 FontSize="24">
+                                 FontSize="20">
                             <views:CVPropertyGridView 
                                 Background="Transparent"/>
                         </TabItem>

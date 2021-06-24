@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
-using Aries.OpenCV.Blocks;
 using Aries.OpenCV.GraphModel;
 using GraphX.Common;
 using OpenCvSharp;
 using Tesseract;
 using Rect = OpenCvSharp.Rect;
 
-namespace Aries.OpenCV.BlocksOCR.Tesseract
+namespace Aries.OpenCV.Blocks.Tesseract
 {
 
     [Category("Tesseract")]

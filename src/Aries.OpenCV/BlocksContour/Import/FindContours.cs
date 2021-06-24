@@ -5,8 +5,33 @@ using OpenCvSharp;
 namespace Aries.OpenCV.BlocksContour
 {
     [Category("Import")]
-    public class FindContours : MatExport<Mat[]>
+    public class FindContours : VertexBasic
     {
+        private Mat _matIn;
+        private Mat[] _consOut;
+
+        [Category("DATAIN")]
+        public Mat MatIn
+        {
+            get { return _matIn; }
+            set
+            {
+                _matIn = value;
+                RaisePropertyChanged(() => MatIn);
+            }
+        }
+
+        [Category("DATAOUT")]
+        public Mat[] ConsOut
+        {
+            get { return _consOut; }
+            set
+            {
+                _consOut = value;
+                RaisePropertyChanged(() => ConsOut);
+            }
+        }
+
         [Category("DATAOUT")] public Mat Hierarchy { set; get; }
 
         [Category("ARGUMENT")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;
@@ -26,7 +51,7 @@ namespace Aries.OpenCV.BlocksContour
         public override void Reload()
         {
             MatIn = null;
-            Result = null;
+            ConsOut = null;
             Status = BlockStatus.ToRun;
         }
 
@@ -40,7 +65,7 @@ namespace Aries.OpenCV.BlocksContour
             Hierarchy = new Mat();
             Mat[] outMats;
             Cv2.FindContours(MatIn, out outMats, Hierarchy, RetrievalMode, ContourApproximationMode, Offset);
-            Result = outMats;
+            ConsOut = outMats;
         }
     }
 }

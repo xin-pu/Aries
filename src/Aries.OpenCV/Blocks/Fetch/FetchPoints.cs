@@ -26,9 +26,9 @@ namespace Aries.OpenCV.Blocks.Fetch
         public override void Execute()
         {
             var points = new List<Point>();
-            for (int i = 0; i < MatIn.Height; i++)
+            for (var i = 0; i < MatIn.Height; i++)
             {
-                for (int j = 0; j < MatIn.Width; j++)
+                for (var j = 0; j < MatIn.Width; j++)
                 {
                     if (MatIn.Get<byte>(i, j) > Threshold)
                     {

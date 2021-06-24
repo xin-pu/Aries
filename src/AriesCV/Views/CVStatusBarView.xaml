@@ -37,8 +37,8 @@
                       Style="{DynamicResource ButtonDashedInfo}"
                       ToolTip="Relayout Graph"
                       Margin="2,0"
-                      Content="&#xef8c;"
-                      FontSize="16"/>
+                      Content="&#xf094;"
+                      FontSize="14"/>
             </StackPanel>
 
             <hc:Divider LineStrokeThickness="2" LineStroke="{DynamicResource DarkDefaultBrush}"

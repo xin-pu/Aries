@@ -97,7 +97,7 @@
     </StatusBar.Resources>
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
-            <controls:TopTabButton Content="Fresh" Icon="&#xef8c;" 
+            <controls:TopTabButton Content="Fresh" Icon="&#xf094;" 
                                    Command="{Binding RelayoutGraphCommand}"/>
             <StackPanel Orientation="Vertical" Margin="2"
                         VerticalAlignment="Top"

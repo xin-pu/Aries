@@ -16,7 +16,7 @@
             <controls:TopTabButton Content="Run" Icon="&#xf07e;" 
                                    Command="{Binding RunByGraphCommand}"/>
 
-            <controls:TopTabButton Content="Reload" Icon="&#xf0ae;" 
+            <controls:TopTabButton Content="Reload" Icon="&#xf096;" 
                                    Command="{Binding ReloadGraphCommand}"/>
 
             <StackPanel Orientation="Vertical" Margin="2"
@@ -44,11 +44,11 @@
 
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
-            <controls:TopTabButton Content="Open" Icon="&#xef48;" 
+            <controls:TopTabButton Content="Open" Icon="&#xefdc;" 
                                    ToolTip="Open Work Directory"
                                    Command="{Binding OpenWorkDirectoryCommand}"/>
 
-            <controls:TopTabButton Content="Change" Icon="&#xef47;" 
+            <controls:TopTabButton Content="Change" Icon="&#xefdb;" 
                                    ToolTip="Change Work Directory"
                                    Command="{Binding ChangeWorkDirectoryCommand}"/>
         </StackPanel>

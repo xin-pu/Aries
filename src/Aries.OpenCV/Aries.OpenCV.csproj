@@ -90,13 +90,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlocksContour\Choice\ChoiceContours.cs" />
+    <Compile Include="BlocksContour\Choice\ChoiceContoursForCustom.cs" />
     <Compile Include="BlocksContour\Filter\FilterContours.cs" />
     <Compile Include="BlocksContour\Import\FindContours.cs" />
-    <Compile Include="BlocksOCR\Tesseract\GetTextSegment.cs" />
-    <Compile Include="BlocksOCR\Tesseract\GetText.cs" />
+    <Compile Include="Blocks\Tesseract\GetTextSegment.cs" />
+    <Compile Include="Blocks\Tesseract\GetText.cs" />
     <Compile Include="Blocks\Arithmetic\AddWeighted.cs" />
-    <Compile Include="Blocks\Logic\ChoiceContoursForCustom.cs" />
-    <Compile Include="Blocks\Logic\ChoiceContours.cs" />
     <Compile Include="GraphModel\Controls\ContourVertexControl.cs" />
     <Compile Include="GraphModel\VertexBasic.cs" />
     <Compile Include="GraphModel\BlockTemplate\ProcessBlock.cs" />
@@ -150,7 +150,6 @@
     <Compile Include="Blocks\Virtual\CreateCircles.cs" />
     <Compile Include="Blocks\Import\CreateKernel.cs" />
     <Compile Include="Blocks\Virtual\CreateLines.cs" />
-    <Compile Include="Blocks\Import\CreateScalar.cs" />
     <Compile Include="Blocks\Virtual\CreateTexts.cs" />
     <Compile Include="Blocks\Logic\ChoiceMats.cs" />
     <Compile Include="Blocks\Morphology\Dilate.cs" />
@@ -212,7 +211,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BlocksOCR\Barcode\" />
+    <Folder Include="Blocks\Barcode\" />
     <Folder Include="ToolKit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

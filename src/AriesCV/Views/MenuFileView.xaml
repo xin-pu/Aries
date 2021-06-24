@@ -12,13 +12,13 @@
              Height="80">
     <StatusBarItem>
         <StackPanel Orientation="Horizontal">
-            <controls:TopTabButton Content="New" Icon="&#xef47;"
+            <controls:TopTabButton Content="New" Icon="&#xefca;"
                                    Command="{Binding NewGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Open" Icon="&#xef4c;"
+            <controls:TopTabButton Content="Open" Icon="&#xefc0;"
                                    Command="{Binding OpenGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Close" Icon="&#xef4d;"
+            <controls:TopTabButton Content="Close" Icon="&#xefc6;"
                                    Command="{Binding CloseGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Close All" Icon="&#xef4d;" 
+            <controls:TopTabButton Content="Close All" Icon="&#xefc6;" 
                                    Command="{Binding CloseAllGraphCVFileCommand}"/>
 
         </StackPanel>
@@ -32,7 +32,7 @@
                                    Command="{Binding SaveGraphCVFileCommand}"/>
             <controls:TopTabButton Content="Save As" Icon="&#xf0a6;"
                                    Command="{Binding SaveAsGraphCVFileCommand}"/>
-            <controls:TopTabButton Content="Picture" Icon="&#xed8d;"
+            <controls:TopTabButton Content="Picture" Icon="&#xef5d;"
                                    Command="{Binding SaveAsGraphCVPNGCommand}"/>
         </StackPanel>
 
