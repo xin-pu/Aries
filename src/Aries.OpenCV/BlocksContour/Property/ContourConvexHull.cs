@@ -3,9 +3,9 @@ using Aries.OpenCV.GraphModel;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.BlocksContour
 {
-    [Category("ContourProperty")]
+    [Category("Property")]
     public class ContourConvexHull : ContoursProcess
     {
 

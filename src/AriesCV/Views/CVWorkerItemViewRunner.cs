@@ -20,7 +20,9 @@ namespace AriesCV.Views
 
         public async Task SetEnableSaveImageAsync(bool isAutoSave)
         {
-            var tasks = VertexControls.Keys.Select(vc => { return Task.Run(() => vc.EnableSaveMat = isAutoSave); });
+            var tasks = VertexControls.Keys
+                .OfType<VertexMat>()
+                .Select(vc => { return Task.Run(() => vc.EnableSaveMat = isAutoSave); });
             await Task.WhenAll(tasks);
         }
 

@@ -71,10 +71,18 @@
                                 FontFamily="/Resource/#iconfont"
                                 FontWeight="DemiBold">
                         <TabItem Header="&#xef53;"
-                                 ToolTip="CV Tool Kit"
+                                 ToolTip="Mat"
                                  FontSize="24">
-                            <views:CVToolKitView 
-                                Background="Transparent"/>
+                            <views:ToolKitMatView 
+                                Background="Transparent"
+                                DataContext="{Binding ToolKitMat,Source={StaticResource Locator}}" />
+                        </TabItem>
+                        <TabItem Header="&#xef53;"
+                                 ToolTip="Contour"
+                                 FontSize="24">
+                            <views:ToolKitMatView 
+                                Background="Transparent"
+                                DataContext="{Binding ToolKitContour,Source={StaticResource Locator}}"/>
                         </TabItem>
                         <TabItem Header="&#xef73;"
                                  ToolTip="Block Property"

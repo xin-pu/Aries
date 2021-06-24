@@ -3,7 +3,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class ContoursProcess : BlockVertex
+    public abstract class ContoursProcess : VertexContour
     {
         private Mat[] _consIn;
         private Mat[] _consOut;

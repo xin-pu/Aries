@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Arithmetic")]
-    public class BitwiseNot : BlockVertex
+    public class BitwiseNot : VertexMat
     {
         [Category("DATAIN")] public Mat MatIn { set; get; }
         [Category("DATAIN")] public Mat Mask { set; get; }

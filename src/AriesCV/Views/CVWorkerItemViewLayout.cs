@@ -1,4 +1,6 @@
-﻿using GraphX.Common;
+﻿using System.Linq;
+using Aries.OpenCV.GraphModel;
+using GraphX.Common;
 using GraphX.Common.Enums;
 using GraphX.Logic.Algorithms.EdgeRouting;
 using GraphX.Logic.Algorithms.LayoutAlgorithms;
@@ -99,7 +101,8 @@ namespace AriesCV.Views
 
         public void ResetShowImageView(bool isAutoSave)
         {
-            VertexControls.Keys.ForEach(vc => { vc.ShowImage = isAutoSave; });
+            VertexControls.Keys
+                .OfType<VertexMat>().ForEach(vc => { vc.ShowImage = isAutoSave; });
         }
 
         public void RelayoutGraph()

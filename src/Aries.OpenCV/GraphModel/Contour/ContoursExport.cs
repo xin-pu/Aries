@@ -4,8 +4,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.GraphModel
 {
 
-
-    public abstract class ContoursExport<T> : BlockVertex
+    public abstract class ContoursExport<T> : VertexContour
     {
         private Mat[] _consIn;
         private T _result;

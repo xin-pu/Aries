@@ -1,27 +1,26 @@
 ﻿using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 using System.ComponentModel;
+using System.Linq;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.BlocksContour
 {
 
     /// <summary>
     /// Output is Contour
     /// </summary>
-    [Category("ContourProperty")]
-    public class MinAreaRect : MatProcess
+    [Category("Property")]
+    public class MinAreaRect : ContoursExport<RotatedRect[]>
     {
 
         public override bool CanExecute()
         {
-            return MatIn != null;
+            return ConsIn != null && ConsIn.Length > 0;
         }
 
         public override void Execute()
         {
-            MatOut = new Mat();
-            var box = Cv2.MinAreaRect(MatIn);
-            Cv2.BoxPoints(box, MatOut);
+            Result = ConsIn.Select(con => Cv2.MinAreaRect(con)).ToArray();
         }
 
 

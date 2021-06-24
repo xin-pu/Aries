@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace Aries.OpenCV.Blocks
 {
-    [Category("Contour")]
+    [Category("Hough")]
     public class HoughCircle : MatExport<CircleSegment[]>
     {
         [Category("ARGUMENT")] public HoughModes HoughMode { set; get; } = HoughModes.Gradient;

@@ -3,9 +3,9 @@ using OpenCvSharp;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.BlocksContour
 {
-    [Category("ContourProperty")]
+    [Category("Property")]
     public class FitEllipse : ContoursExport<RotatedRect[]>
     {
 

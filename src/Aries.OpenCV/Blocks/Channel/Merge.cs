@@ -6,7 +6,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Channel")]
-    public class Merge : BlockVertex
+    public class Merge : VertexMat
     {
         [Category("DATAIN")] public Mat MatR { set; get; }
         [Category("DATAIN")] public Mat MatG { set; get; }

@@ -2,7 +2,7 @@
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class ProcessBlock<T1, T2> : BlockVertex
+    public abstract class ProcessBlock<T1, T2> : VertexMat
     {
         public T1 _tIn;
         public T2 _tOut;

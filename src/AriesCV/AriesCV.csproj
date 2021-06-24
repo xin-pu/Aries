@@ -115,7 +115,8 @@
     <Compile Include="ViewModel\GraphLayout\LayoutConvert.cs" />
     <Compile Include="ViewModel\GraphLayout\LayoutType.cs" />
     <Compile Include="ViewModel\MenuFileModel.cs" />
-    <Compile Include="ViewModel\CVToolKitModel.cs" />
+    <Compile Include="ViewModel\ToolKitContourModel.cs" />
+    <Compile Include="ViewModel\ToolKitMatModel.cs" />
     <Compile Include="ViewModel\AriesMainModel.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVArea.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
@@ -175,7 +176,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CVToolKitView.xaml">
+    <Page Include="Views\ToolKitMatView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -203,8 +204,8 @@
     <Compile Include="Views\CVStatusBarView.xaml.cs">
       <DependentUpon>CVStatusBarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CVToolKitView.xaml.cs">
-      <DependentUpon>CVToolKitView.xaml</DependentUpon>
+    <Compile Include="Views\ToolKitMatView.xaml.cs">
+      <DependentUpon>ToolKitMatView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AriesMain.xaml.cs">
       <DependentUpon>AriesMain.xaml</DependentUpon>

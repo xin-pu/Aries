@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Aries.OpenCV;
 using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel.GraphLayout;
 using AriesCV.Views;
@@ -31,7 +33,7 @@ namespace AriesCV.ViewModel
 
         private void RegisterForToolKit()
         {
-            Messenger.Default.Register<BlockVertex>(this, "AddBlockToken", AddBlockVertex);
+            Messenger.Default.Register<Type>(this, "AddBlockToken", AddMatBlockVertex);
         }
 
         private void RegisterForFile()
@@ -115,13 +117,27 @@ namespace AriesCV.ViewModel
             get { return new RelayCommand<object>(SelectWorkUnitCommand_Execute); }
         }
 
-        private void AddBlockVertex(BlockVertex obj)
+        private void AddMatBlockVertex(Type type)
         {
             if (CvWorkerItemView == null)
                 return;
-            var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
-            obj.WorkDirectory = workDirectory;
-            GraphCvAreaAtWorkSpace?.AddBlock(obj);
+
+            if (type.IsSubclassOf(typeof(VertexMat)))
+            {
+                var vertex = BlockHelper.CreateMatVertex<VertexMat>(type);
+                var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
+                vertex.WorkDirectory = workDirectory;
+                GraphCvAreaAtWorkSpace?.AddMatBlock(vertex);
+
+            }
+            else if (type.IsSubclassOf(typeof(VertexContour)))
+            {
+                var vertex = BlockHelper.CreateMatVertex<VertexContour>(type);
+                var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
+                vertex.WorkDirectory = workDirectory;
+                GraphCvAreaAtWorkSpace?.AddContourBlock(vertex);
+            }
+          
         }
 
         private void SelectWorkUnitCommand_Execute(object obj)

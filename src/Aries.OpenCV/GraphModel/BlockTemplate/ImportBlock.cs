@@ -2,7 +2,7 @@
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class ImportBlock<T> : BlockVertex
+    public abstract class ImportBlock<T> : VertexMat
     {
         public T _tout;
 

@@ -10,7 +10,7 @@ using QuickGraph;
 namespace AriesCV.ViewModel
 {
     public class LogicCoreCV :
-        GXLogicCore<BlockVertex, BlockEdge, BidirectionalGraph<BlockVertex, BlockEdge>>
+        GXLogicCore<VertexBasic, BlockEdge, BidirectionalGraph<VertexBasic, BlockEdge>>
     {
 
         public LogicCoreCV()

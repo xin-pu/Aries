@@ -69,8 +69,8 @@ namespace AriesCV.Views
 
   
 
-        public Dictionary<BlockVertex, VertexControl> VertexControls =>
-            (Dictionary<BlockVertex, VertexControl>)GraphCVArea.VertexList;
+        public Dictionary<VertexBasic, VertexControl> VertexControls =>
+            (Dictionary<VertexBasic, VertexControl>)GraphCVArea.VertexList;
 
         public Dictionary<BlockEdge, EdgeControl> EdgeControls =>
             (Dictionary<BlockEdge, EdgeControl>)GraphCVArea.EdgesList;
@@ -138,7 +138,7 @@ namespace AriesCV.Views
         private void BlockVertexSelected(object sender, VertexSelectedEventArgs args)
         {
             var vertex = args.VertexControl;
-            GraphCVArea.SelectBlockVertex = vertex.GetDataVertex<BlockVertex>();
+            GraphCVArea.SelectBlockVertex = vertex.GetDataVertex<VertexMat>();
             /// Right Mouse Clicked
             if (args.MouseArgs.RightButton == MouseButtonState.Pressed)
             {
@@ -242,7 +242,7 @@ namespace AriesCV.Views
         /// <param name="vc">vertexControl object</param>
         private void SafeRemoveVertex(VertexControl vc)
         {
-            GraphCVArea.RemoveVertexAndEdges(vc.Vertex as BlockVertex);
+            GraphCVArea.RemoveVertexAndEdges(vc.Vertex as VertexMat);
         }
 
         /// <summary>
@@ -308,8 +308,8 @@ namespace AriesCV.Views
 
             if (_vertexTemp == vc) return;
 
-            var source = (BlockVertex) _vertexTemp.Vertex;
-            var target = (BlockVertex) vc.Vertex;
+            var source = (VertexMat) _vertexTemp.Vertex;
+            var target = (VertexMat) vc.Vertex;
 
             var data = new BlockEdge(source, target)
             {

@@ -3,12 +3,12 @@ using System.Linq;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.BlocksContour
 {
-    [Category("ContourProperty")]
-    public class ContourPermeter : ContoursExport<double[]>
+    [Category("Property")]
+    public class ContourArea : ContoursExport<double[]>
     {
-        [Category("ARGUMENT")] public bool Closed { set; get; }
+        [Category("ARGUMENT")] public bool Oriented { set; get; }
 
         public override bool CanExecute()
         {
@@ -17,7 +17,7 @@ namespace Aries.OpenCV.Blocks
 
         public override void Execute()
         {
-            Result = ConsIn.Select(c => Cv2.ArcLength(c, Closed)).ToArray();
+            Result = ConsIn.Select(c => Cv2.ContourArea(c, Oriented)).ToArray();
         }
     }
 }

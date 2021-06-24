@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.Blocks
 {
     [Category("Channel")]
-    public class Split : BlockVertex
+    public class Split : VertexMat
     {
 
         [Category("DATAIN")] public Mat MatIn { set; get; }

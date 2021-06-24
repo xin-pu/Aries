@@ -2,12 +2,11 @@
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.BlocksContour
 {
-    [Category("Contour")]
+    [Category("Import")]
     public class FindContours : MatExport<Mat[]>
     {
-
         [Category("DATAOUT")] public Mat Hierarchy { set; get; }
 
         [Category("ARGUMENT")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;

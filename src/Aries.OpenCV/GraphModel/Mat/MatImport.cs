@@ -3,7 +3,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class MatImport : BlockVertex
+    public abstract class MatImport : VertexMat
     {
         private Mat _matOut;
 

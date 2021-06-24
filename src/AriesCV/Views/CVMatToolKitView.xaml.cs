@@ -9,9 +9,9 @@ namespace AriesCV.Views
     /// <summary>
     /// Interaction logic for GraphCVToolKitView.xaml
     /// </summary>
-    public partial class CVToolKitView
+    public partial class ToolKitMatView
     {
-        public CVToolKitView()
+        public ToolKitMatView()
         {
             InitializeComponent();
             Dispatcher.BeginInvoke(new Action(() =>

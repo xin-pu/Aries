@@ -4,7 +4,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.GraphModel
 {
     [Category("Arithmetic")]
-    public abstract class MatArithmetic : BlockVertex
+    public abstract class MatArithmetic : VertexMat
     {
         private Mat _matIn1;
         private Mat _matIn2;

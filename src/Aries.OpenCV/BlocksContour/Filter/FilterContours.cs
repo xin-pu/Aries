@@ -4,9 +4,9 @@ using System.Linq;
 using Aries.OpenCV.GraphModel;
 using OpenCvSharp;
 
-namespace Aries.OpenCV.BlocksCunstom
+namespace Aries.OpenCV.BlocksContour
 {
-    [Category("Cunstom")]
+    [Category("Filter")]
     public class FilterContours : ContoursProcess
     {
 

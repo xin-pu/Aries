@@ -90,15 +90,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlocksCunstom\FilterContours.cs" />
+    <Compile Include="BlocksContour\Filter\FilterContours.cs" />
+    <Compile Include="BlocksContour\Import\FindContours.cs" />
     <Compile Include="BlocksOCR\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlocksOCR\Tesseract\GetText.cs" />
     <Compile Include="Blocks\Arithmetic\AddWeighted.cs" />
     <Compile Include="Blocks\Logic\ChoiceContoursForCustom.cs" />
     <Compile Include="Blocks\Logic\ChoiceContours.cs" />
+    <Compile Include="GraphModel\Controls\ContourVertexControl.cs" />
+    <Compile Include="GraphModel\VertexBasic.cs" />
     <Compile Include="GraphModel\BlockTemplate\ProcessBlock.cs" />
     <Compile Include="GraphModel\Contour\ContoursProcess.cs" />
-    <Compile Include="GraphModel\MatBlock\MatArithmetic.cs" />
+    <Compile Include="GraphModel\Mat\MatArithmetic.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseNot.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseXor.cs" />
     <Compile Include="Blocks\Arithmetic\BitwiseOr.cs" />
@@ -113,17 +116,16 @@
     <Compile Include="Blocks\Arithmetic\Subtract.cs" />
     <Compile Include="Blocks\Blur\BilateralFilter.cs" />
     <Compile Include="Blocks\Blur\MedianBlur.cs" />
-    <Compile Include="Blocks\ContourProperty\BoundingRect.cs" />
-    <Compile Include="Blocks\ContourProperty\ContourConvexHull.cs" />
-    <Compile Include="Blocks\ContourProperty\FitEllipse.cs" />
-    <Compile Include="Blocks\ContourProperty\FitLine.cs" />
-    <Compile Include="Blocks\ContourProperty\MinAreaRect.cs" />
-    <Compile Include="Blocks\ContourProperty\MinEnclosingCircle.cs" />
-    <Compile Include="Blocks\Contour\ApproxPolyDP.cs" />
-    <Compile Include="Blocks\ContourProperty\ContourArea.cs" />
-    <Compile Include="Blocks\ContourProperty\ContourPermeter.cs" />
-    <Compile Include="Blocks\Contour\DrawContours.cs" />
-    <Compile Include="Blocks\Contour\FindContours.cs" />
+    <Compile Include="BlocksContour\Property\BoundingRect.cs" />
+    <Compile Include="BlocksContour\Property\ContourConvexHull.cs" />
+    <Compile Include="BlocksContour\Property\FitEllipse.cs" />
+    <Compile Include="BlocksContour\Property\FitLine.cs" />
+    <Compile Include="BlocksContour\Property\MinAreaRect.cs" />
+    <Compile Include="BlocksContour\Property\MinEnclosingCircle.cs" />
+    <Compile Include="BlocksContour\ApproxPolyDP.cs" />
+    <Compile Include="BlocksContour\Property\ContourArea.cs" />
+    <Compile Include="BlocksContour\Property\ContourPermeter.cs" />
+    <Compile Include="Blocks\Draw\DrawContours.cs" />
     <Compile Include="Blocks\Convert\ConvertScaleAbs.cs" />
     <Compile Include="Blocks\Corner\CornerHarris.cs" />
     <Compile Include="Blocks\Corner\CornerSubPix.cs" />
@@ -132,7 +134,7 @@
     <Compile Include="Blocks\Hough\HoughCircle.cs" />
     <Compile Include="Blocks\Hough\HoughLines.cs" />
     <Compile Include="Blocks\Hough\HoughLinesP.cs" />
-    <Compile Include="Blocks\ContourProperty\Moment.cs" />
+    <Compile Include="BlocksContour\Property\Moment.cs" />
     <Compile Include="Blocks\Draw\Circle.cs" />
     <Compile Include="Blocks\Draw\CopyMakeBorder.cs" />
     <Compile Include="Blocks\Draw\Ellipse.cs" />
@@ -170,18 +172,20 @@
     <Compile Include="Blocks\Transform\Transmit.cs" />
     <Compile Include="Blocks\Transform\WarpAffine.cs" />
     <Compile Include="Blocks\MatProperty\Shape.cs" />
-    <Compile Include="Core\BlockHelper.cs" />
+    <Compile Include="BlockHelper.cs" />
     <Compile Include="GraphModel\BlockStatus.cs" />
     <Compile Include="GraphModel\Contour\ContoursExport.cs" />
-    <Compile Include="GraphModel\MatBlock\MatImport.cs" />
-    <Compile Include="GraphModel\MatBlock\MatProcess.cs" />
+    <Compile Include="GraphModel\Mat\MatImport.cs" />
+    <Compile Include="GraphModel\Mat\MatProcess.cs" />
     <Compile Include="GraphModel\MatRecord.cs" />
     <Compile Include="GraphModel\BlockTemplate\ImportBlock.cs" />
     <Compile Include="Blocks\Import\CreateImage.cs" />
     <Compile Include="GraphModel\BlockEdge.cs" />
-    <Compile Include="GraphModel\BlockVertex.cs" />
+    <Compile Include="GraphModel\VertexContour.cs" />
+    <Compile Include="GraphModel\Controls\MatVertexControl.cs" />
+    <Compile Include="GraphModel\VertexMat.cs" />
     <Compile Include="Interface\ISaveBlock.cs" />
-    <Compile Include="GraphModel\MatBlock\MatExport.cs" />
+    <Compile Include="GraphModel\Mat\MatExport.cs" />
     <Compile Include="Blocks\Blur\Blur.cs" />
     <Compile Include="Blocks\Blur\GaussianBlur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -208,6 +212,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BlocksOCR\Barcode\" />
     <Folder Include="ToolKit\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

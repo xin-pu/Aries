@@ -5,8 +5,9 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
-using Aries.OpenCV.Core;
+using Aries.OpenCV;
 using Aries.OpenCV.GraphModel;
+using Aries.OpenCV.GraphModel.Controls;
 using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Models;
@@ -16,12 +17,12 @@ using QuickGraph;
 namespace AriesCV.ViewModel
 {
     public class GraphCVArea :
-        GraphArea<BlockVertex, BlockEdge, BidirectionalGraph<BlockVertex, BlockEdge>>, INotifyPropertyChanged
+        GraphArea<VertexBasic, BlockEdge, BidirectionalGraph<VertexBasic, BlockEdge>>, INotifyPropertyChanged
     {
 
-        private BlockVertex _selectBlockVertex;
+        private VertexMat _selectBlockVertex;
 
-        public BlockVertex SelectBlockVertex
+        public VertexMat SelectBlockVertex
         {
             set { UpdateProperty(ref _selectBlockVertex, value); }
             get { return _selectBlockVertex; }
@@ -43,13 +44,13 @@ namespace AriesCV.ViewModel
             RemoveAllVertices();
 
             if (LogicCore.Graph == null)
-                LogicCore.Graph = Activator.CreateInstance<BidirectionalGraph<BlockVertex, BlockEdge>>();
+                LogicCore.Graph = Activator.CreateInstance<BidirectionalGraph<VertexBasic, BlockEdge>>();
             else LogicCore.Graph.Clear();
 
 
             /// Restore Vertexts
             var vlist = graphSerializationDatas
-                .Where(a => a.Data is BlockVertex)
+                .Where(a => a.Data is VertexMat)
                 .ToList();
 
             var pList = graphSerializationDatas
@@ -59,7 +60,7 @@ namespace AriesCV.ViewModel
 
             foreach (var item in vlist)
             {
-                var vertexdata = item.Data as BlockVertex;
+                var vertexdata = item.Data as VertexMat;
                 if (vertexdata == null)
                     throw new ArgumentNullException();
 
@@ -143,12 +144,35 @@ namespace AriesCV.ViewModel
 
         #region Add Block Function
 
-        public void AddBlock(BlockVertex blockVertex)
+        public void AddMatBlock(VertexBasic blockVertex)
         {
-            var vertex = new VertexControl(blockVertex);
+            var vertex = new MatVertexControl(blockVertex);
             AddVertexAndData(blockVertex, vertex);
             vertex.SetConnectionPointsVisibility(true);
             
+            //we have to check if there is only one vertex and set coordinates manually 
+            //because layout algorithms skip all logic if there are less than two vertices
+            if (VertexList.Count == 1)
+            {
+                vertex.SetPosition(0, 0);
+                //update layout to update vertex size
+                UpdateLayout();
+            }
+            else
+            {
+                RelayoutGraph(true);
+            }
+
+            AddAllConnectionPoints(vertex, blockVertex.GetType());
+
+        }
+
+        public void AddContourBlock(VertexBasic blockVertex)
+        {
+            var vertex = new ContourVertexControl(blockVertex);
+            AddVertexAndData(blockVertex, vertex);
+            vertex.SetConnectionPointsVisibility(true);
+
             //we have to check if there is only one vertex and set coordinates manually 
             //because layout algorithms skip all logic if there are less than two vertices
             if (VertexList.Count == 1)
@@ -196,7 +220,7 @@ namespace AriesCV.ViewModel
             var data = new ConnectionPointData
             {
                 ID = connectionID,
-                ParentID = parentControl.GetDataVertex<BlockVertex>().ID,
+                ParentID = parentControl.GetDataVertex<VertexBasic>().ID,
                 Header = propertyDescriptor.Name,
                 ConnectType = ConnectType.INPUT,
                 Icon = BlockHelper.GetPointICon(propertyDescriptor.PropertyType.Name),
@@ -236,7 +260,7 @@ namespace AriesCV.ViewModel
             var data = new ConnectionPointData
             {
                 ID = connectionID,
-                ParentID = parentControl.GetDataVertex<BlockVertex>().ID,
+                ParentID = parentControl.GetDataVertex<VertexBasic>().ID,
                 Header = propertyDescriptor.Name,
                 ConnectType = ConnectType.OUTPUT,
                 Icon = BlockHelper.GetPointICon(propertyDescriptor.PropertyType.Name),
@@ -296,7 +320,7 @@ namespace AriesCV.ViewModel
             }
             catch (Exception)
             {
-                ;
+                // ignored
             }
         }
 

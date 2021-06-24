@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="http://schemas.panthernet.ru/graphx/"
                     xmlns:hc="https://handyorg.github.io/handycontrol"
-                    xmlns:viewModel="clr-namespace:AriesCV.ViewModel">
+                    xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
+                    xmlns:controls1="clr-namespace:Aries.OpenCV.GraphModel.Controls;assembly=Aries.OpenCV">
 
 
 
@@ -209,6 +210,318 @@
 
     </Style>
 
+
+
+
+    <Style TargetType="{x:Type controls1:MatVertexControl}">
+
+        <!-- Set background color through attached property -->
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="{StaticResource InfoBrush}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type  controls1:MatVertexControl}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="HoverOn">
+                            <DoubleAnimation Duration="00:00:00.1000000" Storyboard.TargetName="BackgroundOver" Storyboard.TargetProperty="Opacity" To="1" />
+                            <DoubleAnimation Duration="00:00:00.1000000" Storyboard.TargetName="BackgroundOver_Highlight" Storyboard.TargetProperty="Opacity" To="0.65" />
+                        </Storyboard>
+                        <Storyboard x:Key="HoverOff">
+                            <DoubleAnimation Duration="00:00:00.4000000" Storyboard.TargetName="BackgroundOver" Storyboard.TargetProperty="Opacity" To="0" />
+                            <DoubleAnimation Duration="00:00:00.4000000" Storyboard.TargetName="BackgroundOver_Highlight" Storyboard.TargetProperty="Opacity" To="0" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
+                    <Grid>
+                        <Border x:Name="BackgroundNorm" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="2" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"/>
+                        <Border x:Name="BackgroundNorm_highlight" 
+                                Margin="1" 
+                                BorderBrush="{DynamicResource NormalHighlightBrush}" 
+                                BorderThickness="1,0,1,1" 
+                                CornerRadius="2" 
+                                Opacity="0.65" />
+                        <Border x:Name="BackgroundOver" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="2" 
+                                Opacity="0" 
+                                Background="{DynamicResource MouseOverBrush}" 
+                                BorderBrush="{DynamicResource MouseOverBorderBrush}"/>
+                        <Border x:Name="BackgroundOver_Highlight" 
+                                Margin="1" 
+                                BorderThickness="1,0,1,1" 
+                                CornerRadius="2" 
+                                Opacity="0" 
+                                BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
+
+                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0">
+                                <StackPanel Name="Block_InPut" 
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Left"
+                                            MinHeight="25"/>
+                            </Border>
+                            <Border Grid.Row="1" BorderThickness="0" 
+                                    BorderBrush="{DynamicResource PrimaryBrush}"
+                                    MaxWidth="250"
+                                    Background="White">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal" 
+                                                Name="Status"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center"
+                                                MinWidth="120"
+                                                DockPanel.Dock="Top">
+                                        <TextBlock Text="{Binding ID,StringFormat='{}{0}.'}" 
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center" 
+                                                   HorizontalAlignment="Center" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="White"  Margin="5" 
+                                                   FontSize="13"/>
+                                        <TextBlock Text="{Binding Name}" 
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center" 
+                                                   HorizontalAlignment="Center" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="White" Margin="5,0" 
+                                                   FontSize="13"/>
+                                    </StackPanel>
+                                    <Image Source="{Binding OutImage,Mode=TwoWay,
+                                        NotifyOnSourceUpdated=True,
+                                        UpdateSourceTrigger=PropertyChanged}" 
+                                                    Name="ImageViewer"
+                                                    Visibility="Collapsed"/>
+                                </DockPanel>
+
+
+                            </Border>
+
+                            <Border Grid.Row="2" >
+                                <StackPanel Name="Block_OutPut"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right"
+                                            MinHeight="25"/>
+                            </Border>
+
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="ToRun">
+                            <Setter TargetName="Status" Property="Background" Value="#E9AF20"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Run">
+                            <Setter TargetName="Status" Property="Background" Value="#00BCD4"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Complete">
+                            <Setter TargetName="Status" Property="Background" Value="#44BE60"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Exception">
+                            <Setter TargetName="Status" Property="Background" Value="#DB3340"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ShowImage}" Value="True">
+                            <Setter TargetName="ImageViewer" Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ShowImage}" Value="False">
+                            <Setter TargetName="ImageViewer" Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOff}" x:Name="HoverOff_BeginStoryboard" />
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOn}" />
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+
+        </Setter>
+
+        <!-- VERTEX DRAGGING CONTROL -->
+        <Setter Property="controls:DragBehaviour.IsDragEnabled"
+                Value="False" />
+        <Setter Property="controls:DragBehaviour.UpdateEdgesOnMove"
+                Value="True" />
+
+
+        <Style.Triggers>
+            <Trigger Property="controls:HighlightBehaviour.Highlighted" Value="True">
+                <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style TargetType="{x:Type controls1:ContourVertexControl}">
+
+        <!-- Set background color through attached property -->
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderBrush" Value="{StaticResource VertexBordBackGround}"/>
+        <Setter Property="BorderThickness" Value="2"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type  controls1:ContourVertexControl}">
+                    <ControlTemplate.Resources>
+                        <Storyboard x:Key="HoverOn">
+                            <DoubleAnimation Duration="00:00:00.1000000" Storyboard.TargetName="BackgroundOver" Storyboard.TargetProperty="Opacity" To="1" />
+                            <DoubleAnimation Duration="00:00:00.1000000" Storyboard.TargetName="BackgroundOver_Highlight" Storyboard.TargetProperty="Opacity" To="0.65" />
+                        </Storyboard>
+                        <Storyboard x:Key="HoverOff">
+                            <DoubleAnimation Duration="00:00:00.4000000" Storyboard.TargetName="BackgroundOver" Storyboard.TargetProperty="Opacity" To="0" />
+                            <DoubleAnimation Duration="00:00:00.4000000" Storyboard.TargetName="BackgroundOver_Highlight" Storyboard.TargetProperty="Opacity" To="0" />
+                        </Storyboard>
+                    </ControlTemplate.Resources>
+
+                    <Grid>
+                        <Border x:Name="BackgroundNorm" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="2" 
+                                Background="{TemplateBinding Background}" 
+                                BorderBrush="{TemplateBinding BorderBrush}"/>
+                        <Border x:Name="BackgroundNorm_highlight" 
+                                Margin="1" 
+                                BorderBrush="{DynamicResource NormalHighlightBrush}" 
+                                BorderThickness="1,0,1,1" 
+                                CornerRadius="2" 
+                                Opacity="0.65" />
+                        <Border x:Name="BackgroundOver" 
+                                BorderThickness="{TemplateBinding BorderThickness}" 
+                                CornerRadius="2" 
+                                Opacity="0" 
+                                Background="{DynamicResource MouseOverBrush}" 
+                                BorderBrush="{DynamicResource MouseOverBorderBrush}"/>
+                        <Border x:Name="BackgroundOver_Highlight" 
+                                Margin="1" 
+                                BorderThickness="1,0,1,1" 
+                                CornerRadius="2" 
+                                Opacity="0" 
+                                BorderBrush="{DynamicResource MouseOverHighlightBrush}"/>
+
+                        <Grid UseLayoutRounding="True" SnapsToDevicePixels="True" Margin="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Border Grid.Row="0">
+                                <StackPanel Name="Block_InPut" 
+                                            Orientation="Horizontal"
+                                            HorizontalAlignment="Left"
+                                            MinHeight="25"/>
+                            </Border>
+                            <Border Grid.Row="1" BorderThickness="0" 
+                                    BorderBrush="{DynamicResource PrimaryBrush}"
+                                    MaxWidth="250"
+                                    Background="White">
+                                <DockPanel>
+                                    <StackPanel Orientation="Horizontal" 
+                                                Name="Status"
+                                                HorizontalAlignment="Stretch"
+                                                VerticalAlignment="Center"
+                                                MinWidth="120"
+                                                DockPanel.Dock="Top">
+                                        <TextBlock Text="{Binding ID,StringFormat='{}{0}.'}" 
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center" 
+                                                   HorizontalAlignment="Center" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="White"  Margin="5" 
+                                                   FontSize="13"/>
+                                        <TextBlock Text="{Binding Name}" 
+                                                   VerticalAlignment="Center" 
+                                                   TextAlignment="Center" 
+                                                   HorizontalAlignment="Center" 
+                                                   FontWeight="Bold" 
+                                                   Foreground="White" Margin="5,0" 
+                                                   FontSize="13"/>
+                                    </StackPanel>
+                                </DockPanel>
+
+
+                            </Border>
+
+                            <Border Grid.Row="2" >
+                                <StackPanel Name="Block_OutPut"
+                                            Orientation="Horizontal"
+                                            VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right"
+                                            MinHeight="25"/>
+                            </Border>
+
+                        </Grid>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="ToRun">
+                            <Setter TargetName="Status" Property="Background" Value="#E9AF20"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Run">
+                            <Setter TargetName="Status" Property="Background" Value="#00BCD4"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Complete">
+                            <Setter TargetName="Status" Property="Background" Value="#44BE60"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Status}" Value="Exception">
+                            <Setter TargetName="Status" Property="Background" Value="#DB3340"/>
+                        </DataTrigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOff}" x:Name="HoverOff_BeginStoryboard" />
+                            </Trigger.ExitActions>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard Storyboard="{StaticResource HoverOn}" />
+                            </Trigger.EnterActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+
+        </Setter>
+
+        <!-- VERTEX DRAGGING CONTROL -->
+        <Setter Property="controls:DragBehaviour.IsDragEnabled"
+                Value="False" />
+        <Setter Property="controls:DragBehaviour.UpdateEdgesOnMove"
+                Value="True" />
+
+
+        <Style.Triggers>
+            <Trigger Property="controls:HighlightBehaviour.Highlighted" Value="True">
+                <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" Value="CornflowerBlue"/>
+                <Setter Property="BorderThickness" Value="2"/>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+
+
+
     <Style TargetType="{x:Type controls:EdgeControl}">
         <Setter Property="Template">
             <Setter.Value>
@@ -252,6 +565,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+
+
 
 
 </ResourceDictionary>

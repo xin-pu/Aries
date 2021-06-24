@@ -4,7 +4,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.GraphModel
 {
 
-    public abstract class MatExport<T> : BlockVertex
+    public abstract class MatExport<T> : VertexMat
     {
         private Mat _matIn;
         public T _result;

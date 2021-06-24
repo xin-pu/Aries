@@ -1,22 +1,16 @@
-﻿using System;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Aries.OpenCV.Core;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using GraphX.Common.Models;
 using OpenCvSharp;
+using System;
+using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Aries.OpenCV.GraphModel
 {
-    [Serializable]
-    public abstract class BlockVertex : VertexBase
+    public abstract class VertexBasic: VertexBase
     {
         private BlockStatus _status = BlockStatus.ToRun;
-        private bool _enableSaveMat = true;
-        private bool _showImage = true;
-        private string _imageSource = @"\Resource\Image\Aries.jpg";
+
         private string _workDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
 
         public string CVCategory { set; get; }
@@ -29,16 +23,7 @@ namespace Aries.OpenCV.GraphModel
 
         [Category("INFO")] public string ErrorMessage { set; get; }
 
-        [Category("INFO")]
-        public string OutImage
-        {
-            get { return _imageSource; }
-            set
-            {
-                _imageSource = value;
-                RaisePropertyChanged(() => OutImage);
-            }
-        }
+
 
         [Category("INFO")]
         public string WorkDirectory
@@ -62,31 +47,8 @@ namespace Aries.OpenCV.GraphModel
             }
         }
 
-        [Category("CHOICE")]
-        public bool EnableSaveMat
-        {
-            get { return _enableSaveMat; }
-            set
-            {
-                _enableSaveMat = value;
-                RaisePropertyChanged(() => EnableSaveMat);
-            }
-        }
 
-        [Category("CHOICE")]
-        public bool ShowImage
-        {
-            get { return _showImage; }
-            set
-            {
-                _showImage = value;
-                RaisePropertyChanged(() => ShowImage);
-            }
-        }
-
-
-
-        protected BlockVertex()
+        protected VertexBasic()
         {
             Initial();
         }
@@ -131,8 +93,6 @@ namespace Aries.OpenCV.GraphModel
                 TimeCost = stopTime - startTime;
             }
 
-            if (EnableSaveMat)
-                SaveMatOut();
         }
 
         public virtual void Reload()
@@ -156,33 +116,7 @@ namespace Aries.OpenCV.GraphModel
         }
 
 
-        public virtual void SaveMatOut()
-        {
-            try
-            {
-                if (Status != BlockStatus.Complete || !EnableSaveMat)
-                    return;
-
-                if (WorkDirectory == string.Empty || !Directory.Exists(WorkDirectory))
-                    return;
-
-                var outMatDict = TypeDescriptor.GetProperties(GetType())
-                    .OfType<PropertyDescriptor>()
-                    .FirstOrDefault(a => a.Category == "DATAOUT" && a.Name == "MatOut");
-
-                var mat = GetPropertyAsMat(outMatDict?.Name) as Mat;
-                var imagesource = $@"{WorkDirectory}\{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg";
-                var saveRes = mat?.ImWrite(imagesource);
-                if (saveRes == true)
-                {
-                    OutImage = imagesource;
-                }
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
-        }
+     
 
 
         public object GetProperty(string proName)
@@ -249,7 +183,5 @@ namespace Aries.OpenCV.GraphModel
             }
 
         }
-
-
     }
 }

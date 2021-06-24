@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Aries.OpenCV.Core;
+using Aries.OpenCV;
 using Aries.OpenCV.GraphModel;
 using AriesCV.ViewModel.CVToolKit;
 using GalaSoft.MvvmLight;
@@ -11,12 +10,12 @@ using GalaSoft.MvvmLight.Messaging;
 namespace AriesCV.ViewModel
 {
 
-    public class CVToolKitModel : ViewModelBase
+    public class ToolKitContourModel : ViewModelBase
     {
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
-        public CVToolKitModel()
+        public ToolKitContourModel()
         {
             GenerateCVToolKitData();
             Messenger.Default.Register<string>(this, "ClearSearchKeyToken", ClearSearchkey);
@@ -52,10 +51,10 @@ namespace AriesCV.ViewModel
         private void GenerateCVToolKitData()
         {
             CVToolKitData?.Clear();
-            var types = BlockHelper.GetAllCVCategory();
+            var types = BlockHelper.GetAllContourBlockCategory();
 
             var toolkit = types.Select(a => new ToolKitStruct
-                {
+            {
                     Name = a.Key.Name,
                     ClassType = a.Key,
                     Category = a.Value,

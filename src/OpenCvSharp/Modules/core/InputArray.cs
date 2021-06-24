@@ -23,6 +23,7 @@ namespace OpenCvSharp
             Vec
         }
 
+        /// <inheritdoc />
         public InputArray()
         {
 

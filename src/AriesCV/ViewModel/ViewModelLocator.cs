@@ -19,7 +19,8 @@ namespace AriesCV.ViewModel
             SimpleIoc.Default.Register(() => new MenuFileModel());
             SimpleIoc.Default.Register(() => new MenuLayoutModel());
             SimpleIoc.Default.Register(() => new MenuRunner());
-            SimpleIoc.Default.Register(() => new CVToolKitModel());
+            SimpleIoc.Default.Register(() => new ToolKitMatModel());
+            SimpleIoc.Default.Register(() => new ToolKitContourModel());
             SimpleIoc.Default.Register(() => new CVWorkerContainerModel());
         }
 
@@ -28,7 +29,8 @@ namespace AriesCV.ViewModel
         public MenuFileModel MenuFile => SimpleIoc.Default.GetInstance<MenuFileModel>();
         public MenuLayoutModel MenuLayout => SimpleIoc.Default.GetInstance<MenuLayoutModel>();
         public MenuRunner MenuRunner => SimpleIoc.Default.GetInstance<MenuRunner>();
-        public CVToolKitModel CVToolKit => SimpleIoc.Default.GetInstance<CVToolKitModel>();
+        public ToolKitMatModel ToolKitMat => SimpleIoc.Default.GetInstance<ToolKitMatModel>();
+        public ToolKitContourModel ToolKitContour => SimpleIoc.Default.GetInstance<ToolKitContourModel>();
         public CVWorkerContainerModel CvWorkerContainer => SimpleIoc.Default.GetInstance<CVWorkerContainerModel>();
       
 

@@ -1,15 +1,15 @@
-﻿using OpenCvSharp;
-using Aries.OpenCV.GraphModel;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
+using Aries.OpenCV.GraphModel;
+using OpenCvSharp;
 
-namespace Aries.OpenCV.Blocks
+namespace Aries.OpenCV.BlocksContour
 {
 
     /// <summary>
     /// Get Rect by Contours
     /// </summary>
-    [Category("ContourProperty")]
+    [Category("Property")]
     public class BoundingRect : ContoursExport<Rect[]>
     {
 

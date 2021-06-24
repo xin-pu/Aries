@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Aries.OpenCV.GraphModel;
 
-namespace Aries.OpenCV.Core
+namespace Aries.OpenCV
 {
     public class BlockHelper
     {
@@ -26,27 +26,55 @@ namespace Aries.OpenCV.Core
                 ["CircleSegment"] = "\ued6f",
                 ["LineSegmentPoint[]"] = "\ued74",
                 ["LineSegmentPoint"] = "\ued74",
-                ["MatType"] =  "\ued8d",
+                ["MatType"] = "\ued8d",
                 ["Mat[]"] = "\ued8d",
                 ["Mat"] = "\ued8d",
                 ["Default"] = "\uef71",
             };
 
-        public static List<Type> GetAllBlockClassType()
+
+        #region For MAT Block
+
+        public static List<Type> GetAllMatBlockType()
         {
             var executingAssembly = Assembly.GetExecutingAssembly();
-            var allTypes = executingAssembly.GetTypes().Where(a=>!a.IsAbstract);
-            var blockType = allTypes.Where(a =>a.IsSubclassOf(typeof(BlockVertex)));
+            var allTypes = executingAssembly.GetTypes().Where(a => !a.IsAbstract);
+            var blockType = allTypes.Where(a => a.IsSubclassOf(typeof(VertexMat)));
             return blockType.ToList();
         }
 
-
-
-        public static Dictionary<Type, string> GetAllCVCategory()
+        public static Dictionary<Type, string> GetAllMatBlockCategory()
         {
-            var types = GetAllBlockClassType().ToList();
+            var types = GetAllMatBlockType().ToList();
             return types.ToDictionary(a => a, GetCvCategory);
         }
+
+        public static T CreateMatVertex<T>(Type type)
+        {
+            return (T) Activator.CreateInstance(type, null);
+        }
+
+        #endregion
+
+
+        #region Contour Block
+        public static List<Type> GetAllContourBlockType()
+        {
+            var executingAssembly = Assembly.GetExecutingAssembly();
+            var allTypes = executingAssembly.GetTypes().Where(a => !a.IsAbstract);
+            var blockType = allTypes.Where(a => a.IsSubclassOf(typeof(VertexContour)));
+            return blockType.ToList();
+        }
+
+        public static Dictionary<Type, string> GetAllContourBlockCategory()
+        {
+            var types = GetAllContourBlockType().ToList();
+            return types.ToDictionary(a => a, GetCvCategory);
+        }
+
+        
+
+        #endregion
 
         public static string GetCvCategory(Type blockTypeClass)
         {
@@ -82,10 +110,7 @@ namespace Aries.OpenCV.Core
         }
 
 
-        public static BlockVertex CreateBlockVertex(Type type)
-        {
-            return (BlockVertex) Activator.CreateInstance(type, null);
-        }
+
 
     }
 }
