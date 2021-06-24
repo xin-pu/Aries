@@ -97,6 +97,7 @@
     <Compile Include="BlockMat\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlockMat\Tesseract\GetText.cs" />
     <Compile Include="BlockMat\Arithmetic\AddWeighted.cs" />
+    <Compile Include="BlockMat\Transform\SubMatROI.cs" />
     <Compile Include="GraphModel\Controls\ContourVertexControl.cs" />
     <Compile Include="GraphModel\VertexBasic.cs" />
     <Compile Include="GraphModel\BlockTemplate\ProcessBlock.cs" />

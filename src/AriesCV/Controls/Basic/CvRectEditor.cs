@@ -30,10 +30,10 @@ namespace AriesCV.Controls
                 return;
             }
 
-            ((CvRectEditor)d).Top = 0;
-            ((CvRectEditor)d).Left = 0;
-            ((CvRectEditor)d).RectWidth = 0;
-            ((CvRectEditor)d).RectHeight = 0;
+            ((CvRectEditor) d).Top = 0;
+            ((CvRectEditor) d).Left = 0;
+            ((CvRectEditor) d).RectWidth = 0;
+            ((CvRectEditor) d).RectHeight = 0;
         }
 
         public Rect Rect
@@ -49,7 +49,7 @@ namespace AriesCV.Controls
 
         public static readonly DependencyProperty TopProperty = DependencyProperty.Register(
             "Top", typeof(int), typeof(CvRectEditor),
-            new FrameworkPropertyMetadata(default(double), OnTopChanged));
+            new FrameworkPropertyMetadata(default(int), OnTopChanged));
 
         private static void OnTopChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {

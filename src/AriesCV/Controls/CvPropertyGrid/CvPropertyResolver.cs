@@ -32,6 +32,8 @@ namespace AriesCV.Controls
                     return new SizePropertyEditor();
                 case CVEditorType.Scalar:
                     return new ScalarPropertyEditor();
+                case CVEditorType.Rect:
+                    return new RectPropertyEditor();
                 case CVEditorType.Mat:
                     return new MatPropertyEditor();
                 case CVEditorType.Command:
