@@ -138,7 +138,7 @@ namespace AriesCV.Views
         private void BlockVertexSelected(object sender, VertexSelectedEventArgs args)
         {
             var vertex = args.VertexControl;
-            GraphCVArea.SelectBlockVertex = vertex.GetDataVertex<VertexMat>();
+            GraphCVArea.SelectBlockVertex = vertex.GetDataVertex<VertexBasic>();
             /// Right Mouse Clicked
             if (args.MouseArgs.RightButton == MouseButtonState.Pressed)
             {
@@ -308,8 +308,8 @@ namespace AriesCV.Views
 
             if (_vertexTemp == vc) return;
 
-            var source = (VertexMat) _vertexTemp.Vertex;
-            var target = (VertexMat) vc.Vertex;
+            var source = (VertexBasic) _vertexTemp.Vertex;
+            var target = (VertexBasic) vc.Vertex;
 
             var data = new BlockEdge(source, target)
             {

@@ -5,7 +5,7 @@ using OpenCvSharp;
 namespace Aries.OpenCV.BlockContour
 {
     [Category("Import")]
-    public class FindContours : VertexBasic
+    public class FindContours : VertexContour
     {
         private Mat _matIn;
         private Mat[] _consOut;

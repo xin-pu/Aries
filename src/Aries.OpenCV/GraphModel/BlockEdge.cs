@@ -6,7 +6,7 @@ namespace Aries.OpenCV.GraphModel
     [Serializable]
     public class BlockEdge : EdgeBase<VertexBasic>
     {
-        public BlockEdge(VertexMat source, VertexMat target, double weight = 1)
+        public BlockEdge(VertexBasic source, VertexBasic target, double weight = 1)
             : base(source, target, weight)
         {
 

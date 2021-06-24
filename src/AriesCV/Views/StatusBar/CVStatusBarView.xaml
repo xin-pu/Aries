@@ -29,10 +29,10 @@
             <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right"
                          DataContext="{Binding MenuLayout,Source={StaticResource Locator}}">
                 <ToggleButton IsChecked="{Binding GraphCvLayoutConfig.IsShowImageView}"
-                        Style="{DynamicResource ToggleButtonInfo}"
-                        ToolTip="ShowImage"
-                        Margin="2,0"
-                        Content="&#xed8d;"/>
+                              Style="{DynamicResource ToggleButtonInfo}"
+                              ToolTip="ShowImage"
+                              Margin="2,0"
+                              Content="&#xed8d;"/>
                 <Button Command="{Binding RelayoutGraphCommand}"
                       Style="{DynamicResource ButtonDashedInfo}"
                       ToolTip="Relayout Graph"

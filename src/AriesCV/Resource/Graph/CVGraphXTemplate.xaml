@@ -52,7 +52,7 @@
     <!-- VERTEX CONTROL -->
     <Style TargetType="{x:Type controls:VertexControl}">
 
-        <!-- Set background color through attached property -->
+         <!--Set background color through attached property--> 
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderBrush" Value="{StaticResource VertexBordBackGround}"/>
@@ -135,17 +135,9 @@
                                                    Foreground="White" Margin="5,0" 
                                                    FontSize="13"/>
                                     </StackPanel>
-                                    <Image Source="{Binding OutImage,Mode=TwoWay,
-                                        NotifyOnSourceUpdated=True,
-                                        UpdateSourceTrigger=PropertyChanged}" 
-                                                    Name="ImageViewer"
-                                                    Visibility="Collapsed"
-                                                    />
                                 </DockPanel>
-                             
-                            
+
                             </Border>
-                          
                             <Border Grid.Row="2" >
                                 <StackPanel Name="Block_OutPut"
                                             Orientation="Horizontal"
@@ -169,12 +161,6 @@
                         <DataTrigger Binding="{Binding Status}" Value="Exception">
                             <Setter TargetName="Status" Property="Background" Value="#DB3340"/>
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding ShowImage}" Value="True">
-                            <Setter TargetName="ImageViewer" Property="Visibility" Value="Visible"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding ShowImage}" Value="False">
-                            <Setter TargetName="ImageViewer" Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
 
                         <Trigger Property="IsMouseOver" Value="true">
                             <Trigger.ExitActions>
@@ -190,7 +176,7 @@
 
         </Setter>
 
-        <!-- VERTEX DRAGGING CONTROL -->
+         <!--VERTEX DRAGGING CONTROL--> 
         <Setter Property="controls:DragBehaviour.IsDragEnabled"
                 Value="False" />
         <Setter Property="controls:DragBehaviour.UpdateEdgesOnMove"
@@ -377,7 +363,7 @@
         <!-- Set background color through attached property -->
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="5"/>
-        <Setter Property="BorderBrush" Value="{StaticResource VertexBordBackGround}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource SuccessBrush}"/>
         <Setter Property="BorderThickness" Value="2"/>
 
         <Setter Property="Template">

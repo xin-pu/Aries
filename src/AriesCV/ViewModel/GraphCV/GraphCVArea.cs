@@ -20,9 +20,14 @@ namespace AriesCV.ViewModel
         GraphArea<VertexBasic, BlockEdge, BidirectionalGraph<VertexBasic, BlockEdge>>, INotifyPropertyChanged
     {
 
-        private VertexMat _selectBlockVertex;
+        public GraphCVArea()
+        {
+            ControlFactory = new GraphCVControlFactory(this);
+        }
 
-        public VertexMat SelectBlockVertex
+        private VertexBasic _selectBlockVertex;
+
+        public VertexBasic SelectBlockVertex
         {
             set { UpdateProperty(ref _selectBlockVertex, value); }
             get { return _selectBlockVertex; }
@@ -50,7 +55,7 @@ namespace AriesCV.ViewModel
 
             /// Restore Vertexts
             var vlist = graphSerializationDatas
-                .Where(a => a.Data is VertexMat)
+                .Where(a => a.Data is VertexBasic)
                 .ToList();
 
             var pList = graphSerializationDatas
@@ -60,7 +65,7 @@ namespace AriesCV.ViewModel
 
             foreach (var item in vlist)
             {
-                var vertexdata = item.Data as VertexMat;
+                var vertexdata = item.Data as VertexBasic;
                 if (vertexdata == null)
                     throw new ArgumentNullException();
 
