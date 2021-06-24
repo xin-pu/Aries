@@ -1,5 +1,0 @@
-﻿namespace Aries.OpenCV.Interface
-{
-
-
-}

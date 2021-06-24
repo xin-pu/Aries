@@ -5,16 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:AriesCV.Views"
              xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:menu="clr-namespace:AriesCV.Views.Menu"
+             xmlns:toolKit="clr-namespace:AriesCV.Views.ToolKit"
+             xmlns:statusBar="clr-namespace:AriesCV.Views.StatusBar"
              mc:Ignorable="d" 
              d:DesignHeight="766" d:DesignWidth="1360"
              DataContext="{Binding CvWorkerContainer,Source={StaticResource Locator}}">
 
     <DockPanel>
-        <views:CVMenuSystemView DockPanel.Dock="Top"/>
+        <menu:MenuSystemView DockPanel.Dock="Top"/>
 
-        <views:CVStatusBarView DockPanel.Dock="Bottom">
+        <statusBar:CVStatusBarView DockPanel.Dock="Bottom">
            
-        </views:CVStatusBarView>
+        </statusBar:CVStatusBarView>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -73,21 +76,21 @@
                         <TabItem Header="&#xef4a;"
                                  ToolTip="Mat"
                                  FontSize="20">
-                            <views:ToolKitMatView 
+                            <toolKit:ToolKitView 
                                 Background="Transparent"
                                 DataContext="{Binding ToolKitMat,Source={StaticResource Locator}}" />
                         </TabItem>
                         <TabItem Header="&#xed71;"
                                  ToolTip="Contour"
                                  FontSize="20">
-                            <views:ToolKitMatView 
+                            <toolKit:ToolKitView 
                                 Background="Transparent"
                                 DataContext="{Binding ToolKitContour,Source={StaticResource Locator}}"/>
                         </TabItem>
                         <TabItem Header="&#xf03a;"
                                  ToolTip="Block Property"
                                  FontSize="20">
-                            <views:CVPropertyGridView 
+                            <toolKit:CVPropertyGridView 
                                 Background="Transparent"/>
                         </TabItem>
                         

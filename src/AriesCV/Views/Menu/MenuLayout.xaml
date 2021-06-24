@@ -1,0 +1,222 @@
+﻿<StatusBar x:Class="AriesCV.Views.Menu.MenuLayout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:controls="clr-namespace:AriesCV.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="1000"
+             Background="{DynamicResource LightPrimaryBrush}"
+             DataContext="{Binding MenuLayout,Source={StaticResource Locator}}"
+             Height="80">
+    <StatusBar.Resources>
+        <Style x:Key="LayoutCategtory" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border Name="MyBorder"
+                                BorderThickness="1"
+                                BorderBrush="{DynamicResource PrimaryBrush}"
+                                Height="50"
+                                Width="50"
+                                Margin="1"
+                                DataContext="{Binding Converter={StaticResource LayoutConvert}}">
+                            <TextBlock x:Name="Image" 
+                                       Style="{DynamicResource IConFontTextBlock}" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="24"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       Text="{Binding Icon}"
+                                       ToolTip="{Binding Header}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource BackgroundBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource SuccessBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource LightSuccessBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource LightDangerBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource DangerBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="EdgeRoutingCategtory" TargetType="ListViewItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListViewItem}">
+                        <Border Name="MyBorder"
+                                BorderThickness="1"
+                                BorderBrush="{DynamicResource PrimaryBrush}"
+                                Height="50"
+                                Width="50"
+                                Margin="1"
+                                DataContext="{Binding Converter={StaticResource EdgeRoutingConvert}}">
+                            <TextBlock x:Name="Image" 
+                                       Style="{DynamicResource IConFontTextBlock}" 
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="24"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       Text="{Binding Icon}"
+                                       ToolTip="{Binding Header}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource BackgroundBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource SuccessBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource LightSuccessBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource PrimaryBrush}" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="MyBorder" Property="BorderBrush" Value="{DynamicResource DangerBrush}" />
+                                <Setter TargetName="MyBorder" Property="Background" Value="{DynamicResource LightDangerBrush}" />
+                                <Setter TargetName="Image" Property="Foreground" Value="{DynamicResource DangerBrush}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </StatusBar.Resources>
+    <StatusBarItem>
+        <StackPanel Orientation="Horizontal">
+            <controls:TopTabButton Content="Fresh" Icon="&#xf094;" 
+                                   Command="{Binding RelayoutGraphCommand}"/>
+            <StackPanel Orientation="Vertical" Margin="2"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left">
+                <CheckBox Content="Show Label"
+                         IsChecked="{Binding GraphCvLayoutConfig.IsShowEdgeLabels}"
+                         Margin="0,2"
+                         HorizontalAlignment="Left">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                        </hc:EventTrigger>
+                        <hc:EventTrigger EventName="Unchecked">
+                            <hc:InvokeCommandAction Command="{Binding ShowEdgeLabelCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox Content="Align Label"
+                          IsChecked="{Binding GraphCvLayoutConfig.IsAlignEdgeLabels}"
+                          Margin="0,2"
+                          HorizontalAlignment="Left">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                        </hc:EventTrigger>
+                        <hc:EventTrigger EventName="Unchecked">
+                            <hc:InvokeCommandAction Command="{Binding AlignEdgeLabelsCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </CheckBox>
+                <CheckBox Content="Show Image View"
+                          IsChecked="{Binding GraphCvLayoutConfig.IsShowImageView}"
+                          Margin="0,2"
+                          HorizontalAlignment="Left">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="Checked">
+                            <hc:InvokeCommandAction Command="{Binding ShowImageViewCommand}"/>
+                        </hc:EventTrigger>
+                        <hc:EventTrigger EventName="Unchecked">
+                            <hc:InvokeCommandAction Command="{Binding ShowImageViewCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                </CheckBox>
+            </StackPanel>
+        </StackPanel>
+    </StatusBarItem>
+    <hc:Divider LineStrokeThickness="1" 
+                LineStroke="{DynamicResource DarkPrimaryBrush}" 
+                Orientation="Vertical"/>
+    <StatusBarItem>
+        <StackPanel Orientation="Horizontal">
+            <Border  BorderThickness="1"
+                     BorderBrush="{DynamicResource PrimaryBrush}"
+                     Effect="{DynamicResource EffectShadow1}"
+                     Margin="2,0">
+                <ListView  ItemsSource="{Binding Source={StaticResource LayoutTypeProvider}}"
+                           SelectedValue="{Binding GraphCvLayoutConfig.LayoutType}"
+                           ItemContainerStyle="{StaticResource LayoutCategtory}"
+                           Focusable="True" 
+                           SelectionMode="Single"
+                           Margin="5" >
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="SelectionChanged">
+                            <hc:InvokeCommandAction Command="{Binding LayoutCategorySelectedChangeCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                          HorizontalScrollBarVisibility="Disabled">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel IsItemsHost="True" 
+                                        Orientation="Horizontal" 
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Border>
+
+            <Border  BorderThickness="1"
+                     BorderBrush="{DynamicResource PrimaryBrush}"
+                     Effect="{DynamicResource EffectShadow1}"
+                     Margin="2,0">
+                <ListView  ItemsSource="{Binding Source={StaticResource EdgeRoutingTypeProvider}}"
+                           SelectedValue="{Binding GraphCvLayoutConfig.EdgeRoutingType}"
+                           ItemContainerStyle="{StaticResource EdgeRoutingCategtory}"
+                           Focusable="True" 
+                           SelectionMode="Single"
+                           Margin="5">
+                    <hc:Interaction.Triggers>
+                        <hc:EventTrigger EventName="SelectionChanged">
+                            <hc:InvokeCommandAction Command="{Binding EdgeRoutingCategorySelectedChangeCommand}"/>
+                        </hc:EventTrigger>
+                    </hc:Interaction.Triggers>
+                    <ListView.Template>
+                        <ControlTemplate>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                                                  HorizontalScrollBarVisibility="Disabled">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ListView.Template>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel IsItemsHost="True" 
+                                                Orientation="Horizontal" 
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center"/>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Border>
+        </StackPanel>
+
+    </StatusBarItem>
+</StatusBar>

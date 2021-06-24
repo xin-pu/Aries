@@ -104,7 +104,6 @@
     <Compile Include="Controls\CvPropertyGrid\Editor\SizePropertyEditor .cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\PointPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ScalarPropertyEditor.cs" />
-    <Compile Include="Service\DataService.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVRunConfig.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingCategory.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingConvert.cs" />
@@ -114,15 +113,16 @@
     <Compile Include="ViewModel\GraphCV\VertexConnectionPointOut.cs" />
     <Compile Include="ViewModel\GraphLayout\LayoutConvert.cs" />
     <Compile Include="ViewModel\GraphLayout\LayoutType.cs" />
-    <Compile Include="ViewModel\MenuFileModel.cs" />
-    <Compile Include="ViewModel\ToolKitContourModel.cs" />
-    <Compile Include="ViewModel\ToolKitMatModel.cs" />
+    <Compile Include="ViewModel\Menu\MenuFileModel.cs" />
+    <Compile Include="ViewModel\ToolKit\ToolKitContainerModel.cs" />
+    <Compile Include="ViewModel\ToolKit\ToolKitContourModel.cs" />
+    <Compile Include="ViewModel\ToolKit\ToolKitMatModel.cs" />
     <Compile Include="ViewModel\AriesMainModel.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVArea.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
-    <Compile Include="ViewModel\MenuLayoutModel.cs" />
-    <Compile Include="ViewModel\MenuRunner.cs" />
-    <Compile Include="Views\CVPropertyGridView.xaml.cs">
+    <Compile Include="ViewModel\Menu\MenuLayoutModel.cs" />
+    <Compile Include="ViewModel\Menu\MenuRunner.cs" />
+    <Compile Include="Views\ToolKit\CVPropertyGridView.xaml.cs">
       <DependentUpon>CVPropertyGridView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CVWorkerItemView.xaml.cs">
@@ -131,15 +131,6 @@
     <Compile Include="Views\CVWorkerItemViewLayout.cs" />
     <Compile Include="Views\CVWorkerItemViewFile.cs" />
     <Compile Include="Views\CVWorkerItemViewRunner.cs" />
-    <Compile Include="Views\MenuFileView.xaml.cs">
-      <DependentUpon>MenuFileView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MenuLayout.xaml.cs">
-      <DependentUpon>MenuLayout.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MenuRunner.xaml.cs">
-      <DependentUpon>MenuRunner.xaml</DependentUpon>
-    </Compile>
     <Page Include="Resource\Graph\CVGraphXTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -156,11 +147,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Themes\Generic.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\CVPropertyGridView.xaml">
+    <Page Include="Views\ToolKit\CVPropertyGridView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -168,15 +155,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CVMenuSystemView.xaml">
+    <Page Include="Views\Menu\MenuFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Menu\MenuLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Menu\MenuRunner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Views\Menu\MenuSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CVStatusBarView.xaml">
+    <Page Include="Views\StatusBar\CVStatusBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ToolKitMatView.xaml">
+    <Page Include="Views\ToolKit\ToolKitView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,8 +187,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ViewModel\CVToolKit\ToolKitStruct.cs" />
-    <Compile Include="ViewModel\CVWorkerContainerModel.cs" />
+    <Compile Include="ViewModel\ToolKit\ToolKitStruct.cs" />
+    <Compile Include="ViewModel\WorkerContainerModel.cs" />
     <Compile Include="ViewModel\GraphCV\EdgeBlueprint.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVLayoutConfig.cs" />
     <Compile Include="ViewModel\GraphCV\GraphCVEditManager.cs" />
@@ -198,14 +197,23 @@
     <Compile Include="Views\CVWorkerContainerView.xaml.cs">
       <DependentUpon>CVWorkerContainerView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CVMenuSystemView.xaml.cs">
-      <DependentUpon>CVMenuSystemView.xaml</DependentUpon>
+    <Compile Include="Views\Menu\MenuFileView.xaml.cs">
+      <DependentUpon>MenuFileView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CVStatusBarView.xaml.cs">
+    <Compile Include="Views\Menu\MenuLayout.xaml.cs">
+      <DependentUpon>MenuLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\MenuRunner.xaml.cs">
+      <DependentUpon>MenuRunner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\MenuSystemView.xaml.cs">
+      <DependentUpon>MenuSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StatusBar\CVStatusBarView.xaml.cs">
       <DependentUpon>CVStatusBarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ToolKitMatView.xaml.cs">
-      <DependentUpon>ToolKitMatView.xaml</DependentUpon>
+    <Compile Include="Views\ToolKit\ToolKitView.xaml.cs">
+      <DependentUpon>ToolKitView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AriesMain.xaml.cs">
       <DependentUpon>AriesMain.xaml</DependentUpon>
@@ -216,18 +224,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CVWorkerItemView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MenuFileView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MenuLayout.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MenuRunner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

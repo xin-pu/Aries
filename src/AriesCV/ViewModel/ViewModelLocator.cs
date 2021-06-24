@@ -1,6 +1,8 @@
-﻿using GalaSoft.MvvmLight.Ioc;
+﻿using AriesCV.ViewModel.ToolKit;
+using GalaSoft.MvvmLight.Ioc;
 using System;
 using System.Windows;
+using AriesCV.ViewModel.Menu;
 
 namespace AriesCV.ViewModel
 {
@@ -21,7 +23,7 @@ namespace AriesCV.ViewModel
             SimpleIoc.Default.Register(() => new MenuRunner());
             SimpleIoc.Default.Register(() => new ToolKitMatModel());
             SimpleIoc.Default.Register(() => new ToolKitContourModel());
-            SimpleIoc.Default.Register(() => new CVWorkerContainerModel());
+            SimpleIoc.Default.Register(() => new WorkerContainerModel());
         }
 
 
@@ -31,7 +33,7 @@ namespace AriesCV.ViewModel
         public MenuRunner MenuRunner => SimpleIoc.Default.GetInstance<MenuRunner>();
         public ToolKitMatModel ToolKitMat => SimpleIoc.Default.GetInstance<ToolKitMatModel>();
         public ToolKitContourModel ToolKitContour => SimpleIoc.Default.GetInstance<ToolKitContourModel>();
-        public CVWorkerContainerModel CvWorkerContainer => SimpleIoc.Default.GetInstance<CVWorkerContainerModel>();
+        public WorkerContainerModel CvWorkerContainer => SimpleIoc.Default.GetInstance<WorkerContainerModel>();
       
 
     }
