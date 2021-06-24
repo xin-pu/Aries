@@ -94,6 +94,7 @@
     <Compile Include="BlockContour\Choice\ChoiceContoursForCustom.cs" />
     <Compile Include="BlockContour\Filter\FilterContours.cs" />
     <Compile Include="BlockContour\Import\FindContours.cs" />
+    <Compile Include="BlockMat\Effects\Sketch.cs" />
     <Compile Include="BlockMat\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlockMat\Tesseract\GetText.cs" />
     <Compile Include="BlockMat\Arithmetic\AddWeighted.cs" />
