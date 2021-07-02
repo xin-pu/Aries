@@ -125,7 +125,7 @@ namespace AriesCV.ViewModel
 
             if (type.IsSubclassOf(typeof(VertexMat)))
             {
-                var vertex = BlockHelper.CreateMatVertex<VertexMat>(type);
+                var vertex = BlockHelper.CreateVertex<VertexMat>(type);
                 var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
                 vertex.WorkDirectory = workDirectory;
                 GraphCvAreaAtWorkSpace?.AddMatBlock(vertex);
@@ -133,7 +133,7 @@ namespace AriesCV.ViewModel
             }
             else if (type.IsSubclassOf(typeof(VertexContour)))
             {
-                var vertex = BlockHelper.CreateMatVertex<VertexContour>(type);
+                var vertex = BlockHelper.CreateVertex<VertexContour>(type);
                 var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
                 vertex.WorkDirectory = workDirectory;
                 GraphCvAreaAtWorkSpace?.AddContourBlock(vertex);

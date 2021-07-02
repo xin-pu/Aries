@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:views="clr-namespace:AriesCV.Views"
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:menu="clr-namespace:AriesCV.Views.Menu"
              xmlns:toolKit="clr-namespace:AriesCV.Views.ToolKit"
@@ -79,6 +78,13 @@
                             <toolKit:ToolKitView 
                                 Background="Transparent"
                                 DataContext="{Binding ToolKitMat,Source={StaticResource Locator}}" />
+                        </TabItem>
+                        <TabItem Header="&#xef4a;"
+                                 ToolTip="Mats"
+                                 FontSize="20">
+                            <toolKit:ToolKitView 
+                                Background="Transparent"
+                                DataContext="{Binding ToolKitMats,Source={StaticResource Locator}}" />
                         </TabItem>
                         <TabItem Header="&#xed71;"
                                  ToolTip="Contour"

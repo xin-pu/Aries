@@ -120,6 +120,7 @@
     <Compile Include="ViewModel\GraphCV\GraphCVLogicCore.cs" />
     <Compile Include="ViewModel\Menu\MenuLayoutModel.cs" />
     <Compile Include="ViewModel\Menu\MenuRunner.cs" />
+    <Compile Include="ViewModel\ToolKit\ToolKitMatsModel.cs" />
     <Compile Include="Views\ToolKit\CVPropertyGridView.xaml.cs">
       <DependentUpon>CVPropertyGridView.xaml</DependentUpon>
     </Compile>

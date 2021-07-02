@@ -33,6 +33,11 @@ namespace Aries.OpenCV
             };
 
 
+        public static T CreateVertex<T>(Type type)
+        {
+            return (T)Activator.CreateInstance(type, null);
+        }
+
         #region For MAT Block
 
         public static List<Type> GetAllMatBlockType()
@@ -49,10 +54,25 @@ namespace Aries.OpenCV
             return types.ToDictionary(a => a, GetCvCategory);
         }
 
-        public static T CreateMatVertex<T>(Type type)
+
+        #endregion
+
+        #region For MAT Block
+
+        public static List<Type> GetAllMatsBlockType()
         {
-            return (T) Activator.CreateInstance(type, null);
+            var executingAssembly = Assembly.GetExecutingAssembly();
+            var allTypes = executingAssembly.GetTypes().Where(a => !a.IsAbstract);
+            var blockType = allTypes.Where(a => a.IsSubclassOf(typeof(VertexMats)));
+            return blockType.ToList();
         }
+
+        public static Dictionary<Type, string> GetAllMatsBlockCategory()
+        {
+            var types = GetAllMatsBlockType().ToList();
+            return types.ToDictionary(a => a, GetCvCategory);
+        }
+
 
         #endregion
 

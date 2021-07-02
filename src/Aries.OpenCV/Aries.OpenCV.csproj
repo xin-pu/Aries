@@ -95,8 +95,11 @@
     <Compile Include="BlockContour\Choice\ChoiceContoursForCustom.cs" />
     <Compile Include="BlockContour\Filter\FilterContours.cs" />
     <Compile Include="BlockContour\Import\FindContours.cs" />
+    <Compile Include="BlockMats\AriesExpander.cs" />
+    <Compile Include="BlockMats\ImagesByFolder.cs" />
     <Compile Include="BlockMat\Effects\Nostalgic.cs" />
     <Compile Include="BlockMat\Effects\Sketch.cs" />
+    <Compile Include="BlockMat\Import\ImageBySource.cs" />
     <Compile Include="BlockMat\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlockMat\Tesseract\GetText.cs" />
     <Compile Include="BlockMat\Arithmetic\AddWeighted.cs" />
@@ -196,6 +199,7 @@
     <Compile Include="GraphModel\Mat\MatExport.cs" />
     <Compile Include="BlockMat\Blur\Blur.cs" />
     <Compile Include="BlockMat\Blur\GaussianBlur.cs" />
+    <Compile Include="GraphModel\VertexMats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
