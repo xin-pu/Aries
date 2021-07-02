@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="http://schemas.panthernet.ru/graphx/"
                     xmlns:hc="https://handyorg.github.io/handycontrol"
-                    xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
-                    xmlns:controls1="clr-namespace:Aries.OpenCV.GraphModel.Controls;assembly=Aries.OpenCV">
+                    xmlns:controls1="clr-namespace:Aries.OpenCV.GraphModel.Controls;assembly=Aries.OpenCV"
+                    xmlns:core="clr-namespace:Aries.OpenCV.GraphModel.Core;assembly=Aries.OpenCV">
 
 
 
@@ -12,11 +12,11 @@
 
 
 
-    <Style x:Shared="False" TargetType="viewModel:VertexConnectionPointIn">
+    <Style x:Shared="False" TargetType="core:VertexConnectionPointIn">
         <Setter Property="Shape" Value="Triangle" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="viewModel:VertexConnectionPointIn">
+                <ControlTemplate TargetType="core:VertexConnectionPointIn">
                     <StackPanel Orientation="Horizontal" 
                                 VerticalAlignment="Top"
                                 ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent},Path=TypeFullName}">
@@ -31,11 +31,11 @@
         </Setter>
     </Style>
 
-    <Style x:Shared="False" TargetType="viewModel:VertexConnectionPointOut">
+    <Style x:Shared="False" TargetType="core:VertexConnectionPointOut">
         <Setter Property="Shape" Value="Triangle" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="viewModel:VertexConnectionPointOut">
+                <ControlTemplate TargetType="core:VertexConnectionPointOut">
                     <StackPanel Orientation="Horizontal" 
                                 HorizontalAlignment="Right"
                                 ToolTip="{Binding RelativeSource={RelativeSource TemplatedParent},Path=TypeFullName}">

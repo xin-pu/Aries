@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Media;
+using Aries.OpenCV.GraphModel.Core;
 using GraphX.Controls;
 
 namespace AriesCV.ViewModel

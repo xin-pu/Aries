@@ -1,4 +1,5 @@
 ﻿using System;
+using Aries.OpenCV.GraphModel.Core;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;

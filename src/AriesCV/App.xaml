@@ -3,8 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d" 
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
-             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib">
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout">
     <Application.Resources>
         <ResourceDictionary>
           

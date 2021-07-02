@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Aries.OpenCV.GraphModel;
+using Aries.OpenCV.GraphModel.Core;
 using AriesCV.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using GraphX.Common;

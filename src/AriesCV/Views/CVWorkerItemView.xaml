@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:graphx="http://schemas.panthernet.ru/graphx/"
-             xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
+             xmlns:core="clr-namespace:Aries.OpenCV.GraphModel.Core;assembly=Aries.OpenCV"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="{DynamicResource CloudGroundBrush}">
@@ -18,7 +18,7 @@
         </Grid.Resources>
         <graphx:ZoomControl Name="ZoomControl" 
                             Background="Transparent">
-            <viewModel:GraphCVArea x:Name="GraphCVArea"/>
+            <core:GraphCVArea x:Name="GraphCVArea"/>
         </graphx:ZoomControl>
     </Grid>
 </UserControl>

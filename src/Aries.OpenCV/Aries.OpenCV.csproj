@@ -78,6 +78,7 @@
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -101,6 +102,12 @@
     <Compile Include="BlockMat\Arithmetic\AddWeighted.cs" />
     <Compile Include="BlockMat\Transform\SubMatROI.cs" />
     <Compile Include="GraphModel\Controls\ContourVertexControl.cs" />
+    <Compile Include="GraphModel\Core\EdgeBlueprint.cs" />
+    <Compile Include="GraphModel\Core\GraphCVArea.cs" />
+    <Compile Include="GraphModel\Core\GraphCVControlFactory.cs" />
+    <Compile Include="GraphModel\Core\GraphCVRunConfig.cs" />
+    <Compile Include="GraphModel\Core\VertexConnectionPointIn.cs" />
+    <Compile Include="GraphModel\Core\VertexConnectionPointOut.cs" />
     <Compile Include="GraphModel\VertexBasic.cs" />
     <Compile Include="GraphModel\BlockTemplate\ProcessBlock.cs" />
     <Compile Include="GraphModel\Contour\ContoursProcess.cs" />

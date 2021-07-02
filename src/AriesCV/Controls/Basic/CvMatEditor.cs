@@ -1,7 +1,5 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
-using GalaSoft.MvvmLight.Command;
 using OpenCvSharp;
 
 namespace AriesCV.Controls
