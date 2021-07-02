@@ -25,7 +25,7 @@ namespace OpenCvSharp.Internal
         /// </summary>
         private const string ProcessorArchitecture = "PROCESSOR_ARCHITECTURE";
         private const string DllFileExtension = ".dll";
-
+        private const string DllDirectory = "dll";
         private readonly List<string> loadedAssemblies = new();
 
         /// <summary>
@@ -253,7 +253,7 @@ namespace OpenCvSharp.Internal
             //IntPtr libraryHandle = IntPtr.Zero;
             var platformName = GetPlatformName(processArchInfo.Architecture) ?? "";
             var expectedDllDirectory = Path.Combine(
-                Path.Combine(baseDirectory), platformName);
+                Path.Combine(baseDirectory, DllDirectory), platformName);
             //var fileName = FixUpDllFileName(Path.Combine(expectedDllDirectory, dllName));
 
             return LoadLibraryRaw(dllName, expectedDllDirectory);

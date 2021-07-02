@@ -24,3 +24,5 @@
 /src/.vs
 
 
+/src/AriesTest/obj/Debug
+/src/AriesTest/bin/Debug

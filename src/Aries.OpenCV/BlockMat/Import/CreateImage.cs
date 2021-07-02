@@ -22,6 +22,11 @@ namespace Aries.OpenCV.BlockMat
 
         public override void Execute()
         {
+            if (FileName != null)
+            {
+                MatOut = Cv2.ImRead(FileName, ImreadModes);
+                return;
+            }
             var openFileDailog = new OpenFileDialog
             {
                 Title = $"{ID}_{Name}",

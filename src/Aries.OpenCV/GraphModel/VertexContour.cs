@@ -1,5 +1,4 @@
 ﻿using System;
-using GraphX.Common.Models;
 
 namespace Aries.OpenCV.GraphModel
 {

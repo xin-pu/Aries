@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenCvSharp", "OpenCvSharp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriesCV", "AriesCV\AriesCV.csproj", "{F1EFEDC5-B63A-4F8C-8665-285617219115}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AriesTest", "AriesTest\AriesTest.csproj", "{DC07A5B0-3C93-4E92-A948-92DAED9C5239}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{F1EFEDC5-B63A-4F8C-8665-285617219115}.Release-JP|Any CPU.Build.0 = Release|Any CPU
 		{F1EFEDC5-B63A-4F8C-8665-285617219115}.Release-JP|x86.ActiveCfg = Release|Any CPU
 		{F1EFEDC5-B63A-4F8C-8665-285617219115}.Release-JP|x86.Build.0 = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Debug|x86.Build.0 = Debug|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release|x86.ActiveCfg = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release|x86.Build.0 = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release-JP|Any CPU.ActiveCfg = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release-JP|Any CPU.Build.0 = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release-JP|x86.ActiveCfg = Release|Any CPU
+		{DC07A5B0-3C93-4E92-A948-92DAED9C5239}.Release-JP|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

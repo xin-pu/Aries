@@ -55,7 +55,9 @@
     <Reference Include="HandyControl, Version=3.1.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
       <HintPath>..\packages\HandyControl.3.1.0\lib\net472\HandyControl.dll</HintPath>
     </Reference>
-    <Reference Include="QuickGraph, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" />
+    <Reference Include="QuickGraph, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\QuickGraphCore.1.0.0\lib\net40\QuickGraph.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Common, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
