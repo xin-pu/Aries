@@ -289,4 +289,12 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>md "$(TargetDir)Module";
+move /Y "$(TargetDir)*.dll*" "$(TargetDir)Module\";
+move /Y "$(TargetDir)*.xml" "$(TargetDir)Module\";
+move /Y "$(TargetDir)*.pdb" "$(TargetDir)Module\";
+del "$(TargetDir)Module\*.xml" 
+del "$(TargetDir)Module\*.config"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
