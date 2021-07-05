@@ -8,7 +8,7 @@ namespace Aries.OpenCV.BlockMat
     public class PyrUp : MatProcess
     {
 
-        [Category("DATAIN")] public Size Size { set; get; }
+        [Category("ARGUMENT")] public Size Size { set; get; }
 
         [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 

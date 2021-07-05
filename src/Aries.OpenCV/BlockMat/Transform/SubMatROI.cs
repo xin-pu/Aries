@@ -9,7 +9,7 @@ namespace Aries.OpenCV.BlockMat
     public class SubMatROI : MatProcess
     {
 
-        [Category("DATAIN")] public Rect Rect { set; get; }
+        [Category("ARGUMENT")] public Rect Rect { set; get; }
 
         [Category("CHOICE")] public bool EnableSelectRect { set; get; } = true;
 

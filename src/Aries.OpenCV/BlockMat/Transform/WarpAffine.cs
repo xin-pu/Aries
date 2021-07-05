@@ -1,4 +1,4 @@
-﻿namespace Aries.OpenCV.BlockMat.Transform
+﻿namespace Aries.OpenCV.BlockMat
 {
     class WarpAffine
     {

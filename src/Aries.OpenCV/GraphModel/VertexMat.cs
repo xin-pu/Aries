@@ -97,5 +97,11 @@ namespace Aries.OpenCV.GraphModel
                 // ignored
             }
         }
+
+        public override void Reload()
+        {
+            OutImage = string.Empty;
+            base.Reload();
+        }
     }
 }

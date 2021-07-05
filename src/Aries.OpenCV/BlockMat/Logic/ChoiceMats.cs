@@ -8,7 +8,7 @@ namespace Aries.OpenCV.BlockMat
     public class ChoiceMats : ProcessBlock<Mat[], Mat>
     {
 
-        [Category("Enter")] public uint Index { set; get; } = 0;
+        [Category("ARGUMENT")] public uint Index { set; get; } = 0;
 
 
         public override bool CanCall()

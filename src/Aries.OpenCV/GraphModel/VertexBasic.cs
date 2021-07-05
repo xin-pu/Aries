@@ -99,7 +99,6 @@ namespace Aries.OpenCV.GraphModel
         {
             TimeCost = null;
             Status = BlockStatus.ToRun;
-
             var pros = BlockHelper.GetInOUT(GetType());
             pros.ForEach(pro => pro.SetValue(this, null));
         }

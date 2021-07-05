@@ -8,9 +8,9 @@ namespace Aries.OpenCV.BlockMat
     public class InRange : MatProcess
     {
 
-        [Category("DATAIN")] public Scalar Lowerb { set; get; }
+        [Category("ARGUMENT")] public Scalar Lowerb { set; get; }
 
-        [Category("DATAIN")] public Scalar Upperb { set; get; }
+        [Category("ARGUMENT")] public Scalar Upperb { set; get; }
 
 
         public override bool CanCall()

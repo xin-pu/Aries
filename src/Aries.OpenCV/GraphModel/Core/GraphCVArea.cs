@@ -208,7 +208,8 @@ namespace Aries.OpenCV.GraphModel.Core
                 .OfType<PropertyDescriptor>()
                 .ToList();
 
-            properties.Where(a => a.Category == "DATAIN")
+            properties.Where(a => a.Category == "DATAIN"||
+                                  a.Category == "ARGUMENTIN")
                 .ToList()
                 .ForEach(
                     p => { AddInputConnectionPoint(parentControl, p); });
