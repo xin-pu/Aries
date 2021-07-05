@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Aries.OpenCV;
+using Aries.OpenCV.GraphModel;
 using Aries.OpenCV.GraphModel.Controls;
 using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
@@ -14,7 +14,7 @@ using GraphX.Common.Models;
 using GraphX.Controls;
 using QuickGraph;
 
-namespace Aries.OpenCV.GraphModel.Core
+namespace AriesCV.ViewModel
 {
     public class GraphCVArea :
         GraphArea<VertexBasic, BlockEdge, BidirectionalGraph<VertexBasic, BlockEdge>>, INotifyPropertyChanged
@@ -147,8 +147,6 @@ namespace Aries.OpenCV.GraphModel.Core
         }
 
 
-
-
         #region Add Block Function
 
         public void AddMatBlock(VertexBasic blockVertex)
@@ -156,7 +154,7 @@ namespace Aries.OpenCV.GraphModel.Core
             var vertex = new MatVertexControl(blockVertex);
             AddVertexAndData(blockVertex, vertex);
             vertex.SetConnectionPointsVisibility(true);
-
+            
             //we have to check if there is only one vertex and set coordinates manually 
             //because layout algorithms skip all logic if there are less than two vertices
             if (VertexList.Count == 1)
@@ -208,8 +206,7 @@ namespace Aries.OpenCV.GraphModel.Core
                 .OfType<PropertyDescriptor>()
                 .ToList();
 
-            properties.Where(a => a.Category == "DATAIN"||
-                                  a.Category == "ARGUMENTIN")
+            properties.Where(a => a.Category == "DATAIN")
                 .ToList()
                 .ForEach(
                     p => { AddInputConnectionPoint(parentControl, p); });
@@ -300,183 +297,6 @@ namespace Aries.OpenCV.GraphModel.Core
         }
 
         #endregion
-
-
-        #region Run Function
-
-
-
-        public static async Task RunGraphByDataAsync(
-            List<VertexBasic> verDatas,
-            List<BlockEdge> edgeDatas,
-            List<ConnectionPointData> ConnectionPoints)
-        {
-
-
-            while (verDatas.Any(a => a.CanCall() && a.Status == BlockStatus.ToRun))
-            {
-                /// Get Vertext CanRun
-                var vertexsRun = verDatas
-                    .Where(a => a.CanCall() &&
-                                a.Status == BlockStatus.ToRun)
-                    .ToList();
-
-                /// Run Core Execute
-                var executeTask = vertexsRun.Select(a => Task.Run(a.ExecuteCommand_Execute));
-                await Task.WhenAll(executeTask);
-
-
-                /// Check Run Status
-                if (vertexsRun.Any(a => a.Status == BlockStatus.Exception))
-                    break;
-
-                /// Update From Source's OutPut to Target's Input
-                vertexsRun.ForEach(vertexRun =>
-                {
-                    var edgesFromRun = edgeDatas
-                        .Where(a => a.Source.ID == vertexRun.ID)
-                        .ToList();
-
-
-                    foreach (var edgeActive in edgesFromRun)
-                    {
-
-                        var sourceAtEdge = edgeActive.Source;
-                        var targetAtEdge = edgeActive.Target;
-
-                        var sourceReal = verDatas.FirstOrDefault(a => a.ID == sourceAtEdge.ID);
-                        var targetReal = verDatas.FirstOrDefault(a => a.ID == targetAtEdge.ID);
-
-                        if (sourceReal == null || targetReal == null)
-                            break;
-
-                        var sourceID = sourceReal.ID;
-                        var targetID = targetReal.ID;
-
-                        /// 从所有连接点中找到唯一目标
-                        var sourcePoint = ConnectionPoints.FirstOrDefault(a =>
-                            a.ParentID == sourceID &&
-                            a.ID == edgeActive.SourceConnectionPointId);
-                        var targetPoint = ConnectionPoints.FirstOrDefault(a =>
-                            a.ParentID == targetID &&
-                            a.ID == edgeActive.TargetConnectionPointId);
-                        if (sourcePoint == null || targetPoint == null)
-                            break;
-
-                        var sourceHeaderName = sourcePoint.Header;
-                        var targetHeaderName = targetPoint.Header;
-
-                        if (targetPoint.TypeFullName == sourcePoint.TypeFullName)
-                        {
-                            var obj = sourceReal.GetProperty(sourceHeaderName);
-                            targetReal.SetProperty(targetHeaderName, obj);
-                        }
-                        else
-                        {
-                            var mat = sourceReal.GetPropertyAsMat(sourceHeaderName);
-                            targetReal.SetPropertyAsMat(targetHeaderName, mat);
-                        }
-
-                    }
-                });
-
-            }
-        }
-
-        public async Task RunGraphAsync()
-        {
-            try
-            {
-
-                var verDatas = VertexList.Keys.ToList();
-                var edges = EdgesList.Keys.ToList();
-                verDatas.ForEach(vertex => vertex.Reload());
-
-
-                while (verDatas.Any(a => a.CanCall() && a.Status == BlockStatus.ToRun))
-                {
-                    /// Get Vertext CanRun
-                    var vertexsRun = verDatas
-                        .Where(a => a.CanCall() &&
-                                    a.Status == BlockStatus.ToRun)
-                        .ToList();
-
-                    /// Run Core Execute
-                    var executeTask = vertexsRun.Select(a => Task.Run(a.ExecuteCommand_Execute));
-                    await Task.WhenAll(executeTask);
-
-
-                    /// Check Run Status
-                    if (vertexsRun.Any(a => a.Status == BlockStatus.Exception))
-                        break;
-
-                    /// Update From Source's OutPut to Target's Input
-                    vertexsRun.ForEach(vertexRun =>
-                    {
-                        var edgesFromRun = edges
-                            .Where(a => a.Source == vertexRun)
-                            .ToList();
-
-
-                        foreach (var edgeActive in edgesFromRun)
-                        {
-                            var source = edgeActive.Source;
-                            var sourcePoint = VertexList[source].VertexConnectionPointsList
-                                .FirstOrDefault(a => a.Id == edgeActive.SourceConnectionPointId);
-                            var sourceHeaderName = sourcePoint?.Header;
-                            if (sourcePoint == null)
-                                continue;
-
-                            var target = edgeActive.Target;
-                            var targetPoint = VertexList[target].VertexConnectionPointsList
-                                .FirstOrDefault(a => a.Id == edgeActive.TargetConnectionPointId);
-                            var targetHeaderName = targetPoint?.Header;
-                            if (targetPoint == null)
-                                continue;
-
-                            if (targetPoint.TypeFullName == sourcePoint.TypeFullName)
-                            {
-                                var obj = source.GetProperty(sourceHeaderName);
-                                target.SetProperty(targetHeaderName, obj);
-                            }
-                            else
-                            {
-                                var mat = source.GetPropertyAsMat(sourceHeaderName);
-                                target.SetPropertyAsMat(targetHeaderName, mat);
-                            }
-                        }
-                    });
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-        }
-
-        public async Task ReloadAllBlockAsync()
-        {
-            var tasks = VertexList.Keys.Select(vc => Task.Run(vc.Reload));
-            await Task.WhenAll(tasks);
-        }
-
-        public async Task SetEnableSaveImageAsync(bool isAutoSave)
-        {
-            var tasks = VertexList.Keys
-                .OfType<VertexMat>()
-                .Select(vc => { return Task.Run(() => vc.EnableSaveMat = isAutoSave); });
-            await Task.WhenAll(tasks);
-        }
-
-
-
-        #endregion
-
-
-
-
 
 
 

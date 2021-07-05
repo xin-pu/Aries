@@ -85,7 +85,7 @@ namespace Aries.OpenCV.GraphModel
                     .FirstOrDefault(a => a.Category == "DATAOUT" && a.Name == "MatOut");
 
                 var mat = GetPropertyAsMat(outMatDict?.Name) as Mat;
-                var imagesource = $@"{WorkDirectory}\{Name}_{ID}_{DateTime.Now:yy_MM_dd_HH_mm_ss}.jpg";
+                var imagesource = $@"{WorkDirectory}\{Name}_{ID}_{DateTime.Now:yyyyMMdd_HHmmss}.jpg";
                 var saveRes = mat?.ImWrite(imagesource);
                 if (saveRes == true)
                 {

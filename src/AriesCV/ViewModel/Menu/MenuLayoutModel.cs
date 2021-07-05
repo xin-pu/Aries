@@ -1,4 +1,7 @@
 ﻿using System;
+using Aries.OpenCV.GraphModel;
+using Aries.OpenCV.GraphModel.Core;
+using Aries.OpenCV.GraphModel.GraphCV;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;

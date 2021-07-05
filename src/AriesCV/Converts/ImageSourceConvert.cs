@@ -10,9 +10,17 @@ namespace AriesCV.Converts
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is string url)
-                if (!string.IsNullOrEmpty(url))
-                    return new BitmapImage(new Uri(url));
+            try
+            {
+                if (value is string url)
+                    if (!string.IsNullOrEmpty(url))
+                        return new BitmapImage(new Uri(url));
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
             return DependencyProperty.UnsetValue;
         }
 

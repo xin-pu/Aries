@@ -2,7 +2,8 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
-using AriesCV.ViewModel.GraphLayout;
+using Aries.OpenCV.GraphModel;
+using AriesCV.ViewModel.Menu;
 
 namespace AriesCV.Converts
 {

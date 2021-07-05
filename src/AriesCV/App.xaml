@@ -4,8 +4,9 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout"
-             xmlns:converts="clr-namespace:AriesCV.Converts">
+             xmlns:converts="clr-namespace:AriesCV.Converts"
+             xmlns:menu="clr-namespace:AriesCV.ViewModel.Menu"
+             xmlns:graphModel="clr-namespace:Aries.OpenCV.GraphModel;assembly=Aries.OpenCV">
     <Application.Resources>
         <ResourceDictionary>
           
@@ -39,11 +40,11 @@
             <viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>
 
             <ObjectDataProvider MethodName="InitiaLayOutCategories"
-                                ObjectType="graphLayout:LayoutCategory"
+                                ObjectType="menu:LayoutCategory"
                                 x:Key="LayOutCategoryProvider">
             </ObjectDataProvider>
             <ObjectDataProvider MethodName="InitialEdgeRoutingCategories"
-                                ObjectType="graphLayout:EdgeRoutingCategory"
+                                ObjectType="menu:EdgeRoutingCategory"
                                 x:Key="EdgeRoutingCategoryProvider">
             </ObjectDataProvider>
 
@@ -51,7 +52,7 @@
                                 ObjectType="{x:Type sys:Enum}"
                                 x:Key="LayoutTypeProvider">
                 <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="graphLayout:LayoutType" />
+                    <x:Type TypeName="graphModel:LayoutType" />
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 
@@ -59,7 +60,7 @@
                                 ObjectType="{x:Type sys:Enum}"
                                 x:Key="EdgeRoutingTypeProvider">
                 <ObjectDataProvider.MethodParameters>
-                    <x:Type TypeName="graphLayout:EdgeRoutingType" />
+                    <x:Type TypeName="graphModel:EdgeRoutingType" />
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 

@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -34,6 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
@@ -89,6 +91,9 @@
       <HintPath>..\packages\Tesseract.4.1.1\lib\net45\Tesseract.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
+    <Reference Include="YAXLib">
+      <HintPath>..\packages\YAXLib.2.15\lib\net4.0\YAXLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockContour\Choice\ChoiceContours.cs" />
@@ -96,10 +101,9 @@
     <Compile Include="BlockContour\Filter\FilterContours.cs" />
     <Compile Include="BlockContour\Import\FindContours.cs" />
     <Compile Include="BlockMats\AriesExpander.cs" />
-    <Compile Include="BlockMats\ImagesByFolder.cs" />
+    <Compile Include="BlockMats\ImagesSource.cs" />
     <Compile Include="BlockMat\Effects\Nostalgic.cs" />
     <Compile Include="BlockMat\Effects\Sketch.cs" />
-    <Compile Include="BlockMat\Import\ImageBySource.cs" />
     <Compile Include="BlockMat\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlockMat\Tesseract\GetText.cs" />
     <Compile Include="BlockMat\Arithmetic\AddWeighted.cs" />
@@ -112,6 +116,12 @@
     <Compile Include="GraphModel\Core\GraphCVRunConfig.cs" />
     <Compile Include="GraphModel\Core\VertexConnectionPointIn.cs" />
     <Compile Include="GraphModel\Core\VertexConnectionPointOut.cs" />
+    <Compile Include="GraphModel\Core\GraphCV\GraphCVEditManager.cs" />
+    <Compile Include="GraphModel\Core\GraphCV\GraphCVFileStruct.cs" />
+    <Compile Include="GraphModel\Core\GraphCV\GraphCVLayoutConfig.cs" />
+    <Compile Include="GraphModel\Core\GraphCVLogicCore.cs" />
+    <Compile Include="GraphModel\Core\GraphLayout\EdgeRoutingType.cs" />
+    <Compile Include="GraphModel\Core\GraphLayout\LayoutType.cs" />
     <Compile Include="GraphModel\VertexBasic.cs" />
     <Compile Include="GraphModel\BlockTemplate\ProcessBlock.cs" />
     <Compile Include="GraphModel\Contour\ContoursProcess.cs" />
@@ -162,7 +172,7 @@
     <Compile Include="BlockMat\Filter\Sobel.cs" />
     <Compile Include="BlockMat\Hist\Hist.cs" />
     <Compile Include="BlockMat\Virtual\CreateCircles.cs" />
-    <Compile Include="BlockMat\Import\CreateKernel.cs" />
+    <Compile Include="BlockMat\Import\KernelSource.cs" />
     <Compile Include="BlockMat\Virtual\CreateLines.cs" />
     <Compile Include="BlockMat\Virtual\CreateTexts.cs" />
     <Compile Include="BlockMat\Logic\ChoiceMats.cs" />
@@ -192,7 +202,7 @@
     <Compile Include="GraphModel\Mat\MatProcess.cs" />
     <Compile Include="GraphModel\MatRecord.cs" />
     <Compile Include="GraphModel\BlockTemplate\ImportBlock.cs" />
-    <Compile Include="BlockMat\Import\CreateImage.cs" />
+    <Compile Include="BlockMat\Import\MatSource.cs" />
     <Compile Include="GraphModel\BlockEdge.cs" />
     <Compile Include="GraphModel\VertexContour.cs" />
     <Compile Include="GraphModel\Controls\MatVertexControl.cs" />
@@ -218,6 +228,10 @@
     <ProjectReference Include="..\GraphX.Standard.Common\GraphX.Standard.Common.csproj">
       <Project>{5e0e001b-a4d3-4f7c-937d-f8d388fc42f7}</Project>
       <Name>GraphX.Standard.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GraphX.Standard.Logic\GraphX.Standard.Logic.csproj">
+      <Project>{51282E4B-DCD1-4502-BD1E-BAC96A9CE956}</Project>
+      <Name>GraphX.Standard.Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\OpenCvSharp\OpenCvSharp.csproj">
       <Project>{c58fe5b3-a578-4003-a8ae-e094b494efe7}</Project>

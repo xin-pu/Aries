@@ -4,8 +4,6 @@ using GraphX.Common;
 using GraphX.Common.Enums;
 using GraphX.Logic.Algorithms.EdgeRouting;
 using GraphX.Logic.Algorithms.LayoutAlgorithms;
-using EdgeRoutingType = AriesCV.ViewModel.GraphLayout.EdgeRoutingType;
-using LayoutType = AriesCV.ViewModel.GraphLayout.LayoutType;
 
 namespace AriesCV.Views
 {

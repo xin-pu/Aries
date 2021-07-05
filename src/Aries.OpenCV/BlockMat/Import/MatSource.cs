@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.IO;
-using System.Net;
 using Aries.OpenCV.GraphModel;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
@@ -10,10 +9,10 @@ namespace Aries.OpenCV.BlockMat
 {
 
     [Category("Initial")]
-    public class CreateImage : MatImport
+    public class MatSource : MatImport
     {
 
-        [Category("ARGUMENT")] public string FileName { protected set; get; }
+        [Category("ARGUMENT")] public string FileName { set; get; }
 
         [Category("ARGUMENT")] public ImreadModes ImreadModes { set; get; } = ImreadModes.Grayscale;
 

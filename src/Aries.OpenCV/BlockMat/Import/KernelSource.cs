@@ -11,7 +11,7 @@ using System.ComponentModel;
 namespace Aries.OpenCV.BlockMat
 {
     [Category("Initial")]
-    public class CreateKernel : ImportBlock<Mat>
+    public class KernelSource : ImportBlock<Mat>
     {
         [Category("ARGUMENT")] public int AnchorPoint_X { set; get; } = -1;
 

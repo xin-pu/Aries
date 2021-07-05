@@ -4,7 +4,6 @@ using System.Linq;
 using Aries.OpenCV;
 using Aries.OpenCV.GraphModel;
 using Aries.OpenCV.GraphModel.Core;
-using AriesCV.ViewModel.GraphLayout;
 using AriesCV.Views;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
