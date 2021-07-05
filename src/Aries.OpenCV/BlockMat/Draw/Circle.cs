@@ -19,20 +19,15 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public int Shift { set; get; } = 0;
 
-        public override void Reload()
-        {
-            Circles = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null &&
                    Circles != null &&
                    Circles.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             MatIn.CopyTo(MatOut);

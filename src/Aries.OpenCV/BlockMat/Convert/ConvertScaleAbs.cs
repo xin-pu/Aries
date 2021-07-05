@@ -12,12 +12,12 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public double Beta { set; get; } = 0D;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.ConvertScaleAbs(MatIn, MatOut, Alpha, Beta);

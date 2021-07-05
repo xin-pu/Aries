@@ -17,7 +17,7 @@ namespace Aries.OpenCV.BlockMat
 
         private List<double[]> pointArray { set; get; }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             if (List_Points == null)
                 return false;
@@ -31,7 +31,7 @@ namespace Aries.OpenCV.BlockMat
             return pointArray.All(a => a.Length == 4);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             TOut = pointArray
                 .Select(a => new LineSegmentPoint(new Point(a[0], a[1]), new Point(a[2], a[3])))

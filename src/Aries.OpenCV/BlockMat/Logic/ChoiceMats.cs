@@ -10,19 +10,13 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("Enter")] public uint Index { set; get; } = 0;
 
-        public override void Reload()
-        {
-            TIn = null;
-            TOut = null;
-            Status = BlockStatus.ToRun;
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return TIn != null && TIn.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             TOut = new Mat();
             TOut = TIn[Index].Clone();

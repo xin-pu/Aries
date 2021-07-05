@@ -17,7 +17,7 @@ namespace Aries.OpenCV.BlockMat
         /// <summary>
         /// dst = alpha cdot img1 + beta cdot img2 + gamma
         /// </summary>
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.AddWeighted(MatIn1, Alpha, MatIn2, Beta, Gamma, MatOut);

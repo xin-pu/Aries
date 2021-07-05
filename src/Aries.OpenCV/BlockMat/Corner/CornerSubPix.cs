@@ -22,12 +22,12 @@ namespace Aries.OpenCV.BlockMat
 
         private TermCriteria TermCriteria => new TermCriteria(CriteriaType, MaxCount, Epsilon);
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             Result = Cv2.CornerSubPix(MatIn, Corners, WinSize, ZeroZone, TermCriteria);
         }

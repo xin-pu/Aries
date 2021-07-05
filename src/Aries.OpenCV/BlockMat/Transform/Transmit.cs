@@ -9,12 +9,12 @@ namespace Aries.OpenCV.BlockMat
     public class Transmit : MatProcess
     {
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             MatOut = MatIn.Clone();

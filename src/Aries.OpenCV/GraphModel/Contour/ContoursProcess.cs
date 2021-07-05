@@ -31,11 +31,5 @@ namespace Aries.OpenCV.GraphModel
         }
 
 
-        public override void Reload()
-        {
-            ConsIn = null;
-            ConsOut = null;
-            Status = BlockStatus.ToRun;
-        }
     }
 }

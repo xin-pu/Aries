@@ -26,12 +26,12 @@ namespace Aries.OpenCV.BlockMats
             }
         }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return Directory.Exists(Folder);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             var files = new DirectoryInfo(Folder).GetFiles();
             var imageFiles = ImageFilter == null

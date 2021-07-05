@@ -13,12 +13,12 @@ namespace Aries.OpenCV.BlockMat
         [Category("DATAIN")] public Scalar Upperb { set; get; }
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.InRange(MatIn, Lowerb, Upperb, MatOut);

@@ -15,7 +15,7 @@ namespace Aries.OpenCV.BlockMat
 
         private List<double[]> circleArray { set; get; }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             var point = List_Circles
                 .Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
@@ -27,7 +27,7 @@ namespace Aries.OpenCV.BlockMat
             return circleArray.All(a => a.Length == 3);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             TOut = circleArray
                 .Select(a => new CircleSegment(new Point(a[0], a[1]), (int) a[2]))

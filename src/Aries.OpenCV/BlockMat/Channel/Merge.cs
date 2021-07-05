@@ -15,17 +15,7 @@ namespace Aries.OpenCV.BlockMat
         [Category("DATAOUT")] public Mat MatOut { set; get; }
 
 
-        public override void Reload()
-        {
-            MatOut = null;
-            MatR = null;
-            MatG = null;
-            MatB = null;
-            OutImage = null;
-            base.Reload();
-        }
-
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             var mats = new[] {MatR, MatG, MatB};
             var matsNotNull = mats.Where(a => a != null).ToList();
@@ -37,7 +27,7 @@ namespace Aries.OpenCV.BlockMat
             return matsNotNull.All(a => a.Size() == targetSize);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             var mats = new[] {MatB, MatG, MatR};

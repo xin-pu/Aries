@@ -10,18 +10,13 @@ namespace Aries.OpenCV.BlockContour
     [Category("Property")]
     public class MinEnclosingCircle : ContoursExport<CircleSegment[]>
     {
-        public override void Reload()
-        {
-            ConsIn = null;
-            Status = BlockStatus.ToRun;
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ConsIn != null && ConsIn.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             var cirs = ConsIn.Select(con =>
             {

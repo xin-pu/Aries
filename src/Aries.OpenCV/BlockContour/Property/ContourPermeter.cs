@@ -10,12 +10,12 @@ namespace Aries.OpenCV.BlockContour
     {
         [Category("ARGUMENT")] public bool Closed { set; get; }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ConsIn != null && ConsIn.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             Result = ConsIn.Select(c => Cv2.ArcLength(c, Closed)).ToArray();
         }

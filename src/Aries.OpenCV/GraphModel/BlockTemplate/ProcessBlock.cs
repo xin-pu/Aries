@@ -29,12 +29,7 @@ namespace Aries.OpenCV.GraphModel
             }
         }
 
-        public override void Reload()
-        {
-            TIn = default;
-            TOut = default;
-            Status = BlockStatus.ToRun;
-        }
+
 
 
     }

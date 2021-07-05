@@ -17,10 +17,6 @@ namespace Aries.OpenCV.GraphModel
             }
         }
 
-        public override void Reload()
-        {
-            TOut = default;
-            Status = BlockStatus.ToRun;
-        }
+
     }
 }

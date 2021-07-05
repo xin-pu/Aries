@@ -20,12 +20,12 @@ namespace Aries.OpenCV.BlockMat
         public BorderTypes BorderTypes { set; get; } = BorderTypes.Default;
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.Blur(MatIn, MatOut, KSize, AnchorPoint, BorderTypes);

@@ -22,19 +22,15 @@ namespace Aries.OpenCV.BlockMat.Template
 
         [Category("CHOICE")] public bool EnableMask { set; get; } = false;
 
-        public override void Reload()
-        {
-            MatIn = null;
-            Status = BlockStatus.ToRun;
-        }
 
-        public override bool CanExecute()
+
+        public override bool CanCall()
         {
             return MatIn != null &&
                    (!EnableMask || Mask != null);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             var outMat = new Mat();
             Cv2.MatchTemplate(MatIn, Template, outMat, TemplateMatchMode, Mask);

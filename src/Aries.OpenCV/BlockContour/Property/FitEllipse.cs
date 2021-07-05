@@ -9,18 +9,13 @@ namespace Aries.OpenCV.BlockContour
     public class FitEllipse : ContoursExport<RotatedRect[]>
     {
 
-        public override void Reload()
-        {
-            ConsIn = null;
-            Status = BlockStatus.ToRun;
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ConsIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             Result = ConsIn.Select(a => Cv2.FitEllipse(a)).ToArray();
         }

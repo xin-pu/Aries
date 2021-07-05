@@ -14,12 +14,12 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public int KSize { set; get; } = 3;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return KSize % 2 == 1 && MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
 
             MatOut = new Mat();

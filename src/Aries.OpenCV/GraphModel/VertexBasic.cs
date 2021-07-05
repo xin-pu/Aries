@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Aries.OpenCV.GraphModel
 {
-    public abstract class VertexBasic: VertexBase
+    public abstract class VertexBasic : VertexBase
     {
         private BlockStatus _status = BlockStatus.ToRun;
 
@@ -69,7 +69,7 @@ namespace Aries.OpenCV.GraphModel
 
         public bool ExecuteCommand_CanExecute()
         {
-            return CanExecute();
+            return CanCall();
         }
 
         public virtual void ExecuteCommand_Execute()
@@ -79,7 +79,7 @@ namespace Aries.OpenCV.GraphModel
             {
 
                 Status = BlockStatus.Run;
-                Execute();
+                Call();
                 Status = BlockStatus.Complete;
             }
             catch (Exception ex)
@@ -99,24 +99,28 @@ namespace Aries.OpenCV.GraphModel
         {
             TimeCost = null;
             Status = BlockStatus.ToRun;
+
+            var pros = BlockHelper.GetInOUT(GetType());
+            pros.ForEach(pro => pro.SetValue(this, null));
         }
 
-        public abstract bool CanExecute();
-        public abstract void Execute();
+
+        public abstract bool CanCall();
+        public abstract void Call();
 
 
-        public virtual async Task<bool> CanExecuteAsync()
+        public virtual async Task<bool> CanCallAsync()
         {
-            return await Task.Run(CanExecute);
+            return await Task.Run(CanCall);
         }
 
         public virtual async void ExecuteAsync()
         {
-            await Task.Run(Execute);
+            await Task.Run(Call);
         }
 
 
-     
+
 
 
         public object GetProperty(string proName)

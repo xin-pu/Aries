@@ -9,19 +9,13 @@ namespace Aries.OpenCV.BlockContour
     {
         public abstract Mat[] Filter();
 
-        public override void Reload()
-        {
-            ConsIn = null;
-            ConsOut = null;
-            Status = BlockStatus.ToRun;
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ConsIn != null && ConsIn.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             ConsOut = new Mat[0];
             ConsOut = Filter();

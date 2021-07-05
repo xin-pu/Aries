@@ -10,12 +10,12 @@ namespace Aries.OpenCV.BlockMat.Effects
     /// </summary>
     public class Nostalgic : MatProcess
     {
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
 

@@ -19,12 +19,12 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public Scalar BorderValue { set; get; }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null && Element != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.MorphologyEx(MatIn, MatOut, MorphType, Element, Anchor, Iterations, BorderType, BorderValue);

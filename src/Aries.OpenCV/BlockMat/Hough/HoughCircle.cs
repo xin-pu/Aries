@@ -46,18 +46,14 @@ namespace Aries.OpenCV.BlockMat
         [Category("ARGUMENT")]
         public int MaxRadius { set; get; } = 0;
 
-        public override void Reload()
-        {
-            Result = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+
+        public override bool CanCall()
         {
             return DP >= 1 && MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             Result = new CircleSegment[0];
             Result = Cv2.HoughCircles(MatIn, HoughMode, DP, MinDIst,

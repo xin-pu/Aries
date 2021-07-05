@@ -16,13 +16,13 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public bool L2gradient { set; get; } = false;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             var check = ThresholdHigh / ThresholdLow > 1 && ThresholdHigh / ThresholdLow < 5;
             return check && MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.Canny(MatIn, MatOut, ThresholdLow, ThresholdHigh, ApertureSize, L2gradient);

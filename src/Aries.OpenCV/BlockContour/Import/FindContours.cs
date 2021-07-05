@@ -48,19 +48,13 @@ namespace Aries.OpenCV.BlockContour
 
         [Category("ARGUMENT")] public Point Offset { set; get; }
 
-        public override void Reload()
-        {
-            MatIn = null;
-            ConsOut = null;
-            Status = BlockStatus.ToRun;
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             Hierarchy = new Mat();
             Mat[] outMats;

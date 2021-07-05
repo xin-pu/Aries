@@ -15,12 +15,12 @@ namespace Aries.OpenCV.BlockMat
         [Category("ARGUMENT")] public ImreadModes ImreadModes { set; get; } = ImreadModes.Grayscale;
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ImageSource != null && File.Exists(ImageSource);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = Cv2.ImRead(ImageSource, ImreadModes);
         }

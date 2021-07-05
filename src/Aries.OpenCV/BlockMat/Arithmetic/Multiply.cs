@@ -7,7 +7,7 @@ namespace Aries.OpenCV.BlockMat
     [Category("Arithmetic")]
     public class Multiply : MatArithmetic
     {
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.Multiply(MatIn1, MatIn2, MatOut);

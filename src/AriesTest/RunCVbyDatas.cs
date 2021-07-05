@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Aries.OpenCV;
+using Aries.OpenCV.BlockMat;
 using Aries.OpenCV.GraphModel;
 using AriesCV.Views;
 using GraphX.Controls;
@@ -56,11 +58,11 @@ namespace AriesTest
                 a.WorkDirectory = "D:\\";
             });
 
-            while (verDatas.Any(a => a.CanExecute() && a.Status == BlockStatus.ToRun))
+            while (verDatas.Any(a => a.CanCall() && a.Status == BlockStatus.ToRun))
             {
                 /// Get Vertext CanRun
                 var vertexsRun = verDatas
-                    .Where(a => a.CanExecute() &&
+                    .Where(a => a.CanCall() &&
                                 a.Status == BlockStatus.ToRun)
                     .ToList();
 
@@ -127,6 +129,16 @@ namespace AriesTest
         }
 
 
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            var pro = BlockHelper.GetInOUT(typeof(Merge));
+            foreach (var propertyInfo in pro)
+            {
+                propertyInfo.SetValue(this,null);
+            }
+        }
       
     }
 }

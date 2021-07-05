@@ -17,20 +17,13 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public LineTypes LineType { set; get; } = LineTypes.Link8;
 
-        public override void Reload()
-        {
-            MatIn = null;
-            MatOut = null;
-            Contours = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null && Contours != null && Contours.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.CopyTo(MatIn, MatOut);

@@ -11,19 +11,13 @@ namespace Aries.OpenCV.BlockMat.Fetch
 
         [Category("ARGUMENT")] public double Threshold { set; get; } = 0;
 
-        public override void Reload()
-        {
-            MatIn = null;
-            Result = null;
-            Status = BlockStatus.ToRun;
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             var points = new List<Point>();
             for (var i = 0; i < MatIn.Height; i++)

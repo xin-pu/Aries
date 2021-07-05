@@ -37,12 +37,12 @@ namespace Aries.OpenCV.BlockMats
         }
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatsIn != null && MatsIn.Length >= 1;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             throw new System.NotImplementedException();
         }

@@ -8,7 +8,7 @@ namespace Aries.OpenCV.BlockMat
     public class Add : MatArithmetic
     {
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.Add(MatIn1, MatIn2, MatOut, Mask);

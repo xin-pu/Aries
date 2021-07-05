@@ -19,12 +19,12 @@ namespace Aries.OpenCV.BlockContour
 
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ConsIn != null && ConsIn.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             ConsOut = new Mat[0];
             var mats = new List<Mat>();

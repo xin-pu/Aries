@@ -36,12 +36,12 @@ namespace Aries.OpenCV.BlockMat
 
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return !string.IsNullOrEmpty(FileName) && File.Exists(FileName);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = Cv2.ImRead(FileName, ImreadModes);
         }

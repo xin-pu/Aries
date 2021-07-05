@@ -14,22 +14,14 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("CHOICE")] public bool EnableMask { set; get; }
 
-        public override void Reload()
-        {
-            MatIn = null;
-            Mask = null;
-            MatOut = null;
-            OutImage = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null &&
                    (!EnableMask || Mask != null);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.BitwiseNot(MatIn, MatOut, Mask);

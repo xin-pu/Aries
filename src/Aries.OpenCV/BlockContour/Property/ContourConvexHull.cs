@@ -18,12 +18,12 @@ namespace Aries.OpenCV.BlockContour
         public bool ReturnPoints { set; get; } = true;
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ConsIn != null && ConsIn.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             ConsOut = new Mat[0];
             ConsOut = ConsIn.Select(c =>

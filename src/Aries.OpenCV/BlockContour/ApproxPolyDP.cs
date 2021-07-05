@@ -13,12 +13,12 @@ namespace Aries.OpenCV.BlockContour
         [Category("ARGUMENT")] public bool Closed { set; get; } = true;
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ConsIn != null && ConsIn.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
 
             ConsOut = ConsIn.Select(con =>

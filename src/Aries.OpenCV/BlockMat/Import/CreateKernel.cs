@@ -23,12 +23,12 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public MorphShapes MorphShapes { set; get; } = MorphShapes.Rect;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return ElementWidth > 0 && ElementHeight > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             TOut = Cv2.GetStructuringElement(MorphShapes,
                 new Size(ElementWidth, ElementHeight),

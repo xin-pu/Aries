@@ -340,11 +340,11 @@ namespace Aries.OpenCV.GraphModel.Core
                 a.WorkDirectory = "D:\\";
             });
 
-            while (verDatas.Any(a => a.CanExecute() && a.Status == BlockStatus.ToRun))
+            while (verDatas.Any(a => a.CanCall() && a.Status == BlockStatus.ToRun))
             {
                 /// Get Vertext CanRun
                 var vertexsRun = verDatas
-                    .Where(a => a.CanExecute() &&
+                    .Where(a => a.CanCall() &&
                                 a.Status == BlockStatus.ToRun)
                     .ToList();
 
@@ -420,11 +420,11 @@ namespace Aries.OpenCV.GraphModel.Core
                 verDatas.ForEach(vertex => vertex.Reload());
 
 
-                while (verDatas.Any(a => a.CanExecute() && a.Status == BlockStatus.ToRun))
+                while (verDatas.Any(a => a.CanCall() && a.Status == BlockStatus.ToRun))
                 {
                     /// Get Vertext CanRun
                     var vertexsRun = verDatas
-                        .Where(a => a.CanExecute() &&
+                        .Where(a => a.CanCall() &&
                                     a.Status == BlockStatus.ToRun)
                         .ToList();
 

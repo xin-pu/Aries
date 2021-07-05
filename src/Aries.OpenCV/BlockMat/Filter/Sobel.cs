@@ -22,14 +22,14 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             var resCheck = XOrder <= 2 && XOrder >= 0;
             resCheck = resCheck && YOrder <= 2 && YOrder >= 0;
             return resCheck && MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.Sobel(MatIn, MatOut, MatType, XOrder, YOrder, KSize, Scale, Delta, BorderType);

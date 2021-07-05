@@ -15,21 +15,13 @@ namespace Aries.OpenCV.BlockMat
         [Category("DATAOUT")] public Mat MatB { set; get; }
 
 
-        public override void Reload()
-        {
-            MatIn = null;
-            MatR = null;
-            MatG = null;
-            MatB = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null && MatIn.Channels() >= 3;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             var res = MatIn.Split();
             MatB = res[0];

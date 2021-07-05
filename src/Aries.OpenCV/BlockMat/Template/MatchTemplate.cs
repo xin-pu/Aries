@@ -22,13 +22,13 @@ namespace Aries.OpenCV.BlockMat.Template
 
         [Category("CHOICE")] public bool EnableMask { set; get; } = false;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null &&
                    (!EnableMask || Mask != null);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.MatchTemplate(MatIn, Template, MatOut, TemplateMatchMode, Mask);

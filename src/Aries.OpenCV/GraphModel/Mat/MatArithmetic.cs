@@ -72,17 +72,9 @@ namespace Aries.OpenCV.GraphModel
         #endregion
 
 
-        public override void Reload()
-        {
-            MatIn1 = null;
-            MatIn2 = null;
-            Mask = null;
-            MatOut = null;
-            Mask = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+
+        public override bool CanCall()
         {
             return MatIn1 != null &&
                    MatIn2 != null &&

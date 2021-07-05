@@ -12,18 +12,14 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public BorderTypes BorderType { set; get; } = BorderTypes.Default;
 
-        public override void Reload()
-        {
-            Size = new Size(0, 0);
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+
+        public override bool CanCall()
         {
             return MatIn != null && Size != new Size(0, 0);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.PyrDown(MatIn, MatOut, Size, BorderType);

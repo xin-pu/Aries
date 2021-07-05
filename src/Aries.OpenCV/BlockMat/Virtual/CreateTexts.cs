@@ -14,7 +14,7 @@ namespace Aries.OpenCV.BlockMat
 
         private List<string[]> textArray { set; get; }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             var point = List_Texts
                 .Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
@@ -22,7 +22,7 @@ namespace Aries.OpenCV.BlockMat
             return textArray.All(a => a.Length == 3);
         }
 
-        public override void Execute()
+        public override void Call()
         {
             TOut = textArray
                 .Select(a => new TextSegment(a[0], double.Parse(a[1]), double.Parse(a[1])))

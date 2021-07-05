@@ -42,13 +42,9 @@ namespace Aries.OpenCV.BlockMat
         [Category("ARGUMENT")] public double MaxLineGap { set; get; } = 0;
 
 
-        public override void Reload()
-        {
-            Result = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+
+        public override bool CanCall()
         {
             return MatIn != null;
         }
@@ -56,7 +52,7 @@ namespace Aries.OpenCV.BlockMat
         /// <summary>
         /// The output lines. Each line is represented by a 4-element vector (x1, y1, x2, y2)
         /// </summary>
-        public override void Execute()
+        public override void Call()
         {
             Result = new LineSegmentPoint[0];
             Result = Cv2.HoughLinesP(MatIn, Rho, Theta, Threshold, MinLineLength, MaxLineGap);

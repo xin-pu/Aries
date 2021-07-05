@@ -23,12 +23,12 @@ namespace Aries.OpenCV.BlockMat
         [Category("ARGUMENT")] public ThresholdTypes ThresholdType { set; get; } = ThresholdTypes.Binary;
 
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.Threshold(MatIn, MatOut, Thresh, Maxval, ThresholdType);

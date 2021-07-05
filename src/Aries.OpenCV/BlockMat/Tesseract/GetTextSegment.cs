@@ -15,18 +15,13 @@ namespace Aries.OpenCV.BlockMat.Tesseract
 
         [Category("DATAIN")] public Rect[] Rects { set; get; }
 
-        public override void Reload()
-        {
-            Rects = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null && Rects != null && Rects.Length > 0;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             var resString = new List<TextSegment>();
             var engine = new TesseractEngine("tessdata", "eng", EngineMode.Default);

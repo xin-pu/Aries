@@ -19,7 +19,7 @@ namespace Aries.OpenCV.BlockMat
         [Category("ARGUMENT")] public double HistHeight { set; get; } = 512;
         [Category("ARGUMENT")] public int LineThickNess { set; get; } = -1;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             if (MatIn == null)
                 return false;
@@ -44,7 +44,7 @@ namespace Aries.OpenCV.BlockMat
             return true;
         }
 
-        public override void Execute()
+        public override void Call()
         {
 
             MatOut = Mat.Zeros(new Size(HistWidth, HistHeight), MatType.CV_8UC3)

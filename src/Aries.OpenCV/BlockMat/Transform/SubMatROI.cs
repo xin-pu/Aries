@@ -13,12 +13,12 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("CHOICE")] public bool EnableSelectRect { set; get; } = true;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             if (EnableSelectRect)
             {

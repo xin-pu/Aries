@@ -115,6 +115,22 @@ namespace Aries.OpenCV
             }
         }
 
+
+        public static List<PropertyInfo> GetInOUT(Type blockTypeClass)
+        {
+            var pros = blockTypeClass.GetProperties();
+            var filterPros =
+                pros.Where(pro =>
+                {
+                    var categoryAttr =
+                        pro.CustomAttributes.FirstOrDefault(c => c.AttributeType == typeof(CategoryAttribute));
+                    var values = categoryAttr?.ConstructorArguments.Select(a => a.Value.ToString().ToUpper()).ToList();
+                    var checkList = new List<string> {"DATAIN", "DATAOUT"};
+                    return values?.Intersect(checkList).Count() >= 1;
+                });
+            return filterPros.ToList();
+        }
+
         public static string GetBlockICon(string cvCategory)
         {
             return IconDictionary.ContainsKey(cvCategory)

@@ -44,13 +44,9 @@ namespace Aries.OpenCV.BlockMat
         public double Stn { set; get; } = 0;
 
 
-        public override void Reload()
-        {
-            Result = null;
-            base.Reload();
-        }
 
-        public override bool CanExecute()
+
+        public override bool CanCall()
         {
             return MatIn != null;
         }
@@ -58,7 +54,7 @@ namespace Aries.OpenCV.BlockMat
         /// <summary>
         /// The output lines. Each line is represented by a 4-element vector (x1, y1, x2, y2)
         /// </summary>
-        public override void Execute()
+        public override void Call()
         {
             Result = new LineSegmentPolar[0];
             Result = Cv2.HoughLines(MatIn, Rho, Theta, Threshold, Srn, Stn);

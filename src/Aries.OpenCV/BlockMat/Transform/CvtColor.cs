@@ -26,12 +26,12 @@ namespace Aries.OpenCV.BlockMat
         public ColorConversionCodes ColorConversion { set; get; }
             = ColorConversionCodes.BGR2HSV;
 
-        public override bool CanExecute()
+        public override bool CanCall()
         {
             return MatIn != null;
         }
 
-        public override void Execute()
+        public override void Call()
         {
             MatOut = new Mat();
             Cv2.CvtColor(MatIn, MatOut, ColorConversion, DstN);

@@ -31,13 +31,6 @@ namespace Aries.OpenCV.GraphModel
         }
 
 
-        public override void Reload()
-        {
-            MatIn = null;
-            MatOut = null;
-            OutImage = null;
-            Status = BlockStatus.ToRun;
-        }
 
     }
 }
