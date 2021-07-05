@@ -46,6 +46,7 @@ namespace Aries.OpenCV.BlockMat
 
         public override void Call()
         {
+            var random = new Random(1);
 
             MatOut = Mat.Zeros(new Size(HistWidth, HistHeight), MatType.CV_8UC3)
                 .Add(new Scalar(255, 255, 255));
@@ -60,7 +61,10 @@ namespace Aries.OpenCV.BlockMat
                 Cv2.Rectangle(MatOut,
                     new Point(binWidth * i, HistHeight),
                     new Point(binWidth * (i - 1) - 1, histHeight[i - 1]),
-                    new Scalar(0,0,0),
+                    new Scalar(
+                        random.Next(0, 255), 
+                        random.Next(0, 255),
+                        random.Next(0, 255)),
                     LineThickNess);
             }
         }

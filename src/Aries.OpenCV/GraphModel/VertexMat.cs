@@ -60,7 +60,7 @@ namespace Aries.OpenCV.GraphModel
         {
             Name = GetType().Name;
             CVCategory = BlockHelper.GetCvCategory(GetType());
-            Icon = BlockHelper.GetBlockICon(CVCategory);
+            Icon = BlockHelper.GetBlockICon(CVCategory,"Mat");
         }
 
         public override void ExecuteCommand_Execute()

@@ -13,6 +13,9 @@ namespace Aries.OpenCV
         private static readonly Dictionary<string, string> IconDictionary =
             new Dictionary<string, string>
             {
+                ["Mat"] = "\ue718",
+                ["Mats"] = "\ue9bb",
+                ["Contour"] = "\ued71",
                 ["Default"] = "\ued8d"
             };
 
@@ -27,7 +30,7 @@ namespace Aries.OpenCV
                 ["LineSegmentPoint[]"] = "\ued74",
                 ["LineSegmentPoint"] = "\ued74",
                 ["MatType"] = "\ued8d",
-                ["Mat[]"] = "\ued8d",
+                ["Mat[]"] = "\ue9bb",
                 ["Mat"] = "\ued8d",
                 ["Default"] = "\uef71",
             };
@@ -131,11 +134,11 @@ namespace Aries.OpenCV
             return filterPros.ToList();
         }
 
-        public static string GetBlockICon(string cvCategory)
+        public static string GetBlockICon(string cvCategory,string defaultCate)
         {
             return IconDictionary.ContainsKey(cvCategory)
                 ? IconDictionary[cvCategory]
-                : IconDictionary["Default"];
+                : IconDictionary[defaultCate];
         }
 
         public static string GetPointICon(string typeName)

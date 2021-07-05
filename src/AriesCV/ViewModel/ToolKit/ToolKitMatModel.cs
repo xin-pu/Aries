@@ -20,7 +20,7 @@ namespace AriesCV.ViewModel.ToolKit
                     Name = a.Key.Name,
                     ClassType = a.Key,
                     Category = a.Value,
-                    ICon = BlockHelper.GetBlockICon(a.Value),
+                    ICon = BlockHelper.GetBlockICon(a.Value,"Mat"),
                     IsVisiable = true
                 })
                 .OrderBy(a => a.Category)

@@ -39,4 +39,11 @@ namespace AriesCV.ViewModel.ToolKit
         }
 
     }
+
+    public enum TopCategory
+    {
+        Mat,
+        Mats,
+        Contour
+    }
 }

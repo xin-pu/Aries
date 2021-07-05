@@ -72,16 +72,16 @@
                     <TabControl TabStripPlacement="Left" Name="LeftTabControl"
                                 FontFamily="/Resource/#iconfont"
                                 FontWeight="DemiBold">
-                        <TabItem Header="&#xef4a;"
+                        <TabItem Header="&#xe718;"
                                  ToolTip="Mat"
-                                 FontSize="20">
+                                 FontSize="16">
                             <toolKit:ToolKitView 
                                 Background="Transparent"
                                 DataContext="{Binding ToolKitMat,Source={StaticResource Locator}}" />
                         </TabItem>
-                        <TabItem Header="&#xef4a;"
+                        <TabItem Header="&#xe9bb;"
                                  ToolTip="Mats"
-                                 FontSize="20">
+                                 FontSize="18">
                             <toolKit:ToolKitView 
                                 Background="Transparent"
                                 DataContext="{Binding ToolKitMats,Source={StaticResource Locator}}" />

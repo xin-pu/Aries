@@ -17,7 +17,7 @@ namespace AriesCV.ViewModel.ToolKit
                     Name = a.Key.Name,
                     ClassType = a.Key,
                     Category = a.Value,
-                    ICon = BlockHelper.GetBlockICon(a.Value),
+                    ICon = BlockHelper.GetBlockICon(a.Value,"Contour"),
                     IsVisiable = true
                 })
                 .OrderBy(a => a.Category)
