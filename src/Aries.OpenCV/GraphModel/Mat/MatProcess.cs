@@ -35,6 +35,7 @@ namespace Aries.OpenCV.GraphModel
         {
             MatIn = null;
             MatOut = null;
+            OutImage = null;
             Status = BlockStatus.ToRun;
         }
 

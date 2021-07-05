@@ -21,6 +21,7 @@ namespace Aries.OpenCV.BlockMat
             MatR = null;
             MatG = null;
             MatB = null;
+            OutImage = null;
             base.Reload();
         }
 

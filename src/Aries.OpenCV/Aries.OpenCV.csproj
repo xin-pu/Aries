@@ -105,6 +105,7 @@
     <Compile Include="BlockMat\Arithmetic\AddWeighted.cs" />
     <Compile Include="BlockMat\Transform\SubMatROI.cs" />
     <Compile Include="GraphModel\Controls\ContourVertexControl.cs" />
+    <Compile Include="GraphModel\Controls\MatsVertexControl.cs" />
     <Compile Include="GraphModel\Core\EdgeBlueprint.cs" />
     <Compile Include="GraphModel\Core\GraphCVArea.cs" />
     <Compile Include="GraphModel\Core\GraphCVControlFactory.cs" />

@@ -6,6 +6,7 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.BlockMats
 {
+    [Category("Import")]
     public class ImagesByFolder : VertexMats
     {
 

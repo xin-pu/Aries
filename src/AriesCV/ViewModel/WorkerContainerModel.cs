@@ -131,6 +131,14 @@ namespace AriesCV.ViewModel
                 GraphCvAreaAtWorkSpace?.AddMatBlock(vertex);
 
             }
+            else if (type.IsSubclassOf(typeof(VertexMats)))
+            {
+                var vertex = BlockHelper.CreateVertex<VertexMats>(type);
+                var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
+                vertex.WorkDirectory = workDirectory;
+                GraphCvAreaAtWorkSpace?.AddMatBlock(vertex);
+
+            }
             else if (type.IsSubclassOf(typeof(VertexContour)))
             {
                 var vertex = BlockHelper.CreateVertex<VertexContour>(type);
@@ -185,17 +193,17 @@ namespace AriesCV.ViewModel
 
         public async void RunGraphByData(string obj)
         {
-            await CvWorkerItemView.RunGraphByDataAsync();
+            await CvWorkerItemView.GraphCVArea.RunGraphAsync();
         }
 
         public async void ReloadGraph(string obj)
         {
-            await CvWorkerItemView.ReloadAllBlockAsync();
+            await CvWorkerItemView.GraphCVArea.ReloadAllBlockAsync();
         }
 
         public async void SetEnableSaveImage(bool isEnable)
         {
-            await CvWorkerItemView.SetEnableSaveImageAsync(isEnable);
+            await CvWorkerItemView.GraphCVArea.SetEnableSaveImageAsync(isEnable);
         }
 
         public  void OpenWorkDirectory(string obj)

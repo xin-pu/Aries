@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using AriesCV.ViewModel;
+using GraphX.Common;
 using GraphX.Common.Enums;
 using HandyControl.Controls;
 using Microsoft.Win32;
@@ -13,6 +14,7 @@ namespace AriesCV.Views
 
         public GraphCVFileStruct GetCvFileStruct()
         {
+            GraphCVArea.VertexList.Keys.ForEach(a => a.Reload());
             return new GraphCVFileStruct
             {
                 Name = Name,

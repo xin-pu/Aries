@@ -22,6 +22,13 @@ namespace Aries.OpenCV.BlockMat
 
         [Category("ARGUMENT")] public bool BottomLeftOrign { set; get; } = false;
 
+
+        public override void Reload()
+        {
+            Texts = null;
+            base.Reload();
+        }
+
         public override bool CanExecute()
         {
             return MatIn != null && Texts != null && Texts.Length > 0;

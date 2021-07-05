@@ -19,6 +19,7 @@ namespace Aries.OpenCV.BlockMat
             MatIn = null;
             Mask = null;
             MatOut = null;
+            OutImage = null;
             base.Reload();
         }
 
