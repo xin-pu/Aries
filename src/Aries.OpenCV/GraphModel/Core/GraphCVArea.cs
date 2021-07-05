@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -304,7 +304,19 @@ namespace Aries.OpenCV.GraphModel.Core
 
         #region Run Function
 
+        public static void ReloadWorkDirectory(List<VertexBasic> vertexBasics, FileInfo fileInfo)
+        {
+            if (fileInfo.DirectoryName != null)
+            {
+                var dire = Path.Combine(fileInfo.DirectoryName, Path.GetFileNameWithoutExtension(fileInfo.FullName));
+                if (!Directory.Exists(dire))
+                {
+                    Directory.CreateDirectory(dire);
+                }
 
+                vertexBasics.ForEach(v => v.WorkDirectory = dire);
+            }
+        }
 
         public static async Task RunGraphByDataAsync(
             List<VertexBasic> verDatas,

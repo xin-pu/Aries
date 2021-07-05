@@ -10,19 +10,20 @@ namespace Aries.OpenCV.BlockMats
     public class ImagesSource : VertexMats
     {
 
-        private string[] _matsOut;
+        private FileInfo[] _matFilesOut;
+
         [Category("ARGUMENT")] public string Folder { set; get; }
         [Category("ARGUMENT")] public string ImageFilter { set; get; }
         [Category("ARGUMENT")] public ImreadModes ImreadModes { set; get; } = ImreadModes.Grayscale;
 
         [Category("DATAOUT")]
-        public string[] MatsOut
+        public FileInfo[] MatFilesOut
         {
-            get { return _matsOut; }
+            get { return _matFilesOut; }
             set
             {
-                _matsOut = value;
-                RaisePropertyChanged(() => MatsOut);
+                _matFilesOut = value;
+                RaisePropertyChanged(() => MatFilesOut);
             }
         }
 
@@ -36,9 +37,10 @@ namespace Aries.OpenCV.BlockMats
             var files = new DirectoryInfo(Folder).GetFiles();
             var imageFiles = ImageFilter == null
                 ? files
-                : files.Where(a => a.FullName.Contains(ImageFilter)).ToArray();
+                : files.Where(a => a.FullName.ToUpper().Contains(ImageFilter.ToUpper()))
+                    .ToArray();
             if (imageFiles.Length > 0)
-                MatsOut = imageFiles.Select(a=>a.FullName).ToArray();
+                MatFilesOut = imageFiles;
 
         }
     }

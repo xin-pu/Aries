@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using Aries.OpenCV.BlockMat;
 using Aries.OpenCV.GraphModel;
@@ -8,7 +10,6 @@ using GalaSoft.MvvmLight.Command;
 using GraphX.Common;
 using GraphX.Controls;
 using Microsoft.Win32;
-using OpenCvSharp;
 
 namespace Aries.OpenCV.BlockMats
 {
@@ -21,7 +22,7 @@ namespace Aries.OpenCV.BlockMats
         private List<ConnectionPointData> ConnectionPointDatas { set; get; }
 
 
-        [Category("DATAIN")] public string[] MatsIn { set; get; }
+        [Category("DATAIN")] public FileInfo[] MatFilesIn { set; get; }
 
         [Category("ARGUMENT")] public string GraphCVAriesFile { set; get; }
 
@@ -41,7 +42,40 @@ namespace Aries.OpenCV.BlockMats
             };
             openFileDailog.ShowDialog();
             GraphCVAriesFile = openFileDailog.FileName;
+        }
 
+
+        public override bool CanCall()
+        {
+            var res = MatFilesIn != null && MatFilesIn.Length >= 1;
+            return res;
+        }
+
+        public static object locker = new object();
+
+        public override void Call()
+        {
+            MatFilesIn.ForEach(async mat =>
+            {
+                var (vertexBasics, edges, connectionPointDatas) = Clone();
+
+                vertexBasics.ForEach(a => a.Reload());
+
+                var import = vertexBasics
+                    .FirstOrDefault(a => a.Name == "MatSource") as MatSource;
+                if (import == null)
+                    throw new ArgumentNullException();
+                import.FileName = mat.FullName;
+
+                GraphCVArea.ReloadWorkDirectory(vertexBasics, mat);
+
+                await GraphCVArea.RunGraphByDataAsync(vertexBasics, edges, connectionPointDatas);
+
+            });
+        }
+
+        private Tuple<List<VertexBasic>, List<BlockEdge>, List<ConnectionPointData>> Clone()
+        {
             var datas = GraphCVFileStruct.DeserializeGraphDataFromFile(GraphCVAriesFile)
                 .GraphSerializationDatas;
             VertexDatas = new List<VertexBasic>();
@@ -73,29 +107,10 @@ namespace Aries.OpenCV.BlockMats
                 }
             }
 
-        }
-
-
-        public override bool CanCall()
-        {
-            var res = MatsIn != null && MatsIn.Length >= 1;
-            return res;
-        }
-
-        public override void Call()
-        {
-            MatsIn.ForEach(async mat =>
-            {
-                VertexDatas.ForEach(a => a.Reload());
-
-                var import = VertexDatas.FirstOrDefault(a => a.Name == "MatSource") as MatSource;
-                import.FileName = mat;
-
-
-                await GraphCVArea.RunGraphByDataAsync(VertexDatas, BlockEdges, ConnectionPointDatas);
-
-
-            });
+            return new Tuple<List<VertexBasic>, List<BlockEdge>, List<ConnectionPointData>>(
+                VertexDatas,
+                BlockEdges,
+                ConnectionPointDatas);
         }
     }
 }
