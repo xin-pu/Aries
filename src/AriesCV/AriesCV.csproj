@@ -107,10 +107,11 @@
     <Compile Include="Controls\CvPropertyGrid\Editor\PointPropertyEditor.cs" />
     <Compile Include="Controls\CvPropertyGrid\Editor\ScalarPropertyEditor.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingCategory.cs" />
-    <Compile Include="ViewModel\GraphLayout\EdgeRoutingConvert.cs" />
+    <Compile Include="Converts\EdgeRoutingConvert.cs" />
     <Compile Include="ViewModel\GraphLayout\EdgeRoutingType.cs" />
+    <Compile Include="Converts\ImageSourceConvert.cs" />
     <Compile Include="ViewModel\GraphLayout\LayoutCategory.cs" />
-    <Compile Include="ViewModel\GraphLayout\LayoutConvert.cs" />
+    <Compile Include="Converts\LayoutConvert.cs" />
     <Compile Include="ViewModel\GraphLayout\LayoutType.cs" />
     <Compile Include="ViewModel\Menu\MenuFileModel.cs" />
     <Compile Include="ViewModel\ToolKit\ToolKitContainerModel.cs" />

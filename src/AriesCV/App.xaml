@@ -4,7 +4,8 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:AriesCV.ViewModel"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout">
+             xmlns:graphLayout="clr-namespace:AriesCV.ViewModel.GraphLayout"
+             xmlns:converts="clr-namespace:AriesCV.Converts">
     <Application.Resources>
         <ResourceDictionary>
           
@@ -62,9 +63,9 @@
                 </ObjectDataProvider.MethodParameters>
             </ObjectDataProvider>
 
-            <graphLayout:LayoutConvert x:Key="LayoutConvert"/>
-            <graphLayout:EdgeRoutingConvert x:Key="EdgeRoutingConvert"/>
-
+            <converts:LayoutConvert x:Key="LayoutConvert"/>
+            <converts:EdgeRoutingConvert x:Key="EdgeRoutingConvert"/>
+            <converts:ImageSourceConvert x:Key="ImageSourceConvert"/>
         </ResourceDictionary>
 
 

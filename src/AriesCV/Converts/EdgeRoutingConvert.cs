@@ -2,8 +2,9 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
+using AriesCV.ViewModel.GraphLayout;
 
-namespace AriesCV.ViewModel.GraphLayout
+namespace AriesCV.Converts
 {
     public class EdgeRoutingConvert : IValueConverter
     {

@@ -286,7 +286,8 @@
                                     </StackPanel>
                                     <Image Source="{Binding OutImage,Mode=TwoWay,
                                         NotifyOnSourceUpdated=True,
-                                        UpdateSourceTrigger=PropertyChanged}" 
+                                        UpdateSourceTrigger=PropertyChanged,
+                                        Converter={StaticResource ImageSourceConvert}}" 
                                                     Name="ImageViewer"
                                                     Visibility="Collapsed"/>
                                 </DockPanel>
