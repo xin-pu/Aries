@@ -116,18 +116,22 @@
 
                             <hc:NumericUpDown Grid.Row="0" Grid.Column="1"
                                               Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Left}"
+                                              ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Left}"
                                               VerticalAlignment="Center" Margin="4,0"
                                               Style="{DynamicResource NumericUpDownBaseStyle}"/>
                             <hc:NumericUpDown Grid.Row="1" Grid.Column="1"
                                               Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Top}"
+                                              ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Top}"
                                               VerticalAlignment="Center" Margin="4,0"
                                               Style="{DynamicResource NumericUpDownBaseStyle}"/>
                             <hc:NumericUpDown Grid.Row="2" Grid.Column="1"
                                               Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=RectWidth}"
+                                              ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=RectWidth}"
                                               VerticalAlignment="Center" Margin="4,0"
                                               Style="{DynamicResource NumericUpDownBaseStyle}"/>
                             <hc:NumericUpDown Grid.Row="3" Grid.Column="1"
                                               Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=RectHeight}"
+                                              ToolTip="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=RectHeight}"
                                               VerticalAlignment="Center" Margin="4,0"
                                               Style="{DynamicResource NumericUpDownBaseStyle}"/>
                         </Grid>

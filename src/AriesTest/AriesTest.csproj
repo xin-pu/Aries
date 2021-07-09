@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="RunCVbyDatas.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

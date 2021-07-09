@@ -37,7 +37,7 @@ namespace Aries.OpenCV.BlockMat.Tesseract
                     resString.Add(page.GetText().Replace("\n", ""));
                 }
             });
-
+            
 
             Result = resString.ToArray();
 
