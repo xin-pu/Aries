@@ -8,7 +8,6 @@ namespace Aries.OpenCV.BlockMat
     [Category("Draw")]
     public class Line : MatProcess
     {
-
         [Category("DATAIN")] public LineSegmentPoint[] Lines { set; get; }
 
         [Category("ARGUMENT")] public Scalar Color { set; get; } = 255;

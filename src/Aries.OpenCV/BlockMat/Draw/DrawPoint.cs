@@ -1,17 +1,20 @@
-﻿using Aries.OpenCV.GraphModel;
+﻿using System;
+using System.ComponentModel;
+using Aries.OpenCV.GraphModel;
 
 namespace Aries.OpenCV.BlockMat
 {
-    public class DrawPoint: MatProcess
+    [Category("Draw")]
+    public class DrawPoint : MatProcess
     {
         public override bool CanCall()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override void Call()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

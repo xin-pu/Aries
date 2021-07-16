@@ -9,7 +9,7 @@ namespace AriesTest
     [TestClass]
     public class UnitTest1
     {
-        private string folder = @"\\wux-e81000276\CameraLog\MidCameraNGImage";
+        private string folder = @"\\wux-e81000276\CameraLog\LeftCameraImage\120_12_11";
         private string outDire = "D:\\Test";
         private string outDire2 = "D:\\Update";
 
@@ -22,7 +22,7 @@ namespace AriesTest
             foreach (var dire in directories)
             {
                 var files = dire.GetFiles();
-                var filejpg = files.Where(a => a.Extension == ".jpg");
+                var filejpg = files.Where(a => a.Extension == ".bmp");
                 filejpg.ForEach(f =>
                 {
                     var dest = Path.Combine(outDire, f.Name);

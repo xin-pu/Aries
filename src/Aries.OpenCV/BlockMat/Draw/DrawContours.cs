@@ -9,7 +9,7 @@ namespace Aries.OpenCV.BlockMat
     {
         [Category("DATAIN")] public Mat[] Contours { set; get; }
 
-        [Category("DATAIN")] public Scalar Scalar { set; get; }
+        [Category("ARGUMENT")] public Scalar Scalar { set; get; }
 
         [Category("ARGUMENT")] public int ContourIndex { set; get; } = -1;
 

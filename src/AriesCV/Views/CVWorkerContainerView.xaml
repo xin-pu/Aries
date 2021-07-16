@@ -99,7 +99,11 @@
                             <toolKit:CVPropertyGridView 
                                 Background="Transparent"/>
                         </TabItem>
-                        
+                        <TabItem Header="&#xf03a;"
+                                 ToolTip="Objects"
+                                 FontSize="20">
+                        </TabItem>
+
                     </TabControl>
                 </DockPanel>
             </Border>

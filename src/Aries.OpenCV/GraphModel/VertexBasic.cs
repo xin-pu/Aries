@@ -1,9 +1,9 @@
-﻿using GalaSoft.MvvmLight.Command;
-using GraphX.Common.Models;
-using OpenCvSharp;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
+using GraphX.Common.Models;
+using OpenCvSharp;
 
 namespace Aries.OpenCV.GraphModel
 {
@@ -12,6 +12,12 @@ namespace Aries.OpenCV.GraphModel
         private BlockStatus _status = BlockStatus.ToRun;
 
         private string _workDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+
+
+        protected VertexBasic()
+        {
+            Initial();
+        }
 
         public string CVCategory { set; get; }
         public string Icon { set; get; }
@@ -24,11 +30,10 @@ namespace Aries.OpenCV.GraphModel
         [Category("INFO")] public string ErrorMessage { set; get; }
 
 
-
         [Category("INFO")]
         public string WorkDirectory
         {
-            get { return _workDirectory; }
+            get => _workDirectory;
             set
             {
                 _workDirectory = value;
@@ -39,7 +44,7 @@ namespace Aries.OpenCV.GraphModel
         [Category("INFO")]
         public BlockStatus Status
         {
-            get { return _status; }
+            get => _status;
             set
             {
                 _status = value;
@@ -47,23 +52,14 @@ namespace Aries.OpenCV.GraphModel
             }
         }
 
-
-        protected VertexBasic()
-        {
-            Initial();
-        }
+        [Category("COMMAND")]
+        public RelayCommand RunBlockCommand => new RelayCommand(ExecuteCommand_Execute, ExecuteCommand_CanExecute);
 
         private void Initial()
         {
             Name = GetType().Name;
             CVCategory = BlockHelper.GetCvCategory(GetType());
-            Icon = BlockHelper.GetBlockICon(CVCategory,"Mat");
-        }
-
-        [Category("COMMAND")]
-        public RelayCommand RunBlockCommand
-        {
-            get { return new RelayCommand(ExecuteCommand_Execute, ExecuteCommand_CanExecute); }
+            Icon = BlockHelper.GetBlockICon(CVCategory, "Mat");
         }
 
 
@@ -77,7 +73,6 @@ namespace Aries.OpenCV.GraphModel
             var startTime = DateTime.Now;
             try
             {
-
                 Status = BlockStatus.Run;
                 Call();
                 Status = BlockStatus.Complete;
@@ -92,7 +87,6 @@ namespace Aries.OpenCV.GraphModel
                 var stopTime = DateTime.Now;
                 TimeCost = stopTime - startTime;
             }
-
         }
 
         public virtual void Reload()
@@ -119,9 +113,6 @@ namespace Aries.OpenCV.GraphModel
         }
 
 
-
-
-
         public object GetProperty(string proName)
         {
             var propertyInfo = GetType().GetProperty(proName);
@@ -142,27 +133,17 @@ namespace Aries.OpenCV.GraphModel
 
             var type = propertyInfo.PropertyType;
             var valueObj = propertyInfo.GetValue(this);
-            if (type == typeof(Mat))
-            {
-                return valueObj as Mat;
-            }
+            if (type == typeof(Mat)) return valueObj as Mat;
 
-            if (type == typeof(InputArray))
-            {
-                return (valueObj as InputArray)?.GetMat();
-            }
+            if (type == typeof(InputArray)) return (valueObj as InputArray)?.GetMat();
 
-            if (type == typeof(OutputArray))
-            {
-                return (valueObj as OutputArray)?.GetMat();
-            }
+            if (type == typeof(OutputArray)) return (valueObj as OutputArray)?.GetMat();
 
             return null;
         }
 
         public void SetPropertyAsMat(string proName, object value)
         {
-
             var mat = value as Mat;
             if (mat == null)
                 return;
@@ -173,18 +154,10 @@ namespace Aries.OpenCV.GraphModel
 
             var type = propertyInfo.PropertyType;
             if (type == typeof(Mat))
-            {
                 propertyInfo.SetValue(this, mat);
-            }
             else if (type == typeof(InputArray))
-            {
                 propertyInfo.SetValue(this, InputArray.Create(mat));
-            }
-            else if (type == typeof(OutputArray))
-            {
-                propertyInfo.SetValue(this, OutputArray.Create(mat));
-            }
-
+            else if (type == typeof(OutputArray)) propertyInfo.SetValue(this, OutputArray.Create(mat));
         }
     }
 }

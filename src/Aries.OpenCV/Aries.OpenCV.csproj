@@ -98,13 +98,17 @@
   <ItemGroup>
     <Compile Include="BlockContour\Choice\ChoiceContours.cs" />
     <Compile Include="BlockContour\Choice\ChoiceContoursForCustom.cs" />
+    <Compile Include="BlockContour\Custom\Rotate.cs" />
+    <Compile Include="BlockContour\Filter\FilterConByMR.cs" />
     <Compile Include="BlockContour\Filter\FilterContours.cs" />
     <Compile Include="BlockContour\Import\FindContours.cs" />
     <Compile Include="BlockMats\AriesExpander.cs" />
     <Compile Include="BlockMats\ImagesSource.cs" />
     <Compile Include="BlockMat\Arithmetic\InRedRange.cs" />
+    <Compile Include="BlockMat\Draw\DrawRotateRect.cs" />
     <Compile Include="BlockMat\Effects\Nostalgic.cs" />
     <Compile Include="BlockMat\Effects\Sketch.cs" />
+    <Compile Include="BlockMat\Import\MatEmpty.cs" />
     <Compile Include="BlockMat\Tesseract\GetAllText.cs" />
     <Compile Include="BlockMat\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlockMat\Tesseract\GetText.cs" />
