@@ -24,6 +24,7 @@ namespace Aries.OpenCV.BlockMat
 
         public override void Call()
         {
+            var findSize = 2;
             MatOut = MatIn.Clone();
             foreach (var contour in Contours)
             {
@@ -32,10 +33,12 @@ namespace Aries.OpenCV.BlockMat
                 var center = rotatedRect.Center;
                 Cv2.Circle(MatOut, (Point) center, CenterRadius, Scalar, Thickness, LineType);
                 Cv2.PutText(MatOut,
-                    $" Angle:{rotatedRect.Angle}  " +
-                    $" Width:{rotatedRect.Size.Width}" +
+                    $" Width:{rotatedRect.Size.Width}",
+                    (Point) center, HersheyFonts.HersheySimplex, findSize, Scalar,
+                    Thickness, LineType);
+                Cv2.PutText(MatOut,
                     $" Height:{rotatedRect.Size.Height}",
-                    (Point) center, HersheyFonts.HersheySimplex, 1, Scalar,
+                    (Point) center + new Point(0, (findSize - 1) * 50), HersheyFonts.HersheySimplex, 2, Scalar,
                     Thickness, LineType);
                 Enumerable.Range(0, 4).ToList().ForEach(i =>
                 {

@@ -35,9 +35,10 @@ namespace Aries.OpenCV.BlockContour.Custom
             {
                 var rotateRec = Cv2.MinAreaRect(con);
                 var MinRec = Cv2.BoundingRect(con);
+                var needResver = rotateRec.Size.Width < rotateRec.Size.Height;
                 Cv2.ImWrite($@"D:\O{i}.png", MatIn[MinRec]);
 
-                var angle = rotateRec.Size.Width < rotateRec.Size.Height
+                var angle = needResver
                     ? rotateRec.Angle - 90
                     : rotateRec.Angle;
 
@@ -54,12 +55,12 @@ namespace Aries.OpenCV.BlockContour.Custom
                 var height = rotateRec.Size.Height;
 
 
-                var newCenter = rotateRec.Size.Width < rotateRec.Size.Height
+                var newCenter = needResver
                     ? new Point(centerX - height / 2, centerY - width / 2)
                     : new Point(centerX - width / 2, centerY - height / 2);
-                var newW = rotateRec.Size.Width < rotateRec.Size.Height
-                    ? new Size(rotateRec.Size.Height, rotateRec.Size.Width)
-                    : new Size(rotateRec.Size.Width, rotateRec.Size.Height);
+                var newW = needResver
+                    ? new Size(height, width)
+                    : new Size(width, height);
                 var rect = new Rect(newCenter, newW);
 
                 outMat = outMat[rect];

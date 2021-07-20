@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using GraphX.Measure;
 using GraphX.Common.Enums;
 using GraphX.Common.Exceptions;
 using GraphX.Common.Interfaces;
+using GraphX.Measure;
 using QuickGraph;
 
 namespace GraphX.Logic.Models
@@ -17,88 +17,95 @@ namespace GraphX.Logic.Models
         where TGraph : class, IMutableBidirectionalGraph<TVertex, TEdge>, new()
     {
         /// <summary>
-        /// Gets if current algorithms set needs vertices sizes
+        ///     Gets if current algorithms set needs vertices sizes
         /// </summary>
         public bool AreVertexSizesNeeded()
         {
-            return (ExternalLayoutAlgorithm == null && AlgorithmFactory.NeedSizes(DefaultLayoutAlgorithm))
-                ||
-                    (ExternalLayoutAlgorithm != null && ExternalLayoutAlgorithm.NeedVertexSizes)
-                || 
-                    AreOverlapNeeded() || ExternalEdgeRoutingAlgorithm != null || DefaultEdgeRoutingAlgorithm != EdgeRoutingAlgorithmTypeEnum.None;
+            return ExternalLayoutAlgorithm == null && AlgorithmFactory.NeedSizes(DefaultLayoutAlgorithm)
+                   ||
+                   ExternalLayoutAlgorithm != null && ExternalLayoutAlgorithm.NeedVertexSizes
+                   ||
+                   AreOverlapNeeded() || ExternalEdgeRoutingAlgorithm != null ||
+                   DefaultEdgeRoutingAlgorithm != EdgeRoutingAlgorithmTypeEnum.None;
         }
 
         /// <summary>
-        /// Gets if current algorithms set actualy needs overlap removal algorithm
+        ///     Gets if current algorithms set actualy needs overlap removal algorithm
         /// </summary>
         public bool AreOverlapNeeded()
         {
-            return (ExternalOverlapRemovalAlgorithm == null && AlgorithmFactory.NeedOverlapRemoval(DefaultLayoutAlgorithm) && DefaultOverlapRemovalAlgorithm != OverlapRemovalAlgorithmTypeEnum.None) ||
-                    (ExternalOverlapRemovalAlgorithm != null);
+            return ExternalOverlapRemovalAlgorithm == null &&
+                   AlgorithmFactory.NeedOverlapRemoval(DefaultLayoutAlgorithm) &&
+                   DefaultOverlapRemovalAlgorithm != OverlapRemovalAlgorithmTypeEnum.None ||
+                   ExternalOverlapRemovalAlgorithm != null;
         }
 
         /// <summary>
-        /// Generate overlap removal algorithm according to LogicCore overlap removal algorithm default/external properties set
+        ///     Generate overlap removal algorithm according to LogicCore overlap removal algorithm default/external properties set
         /// </summary>
         /// <param name="rectangles">Vertices rectangular sizes</param>
-        public IExternalOverlapRemoval<TVertex> GenerateOverlapRemovalAlgorithm(Dictionary<TVertex, Rect> rectangles = null)
+        public IExternalOverlapRemoval<TVertex> GenerateOverlapRemovalAlgorithm(
+            Dictionary<TVertex, Rect> rectangles = null)
         {
             if (ExternalOverlapRemovalAlgorithm == null)
-            {
                 //create default OR
-                return AlgorithmFactory.CreateOverlapRemovalAlgorithm(DefaultOverlapRemovalAlgorithm, null, DefaultOverlapRemovalAlgorithmParams);
-            }
+                return AlgorithmFactory.CreateOverlapRemovalAlgorithm(DefaultOverlapRemovalAlgorithm, null,
+                    DefaultOverlapRemovalAlgorithmParams);
             var overlap = ExternalOverlapRemovalAlgorithm;
             overlap.Rectangles = rectangles;
             return overlap;
         }
 
         /// <summary>
-        /// Generate layout algorithm according to LogicCore layout algorithm default/external properties set
+        ///     Generate layout algorithm according to LogicCore layout algorithm default/external properties set
         /// </summary>
         /// <param name="vertexSizes">Vertices sizes</param>
         /// <param name="vertexPositions">Vertices positions</param>
-        public IExternalLayout<TVertex, TEdge> GenerateLayoutAlgorithm(Dictionary<TVertex, Size>  vertexSizes, IDictionary<TVertex, GPoint> vertexPositions)
+        public IExternalLayout<TVertex, TEdge> GenerateLayoutAlgorithm(Dictionary<TVertex, Size> vertexSizes,
+            IDictionary<TVertex, GPoint> vertexPositions)
         {
-            var alg = ExternalLayoutAlgorithm ?? AlgorithmFactory.CreateLayoutAlgorithm(DefaultLayoutAlgorithm, _graph, vertexPositions, vertexSizes, DefaultLayoutAlgorithmParams);
+            var alg = ExternalLayoutAlgorithm ?? AlgorithmFactory.CreateLayoutAlgorithm(DefaultLayoutAlgorithm, _graph,
+                vertexPositions, vertexSizes, DefaultLayoutAlgorithmParams);
             if (alg != null && alg.NeedVertexSizes) alg.VertexSizes = vertexSizes;
             return alg;
         }
 
         /// <summary>
-        /// Generate layout algorithm according to LogicCore layout algorithm default/external properties set
+        ///     Generate layout algorithm according to LogicCore layout algorithm default/external properties set
         /// </summary>
         /// <param name="desiredSize">Desired rectangular area size that will be taken into account</param>
         /// <param name="vertexPositions">Vertices positions</param>
         /// <param name="rectangles">Vertices rectangular sizes</param>
-        public IExternalEdgeRouting<TVertex, TEdge> GenerateEdgeRoutingAlgorithm(Size desiredSize, IDictionary<TVertex, GPoint> vertexPositions = null, IDictionary<TVertex, Rect> rectangles = null)
+        public IExternalEdgeRouting<TVertex, TEdge> GenerateEdgeRoutingAlgorithm(Size desiredSize,
+            IDictionary<TVertex, GPoint> vertexPositions = null, IDictionary<TVertex, Rect> rectangles = null)
         {
-            if (ExternalEdgeRoutingAlgorithm == null && DefaultEdgeRoutingAlgorithm != EdgeRoutingAlgorithmTypeEnum.None)
-            {
-                return AlgorithmFactory.CreateEdgeRoutingAlgorithm(DefaultEdgeRoutingAlgorithm, new Rect(desiredSize), _graph, vertexPositions, rectangles, DefaultEdgeRoutingAlgorithmParams);
-            }
+            if (ExternalEdgeRoutingAlgorithm == null &&
+                DefaultEdgeRoutingAlgorithm != EdgeRoutingAlgorithmTypeEnum.None)
+                return AlgorithmFactory.CreateEdgeRoutingAlgorithm(DefaultEdgeRoutingAlgorithm, new Rect(desiredSize),
+                    _graph, vertexPositions, rectangles, DefaultEdgeRoutingAlgorithmParams);
             return ExternalEdgeRoutingAlgorithm;
         }
 
 
         /// <summary>
-        /// Computes all edge routes related to specified vertex
+        ///     Computes all edge routes related to specified vertex
         /// </summary>
         /// <param name="dataVertex">Vertex data</param>
         /// <param name="vertexPosition">Vertex position</param>
         /// <param name="vertexSize">Vertex size</param>
-        public void ComputeEdgeRoutesByVertex(TVertex dataVertex, GPoint? vertexPosition = null, Size? vertexSize = null)
+        public void ComputeEdgeRoutesByVertex(TVertex dataVertex, GPoint? vertexPosition = null,
+            Size? vertexSize = null)
         {
             if (AlgorithmStorage?.EdgeRouting == null)
-                throw new GX_InvalidDataException("GXC: Algorithm storage is not initialized!");
+                return;
             if (dataVertex == null) return;
             var list = new List<TEdge>();
             IEnumerable<TEdge> edges;
             _graph.TryGetInEdges(dataVertex, out edges);
-            if(edges != null)
+            if (edges != null)
                 list.AddRange(edges);
             _graph.TryGetOutEdges(dataVertex, out edges);
-            if(edges != null)
+            if (edges != null)
                 list.AddRange(edges);
 
             if (vertexPosition.HasValue && vertexSize.HasValue)
@@ -115,15 +122,18 @@ namespace GraphX.Logic.Models
 
             IDictionary<TVertex, GPoint> resultCoords;
             Dictionary<TVertex, Rect> rectangles = null; //rectangled size data
-            
+
             if (AlgorithmStorage.Layout != null)
             {
                 var t = DateTime.Now;
                 AlgorithmStorage.Layout.Compute(cancellationToken);
-                Debug.WriteLine("layout:" +(t - DateTime.Now));
+                Debug.WriteLine("layout:" + (t - DateTime.Now));
                 resultCoords = AlgorithmStorage.Layout.VertexPositions;
-            }//get default coordinates if using Custom layout
-            else resultCoords = _vertexPosSource;
+            } //get default coordinates if using Custom layout
+            else
+            {
+                resultCoords = _vertexPosSource;
+            }
 
             //overlap removal
             if (AlgorithmStorage.OverlapRemoval != null)
@@ -134,7 +144,7 @@ namespace GraphX.Logic.Models
                 AlgorithmStorage.OverlapRemoval.Rectangles = rectangles;
                 var t = DateTime.Now;
                 AlgorithmStorage.OverlapRemoval.Compute(cancellationToken);
-                Debug.WriteLine("Overlap: "+(t - DateTime.Now));
+                Debug.WriteLine("Overlap: " + (t - DateTime.Now));
                 resultCoords = new Dictionary<TVertex, GPoint>();
                 foreach (var res in AlgorithmStorage.OverlapRemoval.Rectangles)
                     resultCoords.Add(res.Key, new GPoint(res.Value.Left, res.Value.Top));
@@ -142,13 +152,16 @@ namespace GraphX.Logic.Models
 
             //Edge Routing
             var algEr = AlgorithmStorage.Layout as ILayoutEdgeRouting<TEdge>;
-            if (AlgorithmStorage.EdgeRouting != null && (algEr == null || algEr.EdgeRoutes == null || !algEr.EdgeRoutes.Any()))
+            if (AlgorithmStorage.EdgeRouting != null &&
+                (algEr == null || algEr.EdgeRoutes == null || !algEr.EdgeRoutes.Any()))
             {
-                    //var size = Parent is ZoomControl ? (Parent as ZoomControl).Presenter.ContentSize : DesiredSize;
-                AlgorithmStorage.EdgeRouting.AreaRectangle = CalculateContentRectangle(resultCoords);// new Rect(TopLeft.X, TopLeft.Y, size.Width, size.Height);
-                
+                //var size = Parent is ZoomControl ? (Parent as ZoomControl).Presenter.ContentSize : DesiredSize;
+                AlgorithmStorage.EdgeRouting.AreaRectangle =
+                    CalculateContentRectangle(resultCoords); // new Rect(TopLeft.X, TopLeft.Y, size.Width, size.Height);
+
                 //improve perf by reusing OR data if possible
-                rectangles = AlgorithmStorage?.OverlapRemoval?.Rectangles?.ToDictionary(a=> a.Key, a=> a.Value) ?? GetVertexSizeRectangles(resultCoords, _vertexSizes);
+                rectangles = AlgorithmStorage?.OverlapRemoval?.Rectangles?.ToDictionary(a => a.Key, a => a.Value) ??
+                             GetVertexSizeRectangles(resultCoords, _vertexSizes);
 
                 AlgorithmStorage.EdgeRouting.VertexPositions = resultCoords;
                 AlgorithmStorage.EdgeRouting.VertexSizes = rectangles;
@@ -161,20 +174,18 @@ namespace GraphX.Logic.Models
             }
 
             if (algEr?.EdgeRoutes != null)
-            {
                 foreach (var item in algEr.EdgeRoutes)
                     item.Key.RoutingPoints = item.Value;
-            }
 
             return resultCoords;
         }
 
         private Rect CalculateContentRectangle(IDictionary<TVertex, GPoint> actualPositions = null)
         {
-            double minX=0;
-            double minY=0;
-            double maxX=0;
-            double maxY=0;
+            double minX = 0;
+            double minY = 0;
+            double maxX = 0;
+            double maxY = 0;
 
             actualPositions = actualPositions ?? _vertexPosSource;
 
