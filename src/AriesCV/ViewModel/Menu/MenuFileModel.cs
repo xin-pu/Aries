@@ -9,7 +9,6 @@ namespace AriesCV.ViewModel.Menu
 {
     public class MenuFileModel : ViewModelBase
     {
-
         private int ID { set; get; } = 1;
 
 
@@ -29,7 +28,7 @@ namespace AriesCV.ViewModel.Menu
 
         public RelayCommand SaveGraphCVFileCommand =>
             new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItem)).Value;
-        
+
 
         public RelayCommand SaveAsGraphCVFileCommand =>
             new Lazy<RelayCommand>(() => new RelayCommand(SaveCVWorkerItemAs)).Value;
@@ -40,24 +39,30 @@ namespace AriesCV.ViewModel.Menu
         public WorkerContainerModel CvWorkerContainerModel => ViewModelLocator.Instance.CvWorkerContainer;
 
 
-
         private void OpenCVWorkerItem()
         {
-            var workModel = CVWorkerItemView.OpenFromAriesFile();
-            if (workModel == null)
+            try
             {
-                Growl.Error($"Fail to Open Graph CV");
-                return;
-            }
+                var workModel = CVWorkerItemView.OpenFromAriesFile();
+                if (workModel == null)
+                {
+                    Growl.Error($"Fail to Open Graph CV");
+                    return;
+                }
 
-            if (CvWorkerContainerModel.CurrentKeys.Contains(workModel.Name))
+                if (CvWorkerContainerModel.CurrentKeys.Contains(workModel.Name))
+                {
+                    Growl.Error($"Has opened{workModel.Name} Graph CV");
+                    return;
+                }
+
+                Messenger.Default.Send(workModel, "AddCVWorkerToken");
+                Growl.Success($"Open {workModel.Name} Graph CV");
+            }
+            catch (Exception ex)
             {
-                Growl.Error($"Has opened{workModel.Name} Graph CV");
-                return;
+                Growl.Error($"Open Graph CV Failed:{ex.Message}");
             }
-
-            Messenger.Default.Send(workModel, "AddCVWorkerToken");
-            Growl.Success($"Open {workModel.Name} Graph CV");
         }
 
 
@@ -84,7 +89,7 @@ namespace AriesCV.ViewModel.Menu
 
         private void CloseCVWorkerItem()
         {
-            Messenger.Default.Send(CvWorkerContainerModel?.CvWorkerItemView?.Name, "RemoveCVWorkerToken"); 
+            Messenger.Default.Send(CvWorkerContainerModel?.CvWorkerItemView?.Name, "RemoveCVWorkerToken");
         }
 
         private void SaveCVWorkerItem()
@@ -95,15 +100,11 @@ namespace AriesCV.ViewModel.Menu
         private void SaveCVWorkerItemAs()
         {
             CvWorkerContainerModel?.CvWorkerItemView?.SaveToAriesFile();
-
         }
 
         private void SaveCVWorkerItemAsPng()
         {
             CvWorkerContainerModel?.CvWorkerItemView?.SaveToPicture();
         }
-
- 
-
     }
 }

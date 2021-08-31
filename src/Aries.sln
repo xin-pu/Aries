@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aries.OpenCV", "Aries.OpenCV\Aries.OpenCV.csproj", "{2E7767E8-C9EE-4A13-9F9C-4E76DDBCC935}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{5917E1D9-055A-4064-A7F0-296FC1C8D3C2}"
+	ProjectSection(SolutionItems) = preProject
+		README.MD = README.MD
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphX.WPF.Controls", "GraphX.Controls\GraphX.WPF.Controls.csproj", "{D2E33FEE-6689-4BB4-A95C-1B5C327A1E8F}"
 EndProject
