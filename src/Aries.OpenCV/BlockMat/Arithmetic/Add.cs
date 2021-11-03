@@ -7,12 +7,10 @@ namespace Aries.OpenCV.BlockMat
     [Category("Arithmetic")]
     public class Add : MatArithmetic
     {
-
         public override void Call()
         {
             MatOut = new Mat();
             Cv2.Add(MatIn1, MatIn2, MatOut, Mask);
-
         }
     }
 }

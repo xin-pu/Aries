@@ -7,32 +7,25 @@ using OpenCvSharp;
 
 namespace Aries.OpenCV.BlockMat
 {
-
     [Category("Initial")]
     public class MatSource : MatImport
     {
-
         [Category("ARGUMENT")] public string FileName { set; get; }
 
         [Category("ARGUMENT")] public ImreadModes ImreadModes { set; get; } = ImreadModes.Grayscale;
 
-        [Category("COMMAND")]
-        public RelayCommand UpdataSourceCommand
-        {
-            get { return new RelayCommand(UpdataSourceCommand_Execute); }
-        }
+        [Category("COMMAND")] public RelayCommand UpdataSourceCommand => new RelayCommand(UpdataSourceCommand_Execute);
 
         private void UpdataSourceCommand_Execute()
         {
             var openFileDailog = new OpenFileDialog
             {
                 Title = $"{ID}_{Name}",
-                Filter = "JPG文件|*.jpg|PNG文件|*.png"
+                Filter = "JPG文件|*.jpg|PNG文件|*.png|BMP文件|*.bmp"
             };
             openFileDailog.ShowDialog();
             FileName = openFileDailog.FileName;
         }
-
 
 
         public override bool CanCall()

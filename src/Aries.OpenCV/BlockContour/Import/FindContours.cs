@@ -7,13 +7,13 @@ namespace Aries.OpenCV.BlockContour
     [Category("Import")]
     public class FindContours : VertexContour
     {
-        private Mat _matIn;
         private Mat[] _consOut;
+        private Mat _matIn;
 
         [Category("DATAIN")]
         public Mat MatIn
         {
-            get { return _matIn; }
+            get => _matIn;
             set
             {
                 _matIn = value;
@@ -24,7 +24,7 @@ namespace Aries.OpenCV.BlockContour
         [Category("DATAOUT")]
         public Mat[] ConsOut
         {
-            get { return _consOut; }
+            get => _consOut;
             set
             {
                 _consOut = value;
@@ -37,10 +37,11 @@ namespace Aries.OpenCV.BlockContour
         [Category("ARGUMENT")] public RetrievalModes RetrievalMode { set; get; } = RetrievalModes.List;
 
         /// <summary>
-        /// CHAIN_APPROX_NONE - translate all the points from the chain code into points;
-        /// CHAIN_APPROX_SIMPLE - compress horizontal, vertical, and diagonal segments, that is, the function leaves only their ending points;
-        /// CHAIN_APPROX_TC89_L1 - apply one of the flavors of Teh-Chin chain approximation algorithm.
-        /// CHAIN_APPROX_TC89_KCOS - apply one of the flavors of Teh-Chin chain approximation algorithm. 
+        ///     CHAIN_APPROX_NONE - translate all the points from the chain code into points;
+        ///     CHAIN_APPROX_SIMPLE - compress horizontal, vertical, and diagonal segments, that is, the function leaves only their
+        ///     ending points;
+        ///     CHAIN_APPROX_TC89_L1 - apply one of the flavors of Teh-Chin chain approximation algorithm.
+        ///     CHAIN_APPROX_TC89_KCOS - apply one of the flavors of Teh-Chin chain approximation algorithm.
         /// </summary>
         [Category("ARGUMENT")]
         public ContourApproximationModes ContourApproximationMode { set; get; } =

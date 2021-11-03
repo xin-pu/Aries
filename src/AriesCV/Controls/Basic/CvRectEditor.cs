@@ -1,23 +1,26 @@
-﻿
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls.Primitives;
 using Rect = OpenCvSharp.Rect;
 
 namespace AriesCV.Controls
 {
-
     public class CvRectEditor : ButtonBase
     {
+        public static readonly DependencyProperty RectProperty = DependencyProperty.Register(
+            "Rect", typeof(Rect), typeof(CvRectEditor),
+            new FrameworkPropertyMetadata(default(Rect), OnRectChanged));
+
         static CvRectEditor()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CvRectEditor),
                 new FrameworkPropertyMetadata(typeof(CvRectEditor)));
         }
 
-
-        public static readonly DependencyProperty RectProperty = DependencyProperty.Register(
-            "Rect", typeof(Rect), typeof(CvRectEditor),
-            new FrameworkPropertyMetadata(default(Rect), OnRectChanged));
+        public Rect Rect
+        {
+            get => (Rect) GetValue(RectProperty);
+            set => SetValue(RectProperty, value);
+        }
 
         private static void OnRectChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -36,14 +39,6 @@ namespace AriesCV.Controls
             ((CvRectEditor) d).RectHeight = 0;
         }
 
-        public Rect Rect
-        {
-            get => (Rect) GetValue(RectProperty);
-            set => SetValue(RectProperty, value);
-        }
-
-
-
 
         #region Top
 
@@ -55,9 +50,7 @@ namespace AriesCV.Controls
         {
             var cvRectEditor = (CvRectEditor) d;
             if (e.NewValue is int top)
-            {
                 cvRectEditor.Rect = new Rect(cvRectEditor.Left, top, cvRectEditor.RectWidth, cvRectEditor.RectHeight);
-            }
         }
 
         public int Top
@@ -77,12 +70,9 @@ namespace AriesCV.Controls
 
         private static void OnLeftChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var cvRectEditor = (CvRectEditor)d;
+            var cvRectEditor = (CvRectEditor) d;
             if (e.NewValue is int left)
-            {
                 cvRectEditor.Rect = new Rect(left, cvRectEditor.Top, cvRectEditor.RectWidth, cvRectEditor.RectHeight);
-            }
-
         }
 
         public int Left
@@ -104,10 +94,7 @@ namespace AriesCV.Controls
         {
             var cvRectEditor = (CvRectEditor) d;
             if (e.NewValue is int rectWidth)
-            {
                 cvRectEditor.Rect = new Rect(cvRectEditor.Left, cvRectEditor.Top, rectWidth, cvRectEditor.RectHeight);
-            }
-
         }
 
         public int RectWidth
@@ -127,11 +114,9 @@ namespace AriesCV.Controls
 
         private static void OnRectHeightChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var cvRectEditor = (CvRectEditor)d;
+            var cvRectEditor = (CvRectEditor) d;
             if (e.NewValue is int rectHeight)
-            {
                 cvRectEditor.Rect = new Rect(cvRectEditor.Left, cvRectEditor.Top, cvRectEditor.RectWidth, rectHeight);
-            }
         }
 
         public int RectHeight
@@ -141,8 +126,5 @@ namespace AriesCV.Controls
         }
 
         #endregion
-
-
-
     }
 }
