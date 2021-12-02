@@ -25,7 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>8</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <LangVersion>8</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommonServiceLocator, Version=2.0.2.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
@@ -52,6 +52,9 @@
     </Reference>
     <Reference Include="IronBarCode, Version=2021.6.3.0, Culture=neutral, PublicKeyToken=b971bb3971bdf306, processorArchitecture=MSIL">
       <HintPath>..\packages\BarCode.2021.6.3\lib\net40\IronBarCode.dll</HintPath>
+    </Reference>
+    <Reference Include="MathNet.Numerics, Version=4.15.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MathNet.Numerics.4.15.0\lib\net461\MathNet.Numerics.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -78,6 +81,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.5.0.0\lib\net45\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -116,6 +120,8 @@
     <Compile Include="BlockMat\Effects\Sketch.cs" />
     <Compile Include="BlockMat\Find\FindCirclesGrid.cs" />
     <Compile Include="BlockMat\Import\MatEmpty.cs" />
+    <Compile Include="BlockMat\Integrate\MahjongFinder.cs" />
+    <Compile Include="BlockMat\Integrate\MatIntegrate.cs" />
     <Compile Include="BlockMat\Tesseract\GetAllText.cs" />
     <Compile Include="BlockMat\Tesseract\GetTextSegment.cs" />
     <Compile Include="BlockMat\Tesseract\GetText.cs" />
@@ -225,6 +231,8 @@
     <Compile Include="BlockMat\Blur\GaussianBlur.cs" />
     <Compile Include="GraphModel\VertexMats.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\CVMath.cs" />
+    <Compile Include="Utils\CvtPoint.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -252,7 +260,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BlockContour\Mahjong\" />
     <Folder Include="BlockMat\Barcode\" />
     <Folder Include="ToolKit\" />
   </ItemGroup>

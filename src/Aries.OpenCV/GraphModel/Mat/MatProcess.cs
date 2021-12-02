@@ -11,7 +11,7 @@ namespace Aries.OpenCV.GraphModel
         [Category("DATAIN")]
         public Mat MatIn
         {
-            get { return _matIn; }
+            get => _matIn;
             set
             {
                 _matIn = value;
@@ -22,15 +22,12 @@ namespace Aries.OpenCV.GraphModel
         [Category("DATAOUT")]
         public Mat MatOut
         {
-            get { return _matOut; }
+            get => _matOut;
             set
             {
                 _matOut = value;
                 RaisePropertyChanged(() => MatOut);
             }
         }
-
-
-
     }
 }

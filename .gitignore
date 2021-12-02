@@ -26,3 +26,7 @@
 
 /src/AriesTest/obj/Debug
 /src/AriesTest/bin/Debug
+/src/Aries.UnitTest/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/src/Aries.UnitTest/obj/Debug/Aries.UnitTest.csproj.AssemblyReference.cache
+/src/Aries.UnitTest/obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+/src/Aries.UnitTest/obj/Debug

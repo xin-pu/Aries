@@ -9,28 +9,33 @@ namespace Aries.OpenCV.GraphModel
     [Serializable]
     public abstract class VertexMat : VertexBasic
     {
-
         private bool _enableSaveMat = true;
-        private bool _showImage = true;
         private string _imageSource = @"\Resource\Image\Aries.jpg";
+        private bool _showImage = true;
+
+
+        protected VertexMat()
+        {
+            Initial();
+        }
 
 
         [Category("INFO")]
         public string OutImage
         {
-            get { return _imageSource; }
+            get => _imageSource;
             set
             {
                 _imageSource = value;
                 RaisePropertyChanged(() => OutImage);
             }
         }
-        
+
 
         [Category("CHOICE")]
         public bool EnableSaveMat
         {
-            get { return _enableSaveMat; }
+            get => _enableSaveMat;
             set
             {
                 _enableSaveMat = value;
@@ -41,7 +46,7 @@ namespace Aries.OpenCV.GraphModel
         [Category("CHOICE")]
         public bool ShowImage
         {
-            get { return _showImage; }
+            get => _showImage;
             set
             {
                 _showImage = value;
@@ -50,17 +55,11 @@ namespace Aries.OpenCV.GraphModel
         }
 
 
-
-        protected VertexMat()
-        {
-            Initial();
-        }
-
         private void Initial()
         {
             Name = GetType().Name;
             CVCategory = BlockHelper.GetCvCategory(GetType());
-            Icon = BlockHelper.GetBlockICon(CVCategory,"Mat");
+            Icon = BlockHelper.GetBlockICon(CVCategory, "Mat");
         }
 
         public override void ExecuteCommand_Execute()
@@ -87,10 +86,7 @@ namespace Aries.OpenCV.GraphModel
                 var mat = GetPropertyAsMat(outMatDict?.Name) as Mat;
                 var imagesource = $@"{WorkDirectory}\{Name}_{ID}_{DateTime.Now:yyyyMMdd_HHmmss}.jpg";
                 var saveRes = mat?.ImWrite(imagesource);
-                if (saveRes == true)
-                {
-                    OutImage = imagesource;
-                }
+                if (saveRes == true) OutImage = imagesource;
             }
             catch (Exception)
             {
