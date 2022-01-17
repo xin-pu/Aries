@@ -27,9 +27,9 @@ namespace Aries.OpenCV.BlockMat
         [Category("ARGUMENT")] public float MaxConvexity { set; get; } = float.MaxValue;
 
 
-        [Category("ARGUMENT")] public Size PatternSize { set; get; } = new Size(5, 5);
+        [Category("ARGUMENT")] public Size PatternSize { set; get; } = new(5, 5);
 
-
+        [Category("ARGUMENT")] public byte BlobColor { set; get; }
         [Category("DATAOUT")] public int CornerCount { set; get; }
 
         public override bool CanCall()
@@ -61,7 +61,9 @@ namespace Aries.OpenCV.BlockMat
                 /// 凸
                 FilterByConvexity = FilterByConvexity,
                 MinConvexity = MinConvexity,
-                MaxConvexity = MaxConvexity
+                MaxConvexity = MaxConvexity,
+
+                BlobColor = BlobColor
             };
             var simpleBlob = SimpleBlobDetector.Create(paras);
             var corners = new Mat<Point2f>();

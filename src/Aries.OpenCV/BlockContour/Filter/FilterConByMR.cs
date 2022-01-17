@@ -10,8 +10,8 @@ namespace Aries.OpenCV.BlockContour
     {
         [Category("DATAOUT")] public Rect[] Rects { set; get; }
 
-        [Category("ARGUMENT")] public Size MinSize { set; get; } = new Size(1, 1);
-        [Category("ARGUMENT")] public Size MaxSize { set; get; } = new Size(1, 1);
+        [Category("ARGUMENT")] public Size MinSize { set; get; } = new(1, 1);
+        [Category("ARGUMENT")] public Size MaxSize { set; get; } = new(1, 1);
 
 
         public int LengthIn => ConsIn?.Length ?? 0;
@@ -19,7 +19,7 @@ namespace Aries.OpenCV.BlockContour
 
         public override bool CanCall()
         {
-            return ConsIn != null && ConsIn.Length > 0;
+            return ConsIn is {Length: > 0};
         }
 
         public override void Call()
