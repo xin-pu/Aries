@@ -12,14 +12,15 @@ using GraphX.Controls;
 
 namespace AriesCV.ViewModel
 {
-
-
     public class WorkerContainerModel : ViewModelBase
     {
-
-        private ZoomControl _zoomControl;
         public CVWorkerItemView _cvWorkerItemView;
         public GraphCVArea _graphCvAreaAtWorkSpace;
+
+        private ZoomControl _zoomControl;
+
+        public Dictionary<string, CVWorkerItemView> CvWorkerItemViewDict =
+            new Dictionary<string, CVWorkerItemView>();
 
         public WorkerContainerModel()
         {
@@ -27,8 +28,42 @@ namespace AriesCV.ViewModel
             RegisterForFile();
             RegisterForLayout();
             RegisterForRunner();
-
         }
+
+
+        public GraphCVArea GraphCvAreaAtWorkSpace
+        {
+            get => _graphCvAreaAtWorkSpace;
+            set
+            {
+                _graphCvAreaAtWorkSpace = value;
+                RaisePropertyChanged(() => GraphCvAreaAtWorkSpace);
+            }
+        }
+
+        public ZoomControl ZoomControl
+        {
+            get => _zoomControl;
+            set
+            {
+                _zoomControl = value;
+                RaisePropertyChanged(() => ZoomControl);
+            }
+        }
+
+        public CVWorkerItemView CvWorkerItemView
+        {
+            get => _cvWorkerItemView;
+            set
+            {
+                _cvWorkerItemView = value;
+                RaisePropertyChanged(() => CvWorkerItemView);
+            }
+        }
+
+        public List<string> CurrentKeys => CvWorkerItemViewDict.Keys.ToList();
+
+        public RelayCommand<object> SelectWorkUnitCommand => new RelayCommand<object>(SelectWorkUnitCommand_Execute);
 
 
         private void RegisterForToolKit()
@@ -44,9 +79,8 @@ namespace AriesCV.ViewModel
         }
 
 
-
         /// <summary>
-        /// Works for Item Select
+        ///     Works for Item Select
         /// </summary>
         private void RegisterForLayout()
         {
@@ -60,7 +94,7 @@ namespace AriesCV.ViewModel
         }
 
         /// <summary>
-        /// Works for Item Select
+        ///     Works for Item Select
         /// </summary>
         private void RegisterForRunner()
         {
@@ -70,51 +104,6 @@ namespace AriesCV.ViewModel
 
             Messenger.Default.Register<string>(this, "OpenWorkDirectoryToken", OpenWorkDirectory);
             Messenger.Default.Register<string>(this, "ChangeWorkDirectoryToken", ChangeWorkDirectory);
-        }
-
-
-
-
-
-
-        public GraphCVArea GraphCvAreaAtWorkSpace
-        {
-            get { return _graphCvAreaAtWorkSpace; }
-            set
-            {
-                _graphCvAreaAtWorkSpace = value;
-                RaisePropertyChanged(() => GraphCvAreaAtWorkSpace);
-            }
-        }
-
-        public ZoomControl ZoomControl
-        {
-            get { return _zoomControl; }
-            set
-            {
-                _zoomControl = value;
-                RaisePropertyChanged(() => ZoomControl);
-            }
-        }
-
-        public CVWorkerItemView CvWorkerItemView
-        {
-            get { return _cvWorkerItemView; }
-            set
-            {
-                _cvWorkerItemView = value;
-                RaisePropertyChanged(() => CvWorkerItemView);
-            }
-        }
-
-        public Dictionary<string, CVWorkerItemView> CvWorkerItemViewDict =
-            new Dictionary<string, CVWorkerItemView>();
-
-        public List<string> CurrentKeys => CvWorkerItemViewDict.Keys.ToList();
-
-        public RelayCommand<object> SelectWorkUnitCommand
-        {
-            get { return new RelayCommand<object>(SelectWorkUnitCommand_Execute); }
         }
 
         private void AddMatBlockVertex(Type type)
@@ -128,7 +117,6 @@ namespace AriesCV.ViewModel
                 var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
                 vertex.WorkDirectory = workDirectory;
                 GraphCvAreaAtWorkSpace?.AddMatBlock(vertex);
-
             }
             else if (type.IsSubclassOf(typeof(VertexMats)))
             {
@@ -136,7 +124,6 @@ namespace AriesCV.ViewModel
                 var workDirectory = CvWorkerItemView.GraphCvRunConfig.WorkDirectory;
                 vertex.WorkDirectory = workDirectory;
                 GraphCvAreaAtWorkSpace?.AddMatBlock(vertex);
-
             }
             else if (type.IsSubclassOf(typeof(VertexContour)))
             {
@@ -145,7 +132,6 @@ namespace AriesCV.ViewModel
                 vertex.WorkDirectory = workDirectory;
                 GraphCvAreaAtWorkSpace?.AddContourBlock(vertex);
             }
-          
         }
 
         private void SelectWorkUnitCommand_Execute(object obj)
@@ -175,17 +161,12 @@ namespace AriesCV.ViewModel
 
         public void RemoveAllCVWorkerModel(string message)
         {
-            foreach (var cvWorkerItemView in CvWorkerItemViewDict.Values)
-            {
-                cvWorkerItemView.Dispose();
-            }
+            foreach (var cvWorkerItemView in CvWorkerItemViewDict.Values) cvWorkerItemView.Dispose();
 
             CvWorkerItemViewDict.Clear();
         }
 
         #endregion
-
-
 
 
         #region Runner
@@ -205,12 +186,12 @@ namespace AriesCV.ViewModel
             await CvWorkerItemView.GraphCVArea.SetEnableSaveImageAsync(isEnable);
         }
 
-        public  void OpenWorkDirectory(string obj)
+        public void OpenWorkDirectory(string obj)
         {
             CvWorkerItemView.OpenWorkDirectory();
         }
 
-        public  void ChangeWorkDirectory(string obj)
+        public void ChangeWorkDirectory(string obj)
         {
             CvWorkerItemView.ChangeWorkDirectory();
         }
@@ -251,7 +232,5 @@ namespace AriesCV.ViewModel
         }
 
         #endregion
-
-
     }
 }
