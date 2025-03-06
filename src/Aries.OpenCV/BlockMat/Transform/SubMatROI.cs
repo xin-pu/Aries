@@ -30,4 +30,22 @@ namespace Aries.OpenCV.BlockMat
             MatOut = MatIn.SubMat(Rect);
         }
     }
+
+    [Category("Transform")]
+    public class CropROI : MatProcess
+    {
+        [Category("DATAIN")] public Rect Rect { set; get; }
+
+        [Category("CHOICE")] public bool EnableSelectRect { set; get; } = true;
+
+        public override bool CanCall()
+        {
+            return MatIn != null;
+        }
+
+        public override void Call()
+        {
+            MatOut = MatIn[Rect];
+        }
+    }
 }
